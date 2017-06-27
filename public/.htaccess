@@ -1,0 +1,80 @@
+# redirect bad bots/user-agent to other page
+RewriteEngine on 
+RewriteCond %{HTTP_USER_AGENT} ^$ [NC,OR] 
+RewriteCond %{HTTP_USER_AGENT} ^robots$ [NC,OR] 
+RewriteCond %{HTTP_USER_AGENT} ^facebookexternalhit [NC,OR]  
+RewriteCond %{HTTP_USER_AGENT} ^Mediatoolkitbot [NC,OR]
+RewriteCond %{HTTP_USER_AGENT} ^Twitterbot [NC,OR]
+RewriteCond %{HTTP_USER_AGENT} CFNetwork(.*)Darwin [NC,OR]
+RewriteCond %{HTTP_USER_AGENT} ^Apache\s+OpenOffice [NC,OR]
+RewriteCond %{HTTP_USER_AGENT} ^okhttp [NC,OR]
+RewriteCond %{HTTP_USER_AGENT} ^omgili [NC,OR]
+RewriteCond %{HTTP_USER_AGENT} ^WhatsApp [NC,OR]
+RewriteCond %{HTTP_USER_AGENT} ^python- [NC,OR]
+RewriteCond %{HTTP_USER_AGENT} ^Jersey [NC,OR]
+RewriteCond %{HTTP_USER_AGENT} ^fasthttp$ [NC,OR]
+RewriteCond %{HTTP_USER_AGENT} ^HybridBot [NC,OR]
+RewriteCond %{HTTP_USER_AGENT} ^IDG/IT [NC,OR]
+RewriteCond %{HTTP_USER_AGENT} ^unknow$ [NC,OR]
+RewriteCond %{HTTP_USER_AGENT} ^WLMHttpTransport [NC,OR]
+RewriteCond %{HTTP_USER_AGENT} ^Wget [NC,OR]
+RewriteCond %{HTTP_USER_AGENT} ^Linguee [NC,OR]
+# RewriteCond %{HTTP_USER_AGENT} ^COMODO [NC,OR] # ! whitelist for cpanel WHM
+RewriteCond %{HTTP_USER_AGENT} ^GetIntent [NC,OR]
+RewriteCond %{HTTP_USER_AGENT} ^msnbot-media [NC,OR]
+RewriteCond %{HTTP_USER_AGENT} ^Netcraft [NC,OR]
+RewriteCond %{HTTP_USER_AGENT} ^Ruby [NC,OR]
+RewriteCond %{HTTP_USER_AGENT} ^admantx [NC,OR]
+RewriteCond %{HTTP_USER_AGENT} ^istellabot [NC,OR]
+RewriteCond %{HTTP_USER_AGENT} ^\}__test\| [NC,OR]
+RewriteCond %{REQUEST_URI} ^\/xmlrpc.php [NC]
+RewriteCond %{REQUEST_URI} !\/no-scansioni.html	   
+RewriteRule .* https://www.informatic-solutions.it/no-scansioni.html [L]
+
+
+
+<IfModule mod_rewrite.c>
+    <IfModule mod_negotiation.c>
+        Options -MultiViews
+    </IfModule>
+
+    RewriteEngine On
+
+    # from "http" to "https"
+    RewriteCond %{HTTPS} off
+    # RewriteRule (.*) https://%{HTTP_HOST}%{REQUEST_URI}
+    RewriteCond %{SERVER_PORT} 80
+RewriteCond %{REQUEST_URI} !^/[0-9]+\..+\.cpaneldcv$
+RewriteCond %{REQUEST_URI} !^/[A-F0-9]{32}\.txt(?:\ Comodo\ DCV)?$
+    RewriteRule ^(.*)$ https://www.informatic-solutions.it/$1 [R,L]
+
+    # from "not-www" to "www"
+    RewriteCond %{HTTP_HOST} !^www\.
+RewriteCond %{REQUEST_URI} !^/[0-9]+\..+\.cpaneldcv$
+RewriteCond %{REQUEST_URI} !^/[A-F0-9]{32}\.txt(?:\ Comodo\ DCV)?$
+    RewriteRule ^(.*)$ http://www.%{HTTP_HOST}/$1 [R=301,L]
+
+    # Redirect Trailing Slashes If Not A Folder...
+    RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{REQUEST_URI} !^/[0-9]+\..+\.cpaneldcv$
+RewriteCond %{REQUEST_URI} !^/[A-F0-9]{32}\.txt(?:\ Comodo\ DCV)?$
+    RewriteRule ^(.*)/$ /$1 [L,R=301]
+
+    # Handle Front Controller...
+    RewriteCond %{REQUEST_FILENAME} !-d
+    RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_URI} !^/[0-9]+\..+\.cpaneldcv$
+RewriteCond %{REQUEST_URI} !^/[A-F0-9]{32}\.txt(?:\ Comodo\ DCV)?$
+    RewriteRule ^ index.php [L]
+
+    # Handle Authorization Header
+    RewriteCond %{HTTP:Authorization} .
+    RewriteCond %{REQUEST_URI} !^/[0-9]+\..+\.cpaneldcv$
+    RewriteCond %{REQUEST_URI} !^/[A-F0-9]{32}\.txt(?:\ Comodo\ DCV)?$
+    RewriteRule .* - [E=HTTP_AUTHORIZATION:%{HTTP:Authorization}]
+</IfModule>
+
+
+redirect 301 /gengive-che-sanguinano-rimedi https://www.informatic-solutions.it/videocitofoni
+redirect 301 /forums/topic-tag/videocitofoni https://www.informatic-solutions.it/videocitofoni
+redirect 301 /senza-categoria https://www.informatic-solutions.it/videocitofoni

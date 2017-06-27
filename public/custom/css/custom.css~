@@ -1,0 +1,74 @@
+/*!
+ * Start Bootstrap Customization 
+ * 2016 - Start Bootstrap
+ * Author: Fuda Alessandro
+ */
+ #homeHeading { color: #f05f40; text-shadow: 2px 2px 0px #000000;}
+ #homeHeading .top-title { display:block; text-shadow: 3px 2px 0px #000000; margin-bottom: 20px;}
+ header::before { content:''; background-image: url(../img/header.jpg); opacity:0.6 }
+ header .header-content .header-content-inner p { color: #F05F40; text-shadow: 1px 1px 0px #000000; font-weight: bolder;
+letter-spacing: 2px; }
+ .rosso { color: #F05F40; font-weight: bold; text-shadow: 1px 1px 0px #000000;}
+ #services .service-box h3 { text-shadow: 1px 1px 0px #F05F40; }
+ section#dove { padding-bottom: 30px; }
+ 
+ /*form*/
+ .form section { padding: 10px 0; } 
+ .form section#module_14 { width: 100%; height: 200px; }
+ #module_14 textarea { height: 200px; }
+ #form_submit { display:block; }
+ #form_submit button { color: #fff; background-color: #ee4b28; border-color: #ed431f; border-radius: 300px; }
+ #form_submit button:hover { background-color: #EC411C; box-shadow:2px 2px 0px #888888; text-shadow: 2px 2px 0px #000000; }
+ 
+/*footer*/
+footer { background-color: #CCC; color: #888; text-align: center; padding: 10px 0; font-size: 11px; }
+
+
+/* popup slide (magnificpopup jquery plugin) */
+.mfp-close-btn-in .mfp-close { color: #fff; font-size: 60px; }
+.inline-popup {
+  	padding: 0;
+	margin: 20px auto;
+	color: #fff;
+	opacity: 1;
+	display: block;
+	background: rgba(240,95,64,.9);
+	position: relative;
+	bottom: 0;
+	text-align: center;
+	width: 100%;
+	max-width: 400px;
+	height: 100%;
+	min-height: 300px;
+	transition: all .35s;
+	font-family: 'Open Sans','Helvetica Neue',Arial,sans-serif;
+	box-sizing: border-box;
+	border-radius: 10px;
+	}
+
+.inline-popup img { 	margin: auto;
+							position: absolute;
+							top: 50%;
+							transform: translateY(-50%);
+							height: 100%; 
+							border-radius: 10px;
+							}
+
+.inline-popup-container { position: absolute;
+								background: rgba(240,95,64,.9);
+								height: 100%;
+								width: 100%; 
+								border-radius: 10px;
+								}
+
+.inline-popup-content { position: relative; top: 50%; transform: translateY(-50%); }
+
+.inline-popup-title{ font-size:16px; text-transform: uppercase; font-weight: 600; padding: 0 15px; color: rgba(255,255,255,.7); }
+
+.inline-popup-descr { font-size: 22px; padding:0 20px; }
+
+
+
+
+
+

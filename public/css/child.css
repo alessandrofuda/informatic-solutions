@@ -1,0 +1,115 @@
+
+/*IMPORTANT --> shifta tutti gli anchor link interni di 55 px che è l'altezza del fixed menu*/
+:target:before {
+content:"";
+display:block;
+height:55px; /* fixed header height*/
+margin:-55px 0 0; /* negative fixed header height */
+}
+
+
+
+#section-1 {margin-top:80px;}
+#content {margin: 30px auto;}
+.padding-top {padding-top: 55px;}
+#intro .figure {max-width: 400px; margin: 0 0 30px 30px;}
+.list-group {margin-top: 20px;}
+.collapsible {border-top: 1px solid #CCC; border-bottom: 1px solid #CCC;}
+.content .btn {min-width: 300px;}
+.content .btn .caret {margin-left: 10px; }
+.btn.left {text-align: left; /*white-space: normal;*/ }
+.figure { margin:15px; max-width: 300px; }
+figcaption {font-style: italic; font-size: 12px; margin: 15px 0 0;}
+.footer .first {margin:0;}
+
+
+/*comments*/
+.media-list { margin: 30px auto; }
+.media-list > li:nth-child(odd) { background: #FFF; border-radius: 5px; border: 1px solid #CCC;}
+.media-list > li:nth-child(even) { background: #EBEBEB; border-radius: 5px; border: 1px solid #CCC;}
+.media-body { margin:auto; padding: 30px 10px; }
+.media-heading {font-weight: bold;}
+.reply-comm { padding-left: 5px; margin-left: 45px; border-left: 1px solid #CCC; }
+
+/*user-subscr form*/
+#user-subscr { 	margin-top: 60px;
+				text-align: center;
+				border: 1px solid #CCC;
+				padding: 10px 0;
+				border-radius: 5px;
+				background: #FFF;
+				}
+
+/*buttons*/
+.btn-v-space {margin: 5px auto;}
+.btn {min-width: 75px; white-space: normal;}
+.modal-buttons button.btn {width: 100%; margin-top: 15px;}
+.row.modal-buttons {margin-bottom: 10px;}
+.min-160 {min-width: 160px;}
+.margin-top-10 {margin-top: 10px;}
+
+/*table in edit comment page*/
+td.first-col {font-weight: bold;}
+
+/*comparator*/
+.title {margin-bottom: 20px;}
+
+.new-cont { width: 0;
+			height: 0;
+			border-style: solid;
+			border-width: 100px 100px 0 0;
+			border-color: #2ab27b transparent transparent transparent;
+			line-height: 0px;
+			position: absolute; 
+		}
+.new { 	position: absolute;
+		color: #fff;
+		font-weight: bolder;
+		letter-spacing: 2px; 
+		-ms-transform: rotate(-45deg);
+		-webkit-transform: rotate(-45deg);
+		transform: rotate(-45deg);
+		top: 25px;
+		left: 20px;
+		}
+
+.product-title { font-size: 16px; height: 35px; overflow: hidden; display: block; color: #3097D1;}
+.img-cont { height: 318px; overflow: hidden; }
+.img-cont img { margin:auto; }
+.product-info { font-size: 85%; margin-top: -10px; }
+.product-summary {min-height: 135px; margin-top: 30px;}
+.product-summary p.abstract {min-height: 50px;}
+.product-price {font-weight: bold; text-align: center; font-size: 200%; min-height: 90px;}
+.price-cont { display: block; }
+.original-price-cont { text-decoration: line-through; font-size: 65%; color: #378b69;}
+.orig-price { color: #A7A7A7; }
+.glyphicon-share-alt { color: #2ab27b; font-size: 75%; margin: auto; -ms-transform: rotate(90deg); -webkit-transform: rotate(90deg); 
+	transform: rotate(90deg); padding-left: 20px;}
+.price { position: relative; top:18px; }
+.price-disc {display: block; margin-top: -5px;}
+.not-available-price {  text-align: center; margin: 30px auto; font-style: italic; font-weight: bold; font-size: 110%;}
+.product-buttons .btn {width: 100%; margin:15px auto;}
+.product-buttons .btn span {display: inline-block;}
+i.col-md-2.glyphicon.glyphicon-eye-open { font-size: 30px; line-height: 45px; }
+i.col-md-2.glyphicon.glyphicon-shopping-cart { font-size: 30px; line-height: 45px; }
+i.col-md-2.glyphicon.glyphicon-remove-sign { font-size: 30px; line-height: 45px; }
+.img-cont-modal {margin-bottom: 80px;}
+.review-button {text-align: right; margin-bottom: -10px; margin-top: 30px;}
+.review {border: 1px solid #F5F5F5; padding: 5px; margin: 5px auto; border-radius: 5px; background: #F5F5F5; font-size: 96%; font-style: italic;}
+.note { margin: 50px auto; font-size: 13px;}
+
+/*footer*/
+footer.footer {margin-top: 100px;}
+
+
+/*responsive*/
+@media (max-width: 768px) {
+	.min-160 { min-width: 10px; }
+	td.product-name {font-size: 12px;}
+	.panel-body .table > tbody > tr > td {padding: 8px 2px;}
+}	
+
+@media (min-width: 992px) {
+	.product-summary p.abstract {min-height: 133px;}
+}
+
