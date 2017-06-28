@@ -94,7 +94,7 @@ class GoodPriceNotification implements ShouldQueue
                     $user_id = $user->user_id;
 
                     Mail::to($user->user->email)
-                        ->bcc('alessandro.fuda@gmail.com')
+                        ->bcc(env('ADMIN_EMAIL'))
                         ->queue(new LowerPriceNotification($name, $list, $count, $link, $link_home, $user_id));
 
                 } catch(Exception $e) {

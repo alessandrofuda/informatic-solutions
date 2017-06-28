@@ -41,10 +41,10 @@ Route::get('home', function () { return redirect('backend');  });
 //Route::get('test', '')
 
 //TESTING SEND EMAILS
-Route::get('send_test_email', function(){
-	Mail::raw('Sending emails with Mailgun and Laravel is easy!', function($message) {
-		$message->to('alessandro.fuda@gmail.com'); });
-});
+//Route::get('send_test_email', function(){
+//	Mail::raw('Sending emails with Mailgun and Laravel is easy!', function($message) {
+//		$message->to(env('ADMIN_EMAIL')); });
+//});
 
 
 // MAILS ROUTING

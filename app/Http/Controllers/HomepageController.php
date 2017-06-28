@@ -70,7 +70,7 @@ class HomepageController extends Controller
 
 		
     	//mail
-    	Mail::to('alessandro.fuda@gmail.com')->send(new ContactNotification($request));
+    	Mail::to(env('ADMIN_EMAIL'))->send(new ContactNotification($request));
 
     	return redirect('#result')->with('success_message', 'Richiesta inviata correttamente');  
 

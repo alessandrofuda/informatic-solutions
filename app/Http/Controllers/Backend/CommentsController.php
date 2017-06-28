@@ -132,7 +132,7 @@ class CommentsController extends Controller
         
 
         // 4) invia comment ad admin per moderazione
-        Mail::to('alessandro.fuda@gmail.com')->send(new CommentSent($comment));
+        Mail::to(env('ADMIN_EMAIL'))->send(new CommentSent($comment));
 
 
 
@@ -155,7 +155,7 @@ class CommentsController extends Controller
         
         // 2) send notification to comment author (and admin)
         Mail::to($comment->from_user_email)     // !!! invio mail a autore commento !!!!!!!!!!!!!!
-            ->bcc('alessandro.fuda@gmail.com')
+            ->bcc(env('ADMIN_EMAIL'))
             ->send(new CommentPublished($comment));
 
         // 3) send notification to ALL subscribedtocomment (ESCLUSO QUESTO SOPRA!! che altrimenti riceverebbe doppia mail)
