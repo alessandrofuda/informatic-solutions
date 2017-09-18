@@ -97,10 +97,10 @@
 
 
 {{--google adsense--}}          
-<div id="adv1" style="margin: 50px auto 30px; width: 100%; height: 280px;">
+<div id="adv1" style="margin: 50px auto 30px; width: 100%; height: 280px; {{ env('ADSENSE_DEV_BORDER', '') }}">
     <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
     <!-- informatic-solutions top rectangle responsive -->
-    <ins class="adsbygoogle" style="display: block;" data-ad-client="ca-pub-2806404797258843" data-ad-slot="4479970736" data-ad-format="rectangle"></ins>
+    <ins class="adsbygoogle" style="display: block;" data-ad-client="{{ env('DATA_AD_CLIENT', '') }}" data-ad-slot="{{ env('DATA_AD_SLOT', '') }}" data-ad-format="rectangle"></ins>
     <script>
       (adsbygoogle = window.adsbygoogle || []).push({});
     </script>
@@ -384,9 +384,9 @@ Con monitor LCD più o meno grande (da 3.5, 4 o 7 pollici), o con display TFT, d
 </div>
 
 
-<div id="adv2" style="margin: 30px auto; width: 100%; min-height: 250px;">
+<div id="adv2" style="margin: 30px auto; width: 100%; min-height: 250px; {{ env('ADSENSE_DEV_BORDER', '') }}">
   <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-  <ins class="adsbygoogle" style="display: block;" data-ad-client="ca-pub-2806404797258843" data-ad-slot="4200769132" data-ad-format="rectangle"></ins>
+  <ins class="adsbygoogle" style="display: block;" data-ad-client="{{ env('DATA_AD_CLIENT', '') }}" data-ad-slot="{{ env('DATA_AD_SLOT', '') }}" data-ad-format="rectangle"></ins>
   <script>
     (adsbygoogle = window.adsbygoogle || []).push({});
   </script>
