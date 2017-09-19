@@ -53,7 +53,7 @@ class ComparatorController extends Controller
 
 
 
-    public function FetchAndInsertProductInDb($keysearch) {  //attivata tramite custom console command
+    public static function FetchAndInsertProductInDb($keysearch) {  //attivata tramite custom console command
 
         dd('ookk');
         $request = new AmazonPaApi;
