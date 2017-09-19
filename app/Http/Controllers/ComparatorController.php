@@ -55,9 +55,11 @@ class ComparatorController extends Controller
 
     public function FetchAndInsertProductInDb($keysearch) {  //attivata tramite custom console command
 
-        
+        dd('ookk');
         $request = new AmazonPaApi;
         $contents = $request->api_request($keysearch);  //array di 20 prodotti
+        // dd($contents);
+
 
         $created = 0;
         $updated = 0;
