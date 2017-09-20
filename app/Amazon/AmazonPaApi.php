@@ -14,7 +14,7 @@ use App\Review;
 class AmazonPaApi
 {
 
-	public function api_request($keysearch) 
+	public static function api_request($keysearch) 
 	{
 
 		$client = new Client();  //guzzlehttp extension
