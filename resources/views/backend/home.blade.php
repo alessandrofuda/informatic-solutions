@@ -3,7 +3,7 @@
 @section('content')
 <div class="container">
     <div class="row">
-        <div class="col-md-10 col-md-offset-1">
+        <div class="col-md-12 col-md-offset-0">
             <div class="panel panel-default">
                 <div class="panel-heading">Dashboard</div>
                 <div class="panel-body">                    
@@ -43,7 +43,7 @@
                     <div class="panel panel-default">
                         <div class="panel-body">
                             <h3 class="title text-center">Il mio Profilo</h3>
-                            <table class="table table-striped table-responsive">
+                            <table class="table table-striped table-responsive summary">
                                 <tbody>
                                     <tr>
                                         <td class="text-right"><b>Nome</b></td>
@@ -78,14 +78,15 @@
                                 @endif
                             
                             </div>
-                            <table class="table table-striped table-responsive">
+                            <table id="watchinglist" class="table table-striped table-responsive">
                                 <thead>
                                     <tr>
                                         <th>Nome prodotto</th>
-                                        <th>Immagine</th>
-                                        <th>Primo Prezzo rilevato*</th>
-                                        <th>Ultimo prezzo rilevato**</th>
-                                        <th class="text-center">Azione</th>
+                                        <th class="no-sort">Immagine</th>
+                                        <th>Prezzo originario*</th>
+                                        <th>Prezzo attuale**</th>
+                                        <th>Delta</th>
+                                        <th class="text-center no-sort">Azione</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -102,7 +103,9 @@
 
                                     @foreach ($watched_items as $watched_item)                                       
                                         <tr>
-                                            <td class="product-name {{ $watched_item->removed == 1 ? 'barrato' : '' }}">{{ $watched_item->product->title }}</td>
+                                            <td class="product-name {{ $watched_item->removed == 1 ? 'barrato' : '' }}">
+                                                {{ $watched_item->product->title }}
+                                            </td>
                                             <td>
                                                 <div style="border:1px solid #CCC;">
                                                     <img src="{{$watched_item->product->largeimageurl}}" width="75px"  height="75px"/>
@@ -128,6 +131,9 @@
                                             <td class="{{ $watched_item->removed == 1 ? 'barrato' : '' }}">
                                                 <b style="color:{{ $color }};">€ {{ $lowestnewprice ? : $price }}</b>
                                             </td>
+                                            <td>
+                                                ... 
+                                            </td>
                                             {{--dd($watched_item->id)--}}
                                             @if (Auth::check() && Auth::user()->isInWatchinglist($watched_item->product_id) && !$watched_item->removed)
                                                 <td class="text-center">
@@ -146,12 +152,26 @@
 
                                 </tbody>
                             </table>
-                            <hr>
+                            
                             <div class="note">
                                 <b>NOTE:</b><br>
-                                <b>* Primo Prezzo rilevato</b> = Prezzo rilevato nel momento in cui l'oggetto è messo nella lista di osservazione.<br/>
-                                <b>** Ultimo Prezzo rilevato</b> = Prezzo aggiornato all'ultima ora.
+                                <b>* Prezzo originario</b> = Prezzo rilevato nel momento in cui l'oggetto è stato messo nella lista di osservazione.<br/>
+                                <b>** Prezzo attuale</b> = Prezzo aggiornato all'ultima ora.
                             </div>
+                            <!--datatables jquery plugin-->
+                            <script type="text/javascript">
+                                $(document).ready(function(){
+                                    $('#watchinglist').DataTable({
+                                        "columnDefs": [{
+                                            "targets": 'no-sort',
+                                            "orderable": false,
+                                        }],
+                                        "paging": false,
+                                        "info": false,
+                                        "searching": false,
+                                    });
+                                });
+                            </script>
                             <div class="text-center">
                                 <a class="btn btn-primary btn-sm" href="{{ url('videocitofoni/comparatore-prezzi') }}">Vai alla lista di tutti i prodotti</a>
                             </div>

@@ -72,7 +72,9 @@ td.first-col {font-weight: bold;}
 		top: 25px;
 		left: 20px;
 		}
+table.summary { max-width: 600px; margin: auto; border: 1px solid #ddd; }
 
+table#watchinglist > thead > tr > th { vertical-align: middle; }
 .product-title { font-size: 16px; height: 35px; overflow: hidden; display: block; color: #3097D1;}
 .img-cont { height: 318px; overflow: hidden; }
 .img-cont img { margin:auto; }
