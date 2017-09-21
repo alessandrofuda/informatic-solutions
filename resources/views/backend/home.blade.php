@@ -96,22 +96,17 @@
                                         <td colspan="4" style="line-height: 80px;">Non hai ancora alcun oggetto in osservazione.</td>
                                     </tr>
                                 @else
-                                    <style>
-                                        td {vertical-align: middle!important;} 
-                                        .barrato {text-decoration: line-through;}
-                                    </style>
-
                                     @foreach ($watched_items as $watched_item)                                       
                                         <tr>
-                                            <td class="product-name {{ $watched_item->removed == 1 ? 'barrato' : '' }}">
+                                            <td class="product-name">
                                                 {{ $watched_item->product->title }}
                                             </td>
-                                            <td>
+                                            <td class="img">
                                                 <div style="border:1px solid #CCC;">
                                                     <img src="{{$watched_item->product->largeimageurl}}" width="75px"  height="75px"/>
                                                 </div>
                                             </td>
-                                            <td class="{{ $watched_item->removed == 1 ? 'barrato' : '' }}">
+                                            <td class="init-price">
                                                 € {{ number_format($watched_item->initialprice, '2', ',', '.') }}
                                             </td>
                                             <?php
@@ -128,28 +123,59 @@
                                                     $color = 'inherit';
                                                 }
                                             ?>
-                                            <td class="{{ $watched_item->removed == 1 ? 'barrato' : '' }}">
+                                            <td class="actual-price">
                                                 <b style="color:{{ $color }};">€ {{ $lowestnewprice ? : $price }}</b>
                                             </td>
-                                            <td>
+                                            <td class="delta">
                                                 ... 
                                             </td>
                                             {{--dd($watched_item->id)--}}
-                                            @if (Auth::check() && Auth::user()->isInWatchinglist($watched_item->product_id) && !$watched_item->removed)
-                                                <td class="text-center">
+                                            @if (Auth::check() && Auth::user()->isInWatchinglist($watched_item->product_id)) {{-- && !$watched_item->removed --}}
+                                                <td class="text-center pulsanti">
                                                     <a class="btn btn-success btn-sm min-160" target="_blank" href="http://www.amazon.it/gp/aws/cart/add.html?AWSAccessKeyId={{ env('AWS_ACCESS_KEY_ID') }}&AssociateTag=infsol-21&ASIN.1={{ $watched_item->product->asin }}&Quantity.1=1">Acquista subito</a>
                                                     <a class="btn btn-info btn-sm min-160 margin-top-10" href="/backend/smetti-di-osservare-{{$watched_item->product->asin}}-{{$watched_item->product_id}}">Smetti di osservare</a>
                                                 </td>
-                                            @else
+                                            {{-- @else
                                                 <td class="text-center">
                                                     <a class="btn btn-warning btn-sm min-160" href="backend/rimetti-in-osservazione-{{$watched_item->product->asin}}-{{$watched_item->product_id}}">Ri-metti in osservazione</a>
                                                     <a class="btn btn-danger btn-sm min-160 margin-top-10" href="/backend/elimina-da-lista-{{ $watched_item->product->asin }}-{{ $watched_item->product_id }}">Elimina dalla lista</a>
-                                                </td>
+                                                </td> --}}
                                             @endif
                                         </tr>
                                     @endforeach
                                 @endif
 
+                                </tbody>
+                            </table>
+
+                            <!--h3 id="my-list" class="title text-center">Oggetti temporaneamente rimossi dalla lista di osservazione</h3-->
+                            <table id="removed" class="table table-striped table-responsive removed" style="margin-top:1px; border-bottom: 1px solid #000;">
+                                <tbody>
+                                    @foreach($removeds as $removed)
+                                    <tr>
+                                        <td class="product-name barrato">{{ $removed->product->title }}</td>
+                                        <td class="img">
+                                            <div style="border:1px solid #CCC; opacity: 0.3;">
+                                                <img src="{{$removed->product->largeimageurl}}" width="75px"  height="75px"/>
+                                            </div>
+                                        </td>
+                                        <td class="init-price barrato">
+                                            € {{ number_format($removed->initialprice, '2', ',', '.') }}
+                                        </td>
+                                        @php
+                                            $lowestnewprice_r = number_format($removed->product->lowestnewprice, 2, ',', '.'); // !! String !!
+                                            $price_r = number_format($removed->product->price, 2, ',', '.'); // !! STRING !!!!!!!!!
+                                        @endphp
+                                        <td class="actual-price barrato">€ {{ $lowestnewprice_r ? : $price_r }}</td>
+                                        <td class="delta"> ... </td>
+                                        @if(Auth::check() && Auth::user()->isInWatchinglist($removed->product_id))
+                                        <td class="text-center pulsanti">
+                                            <a class="btn btn-warning btn-sm min-160" href="backend/rimetti-in-osservazione-{{$watched_item->product->asin}}-{{$watched_item->product_id}}">Ri-metti in osservazione</a>
+                                            <a class="btn btn-danger btn-sm min-160 margin-top-10" href="/backend/elimina-da-lista-{{ $watched_item->product->asin }}-{{ $watched_item->product_id }}">Elimina dalla lista</a>
+                                        </td>
+                                        @endif
+                                    </tr>
+                                    @endforeach
                                 </tbody>
                             </table>
                             
@@ -158,6 +184,7 @@
                                 <b>* Prezzo originario</b> = Prezzo rilevato nel momento in cui l'oggetto è stato messo nella lista di osservazione.<br/>
                                 <b>** Prezzo attuale</b> = Prezzo aggiornato all'ultima ora.
                             </div>
+
                             <!--datatables jquery plugin-->
                             <script type="text/javascript">
                                 $(document).ready(function(){
@@ -170,6 +197,28 @@
                                         "info": false,
                                         "searching": false,
                                     });
+                                });
+                            </script>
+                            <style>
+                                td {vertical-align: middle !important;} 
+                                .barrato {text-decoration: line-through;}
+                            </style>
+                            <script>
+                                $(document).ready(function(){
+                                    var Col1Width = $('#watchinglist .product-name').width();
+                                    var Col2Width = $('#watchinglist .img').width();
+                                    var Col3Width = $('#watchinglist .init-price').width();
+                                    var Col4Width = $('#watchinglist .actual-price').width();
+                                    var Col5Width = $('#watchinglist .delta').width();
+                                    var Col6Width = $('#watchinglist .pulsanti').width();
+                                    console.log(Col1Width);
+                                    $('#removed .product-name').width(Col1Width -10);
+                                    $('#removed .img').width(Col2Width);
+                                    $('#removed .init-price').width(Col3Width);
+                                    $('#removed .actual-price').width(Col4Width);
+                                    $('#removed .delta').width(Col5Width);
+                                    $('#removed .pulsanti').width(Col6Width);
+                                    // console.log(x);
                                 });
                             </script>
                             <div class="text-center">

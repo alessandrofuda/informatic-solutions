@@ -41,14 +41,20 @@ class DashboardController extends Controller
         $date = $d.' - '.$h;
 
 
-        $watched_items = Watchinglist::where(['user_id' => Auth::user()->id])
-                                        ->orderBy('removed', 'asc')
-                                        ->get();
-        //dd(count($watched_items));
+        $watched_items = Watchinglist::where('user_id', Auth::user()->id)
+                                     ->where('removed', '!=', 1)
+                                     // ->orderBy('removed', 'asc')
+                                     ->get();
+
+        $removeds = Watchinglist::where('user_id', Auth::user()->id)
+                               ->where('removed', 1)
+                               ->get();
+        // dd($removed);
         
         return view('backend.home')->with('user', $user)
                                    ->with('date', $date)
-                                   ->with('watched_items', $watched_items);
+                                   ->with('watched_items', $watched_items)
+                                   ->with('removeds', $removeds);
     }
 
 
