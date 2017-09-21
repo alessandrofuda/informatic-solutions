@@ -109,7 +109,8 @@
                                             <td class="init-price">
                                                 € {{ number_format($watched_item->initialprice, '2', ',', '.') }}
                                             </td>
-                                            <?php
+
+                                            @php
                                                 $lowestnewprice = number_format($watched_item->product->lowestnewprice, 2, ',', '.'); // !! String !!
                                                 $price = number_format($watched_item->product->price, 2, ',', '.'); // !! STRING !!!!!!!!!
 
@@ -122,12 +123,24 @@
                                                 } else {
                                                     $color = 'inherit';
                                                 }
-                                            ?>
+                                            @endphp
+
                                             <td class="actual-price">
                                                 <b style="color:{{ $color }};">€ {{ $lowestnewprice ? : $price }}</b>
                                             </td>
-                                            <td class="delta">
-                                                ... 
+
+                                            @php
+                                                $actual_price = floatval(str_replace(',', '.', $lowestnewprice ? : $price)); // attenzione a virgola!!!
+                                                $original_price = $watched_item->initialprice;
+                                                $diff = $actual_price - $original_price;
+                                                $sign = $diff <= 0 ? '':'+';
+                                                $col = $diff <= 0 ? ($diff == 0 ? 'inherit':'green'): 'red';
+                                                $bold = $diff < 0 ? 'bold':'normal';
+                                                $delta = number_format($diff, 2, ',', '.');
+                                            @endphp
+
+                                            <td class="delta" style="color:{{ $col }}; font-weight:{{ $bold }};">
+                                                {{ $sign . $delta }}
                                             </td>
                                             {{--dd($watched_item->id)--}}
                                             @if (Auth::check() && Auth::user()->isInWatchinglist($watched_item->product_id)) {{-- && !$watched_item->removed --}}
@@ -135,11 +148,6 @@
                                                     <a class="btn btn-success btn-sm min-160" target="_blank" href="http://www.amazon.it/gp/aws/cart/add.html?AWSAccessKeyId={{ env('AWS_ACCESS_KEY_ID') }}&AssociateTag=infsol-21&ASIN.1={{ $watched_item->product->asin }}&Quantity.1=1">Acquista subito</a>
                                                     <a class="btn btn-info btn-sm min-160 margin-top-10" href="/backend/smetti-di-osservare-{{$watched_item->product->asin}}-{{$watched_item->product_id}}">Smetti di osservare</a>
                                                 </td>
-                                            {{-- @else
-                                                <td class="text-center">
-                                                    <a class="btn btn-warning btn-sm min-160" href="backend/rimetti-in-osservazione-{{$watched_item->product->asin}}-{{$watched_item->product_id}}">Ri-metti in osservazione</a>
-                                                    <a class="btn btn-danger btn-sm min-160 margin-top-10" href="/backend/elimina-da-lista-{{ $watched_item->product->asin }}-{{ $watched_item->product_id }}">Elimina dalla lista</a>
-                                                </td> --}}
                                             @endif
                                         </tr>
                                     @endforeach

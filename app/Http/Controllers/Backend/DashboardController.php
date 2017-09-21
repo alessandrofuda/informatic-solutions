@@ -49,7 +49,6 @@ class DashboardController extends Controller
         $removeds = Watchinglist::where('user_id', Auth::user()->id)
                                ->where('removed', 1)
                                ->get();
-        // dd($removed);
         
         return view('backend.home')->with('user', $user)
                                    ->with('date', $date)
