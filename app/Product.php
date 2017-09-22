@@ -31,6 +31,18 @@ class Product extends Model
     }
 
 
-    /*custom function*/
+    /*custom functions*/
+    public static function italian_date($mysql_date)
+    {
+        $d = explode(' ', $mysql_date);
+        $h = explode(':', $d[1]);
+        $h = $h[0].':'.$h[1];
+        $d = explode('-', $d[0]);
+        $d = $d[2].'/'.$d[1].'/'.$d[0]; 
+
+        $italian_date = $d.' - '.$h;
+
+        return $italian_date;
+    }
 
 }

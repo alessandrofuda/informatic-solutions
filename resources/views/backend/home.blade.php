@@ -5,7 +5,7 @@
     <div class="row">
         <div class="col-md-12 col-md-offset-0">
             <div class="panel panel-default">
-                <div class="panel-heading">Dashboard</div>
+                <div class="panel-heading text-center">Monitora i tuoi prodotti</div>
                 <div class="panel-body">                    
                 
                     
@@ -106,7 +106,7 @@
                                                     <img src="{{$watched_item->product->largeimageurl}}" width="75px"  height="75px"/>
                                                 </div>
                                             </td>
-                                            <td class="init-price">
+                                            <td class="init-price" title="Prezzo rilevato il {{ App\Product::italian_date($watched_item->created_at) }}">
                                                 € {{ number_format($watched_item->initialprice, '2', ',', '.') }}
                                             </td>
 
@@ -126,7 +126,7 @@
                                             @endphp
 
                                             <td class="actual-price">
-                                                <b style="color:{{ $color }};">€ {{ $lowestnewprice ? : $price }}</b>
+                                                <b style="color:{{ $color }};" title="Prezzo aggiornato al {{ App\Product::italian_date($watched_item->product->updated_at) }}">€ {{ $lowestnewprice ? : $price }}</b>
                                             </td>
 
                                             @php
@@ -219,14 +219,13 @@
                                     var Col4Width = $('#watchinglist .actual-price').width();
                                     var Col5Width = $('#watchinglist .delta').width();
                                     var Col6Width = $('#watchinglist .pulsanti').width();
-                                    console.log(Col1Width);
+                                    // console.log(Col1Width);
                                     $('#removed .product-name').width(Col1Width -10);
                                     $('#removed .img').width(Col2Width);
                                     $('#removed .init-price').width(Col3Width);
                                     $('#removed .actual-price').width(Col4Width);
                                     $('#removed .delta').width(Col5Width);
                                     $('#removed .pulsanti').width(Col6Width);
-                                    // console.log(x);
                                 });
                             </script>
                             <div class="text-center">

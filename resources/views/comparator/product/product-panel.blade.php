@@ -135,13 +135,13 @@
 	                @else
 	                    <a class="col-md-12 btn btn-success" style="white-space: normal !important;" href="../backend/metti-in-osservazione-{{$content->asin}}-{{$content->id}}">
 		                    <i class="col-md-2 glyphicon glyphicon-eye-open"></i>
-		                    <span class="col-md-10 txt">Metti in osservazione e <br>avvisami quando il prezzo scende</span>
+		                    <span class="col-md-10 txt">Avvisami quando<br>il prezzo scende</span>
 	                  	</a>
 	                @endif
 
 	                <a class="col-md-12 btn btn-primary" target="_blank" href="http://www.amazon.it/gp/aws/cart/add.html?AWSAccessKeyId={{ env('AWS_ACCESS_KEY_ID') }}&AssociateTag=infsol-21&ASIN.1={{ $content->asin }}&Quantity.1=1">
 	                	<i class="col-md-2 glyphicon glyphicon-shopping-cart"></i>
-	                	<span class="col-md-10 txt">Aggiungi al Carrello e <br>acquista subito</span>
+	                	<span class="col-md-10 txt">Aggiungi al Carrello e<br>acquista subito</span>
 	                </a>
                 </div>
             </div><!--.product-buttons-->

@@ -7,7 +7,9 @@ use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use App\Watchinglist;
+use App\Product;
 use App\User;
+
 
 
 class DashboardController extends Controller
@@ -31,15 +33,7 @@ class DashboardController extends Controller
     public function index()
     {
         $user = Auth::user(); //User::all();
-
-        $d = explode(' ', $user->created_at);
-        $h = explode(':', $d[1]);
-        $h = $h[0].':'.$h[1];
-        $d = explode('-', $d[0]);
-        $d = $d[2].'/'.$d[1].'/'.$d[0]; 
-
-        $date = $d.' - '.$h;
-
+        $date = Product::italian_date($user->created_at);
 
         $watched_items = Watchinglist::where('user_id', Auth::user()->id)
                                      ->where('removed', '!=', 1)

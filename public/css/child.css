@@ -53,6 +53,7 @@ td.first-col {font-weight: bold;}
 
 /*comparator*/
 .title {margin-bottom: 20px;}
+.title h1 { font-weight: lighter; }
 
 .new-cont { width: 0;
 			height: 0;
