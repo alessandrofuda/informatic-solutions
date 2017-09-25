@@ -3,6 +3,7 @@
 namespace App\Console\Commands;
 
 use Illuminate\Console\Command;
+use Illuminate\Support\Facades\Log;
 use App\Http\Controllers\ComparatorController;
 
 
@@ -42,7 +43,7 @@ class FetchAmazonProducts extends Command
      * @return mixed
      */
     public function handle()  //metodo eseguito quando viene lanciato il comando da CLI
-    {
+    {   
         //$this->info("TESTING.. Some text");
         $this->line("Comando avviato...");
         //$this->comment("Just a comment passing by");
@@ -50,11 +51,28 @@ class FetchAmazonProducts extends Command
 
 
         $key = $this->argument('keysearch');
+
+        
+        // testing log
+        Log::info('OK. Avviato FetchAmazonProducts con key: '. $key);
+        // dd('stop');
+
+
+
         $this->line('Chiave di ricerca inserita (keysearch): "'. $key . '"');
         // $ok = new ComparatorController; 
         // $result = $ok->FetchAndInsertProductInDb($key);
         $result = ComparatorController::FetchAndInsertProductInDb($key);
         //dd($result);
+
+
+
+        // testing log
+        Log::info('OK. Concluso inserimento Product in DB (FetchAmazonProducts con key: '. $key.')');
+        // dd('stop');
+
+
+
 
 
         if($result){
