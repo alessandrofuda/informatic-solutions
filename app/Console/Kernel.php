@@ -32,7 +32,7 @@ class Kernel extends ConsoleKernel
         $schedule->command('fetch:amazonproducts videocitofono')
                  //->everyMinute()
                  //->everyThirtyMinutes()
-                 ->hourlyAt(58)  //12
+                 ->hourlyAt(12)  //12
                  ->between('6:00', '23:58')
                  //->daily()
                  ->withoutOverlapping(); //important !!  evita il sovrapporsi dell'esecuzione dei tasks !!
