@@ -4,16 +4,15 @@ namespace App\Amazon;
 
 use GuzzleHttp\Client;
 use SimpleXMLElement;
-
 use Goutte\Client as ClientGoutte;
-
 use App\Review;
+use Illuminate\Support\Facades\Log;
 
 
 
 class AmazonPaApi
 {
-
+					// SISTEMARE CON https://www.sitepoint.com/amazon-product-api-exploration-lets-build-a-product-search/
 	public static function api_request($keysearch) 
 	{
 
@@ -25,7 +24,7 @@ class AmazonPaApi
 
 
 
-	    for ($i=0; $i <=1 ; $i++) {  	    
+	    for ($i=0; $i <=1 ; $i++) {  // DA SISTEMARE !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!	    
 
 		    $params = array(
 		        "Service" => "AWSECommerceService",  //affinare i criteri di ricerca e d irestituzione dati
@@ -55,34 +54,40 @@ class AmazonPaApi
 		    $canonical_query_string = join("&", $pairs);     // Generate the canonical query
 		    $string_to_sign = "GET\n".$endpoint."\n".$uri."\n".$canonical_query_string;    // Generate the string to be signed
 		    $signature = base64_encode(hash_hmac("sha256", $string_to_sign, $aws_secret_key, true)); // Generate the signature required by the PA API
-		    $request_url = 'http://'.$endpoint.$uri.'?'.$canonical_query_string.'&Signature='.rawurlencode($signature);  // Generate the signed URL
+		    $request_url = 'https://'.$endpoint.$uri.'?'.$canonical_query_string.'&Signature='.rawurlencode($signature);  // Generate the signed URL
 		    
 		    // !!! XML RESPONSE FROM GOOGLE : 415 RISULTATI, DIVISI IN 42 PAGINE, 10 PER REQUEST !!!
 
 		    for ($n=1; $n <= 5; $n++) {  // !important --> in caso di errore riprova fino a 5 tentativi a distanzia di 2 secondi !!!
 
 			    try {
+			    	Log::info('Amazon Api call, tentativo chiamata n. '. $n. ' - ciclo '. $i);
 			    	sleep(1);
-			    	
-			      	$response = $client->request('GET', $request_url 
-			        // ['query' => $query]
-			      	);
-			      	
-			      	$contents[] = new SimpleXMLElement($response->getBody()->getContents());
-
-			      	break;  // important! interrompe loop dei tentativi in caso di successo  
+			      	$response = $client->request('GET', $request_url);  // ['query' => $query]
+			      	$status = $response->getstatusCode();
+			      	Log::info('Response code: '. $status);
+			
+			      	if ($status == 200) {
+			      		$contents[] = new SimpleXMLElement($response->getBody()->getContents());
+			      		break;  // important! interrompe loop dei tentativi in caso di successo 
+			      	}
 
 			    } catch(Exception $e) {
-			      	echo "something went wrong: <br>";
+			      	// echo "something went wrong: <br>";
 			      	echo $e->getMessage();
+			      	Log::info('Amazon Api call, errore');
 			    }
 
 			    sleep(2);
 
 			} // fine ciclo for
 
-		} //fine ciclo for
 
+			dump('ciclo '. $i);
+			sleep(20);  // IMPORTANT PER EVITARE '503 SERVICE UNAVAILABLE'
+
+		} //fine ciclo for
+		// dd('stops');
 		
 	    
 		foreach ($contents as $content) {
