@@ -73,6 +73,8 @@ class ComparatorController extends Controller
                 foreach ($content->ItemAttributes->Feature as $feature) {
                     $string .= trim($feature, '.') . '. ';
                 }
+            } else {
+                $string = '';
             }
 
             if (!empty($content->EditorialReviews->EditorialReview->Content)){
