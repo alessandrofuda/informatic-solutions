@@ -24,7 +24,7 @@ class AmazonPaApi
 
 
 
-	    for ($i=0; $i <=1 ; $i++) {  // DA SISTEMARE !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!	    
+	    for ($i=1; $i <=2 ; $i++) {  // DA SISTEMARE !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!	    
 
 		    $params = array(
 		        "Service" => "AWSECommerceService",  //affinare i criteri di ricerca e d irestituzione dati
@@ -34,7 +34,7 @@ class AmazonPaApi
 		        "SearchIndex" => "All",
 		        "Keywords" => $keysearch,
 		        "ResponseGroup" => "EditorialReview,Images,ItemAttributes,Offers,Reviews",
-		        "ItemPage" => $i+1 // pagination
+		        "ItemPage" => $i // pagination
 		        //"Sort" => "price"
 		    );
 
@@ -61,20 +61,21 @@ class AmazonPaApi
 		    for ($n=1; $n <= 5; $n++) {  // !important --> in caso di errore riprova fino a 5 tentativi a distanzia di 2 secondi !!!
 
 			    try {
-			    	Log::info('Amazon Api call, tentativo chiamata n. '. $n. ' - ciclo '. $i);
+			    	Log::info('Amazon Api call - ItemPage: '. $i .' -> tentativo chiamata n. '. $n);
 			    	sleep(1);
 			      	$response = $client->request('GET', $request_url);  // ['query' => $query]
-			      	$status = $response->getstatusCode();
+			      	$status = $response->getStatusCode();
 			      	Log::info('Response code: '. $status);
 			
-			      	if ($status == 200) {
-			      		$contents[] = new SimpleXMLElement($response->getBody()->getContents());
-			      		break;  // important! interrompe loop dei tentativi in caso di successo 
-			      	}
+			      	
+			      	$contents[] = new SimpleXMLElement($response->getBody()->getContents());
+			      	break;  // important! interrompe loop dei tentativi in caso di successo 
+			      	
 
 			    } catch(Exception $e) {
 			      	// echo "something went wrong: <br>";
 			      	echo $e->getMessage();
+			      	continue;
 			      	Log::info('Amazon Api call, errore');
 			    }
 
