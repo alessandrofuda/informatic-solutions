@@ -111,14 +111,14 @@
 			        	</span>
 			        	<i class="glyphicon glyphicon-share-alt"></i>
 		        	</span>
-		        	<span class="price-disc">
+		        	<span class="price-disc" title="Prezzo aggiornato al: {{ App\Product::italian_date($content->updated_at) }}">
 		        		€ {{ number_format($prezzo_applicato, '2', ',', '.') }}
 		        	</span>
 
 		        @elseif ($prezzo_listino <= $prezzo_applicato)
 	            	            
 			        {{-- @if ($prezzo_applicato !== null || !empty($prezzo_applicato)) --}}
-		            	<span class="price">€ {{ number_format($prezzo_applicato, '2', ',', '.') }}</span>
+		            	<span class="price" title="Prezzo aggiornato al: {{ App\Product::italian_date($content->updated_at) }}">€ {{ number_format($prezzo_applicato, '2', ',', '.') }}</span>
 		        @else 
 		        		<span class="not-available-price">Prezzo non disponibile</span>
 			    	{{-- @endif --}}
