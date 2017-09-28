@@ -23,7 +23,6 @@ class AmazonPaApi
 	    $uri = "/onca/xml";
 
 
-
 	    for ($i=1; $i <=2 ; $i++) {  // DA SISTEMARE !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!	    
 
 		    $params = array(
@@ -34,7 +33,7 @@ class AmazonPaApi
 		        "SearchIndex" => "All",
 		        "Keywords" => $keysearch,
 		        "ResponseGroup" => "EditorialReview,Images,ItemAttributes,Offers,Reviews",
-		        "ItemPage" => $i // pagination
+		        "ItemPage" => strval($i) // pagination
 		        //"Sort" => "price"
 		    );
 
@@ -54,9 +53,9 @@ class AmazonPaApi
 		    $canonical_query_string = join("&", $pairs);     // Generate the canonical query
 		    $string_to_sign = "GET\n".$endpoint."\n".$uri."\n".$canonical_query_string;    // Generate the string to be signed
 		    $signature = base64_encode(hash_hmac("sha256", $string_to_sign, $aws_secret_key, true)); // Generate the signature required by the PA API
-		    $request_url = 'https://'.$endpoint.$uri.'?'.$canonical_query_string.'&Signature='.rawurlencode($signature);  // Generate the signed URL
+		    $request_url = 'http://'.$endpoint.$uri.'?'.$canonical_query_string.'&Signature='.rawurlencode($signature);  // Generate the signed URL
 		    
-		    // !!! XML RESPONSE FROM GOOGLE : 415 RISULTATI, DIVISI IN 42 PAGINE, 10 PER REQUEST !!!
+		    // !!! XML RESPONSE FROM amazon : 415 RISULTATI, DIVISI IN 42 PAGINE, 10 PER REQUEST !!!
 
 		    for ($n=1; $n <= 5; $n++) {  // !important --> in caso di errore riprova fino a 5 tentativi a distanzia di 2 secondi !!!
 
