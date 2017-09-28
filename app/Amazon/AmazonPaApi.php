@@ -23,7 +23,7 @@ class AmazonPaApi
 	    $uri = "/onca/xml";
 
 
-	    for ($i=1; $i <=2 ; $i++) {  // DA SISTEMARE !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!	    
+	    for ($i=1; $i <=2 ; $i++) {  	    
 
 		    $params = array(
 		        "Service" => "AWSECommerceService",  //affinare i criteri di ricerca e d irestituzione dati
@@ -55,39 +55,38 @@ class AmazonPaApi
 		    $signature = base64_encode(hash_hmac("sha256", $string_to_sign, $aws_secret_key, true)); // Generate the signature required by the PA API
 		    $request_url = 'http://'.$endpoint.$uri.'?'.$canonical_query_string.'&Signature='.rawurlencode($signature);  // Generate the signed URL
 		    
-		    // !!! XML RESPONSE FROM amazon : 415 RISULTATI, DIVISI IN 42 PAGINE, 10 PER REQUEST !!!
+		    // !!! XML RESPONSE FROM amazon : 10 PER REQUEST !!!
 
-		    for ($n=1; $n <= 5; $n++) {  // !important --> in caso di errore riprova fino a 5 tentativi a distanzia di 2 secondi !!!
+		    for ($n=1; $n <= 5; $n++) {  // !important --> in caso di errore riprova fino a 5 tentativi a distanzia di X secondi !!!
 
-			    try {
+			    //try {
 			    	Log::info('Amazon Api call - ItemPage: '. $i .' -> tentativo chiamata n. '. $n);
 			    	sleep(1);
-			      	$response = $client->request('GET', $request_url);  // ['query' => $query]
+			    	// $request_url = 'https://httpbin.org/status/503';  // TESTING --> simula risposta 503
+			      	$response = $client->request('GET', $request_url, ['http_errors' => false]);  // IMPORTANT !!
+			      	// http_errors --> !!! importante per NON bloccare il flusso http su errore 503-500-etc... !!!
 			      	$status = $response->getStatusCode();
 			      	Log::info('Response code: '. $status);
-			
-			      	
-			      	$contents[] = new SimpleXMLElement($response->getBody()->getContents());
-			      	break;  // important! interrompe loop dei tentativi in caso di successo 
-			      	
 
-			    } catch(Exception $e) {
+			      	if ($status === 200) {
+						$contents[] = new SimpleXMLElement($response->getBody()->getContents());
+			      		break;  // important! interrompe loop dei tentativi in caso di successo 
+			      	}
+			    //} catch(Exception $e) {
 			      	// echo "something went wrong: <br>";
-			      	echo $e->getMessage();
-			      	continue;
-			      	Log::info('Amazon Api call, errore');
-			    }
+			      	// echo $e->getMessage();
+			      	// continue;
+			      	//Log::info('Amazon Api call, errore');
+			    //}
 
 			    sleep(2);
 
 			} // fine ciclo for
-
-
-			dump('ciclo '. $i);
-			sleep(20);  // IMPORTANT PER EVITARE '503 SERVICE UNAVAILABLE'
+			
+			// dump('fine ciclo '. $i);
+			sleep(10);  // IMPORTANT PER EVITARE '503 SERVICE UNAVAILABLE'
 
 		} //fine ciclo for
-		// dd('stops');
 		
 	    
 		foreach ($contents as $content) {
