@@ -8,6 +8,8 @@
 	    <div class="row text-center title">
 	    	<h1>Confronta <b>{{ ucfirst($slug) }}</b> e monitora i prezzi</h1>
 	    </div>
+
+
 	    <div id="search" class="row text-center search">
 	    	
 
@@ -26,27 +28,34 @@
                     </div>
                 </div>
             </div>
-            <div class="alert alert-danger" role="alert" v-if="error">
+
+
+
+            <div id="search-alert" class="alert alert-danger" role="alert" v-if="error">
 			    <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
 			    @{{ error }} {{-- @ --> per non confonderlo con le parentesi di blade --}}
+			    <button class="close" v-on:click="error = !error">x</button>
 			</div>
-            <div id="products" class="row list-group">
-            	<div class="item col-xs-4 col-lg-4" v-for="product in products">
-				    <div class="thumbnail">
-				        <img class="group list-group-image" :src="product.image" alt="@{{ product.title }}" />
-				        <div class="caption">
-				            <h4 class="group inner list-group-item-heading">@{{ product.title }}</h4>
-				            <p class="group inner list-group-item-text">@{{ product.description }}</p>
-				            <div class="row">
-				                <div class="col-xs-12 col-md-6">
-				                    <p class="lead">$@{{ product.price }}</p>
-				                </div>
-				                <div class="col-xs-12 col-md-6">
-				                    <a class="btn btn-success" href="#">Add to cart</a>
-				                </div>
-				            </div>
-				        </div>
+
+
+
+			<!-- search results-->
+            <div id="products" class="row">
+            	<div class="item col-md-12" v-for="product in products">
+				    <div class="col-md-2 thumbnail">
+				        <img class="" src="@{{ product.largeimageurl }}" width="200" height="200" alt="@{{ product.title }}" />
 				    </div>
+			        <div class="col-md-6">
+			            <h3 class="product-title">@{{ product.title }}</h3>
+			            <p class="product-info">@{{ product.feature }}</p>
+			        </div>    
+	                <div class="col-md-2">
+	                    <p class="lead">$@{{ product.lowestnewprice }}</p>
+	                </div>
+	                <div class="col-md-2">
+	                    <a class="btn btn-success" href="#">Avvisami quando il prezzo scende</a>
+	                    <a class="btn btn-success" href="#">Acquista subito</a>
+	                </div>
 				</div>
             </div>
 
@@ -54,7 +63,10 @@
 
 
 
+
 	    </div>
+
+
 	    
 	        @if(count($contents) <= 0)
 	            <p>Non sono presenti prodotti.</p>

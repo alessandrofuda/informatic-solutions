@@ -24,6 +24,8 @@ new Vue({
 	            // Clear the query.
 	            this.query = '';
 	        });
-	    }
+	    },
+	    
 	}
 });
+
