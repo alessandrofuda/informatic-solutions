@@ -10,6 +10,12 @@
 	    </div>
 
 
+
+
+
+
+
+
 	    <div id="search" class="row text-center search">
 	    	
 
@@ -43,11 +49,11 @@
             <div id="products" class="row">
             	<div class="item col-md-12" v-for="product in products">
 				    <div class="col-md-2 thumbnail">
-				        <img class="" :src="product.largeimageurl" width="200" height="200" alt="@{{ product.title }}" />
+				        <img class="" :src="product.largeimageurl" width="200" height="200" v-bind:alt="product.title" />
 				    </div>
 			        <div class="col-md-7">
 			            <h3 class="product-title">@{{ product.title }}</h3>
-			            <p class="product-info">@{{ product.feature }}</p>
+			            <p class="product-info">@{{ product.feature | truncate(20) }}</p>
 			        </div>    
 	                <div class="col-md-1">
 	                    <p class="lead">$@{{ product.lowestnewprice }}</p>
@@ -97,12 +103,20 @@
 	</div>   
 </div>
 
+
+
+
+
 <!-- Vue.js for scout search box-->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/vue/1.0.26/vue.min.js"></script>
-<!--script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.4.4/vue.min.js"></script-->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/vue-resource/1.0.1/vue-resource.min.js"></script>
-<!--script src="https://cdnjs.cloudflare.com/ajax/libs/vue-resource/1.3.4/vue-resource.min.js"></script-->
+<!--script src="https://cdnjs.cloudflare.com/ajax/libs/vue/1.0.26/vue.min.js"></script-->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.4.4/vue.min.js"></script>
+<!--script src="https://cdnjs.cloudflare.com/ajax/libs/vue-resource/1.0.1/vue-resource.min.js"></script-->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/vue-resource/1.3.4/vue-resource.min.js"></script>
 <script src="/js/app-search.js"></script>
+
+
+
+
 
 
 @endsection
