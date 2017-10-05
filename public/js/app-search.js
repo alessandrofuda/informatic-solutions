@@ -5,6 +5,35 @@ new Vue({
     	loading: false,
     	error: false,
     	query: '',
+    	prodotto: {
+    		// border: '1px solid #CCC',
+    		// margin: '0',
+    		// padding: '20px 0',
+    	},
+    	thumbnail: {
+    		// margin: '0',
+    		// border: 'none',
+    		// padding: '0 20px',
+    	},
+    	img: {
+    		//
+    	},
+    	producttitle: {
+    		// 'margin-top': '0',
+    		// 'text-align': 'left',
+    	},
+    	productinfo: {
+    		// 'margin-top': '5px',
+    		// 'text-align': 'left',
+    	},
+    	prezzo: {
+    		// position: 'relative',
+    		// top: '50%',
+    		// transform: 'translateY(-50%)',
+    	},
+    	lead: {
+    		// margin: '0',
+    	},
 	},
 	methods: {
 	    search: function() {
@@ -28,19 +57,6 @@ new Vue({
 	},
 	
 });
-
-/*
-var tronca = new Vue({
-	el: '#products',
-	// data: '',
-	filters: {
-		truncate: function(string, value) {
-			return string.substring(0, value) + '...';
-    	}
-	}
-
-})
-*/
 
 
 
@@ -92,4 +108,7 @@ var tronca = new Vue({
     Vue.use(VueTruncate);
   }
 
-})()
+})();
+
+
+

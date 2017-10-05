@@ -17,8 +17,6 @@
 
 
 	    <div id="search" class="row text-center search">
-	    	
-
 
 
 	    	<div class="well well-sm">
@@ -47,20 +45,22 @@
 
 			<!-- search results-->
             <div id="products" class="row">
-            	<div class="item col-md-12" v-for="product in products">
-				    <div class="col-md-2 thumbnail">
-				        <img class="" :src="product.largeimageurl" width="200" height="200" v-bind:alt="product.title" />
+            	<div class="row item col-md-12" v-for="product in products" v-bind:style="prodotto">
+				    <div class="col-md-2" v-bind:style="thumbnail">
+				        <img :src="product.largeimageurl" width="180" height="180" v-bind:alt="product.title" v-bind:style="img"/>
 				    </div>
 			        <div class="col-md-7">
-			            <h3 class="product-title">@{{ product.title }}</h3>
-			            <p class="product-info">@{{ product.feature | truncate(20) }}</p>
+			            <h3 class="product-title" v-bind:style="producttitle">@{{ product.title }}</h3>
+			            <p class="product-info" v-bind:style="productinfo">@{{ product.feature | truncate(700) }}</p>
 			        </div>    
-	                <div class="col-md-1">
-	                    <p class="lead">$@{{ product.lowestnewprice }}</p>
+	                <div class="col-md-1" v-bind:style="prezzo">
+	                    <span class="lead" v-bind:style="lead">$@{{ product.lowestnewprice }}</span>
 	                </div>
 	                <div class="col-md-2">
-	                    <a class="btn btn-success" href="#">Avvisami quando il prezzo scende</a>
-	                    <a class="btn btn-success" href="#">Acquista subito</a>
+	                	<span>
+	                    	<a class="btn btn-success" href="#">Avvisami quando il prezzo scende</a>
+	                    	<a class="btn btn-success" href="#">Acquista subito asin @{{ product.asin }}</a>
+	                    </span>
 	                </div>
 				</div>
             </div>
@@ -71,6 +71,31 @@
 
 
 	    </div>
+
+
+
+	    <!-- Vue.js for scout search box-->
+		<!--script src="https://cdnjs.cloudflare.com/ajax/libs/vue/1.0.26/vue.min.js"></script-->
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.4.4/vue.min.js"></script>
+		<!--script src="https://cdnjs.cloudflare.com/ajax/libs/vue-resource/1.0.1/vue-resource.min.js"></script-->
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/vue-resource/1.3.4/vue-resource.min.js"></script>
+		<script src="/js/app-search.js"></script>
+
+		<!--style>
+			// .s-product { border:1px solid #CCC; margin:0; padding: 20px 0; }
+			// .thumbnail.s { margin:0; border:none; padding:0 20px;}
+			// .product-title.s { margin-top: 0; text-align: left;}
+			// .product-info.s { margin-top: 5px; text-align: left;}
+			// (prezzo) .cont-lead.s { position: relative; top: 50%; transform: translateY(-50%); }
+			// .lead.s {margin:0;}
+		</style-->
+
+
+
+
+
+
+
 
 
 	    
@@ -102,20 +127,6 @@
 	    </div>
 	</div>   
 </div>
-
-
-
-
-
-<!-- Vue.js for scout search box-->
-<!--script src="https://cdnjs.cloudflare.com/ajax/libs/vue/1.0.26/vue.min.js"></script-->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.4.4/vue.min.js"></script>
-<!--script src="https://cdnjs.cloudflare.com/ajax/libs/vue-resource/1.0.1/vue-resource.min.js"></script-->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/vue-resource/1.3.4/vue-resource.min.js"></script>
-<script src="/js/app-search.js"></script>
-
-
-
 
 
 
