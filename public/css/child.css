@@ -55,8 +55,11 @@ td.first-col {font-weight: bold;}
 .title {margin-bottom: 20px;}
 .title h1 { font-weight: lighter; }
 
-#search .well { background: none; border: none; box-shadow: none; max-width: 500px; margin: auto;}
-#search input { border-radius: 20px 0 0 20px; }
+#search .well { background: none; border: none; box-shadow: none; max-width: 500px; margin: auto; width: 100%;}
+#search .input-group { width: 100%; }
+#search input { border-radius: 20px; }
+#search .search-icon { position: relative; margin-top: -25px; display: inline-block; width: 28px; height: 14px; line-height: 14px; vertical-align: middle;
+background-color: transparent; font-size: 20px; color: #888; float: right; z-index: 2; margin-right: 5%;}
 #search button { border-radius: 0 20px 20px 0; }
 
 .new-cont { width: 0;

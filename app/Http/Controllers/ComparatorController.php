@@ -43,10 +43,15 @@ class ComparatorController extends Controller
         // fetch reviews
         $reviews = Review::orderBy('id', 'desc')->first();  
         $reviews = json_decode($reviews->json);
-        //dd($reviews);
+        // dd($reviews);
+        // $prod_json = json_encode($contents);
+
+        // dd($prod_json);
+
         return view('comparator.index')->with('slug', $slug)
                                        ->with('contents', $contents)
                                        ->with('reviews', $reviews);
+                                       // ->with('prod_json', $prod_json);
                                        
     }
 

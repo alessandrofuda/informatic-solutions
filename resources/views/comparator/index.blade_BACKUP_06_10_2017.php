@@ -37,16 +37,6 @@
 	    </div>
 
 
-
-
-
-
-{{-- trovato filtri in vue.js: https://vuejsexamples.com/vue-directive-supporting-isotope-layout-filtering-and-sorting/ --}}
-
-
-
-
-
 	    	
 		    <div id="products">
 		        @if(count($contents) <= 0)

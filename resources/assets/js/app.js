@@ -18,3 +18,6 @@ Vue.component('example', require('./components/Example.vue'));
 const app = new Vue({
     el: '#app'
 });
+
+
+// qui scrivo codice vuejs e poi --> 'gulp' command da CLI per aggiornare in public/js/app.js
