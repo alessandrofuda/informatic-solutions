@@ -1,8 +1,0 @@
-[17-Mar-2017 16:32:46 UTC] PHP Parse error:  syntax error, unexpected '[' in /home/alessandro/public_html/informatic-solutions.it/storage/framework/views/cbf4602983e3488d55dbc65822d141e0e8d28134.php on line 211
-[21-Mar-2017 14:33:52 UTC] PHP Parse error:  syntax error, unexpected 'use' (T_USE) in /home/alessandro/public_html/informatic-solutions.it/app/Http/Controllers/HomepageController.php on line 22
-[21-Mar-2017 14:34:31 UTC] PHP Fatal error:  Class 'Input' not found in /home/alessandro/public_html/informatic-solutions.it/app/Traits/CaptchaTrait.php on line 13
-[21-Mar-2017 14:49:07 UTC] PHP Fatal error:  Class 'Input' not found in /home/alessandro/public_html/informatic-solutions.it/app/Traits/CaptchaTrait.php on line 14
-[21-Mar-2017 14:51:40 UTC] PHP Fatal error:  Trait 'App\Http\Controllers\CaptchaTrait' not found in /home/alessandro/public_html/informatic-solutions.it/app/Http/Controllers/HomepageController.php on line 16
-[21-Mar-2017 14:51:54 UTC] PHP Fatal error:  Class 'Input' not found in /home/alessandro/public_html/informatic-solutions.it/app/Traits/CaptchaTrait.php on line 14
-[21-Mar-2017 14:56:10 UTC] PHP Fatal error:  Using $this when not in object context in /home/alessandro/public_html/informatic-solutions.it/app/Http/Controllers/HomepageController.php on line 33
-[21-Mar-2017 17:28:04 UTC] PHP Fatal error:  Call to undefined function float() in /home/alessandro/public_html/informatic-solutions.it/storage/framework/views/18f4536c72721d58530fe3d1d03751e069c215e2.php on line 114

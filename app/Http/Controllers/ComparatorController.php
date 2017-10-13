@@ -44,15 +44,26 @@ class ComparatorController extends Controller
         $reviews = Review::orderBy('id', 'desc')->first();  
         $reviews = json_decode($reviews->json);
         // dd($reviews);
-        // $prod_json = json_encode($contents);
+        $prod_json = json_encode($contents);
 
         // dd($prod_json);
 
         return view('comparator.index')->with('slug', $slug)
                                        ->with('contents', $contents)
-                                       ->with('reviews', $reviews);
-                                       // ->with('prod_json', $prod_json);
-                                       
+                                       ->with('reviews', $reviews)
+                                       ->with('prod_json', $prod_json);                                       
+    }
+
+
+
+    public function PlainTextFilter(Request $request) // FINIRE !!!!!!!!!!!!!!!!!!!!
+    {
+        // $test = obj('test');
+        // $contents = Product::where();
+        // dd($contents);
+        // return view('comparator.index')->with('contents', $contents);
+        //dd($request);
+        return response()->$request;
     }
 
 
@@ -171,6 +182,7 @@ class ComparatorController extends Controller
         }
 
     }
+
 
 
 

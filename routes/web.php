@@ -33,6 +33,7 @@ Route::get('{slug}/comparatore-prezzi', 'ComparatorController@index');
 
 // search box
 Route::get('api/search', ['as' => 'api.search', 'uses' => 'Api\SearchController@search']);
+Route::get('ajax-search', 'ComparatorController@PlainTextFilter');
 
 //'home' è il redirect predefinito assegnato di default dal sistema di autenticazione di Laravel (make:auth)
 Route::get('home', function () { return redirect('backend');  });

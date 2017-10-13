@@ -9,15 +9,16 @@ require('./bootstrap');
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to
- * the body of the page. From here, you may begin adding components to
- * the application, or feel free to tweak this setup for your needs.
+ * the page. Then, you may begin adding components to this application
+ * or customize the JavaScript scaffolding to fit your unique needs.
  */
 
 Vue.component('example', require('./components/Example.vue'));
 
-const app = new Vue({
-    el: '#app'
-});
+//const app = new Vue({
+//    el: '#app'
+//});
 
+var VueTruncate = require('../../../node_modules/vue-truncate-filter');
+Vue.use(VueTruncate);
 
-// qui scrivo codice vuejs e poi --> 'gulp' command da CLI per aggiornare in public/js/app.js
