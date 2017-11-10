@@ -3,13 +3,11 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
-use Laravel\Scout\Searchable;
 use App\Watchinglist;
 
 
 class Product extends Model
 {
-    use Searchable;  // aggiunto col package laravel/scout
     
     /**
      * The attributes that are mass assignable.
