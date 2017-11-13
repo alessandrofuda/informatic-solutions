@@ -20,5 +20,6 @@ Vue.component('example', require('./components/Example.vue'));
 //});
 
 var VueTruncate = require('../../../node_modules/vue-truncate-filter');
+
 Vue.use(VueTruncate);
 
