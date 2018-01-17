@@ -27,7 +27,7 @@
                 </div>
             </div>
 
-
+            {{-- aggiungere l'autocomplete (cfr laracast site) --}}
 
             <!--div id="search-alert" class="alert alert-danger" role="alert">
 			    <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
@@ -36,13 +36,61 @@
 			</div-->
 	    </div>
 
+	    <div id="filters" class="text-center">
+	    	<form id="filter-brand-price" class="checkbox" method="POST" action="">
+	    		{{ csrf_field() }}
+	    		<h4>Filtra marca</h4> 
+	    		@foreach ($contents as $brand)
+	    			<label class="checkbox-inline">
+	    				<input type="checkbox" name="brand[]" value="{{ $brand->brand }}"><a href="#">{{ $brand->brand }}</a>
+	    			</label>
+	    		@endforeach
+	    		 
+	    		{{-- dd($contents) --}}
+	    	<!--/form-->
+	    	<hr>
+	    	<!--form id="filter-price" class="checkbox"-->
+	    		<h4>Prezzo</h4>
+	    		<label class="checkbox-inline"><input type="checkbox" name="price[]" value="range-1">Fino a 100 €</label>
+	    		<label class="checkbox-inline"><input type="checkbox" name="price[]" value="range-2">da 101 a 200 €</label>
+	    		<label class="checkbox-inline"><input type="checkbox" name="price[]" value="range-3">da 201 a 300 €</label>
+	    		<label class="checkbox-inline"><input type="checkbox" name="price[]" value="range-4">oltre 300 €</label>
+	    	</form>
+	    	<hr>
+	    	<!--div id="filter-popularity"></div-->
+
+
+{{-- 
+https://packagist.org/packages/camilo-manrique/laravel-filter 
+https://m.dotdev.co/writing-advanced-eloquent-search-query-filters-de8b6c2598db
+--}}
+
+
+	    </div>
+
+	    <script>
+	    	//function(t) {
+	   	 	//	$('#filters input:checkbox:checked').next()[0].click();  // al check in checkbox simula il click sull'elemento successivo
+ 		 	//}
+ 		 	$(function(){
+ 		 		$('#filter-brand-price input:checkbox').on('change',function(){
+ 		 			//var test = [];
+ 		 			var test = $('#filter-brand-price input:checkbox:checked').serialize(); //.val();
+ 		 			console.log(test);
+            		$('#filter-brand-price').submit();
+            	});
+ 		 	});
+ 		 	
+ 		 	//console.log(test);
+ 		</script>
+
 
 	    	
 		    <div id="products">
 		        @if(count($contents) <= 0)
 		            <p>Non sono presenti prodotti.</p>
 		        @else 
-		        	<div class="">Prodotti trovati: <span id="total_products">0</span></div>	
+		        	<div class="">Prodotti trovati: <span id="total_products">{{ count($contents) }}</span></div>	
 	            	<?php $i=0; ?>
 	            	
 	                @foreach($contents as $content) 

@@ -108,8 +108,19 @@ i.col-md-2.glyphicon.glyphicon-remove-sign { font-size: 30px; line-height: 45px;
 .review {border: 1px solid #F5F5F5; padding: 5px; margin: 5px auto; border-radius: 5px; background: #F5F5F5; font-size: 96%; font-style: italic;}
 .note { margin: 50px auto; font-size: 13px;}
 
+/*filters*/
+#filters .checkbox-inline {margin-left: 2%;}
+#filters a { text-decoration: none; color: inherit;}
+
+
 /*footer*/
 footer.footer {margin-top: 100px;}
+
+
+
+
+
+
 
 
 /*responsive*/

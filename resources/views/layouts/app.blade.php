@@ -19,7 +19,7 @@
     <link href="/css/child.css" rel="stylesheet">
 
     <!-- Scripts -->
-    <!--script src="/js/app.js"></script-->
+    <script src="/js/app.js"></script>
 
     <!--j-rating jquery plugin-->
     <link href="/j-rating/src/j-rating-advance/j-rating-advance.css" rel="stylesheet">

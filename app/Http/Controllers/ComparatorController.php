@@ -57,6 +57,18 @@ class ComparatorController extends Controller
 
 
 
+
+
+    public function filters(Request $request)
+    {
+        dd($request);
+        //return;
+
+    }
+
+
+
+
     public function PlainTextFilter(Request $request) // FINIRE !!!!!!!!!!!!!!!!!!!!
     {
         // $test = obj('test');
