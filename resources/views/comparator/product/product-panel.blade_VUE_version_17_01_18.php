@@ -1,24 +1,25 @@
 <div class="panel panel-primary">
 {{-- new product notification --> last week --}}
-@if ( $content->created_at >= \Carbon\Carbon::now()->subDays(7) )  
-	<div class="new-cont"></div>
-	<div class="new">NUOVO</div>
-@endif
+{{-- @if ( $content->created_at >= \Carbon\Carbon::now()->subDays(7) ) --}}  
+	<!--div class="new-cont"></div>
+	<div class="new">NUOVO</div-->
+{{-- @endif --}}
     <div class="panel-body">
     	<div class="img-cont">
 	        <!--a href="{{-- route('product.view', $product->slug)--}}" title="{{-- $content->title --}}"-->
-	            @include('comparator.product.product-image',['content' => $content])
+	            {{-- @include('comparator.product.product-image',['content' => $content]) --}}
 	        <!--/a-->
         </div>
         <div class="caption">        
-            <h3 class="product-title">{{ $content->title }}</h3>
+            <h3 class="product-title">@{{ product.title }}</h3>
 
             <div class="product-info">
-            		<b>Marca:</b> {{ $content->brand }} - <b>Colore:</b> {{ !empty($content->color) ? $content->color : 'tutti'}}
+            		<b>Marca:</b> @{{ product.brand }} - <b>Colore:</b> {{-- !empty($content->color) ? $content->color : 'tutti' --}}
             		<div class="product-summary">
 	            		<p class="abstract">
 	            			@if (!empty($content->feature))
-			            		{{ str_limit($content->feature, $limit = 250, $end = '...') }}
+			            		{{-- str_limit($content->feature, $limit = 250, $end = '...') --}}
+			            		@{{ product.feature truncte(250) }}
 			            	@else
 			            		Non è ancora presente una descrizione per questo prodotto.
 		            		@endif
@@ -274,7 +275,7 @@
 						  </div>
 						</div><!--#dettagli-->
 
-						
+
         </div>
     </div>
 </div>
