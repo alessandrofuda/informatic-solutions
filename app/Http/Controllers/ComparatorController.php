@@ -2,10 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Support\Facades\Redirect;
 use Illuminate\Http\Request;
 use App\Amazon\AmazonPaApi;
-use App\Review;
 use App\Product;
+use App\Review;
 
 
 class ComparatorController extends Controller
@@ -29,40 +30,91 @@ class ComparatorController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index($slug)
-    {
+    public function index($slug) {   
         // fetch products
         $lastrequest_date = Product::orderBy('updated_at', 'desc')->first()->updated_at;
-        $contents = Product::where('created_at', '<=', $lastrequest_date)->orderBy('created_at', 'desc')->take(18)->get();  //ritorna i primi 18 prodotti
-        //foreach ($contents as $value) {
-        //    dump($value->asin);
-        //}
-        //dd('ok');
+
+        $contents = Product::where('created_at', '<=', $lastrequest_date)->orderBy('created_at', 'desc')
+                                                                         //->take(18)   //ritorna i primi 18 prodotti
+                                                                         ->paginate(15)
+                                                                         //->get()
+                                                                         ;
+        // brands array
+        $brands = $this->getBrandsArray();
         
 
         // fetch reviews
-        $reviews = Review::orderBy('id', 'desc')->first();  
-        $reviews = json_decode($reviews->json);
-        // dd($reviews);
-        // $prod_json = json_encode($contents);
-
-        // dd($prod_json);
-
+        $reviews = $this->getReviews();
+        
         return view('comparator.index')->with('slug', $slug)
+                                       ->with('brands', $brands)
                                        ->with('contents', $contents)
                                        ->with('reviews', $reviews)
                                        //->with('prod_json', $prod_json)
-                                       ;                                       
+                                       ;
+    }
+
+
+
+    public function getBrandsArray() {
+        $brands = Product::distinct()->orderBy('brand', 'ASC')
+                                     ->where('brand', '!=', '') 
+                                     ->where('brand', '!=', null)
+                                     ->get(['brand']);
+        return $brands;
     }
 
 
 
 
+    public function getReviews() {
 
-    public function filters(Request $request)
+        $reviews = Review::orderBy('id', 'desc')->first();  
+        $reviews = json_decode($reviews->json);
+
+        return $reviews;
+
+    }
+
+
+
+    public function filter($slug, Request $request, Product $products)
     {
-        dd($request);
-        //return;
+        
+        $contents = $products->newQuery();
+
+        if ($request->has('brand')) {
+            $contents->whereIn('brand', $request->brand);
+        }
+
+        if ($request->has('price') && is_array($request->price)) {
+            if( in_array('range-1', $request->price) ) {
+                $contents->where('lowestnewprice', '<=', 100.99);
+            } elseif (in_array('range-2', $request->price)) {
+                $contents->WhereBetween('lowestnewprice', [101.00, 200.00]); //'>=', 101.00)->where('lowestnewprice', '<=', 200.00);
+            } elseif (in_array('range-3', $request->price)) {
+                $contents->WhereBetween('lowestnewprice', [200.00, 300.00]);  //'>', 200.00)->where('lowestnewprice', '<=', 300.00);
+            } elseif (in_array('range-4', $request->price)) {
+                $contents->Where('lowestnewprice', '>', 300.00);
+            }
+            
+        }
+
+        $contents = $contents->paginate(15);
+
+        // brands array
+        $brands = $this->getBrandsArray();
+
+        // fetch reviews
+        $reviews = $this->getReviews();
+
+        
+        //dd($request->brand);
+        //dd($request->price);
+
+
+        return view('comparator.index')->with('brands', $brands)->with('contents', $contents)->with('slug', $slug)->with('reviews', $reviews)->with('request', $request); 
+        //return Redirect::to( $slug.'/comparatore-prezzi')->withInput()->with('contents', $contents);
 
     }
 

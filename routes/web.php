@@ -30,7 +30,8 @@ Route::get('unsubscribe/{slug}/{unique_code}', 'Backend\CommentsController@Unsub
 
 // videocitofoni comparator
 Route::get('{slug}/comparatore-prezzi', 'ComparatorController@index');
-Route::post('{slug}/comparatore-prezzi', 'ComparatorController@filters');
+//Route::post('{slug}/comparatore-prezzi', 'ComparatorController@index');
+Route::post('{slug}/comparatore-prezzi', 'ComparatorController@filter');
 
 // search box
 Route::get('ajax-search', 'ComparatorController@PlainTextFilter');

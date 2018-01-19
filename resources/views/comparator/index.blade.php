@@ -40,9 +40,16 @@
 	    	<form id="filter-brand-price" class="checkbox" method="POST" action="">
 	    		{{ csrf_field() }}
 	    		<h4>Filtra marca</h4> 
-	    		@foreach ($contents as $brand)
+
+
+	    		{{-- !empty($request) ? dump($request->brand) : 'no' --}}
+
+
+
+	    		@foreach ($brands as $brand)
 	    			<label class="checkbox-inline">
-	    				<input type="checkbox" name="brand[]" value="{{ $brand->brand }}"><a href="#">{{ $brand->brand }}</a>
+	    				<input type="checkbox" name="brand[]" value="{{ $brand->brand }}" {{ (!empty($request->brand) && is_array($request->brand) && in_array($brand->brand, $request->brand)) ? ' checked' : '' }}>
+	    				<a href="#">{{ ucfirst(strtolower($brand->brand)) }}</a>
 	    			</label>
 	    		@endforeach
 	    		 
@@ -51,10 +58,10 @@
 	    	<hr>
 	    	<!--form id="filter-price" class="checkbox"-->
 	    		<h4>Prezzo</h4>
-	    		<label class="checkbox-inline"><input type="checkbox" name="price[]" value="range-1">Fino a 100 €</label>
-	    		<label class="checkbox-inline"><input type="checkbox" name="price[]" value="range-2">da 101 a 200 €</label>
-	    		<label class="checkbox-inline"><input type="checkbox" name="price[]" value="range-3">da 201 a 300 €</label>
-	    		<label class="checkbox-inline"><input type="checkbox" name="price[]" value="range-4">oltre 300 €</label>
+	    		<label class="checkbox-inline"><input type="checkbox" name="price[]" value="range-1" {{ (!empty($request->price) && is_array($request->price) && in_array('range-1', $request->price)) ? ' checked' : '' }}>Fino a 100 €</label> 
+	    		<label class="checkbox-inline"><input type="checkbox" name="price[]" value="range-2" {{ (!empty($request->price) && is_array($request->price) && in_array('range-2', $request->price)) ? ' checked' : '' }}>da 101 a 200 €</label>
+	    		<label class="checkbox-inline"><input type="checkbox" name="price[]" value="range-3" {{ (!empty($request->price) && is_array($request->price) && in_array('range-3', $request->price)) ? ' checked' : '' }}>da 201 a 300 €</label>
+	    		<label class="checkbox-inline"><input type="checkbox" name="price[]" value="range-4" {{ (!empty($request->price) && is_array($request->price) && in_array('range-4', $request->price)) ? ' checked' : '' }}>oltre 300 €</label>
 	    	</form>
 	    	<hr>
 	    	<!--div id="filter-popularity"></div-->
@@ -112,6 +119,7 @@ https://m.dotdev.co/writing-advanced-eloquent-search-query-filters-de8b6c2598db
 		        @endif
 
 		    </div>
+		    <div class="text-center">{{ $contents->links() }}</div>
 	    </div>
 	</div>   
 </div>
