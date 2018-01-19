@@ -131,8 +131,8 @@
 <div id="index" class="row">
   <div class="col-md-12">
     <div id="indice-jumb" class="jumbotron text-center">
-      <button class="btn btn-primary text-uppercase" type="button" data-toggle="collapse" data-target="#indice"> Indice <span class="caret"></span></button>
-      <div id="indice" class="collapse">
+      <button class="btn btn-primary text-uppercase"> Indice <span class="caret"></span></button>
+      <div id="indice">
         <ul class="list-group">
           <li class="list-group-item">
             <a href="#cosa-e-un-video-citofono">Cosa è un Video Citofono</a>
@@ -182,11 +182,8 @@
 
 
 
-<h2 id="detrazioni-fiscali-50-per-acquisto-installazione-videocitofoni" class="collapsible">
-<a class="btn left" type="button" data-toggle="collapse" data-target="#detrazioni">Le detrazioni fiscali 50% sull&#8217;acquisto e l&#8217;installazione dei videocitofoni <span class="caret"></span></a>
-</h2>
-<div id="detrazioni" class="collapse">
-
+<h2 id="detrazioni-fiscali-50-per-acquisto-installazione-videocitofoni">Le detrazioni fiscali 50% sull&#8217;acquisto e l&#8217;installazione dei videocitofoni</h2>
+<div id="detrazioni">
 <figure class="figure pull-left">
     <img src="{{ url('images/videocitofono-300x300.jpg') }}" class="img-thumbnail" title="videocitofono" alt="videocitofono" width="300" height="300" />
     <figcaption class="figure-caption">I videocitofoni, come i sistemi di allarme, sono detraibili al 50% dal reddito Irpef</figcaption>
@@ -197,24 +194,20 @@
 <p>Se spendo 400 euro (iva inclusa), mi vengono restituiti in 10 anni 200 euro, cioè:  <em>&#8220;il 50% dei costi sostenuti&#8221;</em>.<br />
 Queste 200 euro <strong>non</strong> vengono riconosciute <em>tutte e subito</em>, ma vengono &#8220;restituite&#8221; in 10 anni, cioè: 20 euro l&#8217;anno per 10 anni. Come avviene questa &#8220;restituzione&#8221;? Di fatto nessuno restituisce niente, ma avviene una sorta di &#8220;compensazione&#8221; con le tasse. La &#8220;compensazione&#8221; avviene sotto forma, appunto, di <em>detrazione fiscale</em> Irpef. Cioè: per 10 anni ogni anno verrà scalato dall&#8217;imponibile irpef (di chi ha pagato) una quota di acquisto del prodotto (per ulteriori info su come funziona la detrazione fiscale Irpef <a title="Come funziona la detrazione fiscale Irpef - Wikipedia" href="http://it.wikipedia.org/wiki/Detrazione" target="_blank">leggi qui</a>).</p>
 <p>In definitiva, &#8220;a conti fatti&#8221;, un videocitofono che costa 400 euro comprensivo di iva e installazione, <strong>lo pago la metà</strong> perchè detraggo dall&#8217;Irpef 200 euro in 10 anni.</p>
-<p><a title="Ristrutturazioni edilizie - Agenzia delle Entrate" href="http://www.agenziaentrate.gov.it/wps/content/Nsilib/Nsi/Home/CosaDeviFare/Richiedere/Agevolazioni/DetrRistrEdil36/schinfodetrristredil36/" target="_blank">Vai al sito dell&#8217;agenzia delle entrate e scarica la guida in formato pdf per ulteriori informazioni</a>.</p>
+<p><a title="Ristrutturazioni edilizie - Agenzia delle Entrate" href="http://www.agenziaentrate.gov.it/wps/file/Nsilib/Nsi/Agenzia/Agenzia+comunica/Prodotti+editoriali/Guide+Fiscali/Agenzia+informa/AI+guide+italiano/Ristrutturazioni+edilizie+it/Guida_Ristrutturazioni_edilizie.pdf" target="_blank">Vai al sito dell&#8217;agenzia delle entrate e scarica la guida in formato pdf per ulteriori informazioni</a>.</p>
 </div>
 
 
 
-<h2 id="iva-agevolata-acquisto-videocitofoni" class="collapsible">
-<a class="btn left" type="button" data-toggle="collapse" data-target="#iva">L&#8217;Iva agevolata sull&#8217;acquisto dei videocitofoni <span class="caret"></span></a>
-</h2>
-<div id="iva" class="collapse">
+<h2 id="iva-agevolata-acquisto-videocitofoni">L&#8217;Iva agevolata sull&#8217;acquisto dei videocitofoni</h2>
+<div id="iva">
 Non solo detrazioni: anche <strong>l&#8217;aliquota iva è agevolata</strong> perchè rientra tra le spese di ristrutturazione. Sul sevizio di installazione si pagherà infatti l&#8217;iva agevolata del 10%, anzichè dell&#8217;ordinario 22%. Attenzione però: l&#8217;agevolazione spetta non sull&#8217;acquisto del prodotto, ma sul costo relativo al servizio di installazione.
 </div>
 
 
 
-<h2 id="citofono-videocitofono-quale-scegliere" class="collapsible">
-<a class="btn left" type="button" data-toggle="collapse" data-target="#citofono-o-videocitofono">Citofono o videocitofono?  Quale scegliere? <span class="caret"></span></a>
-</h2>
-<div id="citofono-o-videocitofono" class="collapse">
+<h2 id="citofono-videocitofono-quale-scegliere">Citofono o videocitofono?  Quale scegliere?</h2>
+<div id="citofono-o-videocitofono">
 Ovviamente il videocitofono non è un <em>bisogno</em> in senso stretto. Diciamo che , a differenza di un semplice citofono, è una <em>comodità</em><em>,</em> che garantisce un maggior livello di <em>confort</em> e <em>sicurezza</em>. Anche perchè, come vedremo, può essere integrato al sistema di antifurto e, nel caso di videocitofoni wireless (videocitofoni senza fili) l&#8217;installazione non richiede lavori di muratura, canaline, buchi, passafili, ecc&#8230; Basterà in questo caso installare le componenti a muro e metterle in collegamento wireless.</p>
 <p>Se non si ha un citofono, se si sta ristrutturando casa e si vuole cambiare il vecchio citofono, oppure: se si sta acquistando casa e il costruttore ti permette di scegliere tra citofono o videocitofono, il mio consiglio è quello di optare per un videocitofono, anche perchè, come vedremo, alcune tipologie sono utilizzabili anche &#8220;a distanza&#8221;, direttamente dal proprio smartphone, tablet o pc e possono essere integrati con altri apparecchi di casa (per esempio la tv). Funzioni molto comode in molti casi.</p>
 
@@ -237,10 +230,8 @@ Ovviamente il videocitofono non è un <em>bisogno</em> in senso stretto. Diciamo
 
 
 
-<h2 id="come-scegliere-videocitofono-adatto" class="collapsible">
-<a class="btn left" type="button" data-toggle="collapse" data-target="#come-scegliere">Come scegliere il videocitofono più adatto <span class="caret"></span></a>
-</h2>
-<div id="come-scegliere" class="collapse">
+<h2 id="come-scegliere-videocitofono-adatto">Come scegliere il videocitofono più adatto</h2>
+<div id="come-scegliere">
 Quando stiamo cercando un videocitofono, ma non sappiamo come e dove cercare, come possiamo orientarci nella scelta dell&#8217;apparecchio?<br />
 Cosa dobbiamo guardare per scegliere il videocitofono più adatto alle nostre esigenze?</p>
 <p>Ogni soluzine comprende almeno due unità: l&#8217;unità di chiamata (o pulsantiera) e l&#8217;unità di risposta (che può essere un piccolo schermo video con o senza <em>&#8220;cornetta&#8221;</em>).</p>
@@ -267,10 +258,8 @@ Le intemperie, alla lunga, possono creare non pochi problemi se non viene fatta 
 </div><!--#come-scegliere-->
 
 
-<h2 id="quali-caratteristiche-deve-avere-un-buon-videocitofono" class="collapsible">
-<a class="btn left" type="button" data-toggle="collapse" data-target="#caratteristiche">Quali caratteristiche deve avere un buon videocitofono<span class="caret"></span></a>
-</h2>
-<div id="caratteristiche" class="collapse">
+<h2 id="quali-caratteristiche-deve-avere-un-buon-videocitofono">Quali caratteristiche deve avere un buon videocitofono</h2>
+<div id="caratteristiche">
 <p>Come deve essere un buon videocitofono? E quali caratteristiche minime bisogna controllare nel momento in cui si è in fase di scelta? Ecco una breve check-list che potrà essere utile in fase di valutazione.</p>
 <ul>
 <li>Innanzitutto l'apparecchio deve essere facile da installare. Una facile installazione è la prima prerogativa di una buona riuscita del lavoro.</li>
@@ -294,10 +283,8 @@ Le intemperie, alla lunga, possono creare non pochi problemi se non viene fatta 
 </div>
 
 
-<h2 id="quanti-tipi-di-videocitofoni-esistono" class="collapsible">
-<a class="btn left" type="button" data-toggle="collapse" data-target="#tipi">Quanti tipi di Videocitofoni esistono <span class="caret"></span></a>
-</h2>
-<div id="tipi" class="collapse">Di tipologie ne esistono ormai davvero tante, ce n&#8217;è per tutti i gusti: da quelli &#8220;classici&#8221; a quelli più tecnologici e moderni che si integrano addirittura con smartphone, tablet o col televisore di casa.Ci sono videocitofoni che, in caso di chiamata, sono in grado di &#8220;inserirsi&#8221; <em>in tempo reale</em> nella programmazione televisiva per mostrarti chi sta suonando al campanello di casa. Si può rispondere, e magari aprire, senza alzarsi dal divano. Questa funzione utilizza la tecnologia &#8220;Picture In Picture&#8221; (PIP) per sovrapporre in un angolo dello schermo televisivo una finestrella in caso di chiamata.Stessa cosa con l&#8217;iPhone: quando qualcuno suona al citofono di casa si attiva automaticamente una schermata sullo smartphone che ti mostra, anche se sei fuori casa, chi ti sta chiamando e ti dà la possibilità di aprire il portone &#8220;a distanza&#8221;.<br />
+<h2 id="quanti-tipi-di-videocitofoni-esistono">Quanti tipi di Videocitofoni esistono</h2>
+<div id="tipi">Di tipologie ne esistono ormai davvero tante, ce n&#8217;è per tutti i gusti: da quelli &#8220;classici&#8221; a quelli più tecnologici e moderni che si integrano addirittura con smartphone, tablet o col televisore di casa.Ci sono videocitofoni che, in caso di chiamata, sono in grado di &#8220;inserirsi&#8221; <em>in tempo reale</em> nella programmazione televisiva per mostrarti chi sta suonando al campanello di casa. Si può rispondere, e magari aprire, senza alzarsi dal divano. Questa funzione utilizza la tecnologia &#8220;Picture In Picture&#8221; (PIP) per sovrapporre in un angolo dello schermo televisivo una finestrella in caso di chiamata.Stessa cosa con l&#8217;iPhone: quando qualcuno suona al citofono di casa si attiva automaticamente una schermata sullo smartphone che ti mostra, anche se sei fuori casa, chi ti sta chiamando e ti dà la possibilità di aprire il portone &#8220;a distanza&#8221;.<br />
 Si pensi all&#8217;utilità di questa funzione, ad esempio, per interloquire con postini,  corrieri espresso o semplicemente amici e parenti.Ci sono anche videocitofoni in grado di attivarsi automaticamente ancor prima che l&#8217;ospite suoni al campanello: si può auto-attivare, per esempio, al passaggio di una persona davanti ad un sensore, oppure si può attivare quando una persona bussa alla porta, anzichè suonare.<br />
 In questo caso il videocitofono diventa un vero e proprio supporto al sistema di antifurto.Ci sono poi videocitofoni &#8220;con fili&#8221; (2 o 4 fili per unità) e <strong>videocitofoni senza fili</strong> (wireless), che necessitano del solo collegamento elettrico.Con display a colori o in bianco e nero.<br />
 Con monitor LCD più o meno grande (da 3.5, 4 o 7 pollici), o con display TFT, di maggiore qualità.Con telecamera ad alta risoluzione (con tecnologia CCD) o con camera a bassa risoluzione (CIMOS).</p>
@@ -309,10 +296,8 @@ Con monitor LCD più o meno grande (da 3.5, 4 o 7 pollici), o con display TFT, d
 
 
 
-<h2 id="quali-marche-producono-impianti-videocitofonici" class="collapsible">
-<a class="btn left" type="button" data-toggle="collapse" data-target="#marche">Quali sono le marche che producono i videocitofoni? <span class="caret"></span></a>
-</h2>
-<div id="marche" class="collapse">
+<h2 id="quali-marche-producono-impianti-videocitofonici">Quali sono le marche che producono i videocitofoni?</h2>
+<div id="marche">
 <p>Il prodotto è ormai parecchio diffuso e sfrutta le più moderne tecnologie. Le case produttrici che producono, assemblano o commercializzano videocitofoni sono molte e molte di queste hanno prodotti di qualità.Ecco un elenco non esaustivo delle principali marche che si occupano di videocitofonia.</p>
 <ul>
 <li>Ave spa</li>
@@ -373,7 +358,7 @@ Con monitor LCD più o meno grande (da 3.5, 4 o 7 pollici), o con display TFT, d
 
 
 
-<div style="font-size:10px; color:#A2A2A2;text-align:right">In aggiornamento:<br>
+<div style="font-size:10px; color:#A2A2A2;text-align:right">In lavorazione:<br>
 <ul>
 <li><a style="color:#A2A2A2;" href="#videocitofoni preventivi e prezzi">Videocitofoni, preventivi e prezzi</a></li>
 <li><a style="color:#A2A2A2;" href="#Urmet">Videocitofoni Urmet</a></li>

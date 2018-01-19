@@ -21,6 +21,7 @@ margin:-55px 0 0; /* negative fixed header height */
 .figure { margin:15px; max-width: 300px; }
 figcaption {font-style: italic; font-size: 12px; margin: 15px 0 0;}
 .footer .first {margin:0;}
+#indice-jumb button { cursor: default; }
 
 
 /*comments*/
