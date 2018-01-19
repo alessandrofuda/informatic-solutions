@@ -80,27 +80,65 @@ class ComparatorController extends Controller
 
     public function filter($slug, Request $request, Product $products)
     {
-        
         $contents = $products->newQuery();
 
         if ($request->has('brand')) {
             $contents->whereIn('brand', $request->brand);
         }
 
+        // se array ha 1 valore --> where WhereBetween
+        // se array ha più di un valore --> orWhere OR ...
+
         if ($request->has('price') && is_array($request->price)) {
-            if( in_array('range-1', $request->price) ) {
-                $contents->where('lowestnewprice', '<=', 100.99);
-            } elseif (in_array('range-2', $request->price)) {
-                $contents->WhereBetween('lowestnewprice', [101.00, 200.00]); //'>=', 101.00)->where('lowestnewprice', '<=', 200.00);
-            } elseif (in_array('range-3', $request->price)) {
-                $contents->WhereBetween('lowestnewprice', [200.00, 300.00]);  //'>', 200.00)->where('lowestnewprice', '<=', 300.00);
-            } elseif (in_array('range-4', $request->price)) {
-                $contents->Where('lowestnewprice', '>', 300.00);
+
+            $range1 = [0, 100.00];
+            $range2 = [100.00, 200.00];
+            $range3 = [200.00, 300.00];
+            $range4 = [300.00, 10000.00];
+
+            if(count($request->price) === 1) {
+                if( in_array('range-1', $request->price) ) {
+                    $contents->WhereBetween('lowestnewprice', $range1);    
+                } elseif (in_array('range-2', $request->price)) {
+                    $contents->WhereBetween('lowestnewprice', $range2); 
+                } elseif (in_array('range-3', $request->price)) {
+                    $contents->WhereBetween('lowestnewprice', $range3);  
+                } elseif (in_array('range-4', $request->price)) {
+                    $contents->WhereBetween('lowestnewprice', $range4);
+                }
+            } elseif( count($request->price) > 1 ){
+                
+                $ranges_arr = [];
+                for ($key = 0; $key < 4; $key++) {  // IMP: 4 loop = range's number
+                    if(!empty($request->price[$key])) {
+                        if($request->price[$key] == 'range-1') {
+                            $ranges_arr[$key] = $range1;
+                        } elseif($request->price[$key] == 'range-2') {
+                            $ranges_arr[$key] = $range2;
+                        } elseif($request->price[$key] == 'range-3') {
+                            $ranges_arr[$key] = $range3;
+                        } elseif($request->price[$key] == 'range-4') {
+                            $ranges_arr[$key] = $range4;
+                        }    
+                    }else {
+                        $ranges_arr[$key] = ['',''];
+                    }
+                }
+                
+                $contents->where(function ($query) use ($ranges_arr) {  // $ranges_arr
+                    $query->WhereBetween('lowestnewprice', $ranges_arr[0]) 
+                          ->orWhereBetween('lowestnewprice', $ranges_arr[1])
+                          ->orWhereBetween('lowestnewprice', $ranges_arr[2])
+                          ->orWhereBetween('lowestnewprice', $ranges_arr[3]);
+                });
+
+            } else {
+                return $this->index($slug);
             }
             
-        }
+        } 
 
-        $contents = $contents->paginate(15);
+        $contents = $contents->get(); // no paginate();
 
         // brands array
         $brands = $this->getBrandsArray();
@@ -108,14 +146,10 @@ class ComparatorController extends Controller
         // fetch reviews
         $reviews = $this->getReviews();
 
-        
-        //dd($request->brand);
-        //dd($request->price);
-
-
-        return view('comparator.index')->with('brands', $brands)->with('contents', $contents)->with('slug', $slug)->with('reviews', $reviews)->with('request', $request); 
-        //return Redirect::to( $slug.'/comparatore-prezzi')->withInput()->with('contents', $contents);
-
+        return view('comparator.index')->with('brands', $brands)->with('contents', $contents)
+                                                                ->with('slug', $slug)
+                                                                ->with('reviews', $reviews)
+                                                                ->with('request', $request); 
     }
 
 

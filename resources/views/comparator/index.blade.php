@@ -119,7 +119,7 @@ https://m.dotdev.co/writing-advanced-eloquent-search-query-filters-de8b6c2598db
 		        @endif
 
 		    </div>
-		    <div class="text-center">{{ $contents->links() }}</div>
+		    <div class="text-center">{{ method_exists($contents, 'links') ? $contents->links() : '' }}</div>
 	    </div>
 	</div>   
 </div>
