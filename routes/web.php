@@ -30,11 +30,10 @@ Route::get('unsubscribe/{slug}/{unique_code}', 'Backend\CommentsController@Unsub
 
 // videocitofoni comparator
 Route::get('{slug}/comparatore-prezzi', 'ComparatorController@index');
-//Route::post('{slug}/comparatore-prezzi', 'ComparatorController@index');
 Route::post('{slug}/comparatore-prezzi', 'ComparatorController@filter');
 
 // search box
-Route::get('ajax-search', 'ComparatorController@PlainTextFilter');
+Route::post('ajax-search', 'ComparatorController@PlainTextFilter');
 
 //'home' è il redirect predefinito assegnato di default dal sistema di autenticazione di Laravel (make:auth)
 Route::get('home', function () { return redirect('backend');  });

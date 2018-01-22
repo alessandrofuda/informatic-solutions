@@ -13,10 +13,11 @@
 
 	    <div id="search" class="row text-center search">
 	    	<div class="well well-sm">
-                <div class="form-group">
+                <form id="plaintext-filter" class="form-group" method="POST" action="">
+                	{{ csrf_field() }}
                     <div class="input-group input-group-md">
                         <div class="icon-addon addon-md">
-                        	<label class="sr-only" for="searchbox">Search</label>
+                        	<!--label class="sr-only" for="searchbox">Search</label-->
                             <input id="searchbox" type="text" placeholder="Cosa stai cercando?" class="form-control">
                             <span class="glyphicon glyphicon-search search-icon"></span>
                         </div>
@@ -24,7 +25,7 @@
                             <button class="btn btn-default" type="button">Search!</button>
                         </span-->
                     </div>
-                </div>
+                </form>
             </div>
 
             {{-- aggiungere l'autocomplete (cfr laracast site) --}}
@@ -76,9 +77,6 @@ https://m.dotdev.co/writing-advanced-eloquent-search-query-filters-de8b6c2598db
 	    </div>
 
 	    <script>
-	    	//function(t) {
-	   	 	//	$('#filters input:checkbox:checked').next()[0].click();  // al check in checkbox simula il click sull'elemento successivo
- 		 	//}
  		 	$(function(){
  		 		$('#filter-brand-price input:checkbox').on('change',function(){
  		 			//var test = [];
@@ -86,6 +84,14 @@ https://m.dotdev.co/writing-advanced-eloquent-search-query-filters-de8b6c2598db
  		 			console.log(test);
             		$('#filter-brand-price').submit();
             	});
+
+            	$('#plaintext-filter').on('keypress', function(e){
+            		if(e.which == 13) {
+            			console.log('ok keypress on enter');
+            			//submit..
+            		}
+            	});
+            	
  		 	});
  		 	
  		 	//console.log(test);

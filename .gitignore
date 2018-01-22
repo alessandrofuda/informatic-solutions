@@ -6,3 +6,4 @@ Homestead.json
 Homestead.yaml
 .env
 /public/custom/error_log
+error_log
