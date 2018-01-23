@@ -13,6 +13,9 @@ require('./bootstrap');
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
 
+
+
+/*
 Vue.component('example', require('./components/Example.vue'));
 
 //const app = new Vue({
@@ -22,4 +25,5 @@ Vue.component('example', require('./components/Example.vue'));
 var VueTruncate = require('../../../node_modules/vue-truncate-filter');
 
 Vue.use(VueTruncate);
+*/
 
