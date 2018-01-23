@@ -7,6 +7,7 @@
     <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
     <title>{{$post->title}}. Costi, Marche e Modelli.</title>
     <meta name="description" content="Tutte le informazioni sui videocitofoni con e senza fili: marche, tipologie, prezzi, qualità e novità sul mercato. Come scegliere la miglior qualità prezzo"/>
+    <meta name="csrf-token" content="{{ csrf_token() }}" />
     <link rel="canonical" href="{{ url($post->slug)}}" />
 
     <meta property="og:locale" content="it_IT" />
@@ -78,7 +79,7 @@
   </nav>
 
 
-<section id="section-1" class="container" role="main" itemscope itemtype="http://schema.org/Article">
+<section id="section-1" class="container" role="main" itemscope itemtype="https://schema.org/Article">
   <div id="article-container" class="row">
     <div id="article" class="col-md-10 col-md-offset-1">
 
@@ -103,20 +104,37 @@
     - <span itemprop="author">Massimiliano Bossi</span>
 </div>
 
+
+
+
+
 {{-- rating --}}
-<div class="postrating" itemprop="aggregateRating" itemscope itemtype="http://schema.org/AggregateRating">
+<div id="punteggio" itemscope itemtype="https://schema.org/AggregateRating" itemprop="aggregateRating">
   <meta itemprop="bestRating" content="5"/>
-  <meta itemprop="ratingValue" content="4"/>
-  <meta itemprop="ratingCount" content="13"/>
-  <form id="rating_9480">
-    <input name="star" type="radio" value="1" class="rating"/>
-    <input name="star" type="radio" value="2" class="rating"/>
-    <input name="star" type="radio" value="3" class="rating"/>
-    <input name="star" type="radio" value="4" class="rating" checked="checked"/>
-    <input name="star" type="radio" value="5" class="rating"/>
-    <div class="clearfix"></div>
-  </form>
+  <meta itemprop="ratingValue" content="{{ $voto_medio }}"/>
+  <meta itemprop="ratingCount" content="{{ $numero_voti }}"/> 
+    <fieldset id="stelle" class="rating">
+        <input class="stars" type="radio" id="star5" name="rating" value="5" checked="checked" />
+          <label class = "full" for="star5" title="Valutazione: ottimo"></label>
+          <input class="stars" type="radio" id="star4" name="rating" value="4" />
+          <label class = "full" for="star4" title="Valutazione: buono"></label>
+          <input class="stars" type="radio" id="star3" name="rating" value="3" />
+          <label class = "full" for="star3" title="Valutazione: discreto"></label>
+          <input class="stars" type="radio" id="star2" name="rating" value="2" />
+          <label class = "full" for="star2" title="Valutazione: sufficiente"></label>
+          <input class="stars" type="radio" id="star1" name="rating" value="1" />
+          <label class = "full" for="star1" title="Valutazione: scarso"></label>
+    </fieldset>
+    <div class="voto">Voto:{{ $voto_medio }}/5 (<span class="votes_numb">{{ $numero_voti }}</span> voti)</div>   
 </div>
+
+
+
+
+
+
+
+
 
 {{--google adsense--}}          
 <div id="adv1" style="margin: 50px auto 30px; width: 100%; height: 280px; {{ env('ADSENSE_DEV_BORDER', '') }}">
@@ -583,6 +601,43 @@ Con monitor LCD più o meno grande (da 3.5, 4 o 7 pollici), o con display TFT, d
   <!--script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script--><!--se non funziona: controllare versione-->
   <!-- Include all compiled plugins (below), or include individual files as needed -->
   <script src="{{ url('js/app.js') }}"></script>
+
+<script type="text/javascript" src="/artic-rating/ambiance-plugin/jquery.ambiance.js"></script> 
+<script>
+  jQuery(document).ready(function () {
+    $('#stelle .stars').click(function () {
+      var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
+      var postid = '{{$post->id}}';
+      $.post('{{ url('articles-rating') }}',
+              {_token: CSRF_TOKEN, rate: $(this).val(), post_id: postid },
+              function(d){ 
+                //console.log(d);
+                if(d > 0) { // d=id in db(autoincrement))
+                  $.ambiance({
+                    message: "Hai già votato questo articolo. Un solo voto consentito.",
+                    title: "Errore!",
+                    type: "error",                    
+                  });
+                } else {
+                  $.ambiance({
+                    message: "Grazie per aver votato questo articolo.",
+                    title: "Voto aggiunto!",
+                    type: "success",                    
+                  });
+                  var n = parseInt($('.votes_numb').text())+1;
+                  $('.votes_numb').text(n);
+                }
+              }),
+
+      $(this).attr("checked");
+    });
+  });
+</script>
+
+
+
+
+
 
 </body>
 </html>
