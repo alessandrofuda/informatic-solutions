@@ -11,6 +11,10 @@ margin:-55px 0 0; /* negative fixed header height */
 
 #section-1 {margin-top:80px;}
 #content {margin: 30px auto;}
+
+.postmeta { float: left; font-style: italic; font-size: 90%; color: #8d8d8d; }
+.postrating { text-align: right; }
+
 .padding-top {padding-top: 55px;}
 #intro .figure {max-width: 400px; margin: 0 0 30px 30px;}
 .list-group {margin-top: 20px;}

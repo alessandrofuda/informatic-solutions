@@ -78,11 +78,11 @@
   </nav>
 
 
-<section id="section-1" class="container" role="main">
+<section id="section-1" class="container" role="main" itemscope itemtype="http://schema.org/Article">
   <div id="article-container" class="row">
     <div id="article" class="col-md-10 col-md-offset-1">
 
-      <h1>{{$post->title}}</h1>
+      <h1 itemprop="name">{{$post->title}}</h1>
 
 
 
@@ -95,6 +95,28 @@
 
 <h3>Tutte le informazioni sui videocitofoni con e senza fili: marche, tipologie, prezzi, qualità e novità sul mercato.</h3>
 
+{{-- meta --}}
+<div class="postmeta">
+  <!--div class="lab">Aggiornato il</div-->  
+    <time pubdate datetime="2018-01-22{{-- date('Y-m-d') --}}" itemprop="datePublished">22/01/2018{{-- date('d-m-Y') --}}</time>
+  <!--div class="lab">Autore</div-->
+    - <span itemprop="author">Massimiliano Bossi</span>
+</div>
+
+{{-- rating --}}
+<div class="postrating" itemprop="aggregateRating" itemscope itemtype="http://schema.org/AggregateRating">
+  <meta itemprop="bestRating" content="5"/>
+  <meta itemprop="ratingValue" content="4"/>
+  <meta itemprop="ratingCount" content="13"/>
+  <form id="rating_9480">
+    <input name="star" type="radio" value="1" class="rating"/>
+    <input name="star" type="radio" value="2" class="rating"/>
+    <input name="star" type="radio" value="3" class="rating"/>
+    <input name="star" type="radio" value="4" class="rating" checked="checked"/>
+    <input name="star" type="radio" value="5" class="rating"/>
+    <div class="clearfix"></div>
+  </form>
+</div>
 
 {{--google adsense--}}          
 <div id="adv1" style="margin: 50px auto 30px; width: 100%; height: 280px; {{ env('ADSENSE_DEV_BORDER', '') }}">
