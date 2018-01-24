@@ -18,8 +18,8 @@
     <meta property="og:site_name" content="informatic-solutions" />
     <meta property="article:section" content="Videocitofoni" />
     <meta property="article:published_time" content="2014-06-05T16:12:52+01:00" />
-    <meta property="article:modified_time" content="2017-04-25T17:56:56+01:00" />
-    <meta property="og:updated_time" content="2017-04-25T17:56:56+01:00" />
+    <meta property="article:modified_time" content="2018-01-22T17:56:56+01:00" />
+    <meta property="og:updated_time" content="2018-01-22T17:56:56+01:00" />
     <meta property="og:image" content="{{ url('images/videocitofono-300x300.jpg') }}" />
     <meta property="og:image" content="{{ url('images/videocitofono-utilizzabile-da-smartphone-300x274.jpg') }}" />
     <meta property="og:image" content="{{ url('images/cavo-coassiale-per-videocitofoni.jpg') }}" />
@@ -57,7 +57,7 @@
 
 <body>
 
-  <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
+  <nav class="navbar navbar-default navbar-fixed-top">
     <div class="container">
       <div class="navbar-header">
         <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
@@ -99,14 +99,10 @@
 {{-- meta --}}
 <div class="postmeta">
   <!--div class="lab">Aggiornato il</div-->  
-    <time pubdate datetime="2018-01-22{{-- date('Y-m-d') --}}" itemprop="datePublished">22/01/2018{{-- date('d-m-Y') --}}</time>
+    <time datetime="2018-01-22{{-- date('Y-m-d') --}}" itemprop="datePublished">22/01/2018{{-- date('d-m-Y') --}}</time>
   <!--div class="lab">Autore</div-->
     - <span itemprop="author">Massimiliano Bossi</span>
 </div>
-
-
-
-
 
 {{-- rating --}}
 <div id="punteggio" itemscope itemtype="https://schema.org/AggregateRating" itemprop="aggregateRating">
@@ -128,14 +124,6 @@
     <div class="voto">Voto:{{ $voto_medio }}/5 (<span class="votes_numb">{{ $numero_voti }}</span> voti)</div>   
 </div>
 
-
-
-
-
-
-
-
-
 {{--google adsense--}}          
 <div id="adv1" style="margin: 50px auto 30px; width: 100%; height: 280px; {{ env('ADSENSE_DEV_BORDER', '') }}">
     <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
@@ -150,13 +138,10 @@
 <div id="intro" class="row">
 
   <div class="col-md-12">
-
-
     <figure class="figure pull-right">
-        <img src="{{ url('/images/cosa-sono-i-videocitofoni.jpg') }}" class="img-thumbnail" title="cosa sono i  videocitofoni" alt="come è fatto il videocitofono" max-width="400" height="" />
+        <img src="{{ url('/images/cosa-sono-i-videocitofoni.jpg') }}" class="img-thumbnail" title="cosa sono i  videocitofoni" alt="come è fatto il videocitofono" />
         <figcaption class="figure-caption">Ogni Videocitofono è composto da una "stazione esterna", dalla quale parte la chiamata audio/video, e da almeno una "stazione interna", un ricevitore, dotata di microfono e schermo.</figcaption>
     </figure>
-
 
     <p>Nell&#8217;era della domotica e dell&#8217;automazione domestica, la tecnologia è sempre più presente nella vita quotidiana, sempre più <em>invasiva</em>, direbbero molti. La tecnologia domestica serve non solo a garantire un maggior <em>comfort</em> abitativo, ma anche, in molti casi, a garantire maggiore sicurezza e tranquillità.</p>
     <p>I <strong>videocitofoni</strong> fanno parte di questa schiera: tenere sotto controllo il passaggio e l'accesso delle persone nel proprio condominio aumenta decisamente la percezione della sicurezza ed in questo le nuove tecnologie, la domotica e l'elettronica, <em>"la fanno da padroni"</em>.</p>
@@ -164,7 +149,6 @@
     <p>Se fino a qualche anno fa queste tecnologie erano poco diffuse e inaccessbili ai più, oggi quasi tutti ormai sanno cosa sono i videocitofoni, anche perchè oggi i loro prezzi sono molto più accessbili rispetto a un tempo.</p>
 
   </div>
-
 
 </div><!--intro-->
 
@@ -174,6 +158,9 @@
       <button class="btn btn-primary text-uppercase"> Indice <span class="caret"></span></button>
       <div id="indice">
         <ul class="list-group">
+          <li class="list-group-item">
+            <a href="#tabella-prezzi">Tabella Riassuntiva Prezzi</a>
+          </li>
           <li class="list-group-item">
             <a href="#cosa-e-un-video-citofono">Cosa è un Video Citofono</a>
           </li>
@@ -193,6 +180,9 @@
             <a href="#quali-caratteristiche-deve-avere-un-buon-videocitofono">Quali caratteristiche deve avere un buon videocitofono</a>
           </li>
           <li class="list-group-item">
+            <a href="#confrontare-videocitofoni-checklist">Cosa confrontare PRIMA di comprare un videocitofono: una checklist per orientarsi.</a>
+          </li>
+          <li class="list-group-item">
             <a href="#quanti-tipi-di-videocitofoni-esistono">Quanti tipi di videocitofoni esistono</a>
           </li>
           <li class="list-group-item">
@@ -210,6 +200,46 @@
   </div>
 </div><!--#index-->
 
+<h2 id="tabella-prezzi">Videocitofoni, macro-categorie e prezzi medi</h2>
+<table>
+  <thead>
+    <tr>
+      <th scope="col">Macro Categorie</th>
+      <th scope="col">Prezzi Medi</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>videocitofono monofamiliare</td>
+      <td>da 100 a 270 euro</td>
+    </tr>
+    <tr>
+      <td>videocitofono bifamiliare</td>
+      <td>da 240 a 450 euro</td>
+    </tr>
+    <tr>
+      <td>videocitofono trifamiliare</td>
+      <td>da 250 a 450 euro</td>
+    </tr>
+    <tr>
+      <td>videocitofono quadrifamiliare</td>
+      <td>da 400 a&nbsp; 580 euro</td>
+    </tr>
+    <tr>
+      <td>videocitofono condominiale da 6</td>
+      <td>da 1.070 a 1.200&nbsp; euro</td>
+    </tr>
+    <tr>
+      <td>videocitofono condominiale da 8</td>
+      <td>da 1.000 a 1.400 euro</td>
+    </tr>
+    <tr>
+      <td>videocitofono condominiale da 10</td>
+      <td>da 1.280 a 1.900 euro</td>
+    </tr>
+  </tbody>  
+</table>
+
 
 
 <h2 id="cosa-e-un-video-citofono">Cosa è un video citofono?</h2>
@@ -218,9 +248,6 @@
 <p>Come scegliere un video-citofono? Cosa valutare? Quanto può costare l&#8217;installazione? E quali sono le migliori marche?</p>
 <p>Bene, in questi casi, ciò che è utile sapere non è tanto <em>cosa</em> sono i video citofoni, ma <em>quali</em> sono le tipologie, come li posso installare e quali sono i <strong><em>prezzi</em></strong>.</p>
 <p>Ma prima: un preambolo sui costi, e sulle agevolazioni che dobbiamo conoscere per sfruttare, in questo momento, la possibilità di ammodernare il proprio impianto e migliorare la sicurezza della propria abitazione e dell'edificio in cui vivo.</p>
-
-
-
 
 <h2 id="detrazioni-fiscali-50-per-acquisto-installazione-videocitofoni">Le detrazioni fiscali 50% sull&#8217;acquisto e l&#8217;installazione dei videocitofoni</h2>
 <div id="detrazioni">
@@ -237,64 +264,49 @@ Queste 200 euro <strong>non</strong> vengono riconosciute <em>tutte e subito</em
 <p><a title="Ristrutturazioni edilizie - Agenzia delle Entrate" href="http://www.agenziaentrate.gov.it/wps/file/Nsilib/Nsi/Agenzia/Agenzia+comunica/Prodotti+editoriali/Guide+Fiscali/Agenzia+informa/AI+guide+italiano/Ristrutturazioni+edilizie+it/Guida_Ristrutturazioni_edilizie.pdf" target="_blank">Vai al sito dell&#8217;agenzia delle entrate e scarica la guida in formato pdf per ulteriori informazioni</a>.</p>
 </div>
 
-
-
 <h2 id="iva-agevolata-acquisto-videocitofoni">L&#8217;Iva agevolata sull&#8217;acquisto dei videocitofoni</h2>
 <div id="iva">
 Non solo detrazioni: anche <strong>l&#8217;aliquota iva è agevolata</strong> perchè rientra tra le spese di ristrutturazione. Sul sevizio di installazione si pagherà infatti l&#8217;iva agevolata del 10%, anzichè dell&#8217;ordinario 22%. Attenzione però: l&#8217;agevolazione spetta non sull&#8217;acquisto del prodotto, ma sul costo relativo al servizio di installazione.
 </div>
 
-
-
 <h2 id="citofono-videocitofono-quale-scegliere">Citofono o videocitofono?  Quale scegliere?</h2>
 <div id="citofono-o-videocitofono">
-Ovviamente il videocitofono non è un <em>bisogno</em> in senso stretto. Diciamo che , a differenza di un semplice citofono, è una <em>comodità</em><em>,</em> che garantisce un maggior livello di <em>confort</em> e <em>sicurezza</em>. Anche perchè, come vedremo, può essere integrato al sistema di antifurto e, nel caso di videocitofoni wireless (videocitofoni senza fili) l&#8217;installazione non richiede lavori di muratura, canaline, buchi, passafili, ecc&#8230; Basterà in questo caso installare le componenti a muro e metterle in collegamento wireless.</p>
-<p>Se non si ha un citofono, se si sta ristrutturando casa e si vuole cambiare il vecchio citofono, oppure: se si sta acquistando casa e il costruttore ti permette di scegliere tra citofono o videocitofono, il mio consiglio è quello di optare per un videocitofono, anche perchè, come vedremo, alcune tipologie sono utilizzabili anche &#8220;a distanza&#8221;, direttamente dal proprio smartphone, tablet o pc e possono essere integrati con altri apparecchi di casa (per esempio la tv). Funzioni molto comode in molti casi.</p>
-
-
+<p>Ovviamente il videocitofono non è un <em>bisogno</em> in senso stretto. Diciamo che , a differenza di un semplice citofono, è una <em>comodità</em><em>,</em> che garantisce un maggior livello di <em>confort</em> e <em>sicurezza</em>. Anche perchè, come vedremo, può essere integrato al sistema di antifurto e, nel caso di videocitofoni wireless (videocitofoni senza fili) l&#8217;installazione non richiede lavori di muratura, canaline, buchi, passafili, ecc&#8230; Basterà in questo caso installare le componenti a muro e metterle in collegamento wireless.</p>
+<p>Se non si ha un citofono, se si sta ristrutturando casa e si vuole cambiare il vecchio citofono, oppure: se si sta acquistando casa e il costruttore ti permette di scegliere tra citofono o videocitofono, il mio consiglio è quello di optare per un videocitofono, anche perchè, come vedremo, alcune tipologie sono utilizzabili anche &#8220;a distanza&#8221;, direttamente dal proprio smartphone, tablet o pc e possono essere integrati con altri apparecchi di casa (per esempio la tv). Funzioni molto comode in molti casi.</p><p>Non solo: anche nel caso di installazioni condominiali i videocitofoni possono essere integrati e messi in comunicazione con le portinerie. Più avanti vediamo quali sono le funzionalità possibili.</p>
 
 <figure class="figure pull-left">
     <img src="{{ url('images/videocitofono-utilizzabile-da-smartphone-300x274.jpg') }}" class="img-thumbnail" title="videocitofono" alt="videocitofono utilizzabile da smartphone" width="300" height="274" />
     <figcaption class="figure-caption">Alcuni videocitofoni possono essere utilizzati anche da smartphone</figcaption>
 </figure>
 
-
-
-
-
-<p>Un video-citofono non presenta, inoltre, alcuna controindicazione: è installabile facilmente (anche senza fili  nei modelli <em>wireless</em>) e può essere collegato anche ad un sistema di videosorveglianza.</p>
-<p>I videocitofoni wireless hanno il vantaggio di essere installabili velocemente, senza nessun lavoro di muratura, perchè utilizzano la tecnologia wireless (senza fili) per il collegamento audio-video.</p>
-<p>L&#8217;unico accorgimento che eventualmente bisogna avere è relativo alla <em>privacy</em>, come vedremo. La camera, infatti, ha la possibilità di riprendere immagini video che possono, eventualmente, anche essere registrate su supporti hardware. Se i video vengono registrati, può esserci qualche problema a livello di privacy, visto che la camera riprende uno spazio pubblico esterno all&#8217;abitazione.</p>
+<p>Un video-citofono non presenta, inoltre, alcuna controindicazione: è installabile facilmente, può essere installato senza fili  e senza particolari lavori di muratura nei modelli <em>wireless</em>, ma in molti modelli "non <em>wireless</em>" sono spesso collegati con solo due fili. Molti apparecchi, inoltre, possono essere collegati ed integrati anche ad un sistema di videosorveglianza anche se molti modelli, già di loro, hanno la possibilità di attivare la telecamera da casa per vedere all'esterno in tempo reale.</p>
+<p>I videocitofoni wireless hanno il vantaggio di essere installabili velocemente, senza nessun lavoro di muratura, perchè utilizzano la tecnologia wireless (senza fili) per il collegamento audio-video. La tecnologia spesso utilizzata è quella della rete GSM.</p> 
+<p>L&#8217;unica questione che eventualmente bisogna considerare è quella relativa alla <em>privacy</em>, come vedremo. Questo aspetto è lo stesso che sollevano tutti gli impianti di videosorveglianza e gli antifurti con telecamera. La camera, infatti, ha la possibilità di riprendere video e scattare fotografie che possono, eventualmente, anche essere registrate su supporti hardware. Se i video vengono registrati, può esserci qualche problema a livello di privacy, visto che la camera riprende uno spazio pubblico esterno all&#8217;abitazione. Le normative prevedono la segnalazione esplicita della presenza di telecamere per identificare l'area come "videosorvegliata".</p>
 <p>Ecco il tipico esempio: ho ristrutturato casa e, visto che faccio i lavori, ne approfitto per cambiare il mio vecchio citofono. Potrei valutare l&#8217;installazione di un citofono <em>&#8220;videofonico&#8221;</em> che mi permette di vedere in tempo reale il mio interlocutore. Mi conviene optare per questa soluzione? Quali sono i costi? Quanta la comodità e la <em>sicurezza</em> che può garantirmi?
 </div><!--#citofono-o-videocitofono-->
 
-
-
 <h2 id="come-scegliere-videocitofono-adatto">Come scegliere il videocitofono più adatto</h2>
 <div id="come-scegliere">
-Quando stiamo cercando un videocitofono, ma non sappiamo come e dove cercare, come possiamo orientarci nella scelta dell&#8217;apparecchio?<br />
+<p>Quando stiamo cercando un videocitofono, ma non sappiamo come e dove cercare, come possiamo orientarci nella scelta dell&#8217;apparecchio?<br />
 Cosa dobbiamo guardare per scegliere il videocitofono più adatto alle nostre esigenze?</p>
 <p>Ogni soluzine comprende almeno due unità: l&#8217;unità di chiamata (o pulsantiera) e l&#8217;unità di risposta (che può essere un piccolo schermo video con o senza <em>&#8220;cornetta&#8221;</em>).</p>
-<p><strong>Innanzitutto</strong>: potrà apparire scontato, ma il numero di pulsanti sulla pulsantiera esterna è la prima cosa da tenere a mente per scegliere l&#8217;apparecchio adatto. Ad ogni tasto corrisponde un&#8217;appartamento. Se si cerca un apparecchio da installare per una bifamigliare si cercherà un videocitofono con pulsantiera a due tasti, uno per unità abitativa.</p>
+<p><strong>Innanzitutto</strong>: potrà apparire scontato, ma il numero di pulsanti sulla pulsantiera esterna è la prima cosa da tenere a mente per scegliere l&#8217;apparecchio adatto. Nei videocitofoni condominiali, ad ogni tasto corrisponde un&#8217;appartamento. Se si cerca un apparecchio da installare per una bifamigliare si cercherà un videocitofono con pulsantiera a due tasti, uno per unità abitativa.</p>
 <p><strong>Secondo</strong>: il numero di postazioni di risposta per ogni unità abitativa. Ad alcuni basterà un unico monitor dentro casa per rispondere alle chiamate. Altri invece vorranno un monitor o una &#8220;cornetta&#8221; per ogni stanza dell&#8217;appartamento: sala, cucina, camera, bagno, mansarda, taverna, ecc.. Come unità di risposta si può optare per un monitor o per una semplice cornetta uguale a quella del citofono.</p>
-<p><strong>Terzo</strong>: i monitor  installati dentro casa possono essere tra loro intercomunicanti, ma non è una regola comune. Se si vuole scegliere un videocitofono con postazioni interne comunicanti fra loro, bisognerà tenerne conto in fase di scelta.</p>
-<p><strong>Quarto</strong>: la quantità ed i tipi di fili che collegano l&#8217;unità esterna con le unità interne, in altre parole: il <em>cablaggio</em>. Se si ha già il collegamento audio del vecchio citofono, e se questo è in buone condizioni, lo si può riutilizzare per il nuovo citofono aggiungendo solo il collegamento video (altri due fili). In alternativa si acquista direttamente un videocitofono a &#8220;4 fili&#8221;, oppure un apparecchio con <strong>cavo coassiale</strong>, tipo quello dell&#8217;antenna Tv.</p>
-
-
+<p><strong>Terzo</strong>: i monitor  installati dentro casa possono essere tra loro intercomunicanti, ma non è una regola comune. Se si vuole scegliere un videocitofono con postazioni interne comunicanti fra loro, bisognerà tenerne conto in fase di scelta. Questa funzionalità può essere molto utile nei condomini con portineria: grazie alla presenza di apparecchi intercomunicanti, per esempio, il portiere può "chiamare" direttamente i singoli appartamenti.</p>
+<p><strong>Quarto</strong>: la quantità ed i tipi di fili che collegano l&#8217;unità esterna con le unità interne, in altre parole: il <em>cablaggio</em>. Se si ha già il collegamento audio del vecchio citofono, e se questo è in buone condizioni, lo si può riutilizzare per il nuovo citofono aggiungendo solo il collegamento video (altri due fili). In alternativa si acquista direttamente un videocitofono a &#8220;4 fili&#8221;, oppure un apparecchio con <strong>cavo coassiale</strong>, tipo quello dell&#8217;antenna Tv. Molti modelli moderni "funzionano" a due soli fili garantendo comunque un buon livello di qualità audio-video.</p>
 
 <figure class="figure pull-left">
     <img src="{{ url('images/cavo-coassiale-per-videocitofoni.jpg') }}" class="img-thumbnail" title="cavo coassiale per videocitofoni" alt="cavo coassiale per videocitofoni" width="300" height="300" />
     <figcaption class="figure-caption">Come è fatto il Cavo Coassiale utilizzato anche per i videocitofoni</figcaption>
 </figure>
 
-
-
-<p>Ovviamente la discriminante maggiore sarà lo spazio che abbiamo a disposizione nella canalina dove passeranno i fili.</p>
+<p>Ovviamente tra le maggiori discriminanti c'è quella dello spazio che abbiamo a disposizione nella canalina dove passeranno i fili.</p>
 <p><strong>Quinto</strong>:  da scegliere per tempo è il tipo di blocco da mettere all&#8217;esterno. Se abbiamo una tettoia adeguata possiamo mettere un <em>blocco-citofono</em> &#8220;ad appoggio&#8221;, attaccato con qualche tassello alla parete. Se invece non abbiamo tettoie adeguate, è meglio &#8220;murare&#8221; il citofono o propendere comunque per una soluzione &#8220;ad incasso&#8221;.<br />
 Le intemperie, alla lunga, possono creare non pochi problemi se non viene fatta una adeguata installazione.</p>
 <p><strong>Sesto</strong>: il tipo di alimentazione. Ci sono due tipologie: quella tramite la normale presa elettrica o quella tramite un alimentatore su barra DIN. In ogni caso, se c&#8217;era già un citofono, è comodo riutilizzare lo stesso tipo di alimentazione.</p>
 <p><strong>Settimo</strong>: il tipo di serratura. Se il cancello ha già una serratura con apertura a comando elettrico si riutilizza quella (in genere ha una sua fonte di alimentazione indipendente a 12Volt AC, cioè <em>&#8220;corrente alternata&#8221;</em>). Se invece il cancello ha solo la serratura &#8220;manuale&#8221; sarà possibile metterne una elettrica alimentata direttamente dal blocco-citofono. Alcuni modelli, infatti, hanno la possibilità di generare corrente continua in uscita verso il blocco serratura.  Appurare ciò sarà, ovviamente, cura di un elettricista.</p>
-<p><strong>Ottavo</strong>: alcune ultime opzioni utili nella scelta riguardano la possibilità di inserire dei pulsanti aggiuntivi nelle postazioni interne. In molti modelli è possibile, ad esempio, oltre ad aprire il cancello esterno, accendere la luci esterne, accendere le luci delle scale, aprire solo un cancello esterno (ad esempio per un postino) o anche un portone interno.
+<p><strong>Ottavo</strong>: alcune ultime opzioni utili nella scelta riguardano la possibilità di inserire dei pulsanti aggiuntivi nelle postazioni interne. In molti modelli è possibile, ad esempio, oltre ad aprire il cancello esterno, accendere la luci esterne, accendere le luci delle scale, aprire solo un cancello esterno (ad esempio per un postino) o anche un portone interno.</p>
+<p>Come ben si vede, dunque, le possibilità di scelta per questo tipo di apparecchi sono davvero tante, ed i nuovi modelli sono sempre più integrabili con altri sistemi tipo impianti di allarme o altri tipi di impianti domotici.</p>
 </div><!--#come-scegliere-->
 
 
@@ -322,9 +334,48 @@ Le intemperie, alla lunga, possono creare non pochi problemi se non viene fatta 
   
 </div>
 
+<h2 id="confrontare-videocitofoni-checklist">Cosa confrontare PRIMA di comprare un videocitofono: due checklist per orientarsi.</h2>
+<p><em>Ok voglio cambiare il mio vecchio citofono e metterne uno nuovo: più bello, più elegante, e che mi dia sicurezza. Non voglio spendere troppo, ma non voglio neanche la solita "cineserìa" che dura una anno e poi è da buttare. Non voglio comprare un prodotto con funzionalità che non mi servono, ma voglio che l'impianto sia di qualità e duri nel tempo. Cerco, come sempre, il miglior rapporto qualità prezzo.</em> Che faccio? Apro internet e incomincio a <em>"smanettare"</em>. Ma trovo solo una grande confusione,.. prodotti diversissimi tra loro, prezzi diversissimi tra loro, molte caratteristiche e funzionalità diverse, ma che forse non sono tutte poi così utili. Non essendo un tecnico, non essendo un commerciale e non conoscendo per bene "la materia" la sensazione è che bisognerà passarsi parecchie ore davanti al monitor per cercare di raccogliere più informazioni possibili che mi aiutino nella scelta.</p>
+<p>E' possibile trovare alcuni minimi criteri di scelta che mi aiutino a distinguere se e quando un videocitofono può fare al caso mio? Quello che ci vuole è proprio una lista. Una lista di cose da "vedere" per ogni prodotto e spuntare man mano in base a quello che mi serve. Linee-guida da usare prima di comprare.</p>
+<p>In questo lavoraccio ti aiuto io. Ecco la mia checklist. Per ogni prodotto che ho sotto mano devo raccogliere e confrontare le seguenti informazioni.</p>
+<p>In altri termini, per ogni prodotto mi devo fare almeno queste domande:</p>
+
+<ul>
+  <li>Ogni videocitofono ha almeno uno schermo video. Di quanti pollici sono i monitor? In genere hanno 4, 7 o 10 pollici.</li>
+  <li>Da dentro casa si risponde alla chiamata con una cornetta o con vivavoce? O magari entrambi?</li>
+  <li>L'unità interna del citofono è dotata di telecomando?</li>
+  <li>Ha led ad infrarosso per una comoda visione notturna? Ha un sistema di illuminazione?</li>
+  <li>Ha una adeguata protezione antipioggia, anti-umidità o antigelo?</li>
+  <li>E' un videocitofono senza fili o con cavi? Quanti e quali cavi sono necessari all'installazione? E nel caso: ho abbastanza spazio per far passare i cavi nelle canaline a disposizione?</li>
+  <li>Nel caso si colleghi tutto via cavo: i cavi sono già inclusi nella confezione?</li>
+  <li>La telecamera esterna è a prova di ossidazione? (l'ossidazione è un problema comune a tutti gli apparecchi installati in luoghi aperti)</li>
+  <li>I volumi della suoneria sono regolabili? Ed i volumi della comunicazione? Si può scegliere il tipo di suoneria?</li>
+  <li>Lo schermo è LCD? A colori? Alta o bassa definizione?</li>
+  <li>I comandi sono <em>touchscreen</em> o con pulsanti fisici?</li>
+  <li>L'apparecchio è già pronto per l'installazione?</li>
+  <li>Qual è la difficoltà di montaggio?</li>
+  <li>Documentazione tecnica e manuali sono disponibili anche in italiano?</li>
+  <li>Quali sono le condizioni di reso?</li>
+  <li>C'è garanzia e cosa prevede?</li>
+  <li>C'è un servizio di installazione e riparazione <em>"comodo"</em> (che non mi obblighi a chiamare un altro continente in caso di problemi)</li>
+  <li>Il produttore è una marca conosciuta? E da quanto tempo produce questo tipo di prodotto?</li>
+</ul>
+<p>Questa è una prima serie di domande a cui rispondere per avere un quadro più consapevole di quello che si sta per comprare. Come vedi il <b>prezzo</b> non è tra le prerogative, ma seguendo queste semplici regole ci si avvicinerà più facilmente al miglior rapporto qualità prezzo nell'acquisto del tuo videocitofono.</p>
+<p>Oltre a queste prime domande, ci sono molte altre considerazioni da fare per valutare per bene l'acquisto. Ecco un'altra serie di domande e considerazioni, che potremmo definire secondarie, ma comunque utili.</p>
+<p>Ecco la lista delle funzionalità aggiuntive che può avere un videocitofono.</p>
+<ul>
+  <li>Alcuni videocitofoni fanno uno scatto automatico di una fotografia alla chiamata. E' qualcosa che mi serve?</li>
+  <li>Altri apparecchi hanno la possibilità di registrare e videoregistrare gli accessi e le comunicazioni. E' qualcosa che mi serve?</li>
+  <li>In alcuni modelli il tastierino esterno può fungere da controllo accessi: basta digitare una password per aprire il cancello.</li>
+  <li>Molti altri hanno la funzione telecamera per la sorveglianza domestica. Un utente da casa può attivare la telecamera del citofono anche se non arriva nessuna chiamata dalla pulsantiera. A monitor spento, premendo un tasto, un utente dentro casa può vedere fuori.</li>
+  <li>In molti casi è prevista anche la possibilità che più apparecchi possano comunicare tra loro. Nel caso di un impianto condominiale, per esempio, un custode può chiamare altri utenti dalla propria portineria.<br/>Negli appartamenti a più piani, inoltre, mettono in comunicazione i diversi ambienti.</li>
+  <li>Un'ultima funzionalità, forse, questa, veramente utile, è la possibilità di programmare un <b>"trasferimento di chiamata"</b>, attraverso la rete GSM, su un altro telefono. Se un visitatore citofona a casa, la chiamata può essere inoltrata al telefonino del destinatario (anche telefono fisso) che può rispondere in tempo reale. Il destinatario può anche azionare a distanza il comando di apertura del cancello. Questa funzionalità è particolarmente utile per il postino, per le raccomandate, per consegna pacchi, ma anche solo per avere un maggior controllo sulle persone che "approdano" alla soglia di casa.</li>
+</ul>
+
 
 <h2 id="quanti-tipi-di-videocitofoni-esistono">Quanti tipi di Videocitofoni esistono</h2>
-<div id="tipi">Di tipologie ne esistono ormai davvero tante, ce n&#8217;è per tutti i gusti: da quelli &#8220;classici&#8221; a quelli più tecnologici e moderni che si integrano addirittura con smartphone, tablet o col televisore di casa.Ci sono videocitofoni che, in caso di chiamata, sono in grado di &#8220;inserirsi&#8221; <em>in tempo reale</em> nella programmazione televisiva per mostrarti chi sta suonando al campanello di casa. Si può rispondere, e magari aprire, senza alzarsi dal divano. Questa funzione utilizza la tecnologia &#8220;Picture In Picture&#8221; (PIP) per sovrapporre in un angolo dello schermo televisivo una finestrella in caso di chiamata.Stessa cosa con l&#8217;iPhone: quando qualcuno suona al citofono di casa si attiva automaticamente una schermata sullo smartphone che ti mostra, anche se sei fuori casa, chi ti sta chiamando e ti dà la possibilità di aprire il portone &#8220;a distanza&#8221;.<br />
+<div id="tipi">
+<p>Di tipologie ne esistono ormai davvero tante, ce n&#8217;è per tutti i gusti: da quelli &#8220;classici&#8221; a quelli più tecnologici e moderni che si integrano addirittura con smartphone, tablet o col televisore di casa.Ci sono videocitofoni che, in caso di chiamata, sono in grado di &#8220;inserirsi&#8221; <em>in tempo reale</em> nella programmazione televisiva per mostrarti chi sta suonando al campanello di casa. Si può rispondere, e magari aprire, senza alzarsi dal divano. Questa funzione utilizza la tecnologia &#8220;Picture In Picture&#8221; (PIP) per sovrapporre in un angolo dello schermo televisivo una finestrella in caso di chiamata.Stessa cosa con l&#8217;iPhone: quando qualcuno suona al citofono di casa si attiva automaticamente una schermata sullo smartphone che ti mostra, anche se sei fuori casa, chi ti sta chiamando e ti dà la possibilità di aprire il portone &#8220;a distanza&#8221;.<br />
 Si pensi all&#8217;utilità di questa funzione, ad esempio, per interloquire con postini,  corrieri espresso o semplicemente amici e parenti.Ci sono anche videocitofoni in grado di attivarsi automaticamente ancor prima che l&#8217;ospite suoni al campanello: si può auto-attivare, per esempio, al passaggio di una persona davanti ad un sensore, oppure si può attivare quando una persona bussa alla porta, anzichè suonare.<br />
 In questo caso il videocitofono diventa un vero e proprio supporto al sistema di antifurto.Ci sono poi videocitofoni &#8220;con fili&#8221; (2 o 4 fili per unità) e <strong>videocitofoni senza fili</strong> (wireless), che necessitano del solo collegamento elettrico.Con display a colori o in bianco e nero.<br />
 Con monitor LCD più o meno grande (da 3.5, 4 o 7 pollici), o con display TFT, di maggiore qualità.Con telecamera ad alta risoluzione (con tecnologia CCD) o con camera a bassa risoluzione (CIMOS).</p>
@@ -333,8 +384,6 @@ Con monitor LCD più o meno grande (da 3.5, 4 o 7 pollici), o con display TFT, d
 <p>Ci sono anche videocitofoni in cui la telecamera esterna è &#8220;nascosta&#8221; come forma di tutela contro gli atti vandalici.</p>
 <p>Anche dal punto di vista della <em>privacy</em>, infine, ci sono due grandi tipologie: videocitofoni che registrano e quelli che non registrano.</p>
 </div><!--#tipi-->
-
-
 
 <h2 id="quali-marche-producono-impianti-videocitofonici">Quali sono le marche che producono i videocitofoni?</h2>
 <div id="marche">
@@ -366,8 +415,6 @@ Con monitor LCD più o meno grande (da 3.5, 4 o 7 pollici), o con display TFT, d
 </ul>
 </div>
 
-
-
 <h2 id="videocitofoni-wireless-senza-fili">I videocitofoni wireless (senza fili)</h2>
 <p>I <strong>videocitofoni wireless</strong>, di fatto, superano la frontiera dei classici impianti citofonici per sfociare nella domotica e nell&#8217;ultima frontiera della tecnologia: sfruttando la rete web, ad esempio, si può rispondere al videocitofono di casa anche se si è in vacanza e, da qui, si possono governare e controllare apparecchi di casa in tempo reale: camere, videocamere, tapparelle, riscaldamento, gas, elettricità, antifurti, ecc&#8230;</p>
 <p>La tecnologia wireless, di fatto, offre oggi infinite possibilità che vanno ben oltre al semplice citofono o videocitofono.</p>
@@ -384,8 +431,6 @@ Con monitor LCD più o meno grande (da 3.5, 4 o 7 pollici), o con display TFT, d
 </ul>
 <p>&nbsp;</p>
 
-
-
 <h2 id="integrare-videocitofono-con-impianto-di-allarme-domestico">A questo punto.. perchè non integrare il Videocitofono con un Impianto di Allarme Domestico?</h2>
 <p>&nbsp;</p>
 <p>Chi installa un videocitofono con o senza fili spesso non considera che, di fatto, è come se installasse un vero e proprio impianto di antifurto: i cosidetti <em>kit di videosorveglianza</em>,  che potremmo definire una &#8220;estensione&#8221; degli impianti videocitofonici, sono <strong>impianti di allarme domestici</strong> e sono realizzati sfruttando lo stesso segnale video per monitorare la sicurezza degli ambienti.</p>
@@ -395,19 +440,15 @@ Con monitor LCD più o meno grande (da 3.5, 4 o 7 pollici), o con display TFT, d
 <p>Come ogni videocitofono, anche ogni impianto di videosorveglianza domestica utilizza uno o più terminali &#8220;esterni&#8221;: telecamere o sensori in grado di rilevare la presenza di persone nei punti di monitoraggio. Utilizza poi un &#8220;cervello elettronico&#8221; in grado di elaborare i segnali ricevuti e fornire una risposta. La risposta è, nel caso degli impianti di allarme domestici e aziendali, una sirena o, nei casi più &#8220;avanzati&#8221; la chiamata immediata alle forze dell&#8217;ordine. In altri casi gli impianti di allarme bloccano l&#8217;intruso all&#8217;interno dell&#8217;edificio, chiudendo anche serrature automatizzate.</p>
 <p>Ogni impianto d&#8217;allarme, come ogni altro apparecchio che sfrutta tecnologia e domotica, può essere cablato o completamente wireless. Nel caso di impianti senza fili, l&#8217;installazione è molto più agevole e veloce. In ogni caso, però, ogni installatore deve rilasciare un <a style="color: #888888; text-decoration: none;" href="https://it.wikipedia.org/wiki/Dichiarazione_di_conformit%C3%A0" target="_blank">certificato di conformità</a> dell&#8217;impianto come garanzia di sicurezza e di qualità del lavoro realizzato ai sensi delle normative vigenti.</p>
 
-
-
-
 <div style="font-size:10px; color:#A2A2A2;text-align:right">In lavorazione:<br>
 <ul>
-<li><a style="color:#A2A2A2;" href="#videocitofoni preventivi e prezzi">Videocitofoni, preventivi e prezzi</a></li>
+<li><a style="color:#A2A2A2;" href="#videocitofoni-preventivi-prezzi">Videocitofoni, preventivi e prezzi</a></li>
 <li><a style="color:#A2A2A2;" href="#Urmet">Videocitofoni Urmet</a></li>
 <li><a style="color:#A2A2A2;" href="#Bticino">Videocitofoni Bticino</a></li>
 <li><a style="color:#A2A2A2;" href="#Avidsen">Videocitofoni Avidsen</a></li>
 <li><a style="color:#A2A2A2;" href="#Comelit">Videocitofoni Comelit</a></li>
 </ul>
 </div>
-
 
 <div id="adv2" style="margin: 30px auto; width: 100%; min-height: 250px; {{ env('ADSENSE_DEV_BORDER', '') }}">
   <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
@@ -418,12 +459,7 @@ Con monitor LCD più o meno grande (da 3.5, 4 o 7 pollici), o con display TFT, d
 </div><!--#adv2-->
 
 
-
-
-
       </div><!--#content-->
-
-      
 
     <!-- Blog Comments -->
 
@@ -452,7 +488,6 @@ Con monitor LCD più o meno grande (da 3.5, 4 o 7 pollici), o con display TFT, d
     </div>
     @endif
 
-
     
 {{-- dd($tot)--}}
     
@@ -474,8 +509,6 @@ Con monitor LCD più o meno grande (da 3.5, 4 o 7 pollici), o con display TFT, d
                   {{$comment->from_user_name}} <small>- {{ date('d/m/Y H:i', strtotime($comment->created_at)) }}</small>
                 </h4>
                 
-
-
                 <p class="comment-body"> {{ $comment->body }} </p> {{--VERIFICARE SICUREZZA TAG HTML E VIRGOLETTE --}}
 
                 <!-- reply btn-->
@@ -504,22 +537,22 @@ Con monitor LCD più o meno grande (da 3.5, 4 o 7 pollici), o con display TFT, d
                 <div id="respond-comment-{{ $comment->id }}" class="collapse comment-respond">
                   <h4>Rispondi al commento di <b>{{ $comment->from_user_name }}</b></h4>
 
-                  <form id="reply-commentform" class="" action="{{ url($comment->post->slug . '/comment/send') }}" method="post" role="form">
+                  <form id="reply-commentform-{{ $comment->id }}" class="" action="{{ url($comment->post->slug . '/comment/send') }}" method="post">
                     {{ csrf_field() }}
                     <div class="form-group">
-                        <label for="c-name" >Nome</label>
+                        <label>Nome</label> <!--for="c-name"-->
                         <input class="form-control" type="text" name="c-name">
-                        <label for="c-email">Email</label>
+                        <label>Email</label> <!--for="c-email"-->
                         <small>(Il tuo indirizzo email non sarà pubblicato)</small>
                         <input class="form-control" type="email" name="c-email">
-                        <label for="c-body">Commento</label>
+                        <label>Commento</label> <!--for="c-body"-->
                         <textarea class="form-control" rows="3" name="c-body"></textarea>
 
                         <input name="c-subscription" type="checkbox" value="1" checked />
-                        <label for="c-subscription">Voglio ricevere aggiornamenti su questa discussione</label>
+                        <label>Voglio ricevere aggiornamenti su questa discussione</label> <!--for="c-subscription"-->
 
                         <!--input name="comment_post_ID" value="1" id="comment_post_ID" type="hidden"-->
-                        <input name="comment_parent" id="comment_parent" value="{{ $comment->id }}" type="hidden">
+                        <input name="comment_parent" id="comment_parent_{{ $comment->id }}" value="{{ $comment->id }}" type="hidden">
 
                     </div>
                     <button type="submit" class="btn btn-primary">Invia</button>
@@ -540,21 +573,21 @@ Con monitor LCD più o meno grande (da 3.5, 4 o 7 pollici), o con display TFT, d
     <hr>
     <!-- Comment Form -->
         <h4>Lascia un commento {{ count($comments) > 0 ? 'anche tu' : '' }}  o fai la tua richiesta:</h4>
-        <form id="commentform" class="" action="{{ url($comment->post->slug . '/comment/send') }}" method="post" role="form">
+        <form id="commentform" class="" action="{{ url($comment->post->slug . '/comment/send') }}" method="post">
           {{ csrf_field() }}
           <div class="form-group">
-              <label for="c-name" >Nome</label>
+              <label>Nome</label> <!--for="c-name"-->
               <input class="form-control" type="text" name="c-name">
-              <label for="c-email">Email</label>
+              <label>Email</label> <!-- for="c-email" -->
               <small>(Il tuo indirizzo email non sarà pubblicato)</small>
               <input class="form-control" type="email" name="c-email">
-              <label for="c-body">Commento</label>
+              <label>Commento</label> <!--for="c-body"-->
               <textarea class="form-control" rows="3" name="c-body"></textarea>
 
 
               
               <input type="checkbox" name="c-subscription" value="1" checked>
-              <label for="c-subscription">Voglio ricevere aggiornamenti su questa discussione</label>
+              <label>Voglio ricevere aggiornamenti su questa discussione</label> <!--for="c-subscription"-->
 
 
 
@@ -563,7 +596,7 @@ Con monitor LCD più o meno grande (da 3.5, 4 o 7 pollici), o con display TFT, d
           <button type="submit" class="btn btn-primary">Invia</button>
         </form>
 
-        <form id="user-subscr" class="form-user-subscr" action="{{ url($comment->post->slug . '/comment/subscribe') }}" method="post" role="form">
+        <form id="user-subscr" class="form-user-subscr" action="{{ url($comment->post->slug . '/comment/subscribe') }}" method="post">
             {{ csrf_field() }}
             <!--input class="" type="text" name="name-subscr" placeholder="Nome"-->
             <input class="" type="email" name="mail-subscr" placeholder="e-mail">
@@ -572,24 +605,12 @@ Con monitor LCD più o meno grande (da 3.5, 4 o 7 pollici), o con display TFT, d
 
     </div>
 
-
-    
-
-
-
-
-
-
-
-
-
-
     </div><!--#article-->
   </div><!--#article-container-->
 </section><!--#section-1-->
 
 
-<footer class="footer" role="contentinfo">
+<footer class="footer">
   <div class="container">
     <p class="text-muted text-center first">Informatic-Solutions.it - P.Iva 08497200967 - Tutti i diritti riservati © {{ date('Y') }}</p>
     <p class="text-muted text-center small">La duplicazione anche parziale dei contenuti è severamente vietata; le violazioni saranno segnalate alle autorità competenti e perseguite ai termini di legge</p>
@@ -602,7 +623,7 @@ Con monitor LCD più o meno grande (da 3.5, 4 o 7 pollici), o con display TFT, d
   <!-- Include all compiled plugins (below), or include individual files as needed -->
   <script src="{{ url('js/app.js') }}"></script>
 
-<script type="text/javascript" src="/artic-rating/ambiance-plugin/jquery.ambiance.js"></script> 
+<script src="/artic-rating/ambiance-plugin/jquery.ambiance.js"></script> 
 <script>
   jQuery(document).ready(function () {
     $('#stelle .stars').click(function () {
@@ -633,11 +654,6 @@ Con monitor LCD più o meno grande (da 3.5, 4 o 7 pollici), o con display TFT, d
     });
   });
 </script>
-
-
-
-
-
 
 </body>
 </html>

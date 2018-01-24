@@ -40,8 +40,11 @@ fieldset,label{margin:0;padding:0}
 .ambiance-close{display:block;position:relative;top:-2px;right:0px;color:#FFFFFF;float:right;font-size:18px;font-weight:bold;filter:alpha(opacity=20);text-decoration:none;position:relative;line-height:14px;margin-left:5px;font-family:"Helvetica Neue", Helvetica, Arial, sans-serif}
 .ambiance-close:hover{color:#BBBBBB;cursor:pointer}  
 
-
-
+/* article tables */
+#article table { line-height: 2.5em; width: 100%; max-width: 950px; text-align: center; border-collapse: inherit; margin: 5% auto 10%; border: 1px solid #888;}
+#article table thead th { text-align: center; border-bottom: 1px solid #888; }
+#article table td { border-bottom: 1px solid #CCC; }
+h2 { margin: 50px auto 25px; }
 
 .padding-top {padding-top: 55px;}
 #intro .figure {max-width: 400px; margin: 0 0 30px 30px;}
