@@ -201,7 +201,7 @@
 </div><!--#index-->
 
 <h2 id="tabella-prezzi">Videocitofoni, macro-categorie e prezzi medi</h2>
-<table>
+<table class="table">
   <thead>
     <tr>
       <th scope="col">Macro Categorie</th>
