@@ -88,7 +88,7 @@ figcaption {font-style: italic; font-size: 12px; margin: 15px 0 0;}
 .modal-buttons button.btn {width: 100%; margin-top: 15px;}
 .row.modal-buttons {margin-bottom: 10px;}
 .min-160 {min-width: 160px;}
-.margin-top-10 {margin-top: 10px;}
+.margin-5 {margin: 5px;}
 
 /*table in edit comment page*/
 td.first-col {font-weight: bold;}
