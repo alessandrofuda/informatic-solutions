@@ -29,7 +29,7 @@ fieldset,label{margin:0;padding:0;}
 /* .rating > label{color:#ddd;float:right;} */
 .rating label.full{color:#ddd;float:right;}
 /* .rating > input:checked ~ label,.rating:not(:checked) > label:hover,.rating:not(:checked) > label:hover ~ label{color:#FFD700;} */
-.rating input.stars:checked ~ label,.rating:not(:checked) > label:hover,.rating:not(:checked) > label:hover ~ label{color:#FFD700;}
+.rating input.stars:checked ~ label,.rating:not(:checked) label.full:hover,.rating:not(:checked) label.full:hover ~ label{color:#FFD700;}
 .rating > input:checked + label:hover,.rating > input:checked ~ label:hover,.rating > label:hover ~ input:checked ~ label,.rating > input:checked ~ label:hover ~ label{color:#FFED85;}
 .voto { font-size: 90%; margin-top: -5px; font-style: italic; color: #8d8d8d; }
 /* Notification area */ 
