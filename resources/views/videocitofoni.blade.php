@@ -201,44 +201,46 @@
 </div><!--#index-->
 
 <h2 id="tabella-prezzi">Videocitofoni, macro-categorie e prezzi medi</h2>
-<table class="table">
-  <thead>
-    <tr>
-      <th scope="col">Macro Categorie</th>
-      <th scope="col">Prezzi Medi</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>videocitofono monofamiliare</td>
-      <td>da 100 a 270 euro</td>
-    </tr>
-    <tr>
-      <td>videocitofono bifamiliare</td>
-      <td>da 240 a 450 euro</td>
-    </tr>
-    <tr>
-      <td>videocitofono trifamiliare</td>
-      <td>da 250 a 450 euro</td>
-    </tr>
-    <tr>
-      <td>videocitofono quadrifamiliare</td>
-      <td>da 400 a&nbsp; 580 euro</td>
-    </tr>
-    <tr>
-      <td>videocitofono condominiale da 6</td>
-      <td>da 1.070 a 1.200&nbsp; euro</td>
-    </tr>
-    <tr>
-      <td>videocitofono condominiale da 8</td>
-      <td>da 1.000 a 1.400 euro</td>
-    </tr>
-    <tr>
-      <td>videocitofono condominiale da 10</td>
-      <td>da 1.280 a 1.900 euro</td>
-    </tr>
-  </tbody>  
-</table>
+<div class="table-responsive">
+  <table class="table table-bordered table-striped">
+    <thead>
+      <tr>
+        <th scope="col">Macro Categorie</th>
+        <th scope="col">Prezzi Medi</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>videocitofono monofamiliare</td>
+        <td>da 100 a 270 euro</td>
+      </tr>
+      <tr>
+        <td>videocitofono bifamiliare</td>
+        <td>da 240 a 450 euro</td>
+      </tr>
+      <tr>
+        <td>videocitofono trifamiliare</td>
+        <td>da 250 a 450 euro</td>
+      </tr>
+      <tr>
+        <td>videocitofono quadrifamiliare</td>
+        <td>da 400 a&nbsp; 580 euro</td>
+      </tr>
+      <tr>
+        <td>videocitofono condominiale da 6</td>
+        <td>da 1.070 a 1.200&nbsp; euro</td>
+      </tr>
+      <tr>
+        <td>videocitofono condominiale da 8</td>
+        <td>da 1.000 a 1.400 euro</td>
+      </tr>
+      <tr>
+        <td>videocitofono condominiale da 10</td>
+        <td>da 1.280 a 1.900 euro</td>
+      </tr>
+    </tbody>  
+  </table>
+</div>
 
 
 
