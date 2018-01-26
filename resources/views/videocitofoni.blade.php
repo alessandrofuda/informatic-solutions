@@ -139,7 +139,7 @@
 
   <div class="col-md-12">
     <figure class="figure pull-right">
-        <img src="{{ url('/images/cosa-sono-i-videocitofoni.jpg') }}" class="img-thumbnail" title="cosa sono i  videocitofoni" alt="come è fatto il videocitofono" />
+        <img src="{{ url('/images/cosa-sono-i-videocitofoni.jpg') }}" class="img-responsive img-thumbnail" title="cosa sono i  videocitofoni" alt="come è fatto il videocitofono" />
         <figcaption class="figure-caption">Ogni Videocitofono è composto da una "stazione esterna", dalla quale parte la chiamata audio/video, e da almeno una "stazione interna", un ricevitore, dotata di microfono e schermo.</figcaption>
     </figure>
 
@@ -254,7 +254,7 @@
 <h2 id="detrazioni-fiscali-50-per-acquisto-installazione-videocitofoni">Le detrazioni fiscali 50% sull&#8217;acquisto e l&#8217;installazione dei videocitofoni</h2>
 <div id="detrazioni">
 <figure class="figure pull-left">
-    <img src="{{ url('images/videocitofono-300x300.jpg') }}" class="img-thumbnail" title="videocitofono" alt="videocitofono" width="300" height="300" />
+    <img src="{{ url('images/videocitofono-300x300.jpg') }}" class="img-responsive img-thumbnail" title="videocitofono" alt="videocitofono" width="300" height="300" />
     <figcaption class="figure-caption">I videocitofoni, come i sistemi di allarme, sono detraibili al 50% dal reddito Irpef</figcaption>
 </figure>
 
@@ -277,7 +277,7 @@ Non solo detrazioni: anche <strong>l&#8217;aliquota iva è agevolata</strong> pe
 <p>Se non si ha un citofono, se si sta ristrutturando casa e si vuole cambiare il vecchio citofono, oppure: se si sta acquistando casa e il costruttore ti permette di scegliere tra citofono o videocitofono, il mio consiglio è quello di optare per un videocitofono, anche perchè, come vedremo, alcune tipologie sono utilizzabili anche &#8220;a distanza&#8221;, direttamente dal proprio smartphone, tablet o pc e possono essere integrati con altri apparecchi di casa (per esempio la tv). Funzioni molto comode in molti casi.</p><p>Non solo: anche nel caso di installazioni condominiali i videocitofoni possono essere integrati e messi in comunicazione con le portinerie. Più avanti vediamo quali sono le funzionalità possibili.</p>
 
 <figure class="figure pull-left">
-    <img src="{{ url('images/videocitofono-utilizzabile-da-smartphone-300x274.jpg') }}" class="img-thumbnail" title="videocitofono" alt="videocitofono utilizzabile da smartphone" width="300" height="274" />
+    <img src="{{ url('images/videocitofono-utilizzabile-da-smartphone-300x274.jpg') }}" class="img-responsive img-thumbnail" title="videocitofono" alt="videocitofono utilizzabile da smartphone" width="300" height="274" />
     <figcaption class="figure-caption">Alcuni videocitofoni possono essere utilizzati anche da smartphone</figcaption>
 </figure>
 
@@ -298,7 +298,7 @@ Cosa dobbiamo guardare per scegliere il videocitofono più adatto alle nostre es
 <p><strong>Quarto</strong>: la quantità ed i tipi di fili che collegano l&#8217;unità esterna con le unità interne, in altre parole: il <em>cablaggio</em>. Se si ha già il collegamento audio del vecchio citofono, e se questo è in buone condizioni, lo si può riutilizzare per il nuovo citofono aggiungendo solo il collegamento video (altri due fili). In alternativa si acquista direttamente un videocitofono a &#8220;4 fili&#8221;, oppure un apparecchio con <strong>cavo coassiale</strong>, tipo quello dell&#8217;antenna Tv. Molti modelli moderni "funzionano" a due soli fili garantendo comunque un buon livello di qualità audio-video.</p>
 
 <figure class="figure pull-left">
-    <img src="{{ url('images/cavo-coassiale-per-videocitofoni.jpg') }}" class="img-thumbnail" title="cavo coassiale per videocitofoni" alt="cavo coassiale per videocitofoni" width="300" height="300" />
+    <img src="{{ url('images/cavo-coassiale-per-videocitofoni.jpg') }}" class="img-responsive img-thumbnail" title="cavo coassiale per videocitofoni" alt="cavo coassiale per videocitofoni" width="300" height="300" />
     <figcaption class="figure-caption">Come è fatto il Cavo Coassiale utilizzato anche per i videocitofoni</figcaption>
 </figure>
 
