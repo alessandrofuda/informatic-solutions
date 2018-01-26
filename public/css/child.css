@@ -166,6 +166,13 @@ footer.footer {margin-top: 100px;}
 
 
 /*responsive*/
+@media (max-width: 480px) {
+	#app .container {padding-left: 0; padding-right: 0; width: 100%;}
+	#app .panel-default { width: 100%; border: none; }
+	#app .panel-body {padding-left: 0; padding-right: 0; border:none; width: 100%;}
+	#app .table-responsive {border: none; width: 100%;}
+}
+
 @media (max-width: 768px) {
 	.min-160 { min-width: 10px; }
 	td.product-name {font-size: 12px;}
