@@ -3,10 +3,13 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Support\Facades\Redirect;
+use Illuminate\Support\Facades\Input;
 use Illuminate\Http\Request;
 use App\Amazon\AmazonPaApi;
 use App\Product;
 use App\Review;
+use Response;
+use DB;
 
 
 class ComparatorController extends Controller
@@ -138,36 +141,72 @@ class ComparatorController extends Controller
             
         } 
 
+        if ($request->has('q')) {
+            // validation
+            $this->validate($request, [
+                'q' => 'string|nullable',
+                ]);
+
+            $term = trim($request->q, '. ');
+            $contents->where(function ($query) use ($term){  
+                $query->where('asin', 'LIKE', '%'.$term.'%')
+                      ->orWhere('title', 'LIKE', '%'.$term.'%')
+                      ->orWhere('brand', 'LIKE', '%'.$term.'%')
+                      ->orWhere('feature', 'LIKE', '%'.$term.'%')
+                      ->orWhere('editorialreviewcontent', 'LIKE', '%'.$term.'%');
+            });
+        }
+
+
         $contents = $contents->get(); // no paginate();
+        $brands = $this->getBrandsArray();  // brands array
+        $reviews = $this->getReviews();   // fetch reviews
 
-        // brands array
-        $brands = $this->getBrandsArray();
-
-        // fetch reviews
-        $reviews = $this->getReviews();
-
-        return view('comparator.index')->with('brands', $brands)->with('contents', $contents)
-                                                                ->with('slug', $slug)
-                                                                ->with('reviews', $reviews)
-                                                                ->with('request', $request); 
+        return view('comparator.index')->with('brands', $brands)
+                                       ->with('contents', $contents)
+                                       ->with('slug', $slug)
+                                       ->with('reviews', $reviews)
+                                       ->with('request', $request); 
     }
 
 
 
 
-    public function PlainTextFilter(Request $request) // FINIRE !!!!!!!!!!!!!!!!!!!!
-    {
-        // $test = obj('test');
-        // $contents = Product::where();
-        // dd($contents);
-        // return view('comparator.index')->with('contents', $contents);
-        //dd($request);
-        return response()->$request;
+    /* 
+     *  jquery autocomplete in search form
+     *
+     *
+     *
+    **/
+    public function autocomplete(){
+
+        $term = Input::get('term');
+        
+        $queries = DB::table('products')
+            ->where('asin', 'LIKE', '%'.$term.'%')
+            ->orWhere('title', 'LIKE', '%'.$term.'%')
+            ->orWhere('brand', 'LIKE', '%'.$term.'%')
+            ->orWhere('feature', 'LIKE', '%'.$term.'%')
+            ->orWhere('editorialreviewcontent', 'LIKE', '%'.$term.'%')
+            ->take(12)
+            ->get();
+        
+
+        $results = array();
+        foreach ($queries as $query)
+        {
+            $results[] = [ 'id' => $query->id, 'value' => str_limit( ucfirst(mb_strtolower($query->title)), 80, '...')];  //.' - '.$query->asin. ' - '. $query->brand ];
+        }
+
+        return Response::json($results);
     }
 
 
-
-
+    /**
+     *  API call & DB update
+     *
+     *
+    */
     public static function FetchAndInsertProductInDb($keysearch) {  //attivata tramite custom console command
 
         // $request = new AmazonPaApi;
@@ -265,7 +304,10 @@ class ComparatorController extends Controller
 
 
 
-
+    /**
+    *   capture reviews text (recensioni)
+    *
+    */
     public function scrapingreview($keysearch)  //attivata tramite custom console command
     {
 

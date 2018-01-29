@@ -14,7 +14,7 @@
             <h3 class="product-title">{{ $content->title }}</h3>
 
             <div class="product-info">
-            		<b>Marca:</b> {{ $content->brand }} - <b>Colore:</b> {{ !empty($content->color) ? $content->color : 'tutti'}}
+            		<b>Marca:</b> {{ mb_strtoupper($content->brand) }} - <b>Colore:</b> {{ !empty($content->color) ? $content->color : 'tutti'}}
             		<div class="product-summary">
 	            		<p class="abstract">
 	            			@if (!empty($content->feature))

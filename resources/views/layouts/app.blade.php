@@ -21,15 +21,21 @@
     <!-- Scripts -->
     <script src="/js/app.js"></script>
 
+    <!-- jQuery-UI -->
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.css">
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+
     <!--j-rating jquery plugin-->
     <link href="/j-rating/src/j-rating-advance/j-rating-advance.css" rel="stylesheet">
     <script src="/j-rating/src/j-rating-advance/j-rating-advance.js"></script>
 
     <!-- datatables jquery plugin-->
-    <!--link rel="stylesheet" type="text/css" href="//cdn.datatables.net/1.10.16/css/jquery.dataTables.min.css"> 
-    <script src="//cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script-->
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/bs/dt-1.10.16/r-2.2.1/datatables.min.css"/>
     <script type="text/javascript" src="https://cdn.datatables.net/v/bs/dt-1.10.16/r-2.2.1/datatables.min.js"></script>
+
+    <!-- autocomplete jquery plugin -->
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-autocomplete/1.0.7/jquery.auto-complete.min.css">
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery-autocomplete/1.0.7/jquery.auto-complete.min.js"></script>
 
     <!-- Scripts -->
     <script>
