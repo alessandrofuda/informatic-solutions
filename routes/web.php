@@ -21,7 +21,7 @@ Route::get('/', 'HomepageController@index');
 Route::post('/', 'HomepageController@index_form');  //..modulo contatti..
 
 // videocitofoni page
-Route::get('videocitofoni', 'ArticlesController@index');  //verificare eventuali conflitti con le routes sotto
+Route::get('videocitofoni', 'ArticlesController@index');  //..verificare eventuali conflitti con le routes sotto
 Route::post('articles-rating', 'ArticlesController@rating');
 
 // videocitofoni comments
