@@ -34,7 +34,10 @@
       <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
       <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
-
+    <style>
+      /*tables*/ 
+      table { border: 1px solid #888; font-size: 120%; } td,th{border:1px solid #CCC; padding: 8px;} tr:nth-child(even){background-color: #f2f2f2;} tr:hover {background-color: #ddd;} th { font-weight: bold; padding-top: 12px; padding-bottom: 12px; background:linear-gradient(to right,#CFE7F0,#3299be,#5db7d8); color:#FFFFFF;font-size:110%;}
+    </style>
     <script>
       (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
       (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
