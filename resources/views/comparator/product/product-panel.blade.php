@@ -139,7 +139,7 @@
 	                  	</a>
 	                @endif
 
-	                <a class="col-md-12 btn btn-primary" target="_blank" href="http://www.amazon.it/gp/aws/cart/add.html?AWSAccessKeyId={{ env('AWS_ACCESS_KEY_ID') }}&AssociateTag=infsol-21&ASIN.1={{ $content->asin }}&Quantity.1=1">
+	                <a rel="nofollow" class="col-md-12 btn btn-primary" target="_blank" href="http://www.amazon.it/gp/aws/cart/add.html?AWSAccessKeyId={{ env('AWS_ACCESS_KEY_ID') }}&AssociateTag=infsol-21&ASIN.1={{ $content->asin }}&Quantity.1=1">
 	                	<i class="col-md-2 glyphicon glyphicon-shopping-cart"></i>
 	                	<span class="col-md-10 txt">Aggiungi al Carrello e<br>acquista subito</span>
 	                </a>
