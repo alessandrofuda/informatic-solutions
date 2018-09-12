@@ -7,8 +7,12 @@
 	    <div class="col-md-12">
 	    <div class="row text-center title">
 	    	<h1>Confronta <b>{{ ucfirst($slug) }}</b> e monitora i prezzi</h1>
-	    </div>
 
+	    	@if ($post_title)
+	    		<h2 class="sub-title-link" style="font-size: 125%; margin: 2% auto;"><a href="{{ url($slug) }}">{{ $post_title }}</a></h2>
+	    	@endif
+	    	
+	    </div>
 
 
 	    <div id="search" class="row text-center search">

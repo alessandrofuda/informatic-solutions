@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use App\Amazon\AmazonPaApi;
 use App\Product;
 use App\Review;
+use App\Post;
 use Response;
 use DB;
 
@@ -42,6 +43,13 @@ class ComparatorController extends Controller
                                                                          ->paginate(15)
                                                                          //->get()
                                                                          ;
+        $post_title = '';
+        $post = Post::where('slug', $slug)->first();
+        
+        if($post !== null) {
+            $post_title = $post->title; 
+        }
+
         // brands array
         $brands = $this->getBrandsArray();
         
@@ -50,6 +58,7 @@ class ComparatorController extends Controller
         $reviews = $this->getReviews();
         
         return view('comparator.index')->with('slug', $slug)
+                                       ->with('post_title', $post_title)
                                        ->with('brands', $brands)
                                        ->with('contents', $contents)
                                        ->with('reviews', $reviews)
