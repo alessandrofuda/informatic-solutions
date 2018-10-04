@@ -175,9 +175,7 @@ class ComparatorController extends Controller
                                        ->with('contents', $contents)
                                        ->with('slug', $slug)
                                        ->with('reviews', $reviews)
-                                       ->with('request', $request)
-                                       // ->with('post_title', $post_title)
-                                       ; 
+                                       ->with('request', $request); 
     }
 
 
