@@ -34,7 +34,8 @@ class ComparatorController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index($slug) {   
+    public function index($slug) {  
+
         // fetch products
         $lastrequest_date = Product::orderBy('updated_at', 'desc')->first()->updated_at;
 
@@ -90,8 +91,7 @@ class ComparatorController extends Controller
 
 
 
-    public function filter($slug, Request $request, Product $products)
-    {
+    public function filter($slug, Request $request, Product $products) {
         $contents = $products->newQuery();
 
         if ($request->has('brand')) {
@@ -175,7 +175,9 @@ class ComparatorController extends Controller
                                        ->with('contents', $contents)
                                        ->with('slug', $slug)
                                        ->with('reviews', $reviews)
-                                       ->with('request', $request); 
+                                       ->with('request', $request)
+                                       // ->with('post_title', $post_title)
+                                       ; 
     }
 
 
