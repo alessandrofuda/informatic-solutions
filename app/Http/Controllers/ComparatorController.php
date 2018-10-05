@@ -48,7 +48,6 @@ class ComparatorController extends Controller
         }
 
         $brands = $this->getBrandsArray();
-        //dd($brands);
         $reviews = $this->getReviews();
         
         return view('comparator.index')->with('slug', $slug)
@@ -74,10 +73,9 @@ class ComparatorController extends Controller
                                        ->where('brand', 'like', '-%')
                                        ->get(['brand'])
                                        ->toArray();
-        // dd($brands_2);
 
         $brands = array_merge($brands_1, $brands_2);
-        // dd($brands);
+        
         return $brands;
     }
 

@@ -151,9 +151,11 @@ i.col-md-2.glyphicon.glyphicon-remove-sign { font-size: 30px; line-height: 45px;
 .note { margin: 50px auto; font-size: 13px;}
 
 /*filters*/
-#filters .checkbox-inline {margin-left: 2%;}
 #filters a { text-decoration: none; color: inherit;}
-
+#brands.brands { font-size: 80%; }
+#brands .checkbox-inline input {margin-top: 2px;}
+#brands.collapse { padding: 2%; border: 1px solid rgb(48, 151, 209); border-radius: 5px; margin-top: 1%; background-color: rgb(255, 255, 255); }
+#filter-brand-price .btn { margin-bottom: 1%; }
 
 /*footer*/
 footer.footer {margin-top: 100px;}

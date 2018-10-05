@@ -33,7 +33,6 @@
 	    </div>
 
 	    <div id="filters" class="text-center">
-	    	{{-- dd($brands) --}}
 	    	@if (!empty($brands) )
 		    	<form id="filter-brand-price" class="checkbox" method="POST" action="">
 		    		{{ csrf_field() }}
@@ -42,10 +41,9 @@
 			    		@foreach ($brands as $brand)
 			    			<label class="checkbox-inline">
 			    				<input type="checkbox" name="brand[]" value="{{ $brand['brand'] }}" {{ (!empty($request->brand) && is_array($request->brand) && in_array($brand['brand'], $request->brand)) ? ' checked' : '' }}>
-			    				<a href="#">{{ ucfirst(strtolower(trim($brand['brand'], '- '))) }}</a>
+			    				<a href="#">{!! mb_strtoupper(trim($brand['brand'], '- ')) !!}</a>
 			    			</label>
-			    		@endforeach	    		 
-		    		<hr>
+			    		@endforeach	
 		    		</div>
 		    		<div class="prices">
 		    			<label class="checkbox-inline"><h4>Filtra per prezzo:</h4></label>
