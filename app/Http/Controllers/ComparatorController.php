@@ -38,8 +38,11 @@ class ComparatorController extends Controller
 
         // fetch products
         $lastrequest_date = Product::orderBy('updated_at', 'desc')->first()->updated_at;
-        $contents = Product::where('created_at', '<=', $lastrequest_date)->orderBy('created_at', 'desc')
-                                                                         ->paginate(15);
+        $products = Product::where('created_at', '<=', $lastrequest_date)->orderBy('created_at', 'desc')
+                                                                         //->get()
+                                                                         ;
+        $all_products_number = count($products->get());
+        $contents = $products->paginate(15);
         $post_title = '';
         $post = Post::where('slug', $slug)->first();
         
@@ -53,6 +56,7 @@ class ComparatorController extends Controller
         return view('comparator.index')->with('slug', $slug)
                                        ->with('post_title', $post_title)
                                        ->with('brands', $brands)
+                                       ->with('all_products_number', $all_products_number)
                                        ->with('contents', $contents)
                                        ->with('reviews', $reviews)
                                        //->with('prod_json', $prod_json)

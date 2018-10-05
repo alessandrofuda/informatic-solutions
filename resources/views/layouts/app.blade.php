@@ -61,7 +61,8 @@
 
                     <!-- Branding Image -->
                     <a class="navbar-brand" href="{{ url('/') }}">
-                        {{ config('app.name', 'Laravel') }}
+                        {{-- config('app.name', 'Laravel') --}}
+                        <img class="logo" src="{{ asset('/images-comp/informatic-solutions-logo.png') }}" alt="Comparatore Prezzi - Informatic Solutions">
                     </a>
                 </div>
 
@@ -75,8 +76,16 @@
                     <ul class="nav navbar-nav navbar-right">
                         <!-- Authentication Links -->
                         @if (Auth::guest())
-                            <li><a href="{{ url('/login') }}">Accedi</a></li>
-                            <li><a href="{{ url('/register') }}">Registrati</a></li>
+                            <li>
+                                <a href="{{ url('/login') }}">
+                                <button class="btn btn-default">Accedi</button>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="{{ url('/register') }}">
+                                <button class="btn btn-primary">Registrati</button>
+                                </a>
+                            </li>
                         @else
                             <li class="dropdown">
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">

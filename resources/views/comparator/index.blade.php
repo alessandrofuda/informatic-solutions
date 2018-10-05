@@ -100,12 +100,12 @@
 		        @if(count($contents) <= 0)
 		            <p>Non sono presenti prodotti.</p>
 		        @else 
-		        	<div class="">Prodotti trovati: <span id="total_products">{{ count($contents) }}</span></div>	
+		        	<div class="col-md-12 products-found" style="text-align: right;"><p>Prodotti trovati: <span id="total_products">{{ $all_products_number }}</span></p></div>	
 	            	<?php $i=0; ?>
 	            	
 	                @foreach($contents as $content) 
 		                @if($i < 18)
-			                <div id="$content->asin" class="col-md-4">
+			                <div id="{{$content->asin}}" class="col-md-4">
 			                    @include('comparator.product.product-panel',['content' => $content, 'reviews' => $reviews])
 			                </div>
 
