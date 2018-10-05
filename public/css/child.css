@@ -85,8 +85,10 @@ figcaption {font-style: italic; font-size: 12px; margin: 15px 0 0;}
 /*buttons*/
 .btn-v-space {margin: 5px auto;}
 .btn {min-width: 75px; white-space: normal;}
-.modal-buttons button.btn {width: 100%; margin-top: 15px;}
-.row.modal-buttons {margin-bottom: 10px;}
+.modal-buttons button.btn {width: 100%; margin: 5px auto; text-shadow: 1px 1px 0px #1e516d;}
+.row.modal-buttons {margin: 10px auto;}
+.modal-button-left { padding-left: 0;  }
+.modal-button-right { padding-right: 0; }
 .min-160 {min-width: 160px;}
 .margin-5 {margin: 5px;}
 
@@ -99,7 +101,7 @@ td.first-col {font-weight: bold;}
 
 #search .well { background: none; border: none; box-shadow: none; max-width: 500px; margin: auto; width: 100%;}
 #search .input-group { width: 100%; }
-#search input { border-radius: 20px; }
+#search input { border-radius: 20px; border-color: #3097d1; }
 #search .search-icon { position: relative; margin-top: -25px; display: inline-block; width: 28px; height: 14px; line-height: 14px; vertical-align: middle;
 background-color: transparent; font-size: 20px; color: #888; float: right; z-index: 2; margin-right: 5%;}
 #search button { border-radius: 0 20px 20px 0; }
@@ -141,10 +143,12 @@ table#watchinglist > thead > tr > th { vertical-align: middle; }
 .price-disc {display: block; margin-top: -5px;}
 .not-available-price {  text-align: center; margin: 30px auto; font-style: italic; font-weight: bold; font-size: 110%;}
 .product-buttons .btn {width: 100%; margin:15px auto;}
-.product-buttons .btn span {display: inline-block;}
-i.col-md-2.glyphicon.glyphicon-eye-open { font-size: 30px; line-height: 45px; }
+.product-buttons .btn span {display: inline-block; font-weight: bold; text-shadow: 1px 1px 0px #1e516d;}
+.product-buttons .btn .txt.add-to-cart { line-height: 45px; }
+.product-buttons i.col-md-2.glyphicon { font-size: 30px; line-height: 45px; text-shadow: 2px 2px 0px #1e516d; }
+/* i.col-md-2.glyphicon.glyphicon-eye-open { font-size: 30px; line-height: 45px; }
 i.col-md-2.glyphicon.glyphicon-shopping-cart { font-size: 30px; line-height: 45px; }
-i.col-md-2.glyphicon.glyphicon-remove-sign { font-size: 30px; line-height: 45px; }
+i.col-md-2.glyphicon.glyphicon-remove-sign { font-size: 30px; line-height: 45px; } */
 .img-cont-modal {margin-bottom: 80px;}
 .review-button {text-align: right; margin-bottom: -10px; margin-top: 30px;}
 .review {border: 1px solid #F5F5F5; padding: 5px; margin: 5px auto; border-radius: 5px; background: #F5F5F5; font-size: 96%; font-style: italic;}
@@ -155,7 +159,7 @@ i.col-md-2.glyphicon.glyphicon-remove-sign { font-size: 30px; line-height: 45px;
 #brands.brands { font-size: 80%; }
 #brands .checkbox-inline input {margin-top: 2px;}
 #brands.collapse { padding: 2%; border: 1px solid rgb(48, 151, 209); border-radius: 5px; margin-top: 1%; background-color: rgb(255, 255, 255); }
-#filter-brand-price .btn { margin-bottom: 1%; }
+#filter-brand-price .btn { margin-bottom: 1%; border-color: #3097d1; color: #3097d1; }
 
 /*footer*/
 footer.footer {margin-top: 100px;}

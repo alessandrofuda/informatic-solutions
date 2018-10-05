@@ -25,12 +25,11 @@
 
 	            		</p>
 	            		<div class="row modal-buttons">
-		            		<div class="col-md-6">
-			            		<!-- Trigger the modal with a button -->
-								<button type="button" class="btn btn-info btn-xs" data-toggle="modal" data-target="#myModal-{{ $content->asin }}">Descrizione prodotto</button>
+		            		<div class="col-md-6 modal-button-left">
+								<button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#myModal-{{ $content->asin }}">Descrizione prodotto</button>
 							</div>
-							<div class="col-md-6">
-								<button type="button" class="btn btn-info btn-xs" data-toggle="modal" data-target="#dettagli-{{ $content->asin }}">Vai ai dettagli</button>
+							<div class="col-md-6 modal-button-right">
+								<button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#dettagli-{{ $content->asin }}">Vai ai dettagli</button>
 							</div>
 						</div>
 
@@ -141,7 +140,7 @@
 
 	                <a rel="nofollow" class="col-md-12 btn btn-primary" target="_blank" href="http://www.amazon.it/gp/aws/cart/add.html?AWSAccessKeyId={{ env('AWS_ACCESS_KEY_ID') }}&AssociateTag=infsol-21&ASIN.1={{ $content->asin }}&Quantity.1=1">
 	                	<i class="col-md-2 glyphicon glyphicon-shopping-cart"></i>
-	                	<span class="col-md-10 txt">Aggiungi al Carrello e<br>acquista subito</span>
+	                	<span class="col-md-10 txt add-to-cart">Acquista subito</span>
 	                </a>
                 </div>
             </div><!--.product-buttons-->
