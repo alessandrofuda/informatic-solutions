@@ -33,27 +33,29 @@
 	    </div>
 
 	    <div id="filters" class="text-center">
-	    	<form id="filter-brand-price" class="checkbox" method="POST" action="">
-	    		{{ csrf_field() }}
-	    		<div class="btn btn-default" data-toggle="collapse" data-target="#brands">Filtra per marca</div> 
-	    		<div id="brands" class="brands collapse">
-	    		@foreach ($brands as $brand)
-	    			<label class="checkbox-inline">
-	    				<input type="checkbox" name="brand[]" value="{{ $brand->brand }}" {{ (!empty($request->brand) && is_array($request->brand) && in_array($brand->brand, $request->brand)) ? ' checked' : '' }}>
-	    				<a href="#">{{ ucfirst(strtolower($brand->brand)) }}</a>
-	    			</label>
-	    		@endforeach
-	    		 
-	    		<hr>
-	    		</div>
-	    		<div class="prices">
-	    			<label class="checkbox-inline"><h4>Filtra per prezzo:</h4></label>
-	    			<label class="checkbox-inline"><input type="checkbox" name="price[]" value="range-1" {{ (!empty($request->price) && is_array($request->price) && in_array('range-1', $request->price)) ? ' checked' : '' }}>Fino a 100 €</label> 
-	    			<label class="checkbox-inline"><input type="checkbox" name="price[]" value="range-2" {{ (!empty($request->price) && is_array($request->price) && in_array('range-2', $request->price)) ? ' checked' : '' }}>da 101 a 200 €</label>
-	    			<label class="checkbox-inline"><input type="checkbox" name="price[]" value="range-3" {{ (!empty($request->price) && is_array($request->price) && in_array('range-3', $request->price)) ? ' checked' : '' }}>da 201 a 300 €</label>
-	    			<label class="checkbox-inline"><input type="checkbox" name="price[]" value="range-4" {{ (!empty($request->price) && is_array($request->price) && in_array('range-4', $request->price)) ? ' checked' : '' }}>oltre 300 €</label>
-	    		</div>
-	    	</form>
+	    	{{-- dd($brands) --}}
+	    	@if (!empty($brands) )
+		    	<form id="filter-brand-price" class="checkbox" method="POST" action="">
+		    		{{ csrf_field() }}
+		    		<div class="btn btn-default" data-toggle="collapse" data-target="#brands">Filtra per marca</div> 
+		    		<div id="brands" class="brands collapse">
+			    		@foreach ($brands as $brand)
+			    			<label class="checkbox-inline">
+			    				<input type="checkbox" name="brand[]" value="{{ $brand['brand'] }}" {{ (!empty($request->brand) && is_array($request->brand) && in_array($brand['brand'], $request->brand)) ? ' checked' : '' }}>
+			    				<a href="#">{{ ucfirst(strtolower(trim($brand['brand'], '- '))) }}</a>
+			    			</label>
+			    		@endforeach	    		 
+		    		<hr>
+		    		</div>
+		    		<div class="prices">
+		    			<label class="checkbox-inline"><h4>Filtra per prezzo:</h4></label>
+		    			<label class="checkbox-inline"><input type="checkbox" name="price[]" value="range-1" {{ (!empty($request->price) && is_array($request->price) && in_array('range-1', $request->price)) ? ' checked' : '' }}>Fino a 100 €</label> 
+		    			<label class="checkbox-inline"><input type="checkbox" name="price[]" value="range-2" {{ (!empty($request->price) && is_array($request->price) && in_array('range-2', $request->price)) ? ' checked' : '' }}>da 101 a 200 €</label>
+		    			<label class="checkbox-inline"><input type="checkbox" name="price[]" value="range-3" {{ (!empty($request->price) && is_array($request->price) && in_array('range-3', $request->price)) ? ' checked' : '' }}>da 201 a 300 €</label>
+		    			<label class="checkbox-inline"><input type="checkbox" name="price[]" value="range-4" {{ (!empty($request->price) && is_array($request->price) && in_array('range-4', $request->price)) ? ' checked' : '' }}>oltre 300 €</label>
+		    		</div>
+		    	</form>
+	    	@endif
 	    	<hr>
 	    </div>
 

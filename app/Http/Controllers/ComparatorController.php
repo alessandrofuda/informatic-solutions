@@ -38,12 +38,8 @@ class ComparatorController extends Controller
 
         // fetch products
         $lastrequest_date = Product::orderBy('updated_at', 'desc')->first()->updated_at;
-
         $contents = Product::where('created_at', '<=', $lastrequest_date)->orderBy('created_at', 'desc')
-                                                                         //->take(18)   //ritorna i primi 18 prodotti
-                                                                         ->paginate(15)
-                                                                         //->get()
-                                                                         ;
+                                                                         ->paginate(15);
         $post_title = '';
         $post = Post::where('slug', $slug)->first();
         
@@ -51,11 +47,8 @@ class ComparatorController extends Controller
             $post_title = $post->title; 
         }
 
-        // brands array
         $brands = $this->getBrandsArray();
-        
-
-        // fetch reviews
+        //dd($brands);
         $reviews = $this->getReviews();
         
         return view('comparator.index')->with('slug', $slug)
@@ -70,10 +63,21 @@ class ComparatorController extends Controller
 
 
     public function getBrandsArray() {
-        $brands = Product::distinct()->orderBy('brand', 'ASC')
-                                     ->where('brand', '!=', '') 
-                                     ->where('brand', '!=', null)
-                                     ->get(['brand']);
+        $brands_1 = Product::distinct()->orderBy('brand', 'ASC')
+                                       ->where('brand', '!=', '') 
+                                       ->where('brand', '!=', null)
+                                       ->where('brand', 'not like', '-%')
+                                       ->get(['brand'])
+                                       ->toArray();
+
+        $brands_2 = Product::distinct()->orderBy('brand', 'ASC')
+                                       ->where('brand', 'like', '-%')
+                                       ->get(['brand'])
+                                       ->toArray();
+        // dd($brands_2);
+
+        $brands = array_merge($brands_1, $brands_2);
+        // dd($brands);
         return $brands;
     }
 
