@@ -10,14 +10,14 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    @if ( !empty($slug) )
+    @if( !empty($slug) )
         <title>{{ ucfirst($slug) }}, comparatore prezzi</title>
         <meta name="description" content="Tutte le informazioni utili, recensioni e confronto prezzi sui {{ ucfirst($slug) }}">
     @endif
 
     <!-- Styles -->
     <link href="/css/app.css" rel="stylesheet">
-    <link href="/css/child.css" rel="stylesheet">
+    <link href="/css/comparator-child.css" rel="stylesheet">
 
     <!-- Scripts -->
     <script src="/js/app.js"></script>
@@ -135,8 +135,8 @@
 
         <footer class="footer" role="contentinfo">
           <div class="container">
-            <p class="text-muted text-center first">Informatic-Solutions.it - P.Iva 08497200967 - Tutti i diritti riservati © {{ date('Y') }}</p>
-            <p class="text-muted text-center small">La duplicazione anche parziale dei contenuti è severamente vietata; le violazioni saranno segnalate alle autorità competenti e perseguite ai termini di legge</p>
+            <p class="text-center first">Informatic-Solutions.it - P.Iva 08497200967 - Tutti i diritti riservati © {{ date('Y') }}</p>
+            <p class="text-center small">La duplicazione anche parziale dei contenuti è severamente vietata; le violazioni saranno segnalate alle autorità competenti e perseguite ai termini di legge</p>
           </div>  
         </footer>
     </div><!--#app-->
