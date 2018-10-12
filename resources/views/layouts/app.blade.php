@@ -48,78 +48,72 @@
 <body>
     <div id="app">
         <nav class="navbar navbar-default navbar-static-top">
-            <div class="conta__iner">
-                <div class="navbar-header">
+            <div class="navbar-header">
+                <!-- Collapsed Hamburger -->
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#app-navbar-collapse">
+                    <span class="sr-only">Toggle Navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <!-- Branding Image -->
+                <a class="navbar-brand" href="{{ url('/') }}">
+                    {{-- config('app.name', 'Laravel') --}}
+                    <img class="logo" src="{{ asset('/images-comp/informatic-solutions-logo.png') }}" alt="Comparatore Prezzi - Informatic Solutions">
+                </a>
+            </div>
+            <div class="collapse navbar-collapse" id="app-navbar-collapse">
+                <!-- Left Side Of Navbar -->
+                <ul class="nav navbar-nav">
+                    &nbsp;
+                </ul>
 
-                    <!-- Collapsed Hamburger -->
-                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#app-navbar-collapse">
-                        <span class="sr-only">Toggle Navigation</span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                    </button>
+                <!-- Right Side Of Navbar -->
+                <ul class="nav navbar-nav navbar-right">
+                    <!-- Authentication Links -->
+                    @if (Auth::guest())
+                        <li>
+                            <a href="{{ url('/login') }}">
+                            <button class="btn btn-default">Accedi</button>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="{{ url('/register') }}">
+                            <button class="btn btn-primary">Registrati</button>
+                            </a>
+                        </li>
+                    @else
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+                                {{ Auth::user()->name }} <span class="caret"></span>
+                            </a>
 
-                    <!-- Branding Image -->
-                    <a class="navbar-brand" href="{{ url('/') }}">
-                        {{-- config('app.name', 'Laravel') --}}
-                        <img class="logo" src="{{ asset('/images-comp/informatic-solutions-logo.png') }}" alt="Comparatore Prezzi - Informatic Solutions">
-                    </a>
-                </div>
+                            <ul class="dropdown-menu" role="menu">
+                                <li><a href="{{ url('backend') }}">Profilo</a></li>
+                                <li><a href="{{ url('backend#my-list') }}">Oggetti in osservazione</a></li>
+                                <li><a href="{{ url('backend#reset-psw') }}">Cambia password</a></li>
+                                <li><a href="">Modifica profilo-FARE</a></li>
+                                <li>
+                                    <a href="{{ url('backend/delete/my-profile') }}" onclick="return confirm('Sei sicuro di voler eliminare il tuo Profilo e Dis-iscriverti dal servizio?')">Elimina profilo</a>
+                                </li>
+                                <hr style="margin:10px auto;">
+                                <li>
+                                    <a href="{{ url('/logout') }}"
+                                        onclick="event.preventDefault();
+                                                 document.getElementById('logout-form').submit();">
+                                        Logout
+                                    </a>
 
-                <div class="collapse navbar-collapse" id="app-navbar-collapse">
-                    <!-- Left Side Of Navbar -->
-                    <ul class="nav navbar-nav">
-                        &nbsp;
-                    </ul>
-
-                    <!-- Right Side Of Navbar -->
-                    <ul class="nav navbar-nav navbar-right">
-                        <!-- Authentication Links -->
-                        @if (Auth::guest())
-                            <li>
-                                <a href="{{ url('/login') }}">
-                                <button class="btn btn-default">Accedi</button>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="{{ url('/register') }}">
-                                <button class="btn btn-primary">Registrati</button>
-                                </a>
-                            </li>
-                        @else
-                            <li class="dropdown">
-                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-                                    {{ Auth::user()->name }} <span class="caret"></span>
-                                </a>
-
-                                <ul class="dropdown-menu" role="menu">
-                                    <li><a href="{{ url('backend') }}">Profilo</a></li>
-                                    <li><a href="{{ url('backend#my-list') }}">Oggetti in osservazione</a></li>
-                                    <li><a href="{{ url('backend#reset-psw') }}">Cambia password</a></li>
-                                    <li><a href="">Modifica profilo-FARE</a></li>
-                                    <li>
-                                        <a href="{{ url('backend/delete/my-profile') }}" onclick="return confirm('Sei sicuro di voler eliminare il tuo Profilo e Dis-iscriverti dal servizio?')">Elimina profilo</a>
-                                    </li>
-                                    <hr style="margin:10px auto;">
-                                    <li>
-                                        <a href="{{ url('/logout') }}"
-                                            onclick="event.preventDefault();
-                                                     document.getElementById('logout-form').submit();">
-                                            Logout
-                                        </a>
-
-                                        <form id="logout-form" action="{{ url('/logout') }}" method="POST" style="display: none;">
-                                            {{ csrf_field() }}
-                                        </form>
-                                    </li>
-                                </ul>
-                            </li>
-                        @endif
-                    </ul>
-                </div>
+                                    <form id="logout-form" action="{{ url('/logout') }}" method="POST" style="display: none;">
+                                        {{ csrf_field() }}
+                                    </form>
+                                </li>
+                            </ul>
+                        </li>
+                    @endif
+                </ul>
             </div>
         </nav>
-
 
         @if(Session::has('success_message')) {{-- variabili di sessione per alerts --}}
           <div id="alert" class="alert alert-success text-center alert-dismissable fade in">
@@ -135,18 +129,17 @@
           </div>
         @endif
 
-
+        <!--start content-->
         @yield('content')
+        <!--end content-->
 
-
-    </div>
-
-    <footer class="footer" role="contentinfo">
-      <div class="container">
-        <p class="text-muted text-center first">Informatic-Solutions.it - P.Iva 08497200967 - Tutti i diritti riservati © {{ date('Y') }}</p>
-        <p class="text-muted text-center small">La duplicazione anche parziale dei contenuti è severamente vietata; le violazioni saranno segnalate alle autorità competenti e perseguite ai termini di legge</p>
-      </div>  
-    </footer>
+        <footer class="footer" role="contentinfo">
+          <div class="container">
+            <p class="text-muted text-center first">Informatic-Solutions.it - P.Iva 08497200967 - Tutti i diritti riservati © {{ date('Y') }}</p>
+            <p class="text-muted text-center small">La duplicazione anche parziale dei contenuti è severamente vietata; le violazioni saranno segnalate alle autorità competenti e perseguite ai termini di legge</p>
+          </div>  
+        </footer>
+    </div><!--#app-->
 
 </body>
 </html>

@@ -13,8 +13,10 @@
 			    	@endif
 		    	</div>
 		    </div>
+		</div>
+		<div class="col-md-12">
 		    <div id="search" class="row text-center search">
-		    	<div class="col-md-12 well well-sm">
+		    	<div class="well well-sm">
 	                <form id="plaintext-filter" class="form-group" method="POST" action="{{-- url('videocitofoni/search/submit') --}}">
 	                	{{ csrf_field() }}
 	                    <div class="input-group input-group-md">
