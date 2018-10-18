@@ -38,7 +38,9 @@ class CommentsController extends Controller
      */
     public function index() {
 
-        $comments = Comment::paginate(15); // all();
+
+
+        $comments = Comment::paginate(15); // all();  
         $origin = 'comments';
         
         return view('backend.comment-list')->with('slug', $this->slug)
@@ -46,7 +48,6 @@ class CommentsController extends Controller
                                            ->with('all', true)
                                            ->with('origin', $origin);
                                            
-
     }
 
     

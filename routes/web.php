@@ -85,8 +85,6 @@ Route::group(['middleware' => ['auth'], 'prefix' => 'backend'], function() {
 	Route::get('elimina-da-lista-{asin}-{id}', 'Backend\WatchinglistController@delete');
 	Route::get('rimetti-in-osservazione-{asin}-{id}', 'Backend\WatchinglistController@restore'); 
 
-
-
 	//routes accessibili SOLO da ADMIN (routes con prefix 'backend')
   	Route::group(['middleware' => 'admin'], function() {
 
@@ -99,9 +97,7 @@ Route::group(['middleware' => ['auth'], 'prefix' => 'backend'], function() {
 
 		Route::resource('users', 'Backend\UserController');
 
-  	});
-  
-
+  	});  
 });
 
 
