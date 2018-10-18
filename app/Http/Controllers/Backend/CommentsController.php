@@ -38,9 +38,7 @@ class CommentsController extends Controller
      */
     public function index() {
 
-
-
-        $comments = Comment::paginate(15); // all();  
+        $comments = Comment::orderBy('created_at', 'DESC')->paginate(20);
         $origin = 'comments';
         
         return view('backend.comment-list')->with('slug', $this->slug)
@@ -54,7 +52,7 @@ class CommentsController extends Controller
 
     public function pending() {
 
-        $comments = Comment::where('comment_approved', 0)->paginate(10); //->get();
+        $comments = Comment::where('comment_approved', 0)->paginate(20);
         $origin = 'pending-comments';
         
         return view('backend.comment-list')->with('slug', $this->slug)

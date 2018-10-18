@@ -30,8 +30,7 @@ class DashboardController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
-    {
+    public function index() {
         $user = Auth::user(); //User::all();
         $date = Product::italian_date($user->created_at);
 
