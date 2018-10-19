@@ -71,7 +71,7 @@
 
         <!-- comment-reply form -->
         <div id="respond-comment-{{ $comment->id }}" class="collapse comment-respond">
-          <h4>Rispondi al commento di <b>{{ $comment->from_user_name }}</b></h4>
+          <div>Rispondi al commento di <b>{{ $comment->from_user_name }}</b></div>
 
           <form id="reply-commentform-{{ $comment->id }}" class="" action="{{ url($comment->post->slug . '/comment/send') }}" method="post">
             {{ csrf_field() }}
