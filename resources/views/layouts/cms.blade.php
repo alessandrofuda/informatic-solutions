@@ -68,13 +68,21 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="navbar-brand" href="#">Informatic-solutions</a>
+          <a class="navbar-brand" href="{{ url('/') }}">
+            <img class="logo" src="{{ asset('/images-comp/informatic-solutions-logo.png') }}" alt="{{ $post->slug }} info e prezzi - Informatic Solutions" title="{{ ucfirst($post->slug) }} info e prezzi - Informatic Solutions">
+          </a>
         </div>
         <div id="navbar" class="collapse navbar-collapse">
           <ul class="nav navbar-nav navbar-right">
-            <li class="active"><a href="{{ url('/videocitofoni/comparatore-prezzi') }}">Vai al Comparatore</a></li>
-            <!--li><a href="#about">About</a></li-->
-            <!--li><a href="#contact">Contact</a></li-->
+            <li class="go-comparator">
+              <a href="{{ url('/videocitofoni/comparatore-prezzi') }}">Vai al Comparatore</a>
+            </li>
+            <!--li>
+              <a href="#about">About</a>
+            </li-->
+            <!--li>
+              <a href="#contact">Contact</a>
+            </li-->
           </ul>
         </div><!--/.nav-collapse -->
       </div>
@@ -88,8 +96,8 @@
 
   <footer class="footer">
     <div class="container">
-      <p class="text-muted text-center first">Informatic-Solutions.it - P.Iva 08497200967 - Tutti i diritti riservati © {{ date('Y') }}</p>
-      <p class="text-muted text-center small">La duplicazione anche parziale dei contenuti è severamente vietata; le violazioni saranno segnalate alle autorità competenti e perseguite ai termini di legge</p>
+      <p class="text-center first">Informatic-Solutions.it - P.Iva 08497200967 - Tutti i diritti riservati © {{ date('Y') }}</p>
+      <p class="text-center small">La duplicazione anche parziale dei contenuti è severamente vietata; le violazioni saranno segnalate alle autorità competenti e perseguite ai termini di legge</p>
     </div>  
   </footer>
 

@@ -41,9 +41,9 @@
     @foreach ($comments as $comment)
     <li id="comment-{{ $comment->id }}" class="media">
       <div class="media-body">
-        <h4 class="media-heading">
+        <div class="media-heading">
           {{$comment->from_user_name}} <small>- {{ date('d/m/Y H:i', strtotime($comment->created_at)) }}</small>
-        </h4>
+        </div>
 
         <p class="comment-body"> {{ $comment->body }} </p> {{--VERIFICARE SICUREZZA TAG HTML E VIRGOLETTE --}}
 
@@ -58,9 +58,9 @@
         <!--Nested Comment - annidamento-->
         <div class="media reply-comm">
           <div class="media-body">
-            <h4 class="media-heading">
+            <div class="media-heading">
               {{ $comment_child->from_user_name }} <small>- {{ date('d/m/Y H:i', strtotime($comment_child->created_at)) }}</small>
-            </h4>
+            </div>
             <p class="comment-body"> {{ $comment_child->body }} </p>
           </div>
         </div>
@@ -108,7 +108,7 @@
 
   <hr>
   <!-- Comment Form -->
-  <h4>Lascia un commento {{ count($comments) > 0 ? 'anche tu' : '' }}  o fai la tua richiesta:</h4>
+  <div class="invite">Lascia un commento {{ count($comments) > 0 ? 'anche tu' : '' }}  o fai la tua richiesta:</div>
   <form id="commentform" class="" action="{{ url($comment->post->slug . '/comment/send') }}" method="post">
     {{ csrf_field() }}
     <div class="form-group">
@@ -129,7 +129,7 @@
   <form id="user-subscr" class="form-user-subscr" action="{{ url($comment->post->slug . '/comment/subscribe') }}" method="post">
     {{ csrf_field() }}
     <!--input class="" type="text" name="name-subscr" placeholder="Nome"-->
-    <input class="" type="email" name="mail-subscr" placeholder="e-mail">
+    <input class="updates-input" type="email" name="mail-subscr" placeholder="e-mail">
     <button type="submit" class="btn btn-primary btn-sm" >Voglio ricevere aggiornamenti su questa discussione senza lasciare un commento</button>
   </form>
 </div><!--#comments-->

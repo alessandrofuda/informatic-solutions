@@ -4,9 +4,9 @@
 <section id="section-1" class="container" role="main" itemscope itemtype="https://schema.org/Article">
   <div id="article-container" class="row">
     <div id="article" class="col-md-10 col-md-offset-1">
-      <h1 itemprop="name">{{$post->title}}</h1>
+      <h1 class="title" itemprop="name">{{$post->title}}</h1>
+      <h2 class="sub-title">Tutte le informazioni sui videocitofoni con e senza fili: marche, tipologie, prezzi, qualità e novità sul mercato.</h2>
       <div id="content" class="content">
-        <h3>Tutte le informazioni sui videocitofoni con e senza fili: marche, tipologie, prezzi, qualità e novità sul mercato.</h3>
 
         {{-- meta --}}
         <div class="postmeta">

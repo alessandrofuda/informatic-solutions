@@ -1,4 +1,4 @@
-<h2 id="tabella-prezzi">Videocitofoni, macro-categorie e prezzi medi</h2>
+<h3 id="tabella-prezzi" class="table-title">Videocitofoni, macro-categorie e prezzi medi</h3>
 <div class="table-responsive">
   <table class="table table-bordered table-striped">
     <thead>
@@ -40,7 +40,7 @@
   </table>
 </div>
 
-<h2 id="cosa-e-un-video-citofono">Cosa è un video citofono?</h2>
+<h3 id="cosa-e-un-video-citofono">Cosa è un video citofono?</h3>
 <div class="cosa-e">
   <p>In due parole: è un apparecchio che, come un normale citofono, consente di comunicare con chi si trova all&#8217;esterno. Ma, a differenza di un semplice citofono, utilizza una telecamera per mettere in comunicazione audio-video i due interlocutori in tempo reale, come una piccola webcam. Il video-citofono però, più che un &#8220;apparecchio&#8221;, è un <em>impianto</em>: un'<em>installazione</em>, che può essere anche Wireless (ovvero "senza fili").</p>
   <p>Col videocitofono si può parlare e <em>vedere</em> in tempo reale con chi si sta parlando. Come vedremo, in effetti, i video citofoni non sono utilizzati solo negli ingressi degli edifici, ma possono essere usati anche in altre situazioni, anche su lunghe distanze, sfruttando la rete web e internet.</p>
@@ -49,7 +49,7 @@
   <p>Ma prima: un preambolo sui costi, e sulle agevolazioni che dobbiamo conoscere per sfruttare, in questo momento, la possibilità di ammodernare il proprio impianto e migliorare la sicurezza della propria abitazione e dell'edificio in cui vivo.</p>
 </div>
 
-<h2 id="detrazioni-fiscali-50-per-acquisto-installazione-videocitofoni">Le detrazioni fiscali 50% sull&#8217;acquisto e l&#8217;installazione dei videocitofoni</h2>
+<h3 id="detrazioni-fiscali-50-per-acquisto-installazione-videocitofoni">Le detrazioni fiscali 50% sull&#8217;acquisto e l&#8217;installazione dei videocitofoni</h3>
 <div id="detrazioni">
   <figure class="figure pull-left">
     <img src="{{ url('images/videocitofono-300x300.jpg') }}" class="img-responsive img-thumbnail" title="videocitofono" alt="videocitofono" width="300" height="300" />
@@ -64,12 +64,12 @@
   <p><a title="Ristrutturazioni edilizie - Agenzia delle Entrate" href="http://www.agenziaentrate.gov.it/wps/file/Nsilib/Nsi/Agenzia/Agenzia+comunica/Prodotti+editoriali/Guide+Fiscali/Agenzia+informa/AI+guide+italiano/Ristrutturazioni+edilizie+it/Guida_Ristrutturazioni_edilizie.pdf" target="_blank">Vai al sito dell&#8217;agenzia delle entrate e scarica la guida in formato pdf per ulteriori informazioni</a>.</p>
 </div>
 
-<h2 id="iva-agevolata-acquisto-videocitofoni">L'Iva agevolata sull'acquisto dei videocitofoni</h2> 
+<h3 id="iva-agevolata-acquisto-videocitofoni">L'Iva agevolata sull'acquisto dei videocitofoni</h3> 
 <div id="iva" class="iva">
   <p>Non solo detrazioni: anche <strong>l&#8217;aliquota iva è agevolata</strong> perchè rientra tra le spese di ristrutturazione. Sul sevizio di installazione si pagherà infatti l&#8217;iva agevolata del 10%, anzichè dell&#8217;ordinario 22%. Attenzione però: l&#8217;agevolazione spetta non sull&#8217;acquisto del prodotto, ma sul costo relativo al servizio di installazione.</p>
 </div>
 
-<h2 id="citofono-videocitofono-quale-scegliere">Citofono o videocitofono?  Quale scegliere?</h2>
+<h3 id="citofono-videocitofono-quale-scegliere">Citofono o videocitofono?  Quale scegliere?</h3>
 <div id="citofono-o-videocitofono">
   <p>Ovviamente il videocitofono non è un <em>bisogno</em> in senso stretto. Diciamo che , a differenza di un semplice citofono, è una <em>comodità</em><em>,</em> che garantisce un maggior livello di <em>confort</em> e <em>sicurezza</em>. Anche perchè, come vedremo, può essere integrato al sistema di antifurto e, nel caso di videocitofoni wireless (videocitofoni senza fili) l&#8217;installazione non richiede lavori di muratura, canaline, buchi, passafili, ecc&#8230; Basterà in questo caso installare le componenti a muro e metterle in collegamento wireless.</p>
   <p>Se non si ha un citofono, se si sta ristrutturando casa e si vuole cambiare il vecchio citofono, oppure: se si sta acquistando casa e il costruttore ti permette di scegliere tra citofono o videocitofono, il mio consiglio è quello di optare per un videocitofono, anche perchè, come vedremo, alcune tipologie sono utilizzabili anche &#8220;a distanza&#8221;, direttamente dal proprio smartphone, tablet o pc e possono essere integrati con altri apparecchi di casa (per esempio la tv). Funzioni molto comode in molti casi.</p>
@@ -86,7 +86,7 @@
   <p>Ecco il tipico esempio: ho ristrutturato casa e, visto che faccio i lavori, ne approfitto per cambiare il mio vecchio citofono. Potrei valutare l&#8217;installazione di un citofono <em>&#8220;videofonico&#8221;</em> che mi permette di vedere in tempo reale il mio interlocutore. Mi conviene optare per questa soluzione? Quali sono i costi? Quanta la comodità e la <em>sicurezza</em> che può garantirmi?</p>
 </div><!--#citofono-o-videocitofono-->
 
-<h2 id="come-scegliere-videocitofono-adatto">Come scegliere il videocitofono più adatto</h2>
+<h3 id="come-scegliere-videocitofono-adatto">Come scegliere il videocitofono più adatto</h3>
 <div id="come-scegliere">
   <p>Quando stiamo cercando un videocitofono, ma non sappiamo come e dove cercare, come possiamo orientarci nella scelta dell&#8217;apparecchio?<br />
   Cosa dobbiamo guardare per scegliere il videocitofono più adatto alle nostre esigenze?</p>
@@ -111,7 +111,7 @@
 </div><!--#come-scegliere-->
 
 
-<h2 id="quali-caratteristiche-deve-avere-un-buon-videocitofono">Quali caratteristiche deve avere un buon videocitofono</h2>
+<h3 id="quali-caratteristiche-deve-avere-un-buon-videocitofono">Quali caratteristiche deve avere un buon videocitofono</h3>
 <div id="caratteristiche">
   <p>Come deve essere un buon videocitofono? E quali caratteristiche minime bisogna controllare nel momento in cui si è in fase di scelta? Ecco una breve check-list che potrà essere utile in fase di valutazione.</p>
   <ul>
@@ -134,7 +134,7 @@
   <p>Passando in rassegna queste caratteristiche, quando dovrai valutare l'acquisto di un videocitofono, avrai alcuni utili <em>"linee guida"</em> per verificare la qualità del prodotto che hai di fronte. Potremmo definirle come una sorta di caratteristiche minime essenziali.</p>
 </div><!--caratteristiche-->
 
-<h2 id="confrontare-videocitofoni-checklist">Cosa confrontare PRIMA di comprare un videocitofono: due checklist per orientarsi.</h2>
+<h3 id="confrontare-videocitofoni-checklist">Cosa confrontare PRIMA di comprare un videocitofono: due checklist per orientarsi.</h3>
 <div class="checklist">
   <p><em>Ok voglio cambiare il mio vecchio citofono e metterne uno nuovo: più bello, più elegante, e che mi dia sicurezza. Non voglio spendere troppo, ma non voglio neanche la solita "cineserìa" che dura una anno e poi è da buttare. Non voglio comprare un prodotto con funzionalità che non mi servono, ma voglio che l'impianto sia di qualità e duri nel tempo. Cerco, come sempre, il miglior rapporto qualità prezzo.</em> Che faccio? Apro internet e incomincio a <em>"smanettare"</em>. Ma trovo solo una grande confusione,.. prodotti diversissimi tra loro, prezzi diversissimi tra loro, molte caratteristiche e funzionalità diverse, ma che forse non sono tutte poi così utili. Non essendo un tecnico, non essendo un commerciale e non conoscendo per bene "la materia" la sensazione è che bisognerà passarsi parecchie ore davanti al monitor per cercare di raccogliere più informazioni possibili che mi aiutino nella scelta.</p>
   <p>E' possibile trovare alcuni minimi criteri di scelta che mi aiutino a distinguere se e quando un videocitofono può fare al caso mio? Quello che ci vuole è proprio una lista. Una lista di cose da "vedere" per ogni prodotto e spuntare man mano in base a quello che mi serve. Linee-guida da usare prima di comprare.</p>
@@ -175,7 +175,7 @@
 </div>
 
 
-<h2 id="quanti-tipi-di-videocitofoni-esistono">Quanti tipi di Videocitofoni esistono</h2>
+<h3 id="quanti-tipi-di-videocitofoni-esistono">Quanti tipi di Videocitofoni esistono</h3>
 <div id="tipi">
   <p>Di tipologie ne esistono ormai davvero tante, ce n&#8217;è per tutti i gusti: da quelli &#8220;classici&#8221; a quelli più tecnologici e moderni che si integrano addirittura con smartphone, tablet o col televisore di casa.Ci sono videocitofoni che, in caso di chiamata, sono in grado di &#8220;inserirsi&#8221; <em>in tempo reale</em> nella programmazione televisiva per mostrarti chi sta suonando al campanello di casa. Si può rispondere, e magari aprire, senza alzarsi dal divano. Questa funzione utilizza la tecnologia &#8220;Picture In Picture&#8221; (PIP) per sovrapporre in un angolo dello schermo televisivo una finestrella in caso di chiamata.Stessa cosa con l&#8217;iPhone: quando qualcuno suona al citofono di casa si attiva automaticamente una schermata sullo smartphone che ti mostra, anche se sei fuori casa, chi ti sta chiamando e ti dà la possibilità di aprire il portone &#8220;a distanza&#8221;.<br />
     Si pensi all&#8217;utilità di questa funzione, ad esempio, per interloquire con postini,  corrieri espresso o semplicemente amici e parenti.Ci sono anche videocitofoni in grado di attivarsi automaticamente ancor prima che l&#8217;ospite suoni al campanello: si può auto-attivare, per esempio, al passaggio di una persona davanti ad un sensore, oppure si può attivare quando una persona bussa alla porta, anzichè suonare.<br />
@@ -187,7 +187,7 @@
   <p>Anche dal punto di vista della <em>privacy</em>, infine, ci sono due grandi tipologie: videocitofoni che registrano e quelli che non registrano.</p>
 </div><!--#tipi-->
 
-<h2 id="quali-marche-producono-impianti-videocitofonici">Quali sono le marche che producono i videocitofoni?</h2>
+<h3 id="quali-marche-producono-impianti-videocitofonici">Quali sono le marche che producono i videocitofoni?</h3>
 <div id="marche">
   <p>Il prodotto è ormai parecchio diffuso e sfrutta le più moderne tecnologie. Le case produttrici che producono, assemblano o commercializzano videocitofoni sono molte e molte di queste hanno prodotti di qualità.Ecco un elenco non esaustivo delle principali marche che si occupano di videocitofonia.</p>
   <ul>
@@ -217,7 +217,7 @@
   </ul>
 </div>
 
-<h2 id="videocitofoni-wireless-senza-fili">I videocitofoni wireless (senza fili)</h2>
+<h3 id="videocitofoni-wireless-senza-fili">I videocitofoni wireless (senza fili)</h3>
 <div class="wireless">
   <p>I <strong>videocitofoni wireless</strong>, di fatto, superano la frontiera dei classici impianti citofonici per sfociare nella domotica e nell&#8217;ultima frontiera della tecnologia: sfruttando la rete web, ad esempio, si può rispondere al videocitofono di casa anche se si è in vacanza e, da qui, si possono governare e controllare apparecchi di casa in tempo reale: camere, videocamere, tapparelle, riscaldamento, gas, elettricità, antifurti, ecc&#8230;</p>
   <p>La tecnologia wireless, di fatto, offre oggi infinite possibilità che vanno ben oltre al semplice citofono o videocitofono.</p>
@@ -234,7 +234,7 @@
   </ul>
 </div>
 
-<h2 id="integrare-videocitofono-con-impianto-di-allarme-domestico">A questo punto.. perchè non integrare il Videocitofono con un Impianto di Allarme Domestico?</h2>
+<h3 id="integrare-videocitofono-con-impianto-di-allarme-domestico">A questo punto.. perchè non integrare il Videocitofono con un Impianto di Allarme Domestico?</h3>
 <div class="allarme-domestico">
   <p>Chi installa un videocitofono con o senza fili spesso non considera che, di fatto, è come se installasse un vero e proprio impianto di antifurto: i cosidetti <em>kit di videosorveglianza</em>,  che potremmo definire una &#8220;estensione&#8221; degli impianti videocitofonici, sono <strong>impianti di allarme domestici</strong> e sono realizzati sfruttando lo stesso segnale video per monitorare la sicurezza degli ambienti.</p>
   <p>I negozi che vendono videocitofoni, come le aziende che li realizzano, sono in effetti gli stessi che vendono gli impianti di allarme e di videosorveglianza domestica.</p>
