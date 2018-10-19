@@ -74,18 +74,18 @@
                     @if (Auth::guest())
                         <li>
                             <a href="{{ url('/login') }}">
-                            <button class="btn btn-default">Accedi</button>
+                                <button class="btn btn-default">Accedi</button>
                             </a>
                         </li>
                         <li>
                             <a href="{{ url('/register') }}">
-                            <button class="btn btn-primary">Registrati</button>
+                                <button class="btn btn-primary">Registrati</button>
                             </a>
                         </li>
                     @else
                         <li class="dropdown">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-                                {{ Auth::user()->name }} <span class="caret"></span>
+                                <button class="btn btn-default">{{ Auth::user()->name }} <span class="caret"></span></button>
                             </a>
 
                             <ul class="dropdown-menu" role="menu">

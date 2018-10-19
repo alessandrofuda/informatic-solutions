@@ -16,6 +16,7 @@ body { color: #4b5458; background-color: #dee7ed; }
 .nav.navbar-nav li a { padding:5px; }
 .nav.navbar-nav li a > .btn-default { color: #3097d1; border: 1px solid; }
 .nav.navbar-right { margin-right: auto; }
+.btn > .caret { margin-left: 5px; }
 
 /*buttons*/
 .btn {min-width: 75px; white-space: normal;}

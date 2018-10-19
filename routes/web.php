@@ -86,6 +86,8 @@ Route::get('home', function () { return redirect('backend');  });
 
 
 
+
+
 // redirect da vecchio sito (da .htaccess su server apache)
 Route::get('lavoraconnoi.htm', function () { return redirect('videocitofoni');  });
 Route::get('russo/{str}', function () { return redirect('videocitofoni'); })->where('str', '(.*)');
