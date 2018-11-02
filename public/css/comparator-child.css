@@ -99,13 +99,11 @@ i.col-md-2.glyphicon.glyphicon-remove-sign { font-size: 30px; line-height: 45px;
 .pagination > li > a, .pagination > li > span, .pagination > .disabled > span, .pagination > .disabled > a { border-color: #3097d1; }
 
 /*footer*/
-.footer { position: absolute; bottom: 0; width: 100%; }
 footer.footer { margin-top: 30px; background-color: #FFFFFF; border-top: 2px solid #3097d1; color: #3097d1; }
 .footer > .container { padding-top: 40px; }
 
-/*login page*/
-#login { position: absolute; top: 50%; left: 50%; transform: translate(-50%,-60%); }
-
+/*login/register pages*/
+#login .panel, #register .panel { margin-top:5%; }
 
 
 
