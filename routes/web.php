@@ -23,7 +23,8 @@ CMS: admin, author */
 
 
 /* COMPARATOR - FRONTEND */
-Route::get('/', function () { return redirect('videocitofoni/comparatore-prezzi');  });
+//Route::get('/', function () { return redirect('videocitofoni/comparatore-prezzi');  });
+Route::get('/', ['as'=>'home', 'uses' => 'HomepageController@index']);
 
 Route::get('{slug}/comparatore-prezzi', 'ComparatorController@index');
 Route::post('{slug}/comparatore-prezzi', 'ComparatorController@filter');  // checkboxs + text search

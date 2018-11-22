@@ -16,8 +16,11 @@
     @endif
 
     <!-- Styles -->
-    <link href="/css/app.css" rel="stylesheet">
-    <link href="/css/comparator-child.css" rel="stylesheet">
+    <link href="{{ url('css/app.css') }}" rel="stylesheet">
+    <link href="{{ url('css/comparator-child.css') }}" rel="stylesheet">
+    @if (Route::currentRouteName('home'))
+        <link href="{{ url('css/homepage-child.css') }}" rel="stylesheet">
+    @endif
 
     <!-- Scripts -->
     <script src="/js/app.js"></script>
