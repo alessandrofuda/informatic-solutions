@@ -1,2 +1,22 @@
 /*specific homepage css child*/
-.homepage .slider-container { height: 600px; }
+@import url('');
+.homepage .slider-container { 
+	min-height: 600px; 
+	background-size: cover; 
+	background-position: center bottom; 
+	color: #FFFFFF; 
+	font-size: 28px; 
+	text-align: center;
+}
+.row.second {
+    margin: 50px auto;
+    text-align: center;
+    min-height: 200px;
+}
+.block1, .block2 {
+    min-height: 200px;
+    padding: 20px;
+    border: 2px solid #217aa2;
+    background-color: #217aa2;
+    color: #FFFFFF;
+}

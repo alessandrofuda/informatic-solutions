@@ -3,24 +3,30 @@
 @section('content')
     <div id="homepage" class="container-fluid homepage">
         <div class="row first">
-            <div class="col-md-12">
-                <div class="slider-container" style="background-image: url('{{ asset('images-hp/hp-slide-1.jpg') }}')">
-                    SSSS
-                    <!--div class="slider-content">
-                        AAAA
-                    </div-->
+            <div class="slider-container" style="background-image: url('{{ asset('images-hp/hp-slide-1.jpg') }}')">
+                <div class="slider-content">
+                    <div class="col-md-4">
+                        <i class=""></i>Confronta
+                    </div>
+                    <div class="col-md-4">
+                        <i class=""></i>Monitora i Prezzi
+                    </div>
+                    <div class="col-md-4">
+                        <i class=""></i>Risparmia
+                    </div>
                 </div>
             </div>
         </div>
         <div class="row second">
             <div class="col-md-6">
                 <div class="block1">
-                    
+                    Leggi le nostre guide
                 </div>
             </div>
             <div class="col-md-6">
                 <div class="block2">
-                    
+                    <div class="go-to">Vai al comparatore e monitora i prezzi</div>
+                    <div class="cta">Scopri come funziona</div>
                 </div>
             </div>
         </div>  
