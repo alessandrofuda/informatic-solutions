@@ -25,17 +25,36 @@
                 </div>
             </div>
             <div class="col-md-6">
-                <a class="cta" href="{{ url('videocitofoni/comparatore-prezzi') }}">
                 <div class="block2">
-                    <span class="block-title">
-                        Vai al comparatore e monitora i prezzi
-                        Scopri come funziona
-                    </span>
+                    <a class="cta" href="{{ url('videocitofoni/comparatore-prezzi') }}">
+                        <span class="block-title">
+                            <span class="col-md-10 block-title-1">Vai al comparatore e monitora i prezzi
+                                <span class="cta-btn">Scopri come funziona</span>
+                            </span>
+                            <span class="col-md-2 block-title-2"><i class="fas fa-chevron-right"></i></span>
+                        </span>
+                    </a>
                 </div>
-                </a>
             </div>
         </div>  
     </div>
+
+    <script>
+        $(document).ready(function(){
+            $('.block2 .cta').hover(function(){
+                $('.block2 .cta-btn').css({
+                        'text-shadow' : '1px 1px 0px #000',
+                        'border' : '1px solid #000'
+                    });
+            }, function(){
+                $('.block2 .cta-btn').css({
+                        'text-shadow' : 'inherit',
+                        'border' : 'inherit'
+                    });
+            }
+            );
+        });
+    </script>
 
 @endsection
 

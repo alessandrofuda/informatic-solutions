@@ -45,8 +45,9 @@ i.fas.slide-hp {
 #homepage .block1, .block2 {
     min-height: 200px;
     padding: 20px;
-    border: 2px solid #217aa2;
+    /*border: 2px solid #217aa2;*/
     background-color: #217aa2;
+    background-image: linear-gradient(141deg, #1fc8db 0%, #217aa2 51%, #1fc8db 75%);
     color: #FFFFFF;
     position: relative;
 }
@@ -56,10 +57,42 @@ i.fas.slide-hp {
     text-shadow: 1px 1px 0px #3c3636;
     letter-spacing: 1px;
 }
-
+#homepage .block2 {
+	border-radius: 10px;
+}
+.block2 .cta {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border-radius: 10px;
+}
+.block2 .cta:hover{
+	border: 1px solid #000!important /*#217aa2*/;
+	background-image: linear-gradient(141deg, #217aa2 0%, #1fc8db 51%, #217aa2 75%);
+	text-shadow: 1px 1px 0px #000!important;
+}
 .block2 .block-title {
 	position: absolute;
 	top: calc(50%);
 	left: calc(50%);
 	transform: translate(-50%,-50%);
+	color: #FFF;
+	width: 70%;
+}
+.block2 .cta-btn{
+	display: block;
+	margin-top: 20px;
+	background-color: #FFF;
+	color: #217ca4;
+	text-shadow: none;
+	border-radius: 10px;
+}
+/*.block2 .cta-btn:hover{
+	text-shadow: 1px 1px 0px #000;
+	border: 1px solid #000;
+}*/
+.block2 .fas.fa-chevron-right{
+	font-size: 130px;
 }
