@@ -21,7 +21,14 @@
         <div class="row second">
             <div class="col-md-6">
                 <div class="block1">
-                    <div class="block-title">Leggi le nostre guide</div> 
+                    <div class="block-title">Leggi le nostre guide</div>
+                    <div class="block-body">
+                        <ul>
+                            {{-- @foreach($articles as $article) --}}
+                            <li><a href="{{ url('videocitofoni') }}" title="{{ 'videocitofoni, qualità prezzo' }}">Videocitofoni, come scegliere il miglior rapporto qualità prezzo</a></li>
+                            {{-- @endforeach --}}
+                        </ul>
+                    </div>
                 </div>
             </div>
             <div class="col-md-6">
@@ -44,12 +51,12 @@
             $('.block2 .cta').hover(function(){
                 $('.block2 .cta-btn').css({
                         'text-shadow' : '1px 1px 0px #000',
-                        'border' : '1px solid #000'
+                        'border' : '1px solid #217aa2'
                     });
             }, function(){
                 $('.block2 .cta-btn').css({
-                        'text-shadow' : 'inherit',
-                        'border' : 'inherit'
+                        'text-shadow' : 'none',
+                        'border' : 'none'
                     });
             }
             );
