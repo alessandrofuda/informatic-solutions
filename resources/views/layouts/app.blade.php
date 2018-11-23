@@ -61,8 +61,8 @@
                 </button>
                 <!-- Branding Image -->
                 <a class="navbar-brand" href="{{ url('/') }}">
-                    {{-- config('app.name', 'Laravel') --}}
-                    <img class="logo" src="{{ asset('/images-comp/informatic-solutions-logo.png') }}" alt="Comparatore Prezzi - Informatic Solutions">
+                    <!--img class="logo" src="{{-- asset('/images-comp/informatic-solutions-logo.png') --}}" alt="Comparatore Prezzi - Informatic Solutions"-->
+                    <i class="fas fa-cogs"></i>Informatic-solutions
                 </a>
             </div>
             <div class="collapse navbar-collapse" id="app-navbar-collapse">

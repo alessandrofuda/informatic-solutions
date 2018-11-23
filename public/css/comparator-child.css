@@ -1,4 +1,7 @@
 /* stylesheet comparator */
+@import url('https://fonts.googleapis.com/css?family=Black+Ops+One');
+@import url('https://use.fontawesome.com/releases/v5.5.0/css/all.css');
+
 /*IMPORTANT --> shifta tutti gli anchor link interni di 55 px che è l'altezza del fixed menu*/
 :target:before {
 content:"";
@@ -10,9 +13,10 @@ margin:-55px 0 0; /* negative fixed header height */
 body { color: #4b5458; background-color: #dee7ed; }
 
 /*header*/
-.navbar-default { border-color: #3097d1; margin-bottom: 0;}
-.navbar-brand { padding: 0; }
-.navbar-brand > img { max-width: 100%; max-height: 100%; }
+.navbar-default { margin-bottom: 0; background-color: transparent; border:none;}
+.navbar-default .navbar-brand {color: #FFFFFF; font-family: 'Black Ops One', cursive; font-size: 20px; text-shadow: 1px 1px 0px #000000;}
+.navbar-brand > .fas { margin-right: 10px; }
+
 .nav.navbar-nav li a { padding:5px; }
 .nav.navbar-nav li a > .btn-default { color: #3097d1; border: 1px solid; }
 .nav.navbar-right { margin-right: auto; }

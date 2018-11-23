@@ -68,8 +68,8 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="navbar-brand" href="{{ url('/') }}">
-            <img class="logo" src="{{ asset('/images-comp/informatic-solutions-logo.png') }}" alt="{{ $post->slug }} info e prezzi - Informatic Solutions" title="{{ ucfirst($post->slug) }} info e prezzi - Informatic Solutions">
+          <a class="navbar-brand" href="{{ url('/') }}" title="{{ ucfirst($post->slug) }} info e prezzi - Informatic Solutions" alt="{{ $post->slug }} prezzi e info - Informatic Solutions">
+            <i class="fas fa-cogs"></i>Informatic-solutions
           </a>
         </div>
         <div id="navbar" class="collapse navbar-collapse">

@@ -1,15 +1,24 @@
 /*specific homepage css child*/
-@import url('https://fonts.googleapis.com/css?family=Black+Ops+One');
-@import url('https://use.fontawesome.com/releases/v5.5.0/css/all.css');
-
+#homepage {
+	margin-top: -50px;
+}
 #homepage .slider-container { 
 	min-height: 600px; 
 	background-size: cover; 
-	background-position: center bottom; 
+	background-position: center; 
 	color: #FFFFFF; 
 	font-size: 28px; 
 	text-align: center;
 	position: relative;
+}
+#homepage .slider-overlay {
+	position: absolute;
+	top:0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background-color: #0000004d;
+	z-index: 9;
 }
 #homepage .slider-content {
     position: absolute;
@@ -20,7 +29,13 @@
     font-family: 'Black Ops One', cursive; 
     font-size: 35px;
     text-shadow: 2px 2px 0px #000000;
-
+    z-index: 10;
+    letter-spacing: 1px;
+}
+i.fas.slide-hp {
+    display: block;
+    font-size: 100px;
+    margin-bottom: 20px;
 }
 #homepage .row.second {
     margin: 50px auto;
@@ -33,9 +48,18 @@
     border: 2px solid #217aa2;
     background-color: #217aa2;
     color: #FFFFFF;
+    position: relative;
 }
-i.fas {
-    display: block;
-    font-size: 100px;
-    margin-bottom: 20px;
+.block-title {
+    font-family: 'Black Ops One', cursive;
+    font-size: 18px;
+    text-shadow: 1px 1px 0px #3c3636;
+    letter-spacing: 1px;
+}
+
+.block2 .block-title {
+	position: absolute;
+	top: calc(50%);
+	left: calc(50%);
+	transform: translate(-50%,-50%);
 }

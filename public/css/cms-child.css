@@ -1,10 +1,17 @@
 /*CMS - articles stylesheet*/
+@import url('https://fonts.googleapis.com/css?family=Black+Ops+One');
+@import url('https://use.fontawesome.com/releases/v5.5.0/css/all.css');
 
 /*header*/
 .navbar > .container { padding: 0; /*width: 100%;*/ }
 .navbar-default { border-color: #3097d1; }
-.navbar > .container .navbar-brand { padding: 0 15px; margin-left: 0;}
-.navbar-brand > img { max-width: 100%; max-height: 100%; }
+.navbar-default .navbar-brand {color: #3097d1; font-family: 'Black Ops One', cursive; font-size: 20px; text-shadow: 1px 1px 0px #000000;}
+.navbar-brand > .fas { margin-right: 10px; }
+
+
+
+
+/*.navbar-brand > img { max-width: 100%; max-height: 100%; }*/
 .navbar-right {margin-right: 0;}
 .go-comparator { background-color: #3097d1; text-transform: uppercase;}
 .navbar-default .navbar-nav > li > a { color: #FFFFFF; font-weight: bold; text-shadow: 1px 1px 0px #888888; }
