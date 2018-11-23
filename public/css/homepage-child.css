@@ -99,3 +99,57 @@ i.fas.slide-hp {
 .block2 .fas.fa-chevron-right{
 	font-size: 130px;
 }
+
+
+/*responsive*/
+@media (max-width: 767px) {
+	nav .navbar-header{
+		background-color: #000;
+	}
+	.navbar-collapse.collapse.in{
+		background-color: #CCC;
+	}
+	#homepage {
+	    margin-top: 0;
+	}
+	#homepage .slider-content {
+		font-size: 25px;
+	}
+	#homepage i.fas.slide-hp{
+		font-size: 80px;
+	}
+	#homepage .block1 .block-body ul{
+		padding-left: 0;
+	}
+	#homepage .block2 {
+		display: block;
+		margin-top: 30px;
+
+	}
+	#homepage .block2 .cta{
+		display: block;
+		position: relative;
+	}
+	#homepage .block2 .block-title{
+		position: relative;
+		top: 0;
+		left: 0;
+		transform: none;
+		width: 100%;
+	}
+	.block2 .cta:hover {
+	    border: none;
+	    background-image: none;
+	    text-shadow: none;
+	    text-decoration: none;
+	}
+	#homepage .block-body ul li a {
+		display: block;
+		border: 1px solid #ccc;
+		border-radius: 3px;
+		color: #FFF;
+		background-color: #3097D1;
+		padding: 10px;
+	}
+	
+}

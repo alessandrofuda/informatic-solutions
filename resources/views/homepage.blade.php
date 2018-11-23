@@ -7,13 +7,13 @@
                 <div class="slider-overlay"></div>
                 <div class="slider-content">
                     <div class="col-md-4">
-                        <i class="fas fa-list-alt slide-hp"></i>Confronta
+                        <i class="fas fa-list-alt slide-hp"></i>Confronta<br>Prodotti
                     </div>
                     <div class="col-md-4">
-                        <i class="fas fa-chart-line slide-hp"></i>Monitora i Prezzi
+                        <i class="fas fa-chart-line slide-hp"></i>Monitora i <br>Prezzi
                     </div>
                     <div class="col-md-4">
-                        <i class="fas fa-hand-holding-usd slide-hp"></i>Risparmia
+                        <i class="fas fa-hand-holding-usd slide-hp"></i>Compra e <br>Risparmia
                     </div>
                 </div>
             </div>
