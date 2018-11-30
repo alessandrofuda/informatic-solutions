@@ -3,4 +3,6 @@ SEO Page + Price comparator + Produts monitoring through Amazon API requests & C
 
 https://www.informatic-solutions.it/videocitofoni/comparatore-prezzi 
 
-[text](https://www.informatic-solutions.it/videocitofoni/comparatore-prezzi){:rel=follow}
+[Informatic-solutions](https://www.informatic-solutions.it/videocitofoni/comparatore-prezzi){:rel=follow}
+
+<a href="https://www.informatic-solutions.it/videocitofoni" rel="follow">Informatic-solutions</a>
