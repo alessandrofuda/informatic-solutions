@@ -10,11 +10,9 @@ use Illuminate\Support\Facades\Log;
 
 
 
-class AmazonPaApi
-{
+class AmazonPaApi {
 					// SISTEMARE CON https://www.sitepoint.com/amazon-product-api-exploration-lets-build-a-product-search/
-	public static function api_request($keysearch) 
-	{
+	public static function api_request($keysearch) {
 
 		$client = new Client();  //guzzlehttp extension
 	    $aws_access_key_id = env('AWS_ACCESS_KEY_ID');   // Your AWS Access Key ID, as taken from the AWS Your Account page	    

@@ -114,7 +114,15 @@ footer.footer { margin-top: 30px; background-color: #FFFFFF; border-top: 2px sol
 
 
 /*responsive*/
-@media (max-width: 480px) {
+@media screen and (max-width: 991px) {
+	.modal-button-left, .modal-button-right { padding:0; }
+}
+@media screen and (max-width: 768px) {
+	.min-160 { min-width: 10px; }
+	td.product-name {font-size: 12px;}
+	.panel-body .table > tbody > tr > td {padding: 8px 2px;}
+}	
+@media screen and (max-width: 480px) {
 	#app .container { width: 100%;}
 	#app .panel-default { width: 100%; border: none; }
 	#app .panel-body {padding-left: 10px; padding-right: 10px; border:none; width: 100%;}
@@ -122,17 +130,12 @@ footer.footer { margin-top: 30px; background-color: #FFFFFF; border-top: 2px sol
 	#plaintext-filter { padding:0 10px; }
 }
 
-@media (max-width: 768px) {
-	.min-160 { min-width: 10px; }
-	td.product-name {font-size: 12px;}
-	.panel-body .table > tbody > tr > td {padding: 8px 2px;}
-}	
-
-@media (max-width: 991px) {
-	.modal-button-left, .modal-button-right { padding:0; }
-}
-
-@media (min-width: 992px) {
+@media screen and (min-width: 992px) {
 	.product-summary p.abstract {min-height: 133px;}
+}
+@media screen and (min-width: 992px) and (max-width: 1199px){
+	.product-summary .modal-buttons .btn {
+		min-height: 50px;
+	}
 }
 

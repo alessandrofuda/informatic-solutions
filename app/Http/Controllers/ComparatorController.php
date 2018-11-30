@@ -176,12 +176,14 @@ class ComparatorController extends Controller
         $contents = $contents->get(); // no paginate();
         $brands = $this->getBrandsArray();  // brands array
         $reviews = $this->getReviews();   // fetch reviews
+        $all_products_number = count($products->get());
 
         return view('comparator.index')->with('brands', $brands)
                                        ->with('contents', $contents)
                                        ->with('slug', $slug)
                                        ->with('reviews', $reviews)
-                                       ->with('request', $request); 
+                                       ->with('request', $request)
+                                       ->with('all_products_number', $all_products_number); 
     }
 
 

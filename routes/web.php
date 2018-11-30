@@ -79,8 +79,6 @@ Route::group(['middleware' => ['auth','admin'], 'prefix' => 'backend'], function
 
 
 
-
-
 //'home' è il redirect predefinito assegnato di default dal sistema di autenticazione di Laravel (make:auth)
 Route::get('home', function () { return redirect('backend');  });
 

@@ -42,8 +42,8 @@ class FetchAmazonProducts extends Command
      *
      * @return mixed
      */
-    public function handle()  //metodo eseguito quando viene lanciato il comando da CLI
-    {   
+    public function handle() { //metodo eseguito quando viene lanciato il comando da CLI
+        
         //$this->info("TESTING.. Some text");
         $this->line("Comando avviato...");
         //$this->comment("Just a comment passing by");

@@ -102,7 +102,25 @@ i.fas.slide-hp {
 
 
 /*responsive*/
-@media (max-width: 767px) {
+@media all and (min-width: 768px) and (max-width: 991px) {
+	#homepage .slider-content > .col-md-4 {
+	    display: inline-block;
+	}
+	#homepage .slider-content{
+		font-size: 30px;
+	}
+	#homepage i.fas.slide-hp {
+		font-size: 70px;
+	}
+	#homepage .row.second .col-md-6 {
+		margin: 20px auto;
+	}
+	#homepage .block2 .fas.fa-chevron-right {
+	    font-size: 50px;
+	}
+}
+
+@media all and (max-width: 767px) {
 	nav .navbar-header{
 		background-color: #000;
 	}
@@ -142,6 +160,9 @@ i.fas.slide-hp {
 	    background-image: none;
 	    text-shadow: none;
 	    text-decoration: none;
+	}
+	#homepage .block2 .fas.fa-chevron-right {
+	    font-size: 50px;
 	}
 	#homepage .block-body ul li a {
 		display: block;
