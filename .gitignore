@@ -7,3 +7,4 @@ Homestead.yaml
 .env
 /public/custom/error_log
 error_log
+test.html
