@@ -164,7 +164,7 @@
 	            		
             		?>
             		{{-- dump($voto_string) --}}
-            		<script type="text/javascript">
+            		<script>
 				        $(document).ready(function(e) {
 				            $("#rating-{{ $content->asin }}").jRatingAdvance({
 				              stars: 5,  // number of stars          
@@ -230,7 +230,7 @@
 							        				Voto: 
 							        				<span id="rating-{{ $content->asin }}-{{ $n }}" style="position: relative!important;"></span>
 							        				<span class="suffix">su 5.</span>
-								            		<script type="text/javascript">
+								            		<script>
 												        $(document).ready(function(e) {
 												            $("#rating-{{ $content->asin }}-{{ $n }}").jRatingAdvance({
 												              stars: 5,  // number of stars          

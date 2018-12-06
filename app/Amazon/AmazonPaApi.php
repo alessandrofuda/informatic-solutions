@@ -17,22 +17,22 @@ class AmazonPaApi {
 		$client = new Client();  //guzzlehttp extension
 	    $aws_access_key_id = env('AWS_ACCESS_KEY_ID');   // Your AWS Access Key ID, as taken from the AWS Your Account page	    
 	    $aws_secret_key = env('AWS_SECRET_KEY');  // AWS Secret Key corresponding to the above ID  
+	    $amazon_affiliat_id = env('AMAZON_AFFILIAT_ID');
 	    $endpoint = "webservices.amazon.it";   // The region you are interested in
 	    $uri = "/onca/xml";
 
 
-	    for ($i=1; $i <=2 ; $i++) {  	    
+	    for ($i=1; $i <=2 ; $i++) {  	// estraz di (10 x $i) prodotti    
 
 		    $params = array(
 		        "Service" => "AWSECommerceService",  //affinare i criteri di ricerca e d irestituzione dati
 		        "Operation" => "ItemSearch",
 		        "AWSAccessKeyId" => $aws_access_key_id, 
-		        "AssociateTag" => "infsol-21",
+		        "AssociateTag" => $amazon_affiliat_id,
 		        "SearchIndex" => "All",
 		        "Keywords" => $keysearch,
 		        "ResponseGroup" => "EditorialReview,Images,ItemAttributes,Offers,Reviews",
 		        "ItemPage" => strval($i) // pagination
-		        //"Sort" => "price"
 		    );
 
 		   

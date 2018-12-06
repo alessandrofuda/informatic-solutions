@@ -226,11 +226,7 @@ class ComparatorController extends Controller
     */
     public static function FetchAndInsertProductInDb($keysearch) {  //attivata tramite custom console command
 
-        // $request = new AmazonPaApi;
-        // $contents = $request->api_request($keysearch);  //array di 20 prodotti
         $contents = AmazonPaApi::api_request($keysearch);   //array di 20 prodotti
-        // dd($contents);
-
 
         $created = 0;
         $updated = 0;
@@ -290,7 +286,6 @@ class ComparatorController extends Controller
             );
 
             // count how many new records created ... 
-            // dd($product->wasRecentlyCreated); // bool
             if ($product->wasRecentlyCreated === true) {
                 $created++;
             } else {
@@ -306,25 +301,20 @@ class ComparatorController extends Controller
         $cleaned = $product->where('id','<=',$id_to_delete)->delete();  // restituisce numero records cancellati
         
         
-        if($product) {
-            
+        if($product) {        
             return array($created, $updated); 
-
         } else {
-
             return false;
-
         }
-
         
     }
 
 
 
     /**
-    *   capture reviews text (recensioni)
-    *
-    */
+     *   capture reviews text (recensioni)
+     *
+     */
     public function scrapingreview($keysearch)  //attivata tramite custom console command
     {
 

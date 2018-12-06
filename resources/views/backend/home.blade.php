@@ -207,7 +207,7 @@
                             </div>
 
                             <!--datatables jquery plugin-->
-                            <script type="text/javascript">
+                            <script>
                                 $(document).ready(function(){
                                     $('#watchinglist').DataTable({
                                         "columnDefs": [{
