@@ -31,7 +31,7 @@ class Kernel extends ConsoleKernel
         // $schedule->command('inspire')
         //          ->hourly();
 
-        $schedule->command('fetch:amazonproducts videocitofono')->hourlyAt(42)->between('6:00', '23:58')->withoutOverlapping();                 
+        $schedule->command('fetch:amazonproducts videocitofono')->hourlyAt(22)->between('6:00', '23:58')->withoutOverlapping();                 
         $schedule->command('fetch:compareprices')->hourlyAt(24)->between('6:00', '23:58')->withoutOverlapping(); 
 
 
