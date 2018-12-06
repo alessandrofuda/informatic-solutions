@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Input;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Http\Request;
 use App\Amazon\AmazonPaApi;
 use App\Product;
@@ -225,6 +226,8 @@ class ComparatorController extends Controller
      *
     */
     public static function FetchAndInsertProductInDb($keysearch) {  //attivata tramite custom console command
+
+        Log::info('Debug: inizio FetchAndInsertProductInDb() method con '.$keysearch.' keysearch');
 
         $contents = AmazonPaApi::api_request($keysearch);   //array di 20 prodotti
 
