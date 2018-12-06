@@ -2,19 +2,18 @@
 
 namespace App\Amazon;
 
+use Illuminate\Support\Facades\Log;
+use Goutte\Client as ClientGoutte;
 use GuzzleHttp\Client;
 use SimpleXMLElement;
-use Goutte\Client as ClientGoutte;
 use App\Review;
-use Illuminate\Support\Facades\Log;
+
 
 
 
 class AmazonPaApi {
-					// SISTEMARE CON https://www.sitepoint.com/amazon-product-api-exploration-lets-build-a-product-search/
-	public static function api_request($keysearch) {
 
-		Log::info('Debug: inizio api_request() method');
+	public static function api_request($keysearch) {
 
 		$client = new Client();  //guzzlehttp extension
 	    $aws_access_key_id = env('AWS_ACCESS_KEY_ID');   // Your AWS Access Key ID, as taken from the AWS Your Account page	    
@@ -68,7 +67,7 @@ class AmazonPaApi {
 			      	$status = $response->getStatusCode();
 			      	Log::info('Response code: '. $status);
 
-			      	if ($status === 200) {
+			      	if ($status == 200) {
 						$contents[] = new SimpleXMLElement($response->getBody()->getContents());
 			      		break;  // important! interrompe loop dei tentativi in caso di successo 
 			      	}
@@ -78,36 +77,18 @@ class AmazonPaApi {
 			      	// continue;
 			      	//Log::info('Amazon Api call, errore');
 			    //}
-
 			    sleep(2);
-
 			} // fine ciclo for
-			
-			// dump('fine ciclo '. $i);
 			sleep(10);  // IMPORTANT PER EVITARE '503 SERVICE UNAVAILABLE'
-
 		} //fine ciclo for
 		
-	    
 		foreach ($contents as $content) {
-				
 				foreach($content->Items->Item as $Ite) {
 					$itemList[] = $Ite;
-					
-				}
-			
+				}	
 		}
-
-		// dump($itemList);
-
 	    return $itemList;
-
-
 	}
-
-
-
-
 
 
 

@@ -227,17 +227,13 @@ class ComparatorController extends Controller
     */
     public static function FetchAndInsertProductInDb($keysearch) {  //attivata tramite custom console command
 
-        Log::info('Debug: inizio FetchAndInsertProductInDb() method con '.$keysearch.' keysearch');
-
         $contents = AmazonPaApi::api_request($keysearch);   //array di 20 prodotti
-
         $created = 0;
         $updated = 0;
         
         //inserisce i prodotti in db
         foreach ($contents as $content) {
-
-            //dd($content);
+            
             if (!empty($content->ItemAttributes->Feature)){
                 $string = '';
                 foreach ($content->ItemAttributes->Feature as $feature) {
