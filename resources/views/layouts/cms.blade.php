@@ -68,7 +68,7 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="navbar-brand" href="{{ url('/') }}" title="{{ ucfirst($post->slug) }} info e prezzi - Informatic Solutions" alt="{{ $post->slug }} prezzi e info - Informatic Solutions">
+          <a class="navbar-brand" href="{{ url('/') }}" title="{{ ucfirst($post->slug) }} info e prezzi - Informatic Solutions">
             <i class="fas fa-cogs"></i>Informatic-solutions
           </a>
         </div>

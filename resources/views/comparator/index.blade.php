@@ -46,7 +46,7 @@
 				    		@endforeach	
 			    		</div>
 			    		<div class="prices">
-			    			<label class="checkbox-inline"><h4>Filtra per prezzo:</h4></label>
+			    			<label class="checkbox-inline">Filtra per prezzo:</label>
 			    			<label class="checkbox-inline"><input type="checkbox" name="price[]" value="range-1" {{ (!empty($request->price) && is_array($request->price) && in_array('range-1', $request->price)) ? ' checked' : '' }}>Fino a 100 €</label> 
 			    			<label class="checkbox-inline"><input type="checkbox" name="price[]" value="range-2" {{ (!empty($request->price) && is_array($request->price) && in_array('range-2', $request->price)) ? ' checked' : '' }}>da 101 a 200 €</label>
 			    			<label class="checkbox-inline"><input type="checkbox" name="price[]" value="range-3" {{ (!empty($request->price) && is_array($request->price) && in_array('range-3', $request->price)) ? ' checked' : '' }}>da 201 a 300 €</label>

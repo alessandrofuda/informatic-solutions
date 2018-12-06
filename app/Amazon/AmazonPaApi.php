@@ -14,6 +14,8 @@ class AmazonPaApi {
 					// SISTEMARE CON https://www.sitepoint.com/amazon-product-api-exploration-lets-build-a-product-search/
 	public static function api_request($keysearch) {
 
+		Log::info('Debug: inizio api_request() method');
+
 		$client = new Client();  //guzzlehttp extension
 	    $aws_access_key_id = env('AWS_ACCESS_KEY_ID');   // Your AWS Access Key ID, as taken from the AWS Your Account page	    
 	    $aws_secret_key = env('AWS_SECRET_KEY');  // AWS Secret Key corresponding to the above ID  
