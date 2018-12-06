@@ -31,18 +31,8 @@ class Kernel extends ConsoleKernel
         // $schedule->command('inspire')
         //          ->hourly();
 
-        $schedule->command('fetch:amazonproducts videocitofono')
-                 //->everyMinute()
-                 //->everyThirtyMinutes()
-                 ->hourlyAt(21)  //12
-                 ->between('6:00', '23:58')
-                 //->daily()
-                 ->withoutOverlapping(); //important !!  evita il sovrapporsi dell'esecuzione dei tasks !!
-                 
-        $schedule->command('fetch:compareprices')
-                 ->hourlyAt(24)
-                 ->between('6:00', '23:58')
-                 ->withoutOverlapping();  //important !!  evita il sovrapporsi dell'esecuzione dei tasks !! 
+        $schedule->command('fetch:amazonproducts videocitofono')->hourlyAt(42)->between('6:00', '23:58')->withoutOverlapping();                 
+        $schedule->command('fetch:compareprices')->hourlyAt(24)->between('6:00', '23:58')->withoutOverlapping(); 
 
 
         //SCRAPING RECENSIONI SOSPESO TEMPORANEAMENTE --> VERIFICARE IL CORRETTO INSERIMENTO DEI PRODOTTI IN DB -- $schedule->command('fetch:amazonreviews videocitofono')
