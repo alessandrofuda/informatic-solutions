@@ -266,7 +266,7 @@ class ComparatorController extends Controller {
             if (!empty($content->EditorialReviews->EditorialReview->Content)){
                 $editorialreviewcontent_rawhtml = trim($content->EditorialReviews->EditorialReview->Content);
                 //repair html - use custom trait
-                $editorialreviewcontent = $this->repairHtmlAndCloseTags($editorialreviewcontent_rawhtml);
+                $editorialreviewcontent = self::repairHtmlAndCloseTags($editorialreviewcontent_rawhtml);
             } else {
                 $editorialreviewcontent = null;
             }

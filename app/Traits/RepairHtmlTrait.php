@@ -9,7 +9,7 @@ namespace App\Traits;
 trait RepairHtmlTrait { 
 
     // repair unclosed Html tags
-    public function repairHtmlAndCloseTags($html) {  // https://gist.github.com/JayWood/348752b568ecd63ae5ce
+    public static function repairHtmlAndCloseTags($html) {  // https://gist.github.com/JayWood/348752b568ecd63ae5ce
         preg_match_all('#<([a-z]+)(?: .*)?(?<![/|/ ])>#iU', $html, $result);
         $openedtags = $result[1];
         preg_match_all('#</([a-z]+)>#iU', $html, $result);
