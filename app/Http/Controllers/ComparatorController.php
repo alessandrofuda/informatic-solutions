@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\Log;
+use App\Traits\RepairHtmlTrait;
 use Illuminate\Http\Request;
 use App\Amazon\AmazonPaApi;
 use App\Product;
@@ -14,21 +15,18 @@ use Response;
 use DB;
 
 
-class ComparatorController extends Controller
-{
+class ComparatorController extends Controller {
+
+    use RepairHtmlTrait;
 
     public $keysearch;
 
-    public function __construct()  //valore di default valido per tutti i metodi sottostanti
-    {
+    public function __construct() { //valore di default valido per tutti i metodi sottostanti
+    
         //$this->keysearch = 'videocitofono';
         //dd($this->keysearch);
         
     }
-
-
-
-
 
     /**
      * Display a listing of the resource.
@@ -220,6 +218,28 @@ class ComparatorController extends Controller
     }
 
 
+    /*// repair unclosed Html tags
+    public function closetags($html) {  // https://gist.github.com/JayWood/348752b568ecd63ae5ce
+        preg_match_all('#<([a-z]+)(?: .*)?(?<![/|/ ])>#iU', $html, $result);
+        $openedtags = $result[1];
+        preg_match_all('#</([a-z]+)>#iU', $html, $result);
+        $closedtags = $result[1];
+        $len_opened = count($openedtags);
+        if (count($closedtags) == $len_opened) {
+            return $html;
+        }
+        $openedtags = array_reverse($openedtags);
+        for ($i=0; $i < $len_opened; $i++) {
+            if (!in_array($openedtags[$i], $closedtags)) {
+                $html .= '</'.$openedtags[$i].'>';
+            } else {
+                unset($closedtags[array_search($openedtags[$i], $closedtags)]);
+            }
+        }
+        return $html;
+    }*/
+
+
     /**
      *  API call & DB update
      *
@@ -244,7 +264,9 @@ class ComparatorController extends Controller
             }
 
             if (!empty($content->EditorialReviews->EditorialReview->Content)){
-                $editorialreviewcontent = trim($content->EditorialReviews->EditorialReview->Content);
+                $editorialreviewcontent_rawhtml = trim($content->EditorialReviews->EditorialReview->Content);
+                //repair html - use custom trait
+                $editorialreviewcontent = $this->repairHtmlAndCloseTags($editorialreviewcontent_rawhtml);
             } else {
                 $editorialreviewcontent = null;
             }
@@ -261,10 +283,7 @@ class ComparatorController extends Controller
                 $lowestnewprice = null;
             }
 
-
-
             $product = Product::updateOrCreate(  //evita di creare ASIN duplicati !!
-
                 [
                     'asin' => $content->ASIN,
                 ],
@@ -281,9 +300,7 @@ class ComparatorController extends Controller
                     'price' => $price,
                     'lowestnewprice' => $lowestnewprice,                    
                 ]
-
             );
-
             // count how many new records created ... 
             if ($product->wasRecentlyCreated === true) {
                 $created++;
@@ -292,20 +309,16 @@ class ComparatorController extends Controller
             }
         }
 
-
-
         //elimina vecchi records in db (!!)
         $id_to_delete = $product->id - 60;
         //$today = ;
         $cleaned = $product->where('id','<=',$id_to_delete)->delete();  // restituisce numero records cancellati
         
-        
         if($product) {        
             return array($created, $updated); 
         } else {
             return false;
-        }
-        
+        }  
     }
 
 

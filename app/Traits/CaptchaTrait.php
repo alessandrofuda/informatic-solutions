@@ -6,15 +6,9 @@ namespace App\Traits;
 use Illuminate\Http\Request;
 use ReCaptcha\ReCaptcha;
 
-trait CaptchaTrait {  //con questo Trait il metodo captchaCheck() può essere utilizzato da più classi (cioè da più form, per la validazione)
+trait CaptchaTrait {  //con questo Trait il metodo captchaCheck() può essere utilizzato da più classi (da più form) per la validazione.
 
-
-
-    public function captchaCheck(Request $request)
-    {
-
-
-
+    public function captchaCheck(Request $request) {
         $response = $request->input('g-recaptcha-response');
         $remoteip = $_SERVER['REMOTE_ADDR'];
         $secret   = env('RE_CAP_SECRET');
@@ -25,9 +19,7 @@ trait CaptchaTrait {  //con questo Trait il metodo captchaCheck() può essere ut
             return 1;
         } else {
             return 0;
-        }
-
-        
+        }        
 
     }
 
