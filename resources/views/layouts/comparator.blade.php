@@ -19,6 +19,7 @@
     <!-- Styles -->
     <link href="{{ url('css/app.css') }}" rel="stylesheet">
     <link href="{{ url('css/comparator-child.css') }}" rel="stylesheet">
+    <link href="{{ url('css/backend-cms-child.css') }}" rel="stylesheet">
     @if (Route::currentRouteName('home'))
         <link href="{{ url('css/homepage-child.css') }}" rel="stylesheet">
     @endif

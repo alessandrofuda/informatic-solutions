@@ -11,20 +11,21 @@
 		<input type="text" class="form-control" name="meta-description" placeholder="Meta Description">
 	</div>
 	<div class="form-group">
-		<label for="article-body">Testo</label> {{-- https://www.tiny.cloud/docs/quick-start/ --}}
+		<label for="article-body">Testo</label> {{-- aggiunto script in <head> https://www.tiny.cloud/docs/quick-start/ --}}
 		<textarea id="article-body" class="article-body" name="article-body" placeholder="Testo"></textarea>
 		<p class="help-block">Example block-level help text here.</p>
 	</div>
 
-
-
-	<div class="checkbox">
-		<label>
-			<input type="checkbox"> Check me out
+	<div class="form-group text-right">
+		<span class="switch-label">Pubblicato ?</span>
+		<label class="switch">
+		  <input type="checkbox" checked>
+		  <span class="slider round"></span>
 		</label>
 	</div>
 
 
-
-	<button type="submit" class="btn btn-default">Salva</button>
+	<div class="form-group text-right">
+		<button type="submit" class="btn btn-primary btn-lg">Salva</button>
+	</div>
 </form>

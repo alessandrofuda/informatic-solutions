@@ -112,9 +112,6 @@ footer.footer { margin-top: 30px; background-color: #FFFFFF; border-top: 2px sol
 #login .panel, #register .panel { margin-top:5%; }
 
 
-
-
-
 /*responsive*/
 @media screen and (max-width: 991px) {
 	.modal-button-left, .modal-button-right { padding:0; }
