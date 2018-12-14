@@ -25,6 +25,13 @@ CMS: admin, author */
 /* ADMIN */
 Route::group(['middleware' => 'admin', 'prefix' => 'admin', 'as' => 'admin.'], function() {
 	Route::get('/', 'Backend\AdminDashboardController@index')->name('home');
+	Route::resource('users', 'Backend\AdminUserController');
+	Route::get('comments', 'Backend\AdminCommentsController@index')->name('comments');
+	Route::get('pending-comments', 'Backend\AdminCommentsController@pending')->name('pending-comments');
+	Route::get('publish-comment-{id}', 'Backend\AdminCommentsController@publish')->where('id', '[0-9]+')->name('publish-comment');
+	Route::get('edit-comment-{id}', 'Backend\AdminCommentsController@edit')->name('edit-comment');
+	Route::post('edit-comment-{id}', 'Backend\AdminCommentsController@update')->name('publish-comment-post');
+	Route::get('delete-comment-{id}', 'Backend\AdminCommentsController@destroy')->name('delete-comment');
 });
 
 
@@ -73,13 +80,6 @@ Route::get('unsubscribe/{slug}/{unique_code}', 'Backend\CmsCommentsController@Un
 // cambiato 'backend' con 'cms-backend' 
 Route::group(['middleware' => ['auth'], 'prefix' => 'cms-backend', 'as' => 'cms-backend.'], function() {
 	Route::get('/', 'Backend\CmsDashboardController@index')->name('home');
-	Route::get('comments', 'Backend\CmsCommentsController@index')->name('comments');
-	Route::get('pending-comments', 'Backend\CmsCommentsController@pending')->name('pending-comments');
-	Route::get('publish-comment-{id}', 'Backend\CmsCommentsController@publish')->where('id', '[0-9]+')->name('publish-comment');
-	Route::get('edit-comment-{id}', 'Backend\CmsCommentsController@edit')->name('edit-comment');
-	Route::post('edit-comment-{id}', 'Backend\CmsCommentsController@update')->name('publish-comment-post');
-	Route::get('delete-comment-{id}', 'Backend\CmsCommentsController@destroy')->name('delete-comment');
-	Route::resource('users', 'Backend\CmsUserController');
 });  
 
 

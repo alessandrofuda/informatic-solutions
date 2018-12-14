@@ -44,18 +44,18 @@
                             <td>{{ $user->verified ? 'si' : 'no' }}</td>
                 			<td>{{ date('d/m/Y - H:i' , strtotime($user->created_at)) }}</td>
                 			<td class="text-center">
-                                <a href="{{ url('backend/users/'. $user->id ) }}" class="btn btn-primary btn-sm btn-v-space">Vai alla pagina Utente</a>       
+                                <a href="{{ route('admin.users.show', ['user' => $user->id] ) }}" class="btn btn-primary btn-sm btn-v-space">Vai alla pagina Utente</a>       
                             </td>
                 			<!--td class="text-center"> - </td-->
                             <td class="text-center">
-                                <a href="{{ url('backend/users/'. $user->id . '/edit') }}" class="btn btn-primary btn-sm btn-v-space">Modifica</a>
-                                <form method="post" action="{{ url('backend/users/'. $user->id) }}">
+                                <a href="{{ route('admin.users.edit', ['user' => $user->id] ) }}" class="btn btn-primary btn-sm btn-v-space">Modifica</a>
+                                <form method="post" action="{{ route('admin.users.store', ['user' => $user->id] ) }}">
                                     {{ csrf_field() }}
                                     <input type="hidden" name="_method" value="DELETE" >
                                     <!--input type="hidden" name="id" value="{{ $user->id }}"-->
                                     <input class="btn btn-danger btn-sm btn-v-space" type="submit" name="" value="Elimina" onclick="return confirm('Confermare la cancellazione dell\'utente {{$user->name}}?')">
                                 </form>
-                                <!--a href="{{-- url('backend/users/'. $user->id) --}}" class="btn btn-danger btn-sm btn-v-space" onclick="return confirm('Confermare la cancellazione dell\'utente {{--$user->name--}}?')">Elimina</a-->
+                                <!--a href="{{-- route('backend/users/'. $user->id) --}}" class="btn btn-danger btn-sm btn-v-space" onclick="return confirm('Confermare la cancellazione dell\'utente {{--$user->name--}}?')">Elimina</a-->
                             </td>
 
                 		</tr>
@@ -65,11 +65,11 @@
                 	</table>
 
                     <div class="text-center">
-                        {{ $users->links() }} <!--pagination-->
+                        {{ $users->links() }}
                     </div>
 
                 	<div class="text-center">
-                        <a class="btn btn-primary btn-sm" href="{{ url('backend') }}">Torna alla dashboard</a>
+                        <a class="btn btn-primary btn-sm" href="{{ route('admin.home') }}">Torna alla dashboard</a>
                 	</div>
 
                 </div>

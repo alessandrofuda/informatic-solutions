@@ -12,7 +12,7 @@
                 
                 <div class="panel-body">
 
-                    <form method="POST" action="/backend/users/{{ $user->id }}">
+                    <form method="POST" action="{{ route('admin.users.update', ['user' => $user->id]) }}">
                         
                         {{ csrf_field() }}
                         <input type="hidden" name="_method" value="PUT">

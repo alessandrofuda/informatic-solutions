@@ -13,10 +13,10 @@
                         </div>
                         <div class="panel-body">
                             <p>
-                            <a class="btn btn-primary btn-sm" href="{{url('backend/comments')}}">Visualizza tutti i commenti</a> <a class="btn btn-primary btn-sm" href="{{url('backend/pending-comments')}}">Solo commenti in moderazione</a>
+                            <a class="btn btn-primary btn-sm" href="{{route('admin.comments')}}">Visualizza tutti i commenti</a> <a class="btn btn-primary btn-sm" href="{{route('admin.pending-comments')}}">Solo commenti in moderazione</a>
                             </p>
                             <p>
-                            <a class="btn btn-primary btn-sm" href="{{url('backend/users')}}">Visualizza tutti gli utenti</a>
+                            <a class="btn btn-primary btn-sm" href="{{route('admin.users.index')}}">Visualizza tutti gli utenti</a>
                             </p>
                         </div>
                     </div>

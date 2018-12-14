@@ -10,18 +10,24 @@ use UrlSigner;
 use App\User;
 
 
-class CmsUserController extends Controller {
+class AdminUserController extends Controller {
+
+
+    public function __construct() {
+        $this->middleware(['auth','admin']);   
+    }
+
+
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
-    {
-        $users = User::paginate(25);
-        //dd($users);
+    public function index() {
 
-        return view('backend.cmsUsersList')->with('users', $users);
+        $users = User::paginate(25);
+
+        return view('backend.adminUsersList')->with('users', $users);
     }
 
     /**
@@ -29,8 +35,7 @@ class CmsUserController extends Controller {
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
-    {
+    public function create() {
         //
     }
 
@@ -40,8 +45,7 @@ class CmsUserController extends Controller {
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
-    {
+    public function store(Request $request) {
         //
     }
 
@@ -51,8 +55,7 @@ class CmsUserController extends Controller {
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
-    {
+    public function show($id) {
         //
     }
 
@@ -62,16 +65,15 @@ class CmsUserController extends Controller {
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
-    {
-        $user = User::find($id);
+    public function edit($id) {
 
+        $user = User::find($id);
         $d = explode(' ', $user->created_at);
         $d = explode('-', $d[0]);
         $date = $d[2].'/'.$d[1].'/'.$d[0];
 
-        return view('backend.cmsUserEdit')->with('user', $user)
-                                        ->with('date', $date);
+        return view('backend.adminUserEdit')->with('user', $user)
+                                            ->with('date', $date);
     }
 
     /**
@@ -81,14 +83,12 @@ class CmsUserController extends Controller {
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
-    {   
+    public function update(Request $request, $id) {   
         // validate
         $this->validate($request, [
             'name' => 'bail|required',
             'profile' => 'in:subscriber,author,admin',
             ]); 
-
 
         $user = User::find($id);
 
@@ -96,7 +96,7 @@ class CmsUserController extends Controller {
         $user->role = $request->input('role');
         $user->save();
 
-        return redirect('backend/users')->with('success_message', 'Il profilo utente di <b>' . $user->name . '</b> è stato modificato correttamente!');
+        return redirect()->back()->with('success_message', 'Il profilo utente di <b>' . $user->name . '</b> è stato modificato correttamente!');
     }
 
     /**
@@ -105,11 +105,10 @@ class CmsUserController extends Controller {
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)  // da Admin
-    {
-        User::destroy($id);  // !! softdelete !!
+    public function destroy($id) {
 
-        return redirect('backend/users')->with('success_message', 'Utente <b>'. $id .'</b> eliminato correttamente (..softDeletes()..)!');
+        User::destroy($id);  // !! softdelete !!
+        return redirect()->back()->with('success_message', 'Utente <b>'. $id .'</b> eliminato correttamente (..softDeletes()..)!');
     }
 
 

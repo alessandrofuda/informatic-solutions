@@ -9,10 +9,10 @@
                 <div class="panel-heading text-center">
                     @if ( $all === true )
                         <h3>Elenco di tutti i commenti presenti in db</h3>
-                        <a href="{{url('backend/pending-comments')}}" class="btn btn-primary btn-sm">Vai ai soli commenti in moderazione</a>
+                        <a href="{{route('admin.pending-comments')}}" class="btn btn-primary btn-sm">Vai ai soli commenti in moderazione</a>
                     @else
                         <h3>Elenco dei commenti in coda di moderazione</h3>
-                        <a href="{{url('backend/comments')}}" class="btn btn-primary btn-sm">Vai a tutti i commenti</a>
+                        <a href="{{route('admin.comments')}}" class="btn btn-primary btn-sm">Vai a tutti i commenti</a>
                     @endif
                 </div>
                 
@@ -55,7 +55,7 @@
                                     <!--a class="btn btn-warning btn-sm btn-v-space"><b>S</b>pubblica</a-->
                 				@else 
                 					<span style="color: red;">Non pubblicato</span>
-                                    <a href="{{ url('backend/publish-comment-'. $comment->id . '?origin='.$origin) }}" class="btn btn-default btn-sm btn-v-space">Pubblica</a>
+                                    <a href="{{ url('admin/publish-comment-'. $comment->id . '?origin='.$origin) }}" class="btn btn-default btn-sm btn-v-space">Pubblica</a>
                 				@endif
                 			</td>
                 			<td class="text-center">{{ $comment->from_user_ip }}
@@ -67,10 +67,10 @@
                                 @else
 
                 				    
-                                        <a class="btn btn-info" href="{{ url('backend/articles/edit/' . $article->id) }}">Modifica</a>
+                                        <a class="btn btn-info" href="{{ url('admin/articles/edit/' . $article->id) }}">Modifica</a>
                                     
 
-                    				<form style="display: inline-block;" action="{{ url('backend/articles/delete/' . $article->id) }}" method="post">
+                    				<form style="display: inline-block;" action="{{ url('admin/articles/delete/' . $article->id) }}" method="post">
     									{{ csrf_field() }}
     									<input class="btn btn-danger" type="submit" name="delete" value="Cancella" onclick="return confirm('Confermare la cancellazione dell\'articolo?')" /> 
                     				</form>
@@ -79,8 +79,8 @@
 
                 			</td>
                             <td class="text-center">
-                                <a href="{{ url('backend/edit-comment-'. $comment->id . '?origin='.$origin) }}" class="btn btn-primary btn-sm btn-v-space">Modifica</a>
-                                <a href="{{ url('backend/delete-comment-'. $comment->id . '?origin='.$origin) }}" class="btn btn-danger btn-sm btn-v-space" onclick="return confirm('Confermare la cancellazione del commento?')" >Elimina</a>
+                                <a href="{{ url('admin/edit-comment-'. $comment->id . '?origin='.$origin) }}" class="btn btn-primary btn-sm btn-v-space">Modifica</a>
+                                <a href="{{ url('admin/delete-comment-'. $comment->id . '?origin='.$origin) }}" class="btn btn-danger btn-sm btn-v-space" onclick="return confirm('Confermare la cancellazione del commento?')" >Elimina</a>
                             </td>
 
                 		</tr>
@@ -90,11 +90,11 @@
                 	</table>
 
                     <div class="text-center">
-                        {{ $comments->links() }} <!--pagination-->
+                        {{ $comments->links() }}
                     </div>
 
                 	<div class="text-center">
-                        <a class="btn btn-primary btn-sm" href="{{ url('backend') }}">Torna alla dashboard</a>
+                        <a class="btn btn-primary btn-sm" href="{{ route('admin.home') }}">Torna alla dashboard</a>
                 	</div>
 
                 </div>
