@@ -48,6 +48,14 @@
             'csrfToken' => csrf_token(),
         ]); ?>
     </script>
+
+    <!-- TinyMce WYSIWYG editor -->
+    <script src='https://cloud.tinymce.com/stable/tinymce.min.js'></script>
+    <script>
+        tinymce.init({
+            selector: '#article-body'
+        });
+    </script>
 </head>
 <body>
     <div id="app">
