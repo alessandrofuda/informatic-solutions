@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.comparator')
 
 @section('content')
     <div id="homepage" class="container-fluid homepage">

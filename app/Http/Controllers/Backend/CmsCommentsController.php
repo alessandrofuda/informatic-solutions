@@ -15,7 +15,7 @@ use App\Mail\CommentPublished;
 use App\Mail\NewCommentSubscribedNotification;
 
 
-class CommentsController extends Controller 
+class CmsCommentsController extends Controller 
 {   
 
     /**
@@ -23,8 +23,7 @@ class CommentsController extends Controller
      *
      * @return void
      */
-    public function __construct()
-    {
+    public function __construct(){
         $this->slug = 'migliori prodotti';  // valore "di default" per la variabile $slug
         $this->middleware('auth')->except('send', 'subscribe');   // !!! CREARE MIDDLEWARE PER ADMIN, AUTHOR, SUBSCRIBER !!!
     }
@@ -41,7 +40,7 @@ class CommentsController extends Controller
         $comments = Comment::orderBy('created_at', 'DESC')->paginate(20);
         $origin = 'comments';
         
-        return view('backend.comment-list')->with('slug', $this->slug)
+        return view('backend.cmsCommentsList')->with('slug', $this->slug)
                                            ->with('comments', $comments)
                                            ->with('all', true)
                                            ->with('origin', $origin);
@@ -55,7 +54,7 @@ class CommentsController extends Controller
         $comments = Comment::where('comment_approved', 0)->paginate(20);
         $origin = 'pending-comments';
         
-        return view('backend.comment-list')->with('slug', $this->slug)
+        return view('backend.cmsCommentsList')->with('slug', $this->slug)
                                            ->with('comments', $comments)
                                            ->with('all', false)
                                            ->with('origin', $origin);
@@ -279,7 +278,7 @@ class CommentsController extends Controller
     {
 
         $comment = Comment::find($id);
-        return view('backend.comment-edit')->with('slug', $this->slug)
+        return view('backend.cmsCommentEdit')->with('slug', $this->slug)
                                            ->with('comment', $comment);
 
 

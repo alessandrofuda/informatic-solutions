@@ -4,7 +4,7 @@
     <!--meta charset="utf-8"-->
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="robots" content="index,follow"> {{-- il comparatore è DE-INDICIZZATO !! --}}
+    <meta name="robots" content="index,follow"> 
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="icon" type="image/png" href="{{ url('images-hp/favicon.png') }}">
 

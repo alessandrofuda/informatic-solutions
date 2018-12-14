@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.comparator')
 
 <!-- Main Content -->
 @section('content')

@@ -10,8 +10,7 @@ use UrlSigner;
 use App\User;
 
 
-class UserController extends Controller
-{
+class CmsUserController extends Controller {
     /**
      * Display a listing of the resource.
      *
@@ -22,7 +21,7 @@ class UserController extends Controller
         $users = User::paginate(25);
         //dd($users);
 
-        return view('backend.users-list')->with('users', $users);
+        return view('backend.cmsUsersList')->with('users', $users);
     }
 
     /**
@@ -71,7 +70,7 @@ class UserController extends Controller
         $d = explode('-', $d[0]);
         $date = $d[2].'/'.$d[1].'/'.$d[0];
 
-        return view('backend.user-edit')->with('user', $user)
+        return view('backend.cmsUserEdit')->with('user', $user)
                                         ->with('date', $date);
     }
 
@@ -111,55 +110,6 @@ class UserController extends Controller
         User::destroy($id);  // !! softdelete !!
 
         return redirect('backend/users')->with('success_message', 'Utente <b>'. $id .'</b> eliminato correttamente (..softDeletes()..)!');
-    }
-
-
-
-    public function deleteMyProfile() {
-
-        $id = Auth::user()->id;
-        
-        User::destroy($id);  // !! softdelete !!
-
-        return redirect('videocitofoni/comparatore-prezzi')->with('success_message', '<b>Il tuo profilo utente è stato Eliminato Correttamente</b>.<br>Se ti sei cancellato per errore o se vuoi registrarti di nuovo <a href="'. url('register') .'">clicca qui</a>.');
-
-    }
-
-
-
-    public function autoDestroy(Request $request, $id){
-
-        
-        $validate = UrlSigner::validate($request->fullUrl());  // bool
-        
-        if ($validate === false) {
-
-            abort(403);
-
-        } else {
-
-            User::destroy($id);  // !! softdelete !!
-            
-            $id = (int) $id;
-            $code = $id*100*3*67*89;  // encrypt $id 
-            
-
-            return redirect('videocitofoni/comparatore-prezzi')->with('success_message', '<b>Il tuo profilo utente è stato Eliminato Correttamente</b>.<br>Se ti sei cancellato per errore e vuoi <b>annullare</b> l\'operazione <a href="'. url('autorestore/'.$code.'') .'">clicca qui</a>.');
-        }
-
-    }
-
-
-    public function autoRestore($code) {
-
-        $id = $code/89/67/3/100; // decrypt $code
-
-        User::withTrashed()
-                ->where('id', $id)
-                ->restore();
-
-        return redirect('videocitofoni/comparatore-prezzi')->with('success_message', 'Operazione annullata! Sei di nuovo iscritto. Se vuoi accedere al tuo profilo <a href="'.url('login').'">fai il login</a>');
-
     }
 
 

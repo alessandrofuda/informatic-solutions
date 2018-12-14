@@ -24,7 +24,7 @@ CMS: admin, author */
 
 /* ADMIN */
 Route::group(['middleware' => 'admin', 'prefix' => 'admin', 'as' => 'admin.'], function() {
-	Route::get('/', 'Backend\DashboardController@index')->name('home');
+	Route::get('/', 'Backend\AdminDashboardController@index')->name('home');
 });
 
 
@@ -36,8 +36,8 @@ Route::get('{slug}/comparatore-prezzi', 'ComparatorController@index')->name('slu
 Route::post('{slug}/comparatore-prezzi', 'ComparatorController@filter')->name('slug-prices-comparator-post');  // checkboxs + text search
 Route::get('search/autocomplete', 'ComparatorController@autocomplete')->name('search-autocomplete');   // search box + autocomplete
 // unsubscribe via Mail : github.com/spatie/laravel-url-signer
-Route::get('unsubscribe-profile/{id}', ['middleware' => 'signedurl', 'uses' => 'Backend\UserController@autoDestroy', 'as' => 'unsubscribe-profile'])->where('id', '[0-9]+');
-Route::get('autorestore/{code}', ['uses' => 'Backend\UserController@autoRestore', 'as' => 'autorestore']);
+Route::get('unsubscribe-profile/{id}', ['middleware' => 'signedurl', 'uses' => 'Backend\ComparatorUserController@autoDestroy', 'as' => 'unsubscribe-profile'])->where('id', '[0-9]+');
+Route::get('autorestore/{code}', ['uses' => 'Backend\ComparatorUserController@autoRestore', 'as' => 'autorestore']);
 
 
 
@@ -46,14 +46,14 @@ Route::get('autorestore/{code}', ['uses' => 'Backend\UserController@autoRestore'
 Route::get('register/verify/{token}', 'Auth\RegisterController@verify')->name('register'); // verifica mail in registrazione nuovo utente (double opt-in)
 Route::get('autologin/{token}', '\Watson\Autologin\AutologinController@autologin')->name('autologin'); 
 Route::group(['middleware' => ['auth'], 'prefix' => 'backend', 'as' => 'comparator-backend.'], function() {  
-	Route::get('/', 'Backend\DashboardController@index')->name('home');
-	Route::get('change-my-pswd', 'Backend\DashboardController@changepswd')->name('change-my-pswd');
-	Route::post('change-my-pswd', 'Backend\DashboardController@postChangepswd')->name('change-my-pswd-post');
-	Route::get('delete/my-profile', 'Backend\UserController@deleteMyProfile')->name('delete-my-profile');
-	Route::get('metti-in-osservazione-{asin}-{id}', 'Backend\WatchinglistController@add')->name('put-in-observation');
-	Route::get('smetti-di-osservare-{asin}-{id}', 'Backend\WatchinglistController@remove')->name('remove-from-observation');
-	Route::get('elimina-da-lista-{asin}-{id}', 'Backend\WatchinglistController@delete')->name('delete-from-list');
-	Route::get('rimetti-in-osservazione-{asin}-{id}', 'Backend\WatchinglistController@restore')->name('reinsert-in-list'); 
+	Route::get('/', 'Backend\ComparatorDashboardController@index')->name('home');
+	Route::get('change-my-pswd', 'Backend\ComparatorDashboardController@changepswd')->name('change-my-pswd');
+	Route::post('change-my-pswd', 'Backend\ComparatorDashboardController@postChangepswd')->name('change-my-pswd-post');
+	Route::get('delete/my-profile', 'Backend\ComparatorUserController@deleteMyProfile')->name('delete-my-profile');
+	Route::get('metti-in-osservazione-{asin}-{id}', 'Backend\ComparatorWatchinglistController@add')->name('put-in-observation');
+	Route::get('smetti-di-osservare-{asin}-{id}', 'Backend\ComparatorWatchinglistController@remove')->name('remove-from-observation');
+	Route::get('elimina-da-lista-{asin}-{id}', 'Backend\ComparatorWatchinglistController@delete')->name('delete-from-list');
+	Route::get('rimetti-in-osservazione-{asin}-{id}', 'Backend\ComparatorWatchinglistController@restore')->name('reinsert-in-list'); 
 });
 
 
@@ -62,9 +62,9 @@ Route::group(['middleware' => ['auth'], 'prefix' => 'backend', 'as' => 'comparat
 /* CMS - FRONTEND */
 Route::get('videocitofoni', 'ArticlesController@index')->name('slug');  //..verificare eventuali conflitti con le routes sotto
 Route::post('articles-rating', 'ArticlesController@rating')->name('articles-rating');
-Route::post('{slug}/comment/send', 'Backend\CommentsController@send')->where('slug', '[A-Za-z0-9-_]+')->name('comment-send');
-Route::post('{slug}/comment/subscribe', 'Backend\CommentsController@subscribe')->where('slug', '[A-Za-z0-9-_]+')->name('comment-subscribe');
-Route::get('unsubscribe/{slug}/{unique_code}', 'Backend\CommentsController@UnsubscribeToComment')->where('slug', '[A-Za-z0-9-_]+')->name('comment-unsubscribe');
+Route::post('{slug}/comment/send', 'Backend\CmsCommentsController@send')->where('slug', '[A-Za-z0-9-_]+')->name('comment-send');
+Route::post('{slug}/comment/subscribe', 'Backend\CmsCommentsController@subscribe')->where('slug', '[A-Za-z0-9-_]+')->name('comment-subscribe');
+Route::get('unsubscribe/{slug}/{unique_code}', 'Backend\CmsCommentsController@UnsubscribeToComment')->where('slug', '[A-Za-z0-9-_]+')->name('comment-unsubscribe');
 
 
 
@@ -72,14 +72,14 @@ Route::get('unsubscribe/{slug}/{unique_code}', 'Backend\CommentsController@Unsub
 /* CMS - BACKEND */
 // cambiato 'backend' con 'cms-backend' 
 Route::group(['middleware' => ['auth'], 'prefix' => 'cms-backend', 'as' => 'cms-backend.'], function() {
-	Route::get('/', 'Backend\DashboardController@index')->name('home');
-	Route::get('comments', 'Backend\CommentsController@index')->name('comments');
-	Route::get('pending-comments', 'Backend\CommentsController@pending')->name('pending-comments');
-	Route::get('publish-comment-{id}', 'Backend\CommentsController@publish')->where('id', '[0-9]+')->name('publish-comment');
-	Route::get('edit-comment-{id}', 'Backend\CommentsController@edit')->name('edit-comment');
-	Route::post('edit-comment-{id}', 'Backend\CommentsController@update')->name('publish-comment-post');
-	Route::get('delete-comment-{id}', 'Backend\CommentsController@destroy')->name('delete-comment');
-	Route::resource('users', 'Backend\UserController');
+	Route::get('/', 'Backend\CmsDashboardController@index')->name('home');
+	Route::get('comments', 'Backend\CmsCommentsController@index')->name('comments');
+	Route::get('pending-comments', 'Backend\CmsCommentsController@pending')->name('pending-comments');
+	Route::get('publish-comment-{id}', 'Backend\CmsCommentsController@publish')->where('id', '[0-9]+')->name('publish-comment');
+	Route::get('edit-comment-{id}', 'Backend\CmsCommentsController@edit')->name('edit-comment');
+	Route::post('edit-comment-{id}', 'Backend\CmsCommentsController@update')->name('publish-comment-post');
+	Route::get('delete-comment-{id}', 'Backend\CmsCommentsController@destroy')->name('delete-comment');
+	Route::resource('users', 'Backend\CmsUserController');
 });  
 
 

@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.comparator')
 
 @section('content')
 <div id="register" class="container">

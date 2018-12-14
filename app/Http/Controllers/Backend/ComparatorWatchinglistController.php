@@ -4,15 +4,13 @@ namespace App\Http\Controllers\Backend;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-
 use Illuminate\Support\Facades\Auth;
 use App\Watchinglist;
 use App\Product;
 
 
 
-class WatchinglistController extends Controller
-{
+class ComparatorWatchinglistController extends Controller {
 
 	public $slug;
 

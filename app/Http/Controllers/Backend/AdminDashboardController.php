@@ -12,17 +12,15 @@ use App\User;
 
 
 
-class DashboardController extends Controller
-{
+class AdminDashboardController extends Controller {
+
     /**
      * Create a new controller instance.
      *
      * @return void
      */
-    public function __construct()
-    {   
-        //$this->slug = 'Migliori prodotti';  // default value for $slug var
-        $this->middleware('auth');
+    public function __construct() {   
+        $this->middleware(['auth','admin']);
     }
 
     /**
@@ -43,42 +41,11 @@ class DashboardController extends Controller
                                ->where('removed', 1)
                                ->get();
         
-        return view('backend.home')->with('user', $user)
+        return view('backend.adminHome')->with('user', $user)
                                    ->with('date', $date)
                                    ->with('watched_items', $watched_items)
                                    ->with('removeds', $removeds);
     }
-
-
-
-    public function changepswd() {
-
-        
-        return view('backend.changepswd');  // ?????? verificare (solo l'utente corrente può reimpostare password)
-        
-    }
-
-
-
-
-    public function postChangepswd(Request $request) {
-
-        $this->validate($request, [
-            '_token' => 'required',
-            'password' => 'required|min:6|max:60|confirmed',
-        ]);
-
-        $credentials = $request->only( '_token', 'password', 'password_confirmation' );
-
-        $user = Auth::user();
-        $user->password = bcrypt($credentials['password']);
-        
-        $user->save();
-
-        return redirect('backend')->with('success_message', 'La tua Password è stata reimpostata correttamente.');
-
-    }
-
 
 
 }
