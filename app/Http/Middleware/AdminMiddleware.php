@@ -18,7 +18,7 @@ class AdminMiddleware
         //dd($request->user()->role);
         if($request->user()->role != 'admin') {
 
-            return redirect('backend')->with('error_message', 'Non hai i permessi per accedere a questa pagina');
+            return redirect()->back()->with('error_message', 'Non hai i permessi per accedere a questa pagina');
         }
 
         return $next($request);

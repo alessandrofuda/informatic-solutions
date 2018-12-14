@@ -31,7 +31,7 @@ class DashboardController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index() {
-        $user = Auth::user(); //User::all();
+        $user = Auth::user(); 
         $date = Product::italian_date($user->created_at);
 
         $watched_items = Watchinglist::where('user_id', Auth::user()->id)

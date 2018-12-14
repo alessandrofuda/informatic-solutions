@@ -137,8 +137,7 @@ class RegisterController extends Controller
     *
     */
     // Get the user who has the same token and change his/her status to verified i.e. 1
-    public function verify($token)
-    {
+    public function verify($token) {
         // The verified method has been added to the user model and chained here
         // for better readability
         $user = User::where('email_token',$token)->firstOrFail();

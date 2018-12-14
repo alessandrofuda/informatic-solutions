@@ -39,8 +39,7 @@ class User extends Authenticatable
 
     // processo di verifica e-mail in auto-registrazione nuovi utenti
     // Set the verified status to true and make the email token null
-    public function verified()
-    {
+    public function verified() {
         $this->verified = 1;
         $this->email_token = null;
 
@@ -49,7 +48,7 @@ class User extends Authenticatable
 
 
 
-    /** relazioni*/
+    /** relations*/
     public function posts() {
       return $this->hasMany('App\Post','author_id');
     }
@@ -60,7 +59,7 @@ class User extends Authenticatable
 
 
 
-    /** ruoli utente*/
+    /** user roles*/
     public function is_admin() {
         
       $role = $this->role;

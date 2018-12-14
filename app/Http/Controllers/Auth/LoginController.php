@@ -36,16 +36,32 @@ class LoginController extends Controller
      *
      * @return void
      */
-    public function __construct()
-    {
+    public function __construct() {
         $this->middleware('guest', ['except' => 'logout']);
     }
 
+
+    protected function authenticated(Request $request, $user) {
+
+        if ($user->is_admin()) {
+
+            return redirect()->route('admin.home');
+
+        } elseif ($user->is_author()) {
+
+            return redirect()->route('cms-backend.home');
+
+        } elseif ($user->is_subscriber()) {
+
+            return redirect()->route('comparator-backend.home');
+        }
+    }
+
+
     
-    //Override of the credentials method from the "AuthenticateUsers"
+    //Override of the credentials method from the "AuthenticatesUsers"
     //permette il login solo agli utenti verificati !!
-    public function credentials(Request $request)
-    {
+    public function credentials(Request $request) {
         return [
             'email' => $request->email,
             'password' => $request->password,
@@ -62,14 +78,13 @@ class LoginController extends Controller
      * @param \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function logout(Request $request)
-    {   
+    public function logout(Request $request) {   
 
         $this->guard()->logout();
         $request->session()->flush();
         $request->session()->regenerate();
 
-        return redirect('/videocitofoni/comparatore-prezzi'); // più avanti sistemare con..  '/{slug}/comparatore-prezzi'
+        return redirect()->route('home'); 
     }
 
 
