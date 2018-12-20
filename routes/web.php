@@ -52,7 +52,7 @@ Route::get('autorestore/{code}', ['uses' => 'Backend\ComparatorUserController@au
 /* COMPARATOR - BACKEND */
 Route::get('register/verify/{token}', 'Auth\RegisterController@verify')->name('register'); // verifica mail in registrazione nuovo utente (double opt-in)
 Route::get('autologin/{token}', '\Watson\Autologin\AutologinController@autologin')->name('autologin'); 
-Route::group(['middleware' => ['auth'], 'prefix' => 'backend', 'as' => 'comparator-backend.'], function() {  
+Route::group(['middleware' => ['auth', 'subscriber'], 'prefix' => 'backend', 'as' => 'comparator-backend.'], function() {  
 	Route::get('/', 'Backend\ComparatorDashboardController@index')->name('home');
 	Route::get('change-my-pswd', 'Backend\ComparatorDashboardController@changepswd')->name('change-my-pswd');
 	Route::post('change-my-pswd', 'Backend\ComparatorDashboardController@postChangepswd')->name('change-my-pswd-post');
@@ -78,7 +78,7 @@ Route::get('unsubscribe/{slug}/{unique_code}', 'Backend\CmsCommentsController@Un
 
 /* CMS - BACKEND */
 // cambiato 'backend' con 'cms-backend' 
-Route::group(['middleware' => ['auth'], 'prefix' => 'cms-backend', 'as' => 'cms-backend.'], function() {
+Route::group(['middleware' => ['auth','author'], 'prefix' => 'cms-backend', 'as' => 'cms-backend.'], function() {
 	Route::get('/', 'Backend\CmsDashboardController@index')->name('home');
 });  
 
