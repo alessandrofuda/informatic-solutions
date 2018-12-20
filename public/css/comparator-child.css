@@ -13,6 +13,7 @@ margin:-55px 0 0; /* negative fixed header height */
 html,body,body > div {height: 100%;}
 body > div > div {min-height: calc(100% - 50px - 105.4px);}
 body { color: #4b5458; background-color: #dee7ed; }
+#alert {min-height: auto;}
 
 /*header*/
 .navbar-default { margin-bottom: 0; background-color: transparent; border:none;}
