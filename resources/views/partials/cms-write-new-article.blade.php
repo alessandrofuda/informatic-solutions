@@ -1,6 +1,11 @@
 <form id="new-article" class="new-article" method="POST" action="">
 	<div class="form-group form-inline">
-		<label for="article-slug">Url:</label> {{url('/')}}/<input type="text" class="form-control" name="article-slug" placeholder="Url">
+		<label>Id: </label><span class="article-id"> {{ $newArticleId }}</span>
+	</div>
+	<div class="form-group form-inline">
+		<label for="article-slug">Url:</label> 
+		<span class="slug">{{url('/')}}/<input type="text" class="form-control url" name="article-slug" placeholder="Url"></span> 
+		<button class="btn btn-primary btn-xs ok-slug">Ok</button>
 	</div>
 	<div class="form-group">
 		<label for="article-title">Titolo</label>
@@ -19,7 +24,7 @@
 	<div class="form-group text-right">
 		<span class="switch-label">Pubblicato ?</span>
 		<label class="switch">
-		  <input type="checkbox" checked>
+		  <input type="checkbox" name="published" checked>
 		  <span class="slider round"></span>
 		</label>
 	</div>

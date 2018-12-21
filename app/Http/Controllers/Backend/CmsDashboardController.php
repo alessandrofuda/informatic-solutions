@@ -6,9 +6,8 @@ namespace App\Http\Controllers\Backend;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
-use App\Watchinglist;
-use App\Product;
 use App\User;
+use App\Post;
 
 
 
@@ -19,7 +18,8 @@ class CmsDashboardController extends Controller {
      *
      * @return void
      */
-    public function __construct() {   
+    public function __construct() {
+
         $this->middleware('auth');
     }
 
@@ -30,22 +30,16 @@ class CmsDashboardController extends Controller {
      */
     public function index() {
 
-        $user = Auth::user(); 
-        $date = Product::italian_date($user->created_at);
-        
-        $watched_items = Watchinglist::where('user_id', Auth::user()->id)
-                                     ->where('removed', '!=', 1)
-                                     // ->orderBy('removed', 'asc')
-                                     ->get();
+        $user = Auth::user();
+        $posts = Post::paginate(15);
+        $lastArticleId = Post::select('id')->orderBy('id', 'DESC')->first()->id;
+        $newArticleId = (int)++$lastArticleId;
 
-        $removeds = Watchinglist::where('user_id', Auth::user()->id)
-                               ->where('removed', 1)
-                               ->get();
-        
         return view('backend.cmsHome')->with('user', $user)
-                                   ->with('date', $date)
-                                   ->with('watched_items', $watched_items)
-                                   ->with('removeds', $removeds);
+                                      ->with('posts', $posts)
+                                      ->with('newArticleId', $newArticleId);
+                                   
+
     }
 
 

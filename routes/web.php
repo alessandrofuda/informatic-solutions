@@ -78,7 +78,7 @@ Route::get('unsubscribe/{slug}/{unique_code}', 'Backend\CmsCommentsController@Un
 
 /* CMS - BACKEND */
 // cambiato 'backend' con 'cms-backend' 
-Route::group(['middleware' => ['auth','author'], 'prefix' => 'cms-backend', 'as' => 'cms-backend.'], function() {
+Route::group(['middleware' => ['auth', 'author'], 'prefix' => 'cms-backend', 'as' => 'cms-backend.'], function() {  
 	Route::get('/', 'Backend\CmsDashboardController@index')->name('home');
 });  
 

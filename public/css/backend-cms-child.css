@@ -1,3 +1,17 @@
+/*new article form*/
+#write-article {
+  margin:3% auto;
+  padding:3% 0;
+}
+.slug{
+  font-style: italic;
+}
+.form-control.url {
+  height: auto;
+  padding: 0;
+  width: auto;
+  min-width: 300px;
+  }
 /* bootstrap switcher */
 .switch {
   position: relative;
