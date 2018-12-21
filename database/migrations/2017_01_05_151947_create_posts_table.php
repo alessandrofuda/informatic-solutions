@@ -16,17 +16,19 @@ class CreatePostsTable extends Migration
         // posts table
         Schema::create('posts', function(Blueprint $table){
           $table->increments('id'); // table Id's
-          $table -> integer('author_id') -> unsigned() -> default(0);
+          $table -> integer('author_id')->unsigned()->default(1);
+          $table->string('title')->unique()->nullable();
+          $table->string('description')->nullable(); // for meta description
+          $table->text('body')->nullable(); // our posts
+          $table->string('slug')->unique();
+          $table->string('images')->nullable();
+          $table->boolean('active')->default(0);
+          $table->timestamps();
+
+          // FK
           $table->foreign('author_id')
                 ->references('id')->on('users')
                 ->onDelete('cascade');
-          $table->string('title')->unique();
-          $table->string('description'); // for meta description
-          $table->text('body'); // our posts
-          $table->string('slug')->unique();
-          $table->string('images');
-          $table->boolean('active');
-          $table->timestamps();
         });
     }
 

@@ -80,6 +80,8 @@ Route::get('unsubscribe/{slug}/{unique_code}', 'Backend\CmsCommentsController@Un
 // cambiato 'backend' con 'cms-backend' 
 Route::group(['middleware' => ['auth', 'author'], 'prefix' => 'cms-backend', 'as' => 'cms-backend.'], function() {  
 	Route::get('/', 'Backend\CmsDashboardController@index')->name('home');
+	Route::post('new-article-slug', 'Backend\CmsDashboardController@newArticleSlugPost')->name('new-article-slug-post');
+	Route::post('new-article', 'Backend\CmsDashboardController@newArticlePost')->name('new-article-post');
 });  
 
 

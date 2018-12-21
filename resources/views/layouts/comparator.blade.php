@@ -17,15 +17,15 @@
     @endif
 
     <!-- Styles -->
-    <link href="{{ url('css/app.css') }}" rel="stylesheet">
-    <link href="{{ url('css/comparator-child.css') }}" rel="stylesheet">
-    <link href="{{ url('css/backend-cms-child.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/comparator-child.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/backend-cms-child.css') }}" rel="stylesheet">
     @if (Route::currentRouteName('home'))
-        <link href="{{ url('css/homepage-child.css') }}" rel="stylesheet">
+        <link href="{{ asset('css/homepage-child.css') }}" rel="stylesheet">
     @endif
 
     <!-- Scripts -->
-    <script src="/js/app.js"></script>
+    <script src="{{ asset('js/app.js') }}"></script>
 
     <!-- jQuery-UI -->
     <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.css">

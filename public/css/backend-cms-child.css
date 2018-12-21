@@ -11,7 +11,19 @@
   padding: 0;
   width: auto;
   min-width: 300px;
-  }
+}
+.slug-string {
+  margin-left: -3px;
+}
+.url-ajax-resp{
+  background-color: #0bbe0bb3;
+  color: #FFF;
+  display: none;
+  padding: 10px 20px;
+  border-radius: 10px;
+}
+
+
 /* bootstrap switcher */
 .switch {
   position: relative;
