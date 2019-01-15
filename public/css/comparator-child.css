@@ -1,0 +1,143 @@
+/* stylesheet comparator */
+@import url('https://fonts.googleapis.com/css?family=Black+Ops+One');
+@import url('https://use.fontawesome.com/releases/v5.5.0/css/all.css');
+
+/*IMPORTANT --> shifta tutti gli anchor link interni di 55 px che è l'altezza del fixed menu*/
+:target:before {
+content:"";
+display:block;
+height:55px; /* fixed header height*/
+margin:-55px 0 0; /* negative fixed header height */
+}
+/*body*/
+html,body,body > div {height: 100%;}
+body > div > div {min-height: calc(100% - 50px - 105.4px);}
+body { color: #4b5458; background-color: #dee7ed; }
+#alert {min-height: auto;}
+
+/*header*/
+.navbar-default { margin-bottom: 0; background-color: transparent; border:none;}
+.navbar-default .navbar-brand {color: #FFFFFF; font-family: 'Black Ops One', cursive; font-size: 20px; text-shadow: 1px 1px 0px #000000;}
+.navbar-brand > .fas { margin-right: 10px; }
+
+.nav.navbar-nav li a { padding:5px; }
+.nav.navbar-nav li a > .btn-default { color: #3097d1; border: 1px solid; }
+.nav.navbar-right { margin-right: auto; }
+.btn > .caret { margin-left: 5px; }
+
+/*buttons*/
+.btn {min-width: 75px; white-space: normal;}
+.modal-buttons button.btn {width: 100%; margin: 5px auto; text-shadow: 1px 1px 0px #1e516d;}
+.row.modal-buttons {margin: 10px auto;}
+.modal-button-left { padding-left: 0;  }
+.modal-button-right { padding-right: 0; }
+.min-160 {min-width: 160px;}
+.margin-5 {margin: 5px;}
+
+/*table in edit comment page*/
+td.first-col {font-weight: bold;}
+
+/*comparator*/
+.title {margin-bottom: 20px;}
+.title h1 { font-weight: lighter; background: linear-gradient(to right,#DEE7ED ,#3299be,#dee7ed); color: #FFFFFF; text-shadow: 1px 1px 0px #000000; margin: 0; padding: 30px 0;}
+#search .well { background: none; border: none; box-shadow: none; max-width: 500px; margin: auto; width: 100%;}
+#search .input-group { width: 100%; }
+#search input { border-radius: 20px; border-color: #3097d1; }
+#search .search-icon { position: relative; margin-top: -25px; display: inline-block; width: 28px; height: 14px; line-height: 14px; vertical-align: middle;
+background-color: transparent; font-size: 20px; color: #888; float: right; z-index: 2; margin-right: 5%;}
+#search button { border-radius: 0 20px 20px 0; }
+
+.new-cont { width: 0;
+			height: 0;
+			border-style: solid;
+			border-width: 100px 100px 0 0;
+			border-color: #2ab27b transparent transparent transparent;
+			line-height: 0px;
+			position: absolute; 
+		}
+.new { 	position: absolute;
+		color: #fff;
+		font-weight: bolder;
+		letter-spacing: 2px; 
+		-ms-transform: rotate(-45deg);
+		-webkit-transform: rotate(-45deg);
+		transform: rotate(-45deg);
+		top: 25px;
+		left: 20px;
+		}
+table.summary { max-width: 600px; margin: auto; border: 1px solid #ddd; }
+
+table#watchinglist > thead > tr > th { vertical-align: middle; }
+.product-title { font-size: 16px; height: 35px; overflow: hidden; display: block; color: #3097D1;}
+.img-cont { height: 318px; overflow: hidden; }
+.img-cont img { margin:auto; }
+.product-info { font-size: 85%; margin-top: -10px; }
+.product-summary {min-height: 135px; margin-top: 30px;}
+.product-summary p.abstract {min-height: 50px;}
+.product-price {font-weight: bold; text-align: center; font-size: 200%; min-height: 90px;}
+.price-cont { display: block; }
+.original-price-cont { text-decoration: line-through; font-size: 65%; color: #378b69;}
+.orig-price { color: #A7A7A7; }
+.glyphicon-share-alt { color: #2ab27b; font-size: 75%; margin: auto; -ms-transform: rotate(90deg); -webkit-transform: rotate(90deg); 
+	transform: rotate(90deg); padding-left: 20px;}
+.price { position: relative; top:18px; }
+.price-disc {display: block; margin-top: -5px;}
+.not-available-price {  text-align: center; margin: 30px auto; font-style: italic; font-weight: bold; font-size: 110%;}
+.product-buttons .btn {width: 100%; margin:15px auto;}
+.product-buttons .btn span {display: inline-block; font-weight: bold; text-shadow: 1px 1px 0px #1e516d;}
+.product-buttons .btn .txt.add-to-cart { line-height: 45px; }
+.product-buttons i.col-md-2.glyphicon { font-size: 30px; line-height: 45px; text-shadow: 2px 2px 0px #1e516d; }
+/* i.col-md-2.glyphicon.glyphicon-eye-open { font-size: 30px; line-height: 45px; }
+i.col-md-2.glyphicon.glyphicon-shopping-cart { font-size: 30px; line-height: 45px; }
+i.col-md-2.glyphicon.glyphicon-remove-sign { font-size: 30px; line-height: 45px; } */
+.img-cont-modal {margin-bottom: 80px;}
+.review-button {text-align: right; margin-bottom: -10px; margin-top: 30px;}
+.review {border: 1px solid #F5F5F5; padding: 5px; margin: 5px auto; border-radius: 5px; background: #F5F5F5; font-size: 96%; font-style: italic;}
+.note { margin: 50px auto; font-size: 13px;}
+
+/*filters*/
+#filters a { text-decoration: none; color: inherit;}
+#brands.brands { font-size: 80%;
+	padding: 2%; border: 1px solid rgb(48, 151, 209); border-radius: 5px; margin-top: 1%; background-color: rgb(255, 255, 255);
+ }
+#brands .checkbox-inline input {margin-top: 2px;}
+/*#brands.collapse { padding: 2%; border: 1px solid rgb(48, 151, 209); border-radius: 5px; margin-top: 1%; background-color: rgb(255, 255, 255); }*/
+#filter-brand-price .btn { margin-bottom: 1%; border-color: #3097d1; color: #3097d1; }
+
+/*pagination*/
+.pagination > li > a, .pagination > li > span, .pagination > .disabled > span, .pagination > .disabled > a { border-color: #3097d1; }
+
+/*footer*/
+footer.footer { margin-top: 30px; background-color: #FFFFFF; border-top: 2px solid #3097d1; color: #3097d1; }
+.footer > .container { padding-top: 40px; }
+
+/*login/register pages*/
+#login .panel, #register .panel { margin-top:5%; }
+
+
+/*responsive*/
+@media screen and (max-width: 991px) {
+	.modal-button-left, .modal-button-right { padding:0; }
+}
+@media screen and (max-width: 768px) {
+	.min-160 { min-width: 10px; }
+	td.product-name {font-size: 12px;}
+	.panel-body .table > tbody > tr > td {padding: 8px 2px;}
+}	
+@media screen and (max-width: 480px) {
+	#app .container { width: 100%;}
+	#app .panel-default { width: 100%; border: none; }
+	#app .panel-body {padding-left: 10px; padding-right: 10px; border:none; width: 100%;}
+	#app .table-responsive {border: none; width: 100%;}
+	#plaintext-filter { padding:0 10px; }
+}
+
+@media screen and (min-width: 992px) {
+	.product-summary p.abstract {min-height: 133px;}
+}
+@media screen and (min-width: 992px) and (max-width: 1199px){
+	.product-summary .modal-buttons .btn {
+		min-height: 50px;
+	}
+}
+
