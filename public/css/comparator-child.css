@@ -97,9 +97,11 @@ i.col-md-2.glyphicon.glyphicon-remove-sign { font-size: 30px; line-height: 45px;
 
 /*filters*/
 #filters a { text-decoration: none; color: inherit;}
-#brands.brands { font-size: 80%; }
+#brands.brands { font-size: 80%;
+	padding: 2%; border: 1px solid rgb(48, 151, 209); border-radius: 5px; margin-top: 1%; background-color: rgb(255, 255, 255);
+ }
 #brands .checkbox-inline input {margin-top: 2px;}
-#brands.collapse { padding: 2%; border: 1px solid rgb(48, 151, 209); border-radius: 5px; margin-top: 1%; background-color: rgb(255, 255, 255); }
+/*#brands.collapse { padding: 2%; border: 1px solid rgb(48, 151, 209); border-radius: 5px; margin-top: 1%; background-color: rgb(255, 255, 255); }*/
 #filter-brand-price .btn { margin-bottom: 1%; border-color: #3097d1; color: #3097d1; }
 
 /*pagination*/

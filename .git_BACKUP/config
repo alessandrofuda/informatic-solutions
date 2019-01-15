@@ -1,0 +1,14 @@
+[core]
+	repositoryformatversion = 0
+	filemode = true
+	bare = false
+	logallrefupdates = true
+[remote "informatic-solutions"]
+	url = https://github.com/alessandrofuda/informatic-solutions
+	fetch = +refs/heads/*:refs/remotes/informatic-solutions/*
+[branch "master"]
+	remote = origin
+	merge = refs/heads/master
+[remote "origin"]
+	url = git+ssh://git@github.com/alessandrofuda/informatic-solutions.git
+	fetch = +refs/heads/*:refs/remotes/origin/*

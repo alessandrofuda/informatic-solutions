@@ -153,6 +153,5 @@
           </div>  
         </footer>
     </div><!--#app-->
-
 </body>
 </html>
