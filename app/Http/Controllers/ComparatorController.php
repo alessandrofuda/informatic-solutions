@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Traits\StoreImageInLocalhostTrait;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\Log;
@@ -17,15 +18,14 @@ use DB;
 
 class ComparatorController extends Controller {
 
+    use StoreImageInLocalhostTrait;
     use RepairHtmlTrait;
 
     public $keysearch;
 
-    public function __construct() { //valore di default valido per tutti i metodi sottostanti
-    
-        //$this->keysearch = 'videocitofono';
-        //dd($this->keysearch);
-        
+    public function __construct() { 
+
+        //$this->keysearch = 'videocitofono';        
     }
 
     /**
@@ -37,9 +37,10 @@ class ComparatorController extends Controller {
 
         // fetch products
         $lastrequest_date = Product::orderBy('updated_at', 'desc')->first()->updated_at;
-        $products = Product::where('created_at', '<=', $lastrequest_date)->orderBy('created_at', 'desc')
+        $products = Product::where('created_at', '<=', $lastrequest_date)->orderBy('created_at', 'desc');
+                                                                         //->orderBy('updated_at', 'desc');
                                                                          //->get()
-                                                                         ;
+                                                                         
         $all_products_number = count($products->get());
         $contents = $products->paginate(15);
         $post_title = '';
@@ -245,7 +246,11 @@ class ComparatorController extends Controller {
      *
      *
     */
-    public static function FetchAndInsertProductInDb($keysearch) {  //attivata tramite custom console command
+    public static function FetchAndInsertProductInDb($keysearch, $storeName = 'not specified') {  //attivata tramite custom console command
+
+        if($storeName != 'Amazon') {
+            die('Store Name not specified'); // da sistemare quando aggiungerò ebay ed altri
+        }
 
         $contents = AmazonPaApi::api_request($keysearch);   //array di 20 prodotti
         $created = 0;
@@ -283,13 +288,15 @@ class ComparatorController extends Controller {
                 $lowestnewprice = null;
             }
 
+            $localhostImageUrl = !empty($content->LargeImage->URL) ? self::storeImageInLocalhost($content->LargeImage->URL, $storeName.'ProductImages') : null;
+
             $product = Product::updateOrCreate(  //evita di creare ASIN duplicati !!
                 [
                     'asin' => $content->ASIN,
                 ],
                 [
                     'detailpageurl' => $content->DetailPageURL,
-                    'largeimageurl' => $content->LargeImage->URL,
+                    'largeimageurl' => $localhostImageUrl, //$content->LargeImage->URL,
                     'largeimageheight' => $content->LargeImage->Height,
                     'largeimagewidth' => $content->LargeImage->Width,
                     'title' => trim($content->ItemAttributes->Title),

@@ -8,8 +8,7 @@ use App\Http\Controllers\ComparatorController;
 
 
 
-class FetchAmazonProducts extends Command
-{
+class FetchAmazonProducts extends Command {
     /**
      * The name and signature of the console command.
      *
@@ -25,15 +24,12 @@ class FetchAmazonProducts extends Command
     protected $description = 'Estrae prodotti tramite PA API AMAZON e li inserisce in db --> products table.';
 
 
-
-
     /**
      * Create a new command instance.
      *
      * @return void
      */
-    public function __construct()
-    {
+    public function __construct() {
         parent::__construct();
     }
 
@@ -62,7 +58,7 @@ class FetchAmazonProducts extends Command
         $this->line('Chiave di ricerca inserita (keysearch): '. $key);
         // $ok = new ComparatorController; 
         // $result = $ok->FetchAndInsertProductInDb($key);
-        $result = ComparatorController::FetchAndInsertProductInDb($key);
+        $result = ComparatorController::FetchAndInsertProductInDb($key, 'Amazon');
         //dd($result);
 
 

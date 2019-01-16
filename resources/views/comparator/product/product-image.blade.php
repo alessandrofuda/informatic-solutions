@@ -4,7 +4,7 @@
     <img alt="Immagine di {{ $content->title }}"
     	 title="{{ $content->title }}" 
          class="img-responsive"
-         src="{{ $content->largeimageurl }}" height="{{ $content->largeimageheight }}" width="{{ $content->largeimagewidth }}" />
+         src="{{ asset($content->largeimageurl) }}" height="{{ $content->largeimageheight }}" width="{{ $content->largeimagewidth }}" />
 @else
     <img alt="Ancora non abbiamo nessuna immagine per {{ $content->title }}"
     	 title="Immagine non disponibile per il prodotto {{ $content->title }}" 
