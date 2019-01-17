@@ -2,14 +2,13 @@
 @import url('https://fonts.googleapis.com/css?family=Black+Ops+One');
 @import url('https://use.fontawesome.com/releases/v5.5.0/css/all.css');
 
+html {max-width: 1920px; margin: auto;}
+
 /*header*/
 .navbar > .container { padding: 0; /*width: 100%;*/ }
 .navbar-default { border-color: #3097d1; }
 .navbar-default .navbar-brand {color: #3097d1; font-family: 'Black Ops One', cursive; font-size: 20px; text-shadow: 1px 1px 0px #000000;}
 .navbar-brand > .fas { margin-right: 10px; }
-
-
-
 
 /*.navbar-brand > img { max-width: 100%; max-height: 100%; }*/
 .navbar-right {margin-right: 0;}
@@ -60,7 +59,7 @@ fieldset,label{margin:0;padding:0;}
 
 /* article tables */
 .table-title { text-align: center; }
-#article table { max-width: 950px; text-align: center; border-collapse: inherit; }
+#article table { /*max-width: 950px;*/ text-align: center; border-collapse: inherit; }
 #article table thead th { text-align: center; border-bottom: 1px solid #888; }
 #article table td { border-bottom: 1px solid #CCC; }
 h3 { margin: 50px auto 25px; }

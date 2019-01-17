@@ -1,7 +1,7 @@
 @extends('layouts.cms')
 
 @section('cms-content')
-<section id="section-1" class="container" role="main" itemscope itemtype="https://schema.org/Article">
+<section id="section-1" class="container-fluid" role="main" itemscope itemtype="https://schema.org/Article">
   <div id="article-container" class="row">
     <div id="article" class="col-md-10 col-md-offset-1">
       <h1 class="title" itemprop="name">{{$post->title}}</h1>
