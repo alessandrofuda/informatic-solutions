@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\Log;
 use App\Traits\RepairHtmlTrait;
 use Illuminate\Http\Request;
 use App\Amazon\AmazonPaApi;
+use Illuminate\Support\Str;
 use App\Product;
 use App\Review;
 use App\Post;
@@ -246,13 +247,12 @@ class ComparatorController extends Controller {
      *
      *
     */
-    public static function FetchAndInsertProductInDb($keysearch, $storeName = 'not specified') {  //attivata tramite custom console command
-
+    public static function FetchAndInsertProductInDb($keysearch, $storeName = 'not specified') { 
         if($storeName != 'Amazon') {
             die('Store Name not specified'); // da sistemare quando aggiungerò ebay ed altri
         }
 
-        $contents = AmazonPaApi::api_request($keysearch);   //array di 20 prodotti
+        $contents = AmazonPaApi::api_request($keysearch);   //array di 30 prodotti
         $created = 0;
         $updated = 0;
         
@@ -288,7 +288,7 @@ class ComparatorController extends Controller {
                 $lowestnewprice = null;
             }
 
-            $localhostImageUrl = !empty($content->LargeImage->URL) ? self::storeImageInLocalhost($content->LargeImage->URL, $storeName.'ProductImages') : null;
+            $localhostImageUrl = !empty($content->LargeImage->URL) ? self::storeImageInLocalhost($content->LargeImage->URL, $storeName.'ProductImages', Str::slug($keysearch)) : null;
 
             $product = Product::updateOrCreate(  //evita di creare ASIN duplicati !!
                 [

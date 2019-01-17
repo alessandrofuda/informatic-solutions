@@ -7,7 +7,7 @@ use Storage;
 
 trait StoreImageInLocalhostTrait { 
 
-    public static function StoreImageInLocalhost($remoteImgUrl, $destinationFolder = 'noStore') {  
+    public static function StoreImageInLocalhost($remoteImgUrl, $destinationFolder = 'noStore', $keysearch = 'noKeySpecified') {  
         
         $localhostImgUrl = null;
     	$img = file_get_contents($remoteImgUrl);
@@ -18,10 +18,10 @@ trait StoreImageInLocalhostTrait {
     	$imgNameSanitized = $imgName.$imgExtension;
 
     	// store in /storage/app/public/$destinationFolder
-    	$stored = Storage::put('public/'.$destinationFolder.'/'.$imgNameSanitized, $img, 'public'); // bool
+    	$stored = Storage::put('public/'.$keysearch.'/'.$destinationFolder.'/'.$imgNameSanitized, $img, 'public'); // bool
 
     	if($stored) {
-    		$localhostImgUrl = 'storage/'.$destinationFolder.'/'.$imgNameSanitized;
+    		$localhostImgUrl = 'storage/'.$keysearch.'/'.$destinationFolder.'/'.$imgNameSanitized;
     	} else {
     		$localhostImgUrl = null;
     	}

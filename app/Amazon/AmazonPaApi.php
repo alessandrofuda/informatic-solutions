@@ -23,7 +23,7 @@ class AmazonPaApi {
 	    $uri = "/onca/xml";
 
 
-	    for ($i=1; $i <=2 ; $i++) {  	// estraz di (10 x $i) prodotti    
+	    for ($i=1; $i <=3 ; $i++) {  	// estraz di (10 x $i) prodotti    
 
 		    $params = array(
 		        "Service" => "AWSECommerceService",  //affinare i criteri di ricerca e d irestituzione dati
