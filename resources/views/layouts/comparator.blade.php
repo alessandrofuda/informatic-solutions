@@ -54,7 +54,10 @@
     <script src="https://cloud.tinymce.com/stable/tinymce.min.js?apiKey=rh9bw37ljc1mue3ach41mqvxca1ws2au3olpoj378swqdd1s"></script> 
     <script>
         tinymce.init({
-            selector: '#article-body'
+            selector: '#article-body' //,
+            //images_upload_url: 'postAcceptor.php',
+            //images_upload_base_path: '/some/basepath',
+            //images_upload_credentials: true
         });
     </script>
 </head>

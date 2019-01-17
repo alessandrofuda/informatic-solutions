@@ -46,7 +46,7 @@ class CmsDashboardController extends Controller {
 
 
 
-    public function newArticleSlugPost(Request $request){
+    public function newArticleSlugPost(Request $request) {
 
         $rawslug = trim($request->input('slug')) ? : null;
         $rawslug = strtolower($rawslug);
@@ -73,19 +73,25 @@ class CmsDashboardController extends Controller {
 
     public function newArticlePost(Request $request) {
 
-        //dd($request->all());
+        // dd($request->all());
         //validat
-        Validator::make($request->all(), [
-            'article-slug' => 'required|unique:posts|max:300',
-            'article-title' => 'required|max:300',
+        $validator = Validator::make($request->all(), [
+            'slug' => 'required|unique:posts|max:300',
+            'title' => 'required|max:300',
         ])->validate();
-
-        $param = [
-            'aticle-slug' => $request->input('article-slug'),
+dd('ok');
+        $params = [
+            'author_id' => Auth::user()->id,
+            'title' => $request->input('title'),
+            'description' => $request->input('description'),
+            'body' => $request->input('body'),
+            'slug' => $request->input('slug'),
+            // 'images' => $request->input(''),
+            'active' => $request->input('published'),
         ];
-        $article = Post::updateOrCreate(['id' => $request->input('id')], $param);
+
+        $article = Post::updateOrCreate(['id' => $request->input('id')], $params);
         
-        // insert in DB
         return response()->json(['response' => '______']);
     }
 

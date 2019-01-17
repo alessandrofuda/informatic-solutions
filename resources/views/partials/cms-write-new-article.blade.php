@@ -2,12 +2,12 @@
 	{{csrf_field()}}
 	<div class="form-group form-inline">
 		<label>Id: </label><span class="article-id"> {{ $newArticleId }}</span>
-		<input type="hidden" name="article-id" value="{{ $newArticleId }}">
+		<input type="hidden" name="id" value="{{ $newArticleId }}">
 	</div>
 	<div id="new-article-slug" class="form-group form-inline">
-		<label for="article-slug">Url:</label> 
+		<label for="slug">Url:</label> 
 		<span class="slug">{{url('/')}}/
-			<input type="text" class="form-control url" name="article-slug" placeholder="Url">
+			<input type="text" class="form-control url" name="slug" placeholder="Url">
 			<span class="slug-string"></span>
 		</span> 
 		<button class="btn btn-primary btn-xs ok-slug">Ok</button>
@@ -15,29 +15,30 @@
 		<div class="url-ajax-resp"></div>
 	</div>
 	<div class="form-group">
-		<label for="article-title">Titolo</label>
-		<input type="text" class="form-control" name="article-title" placeholder="Titolo">
+		<label for="title">Titolo</label>
+		<input type="text" class="form-control" name="title" placeholder="Titolo">
 	</div>
 	<div class="form-group">
-		<label for="meta-description">Meta Description</label>
-		<input type="text" class="form-control" name="meta-description" placeholder="Meta Description">
+		<label for="description">Meta Description</label>
+		<input type="text" class="form-control" name="description" placeholder="Meta Description">
 	</div>
 	<div class="form-group">
-		<label for="article-body">Testo</label> {{-- aggiunto script in <head> https://www.tiny.cloud/docs/quick-start/ --}}
-		<textarea id="article-body" class="article-body" name="article-body" placeholder="Testo"></textarea>
+		<label for="body">Testo</label> {{-- aggiunto script in <head> https://www.tiny.cloud/docs/quick-start/ --}}
+		<textarea id="article-body" class="article-body" name="body" placeholder="Testo"></textarea>
 		<p class="help-block">Example block-level help text here.</p>
 	</div>
 
 	<div class="form-group text-right">
 		<span class="switch-label">Pubblicato ?</span>
 		<label class="switch">
-		  <input type="checkbox" name="published" value="">
+		  <input type="checkbox" name="published" value=1>
 		  <span class="slider round"></span>
 		</label>
 	</div>
 
 
 	<div class="form-group text-right">
+		<div class="validation-error"></div>
 		<button id="save-article" type="submit" class="btn btn-primary btn-lg">Salva</button>
 		<div class="article-saved"></div>
 	</div>
@@ -47,8 +48,8 @@
 		// slug
 		$('#new-article-slug button.ok-slug').on('click', function(e){
 			e.preventDefault();
-			var slug = $("input[name='article-slug']").val();
-			var articleId = $("input[name='article-id']").val();
+			var slug = $("input[name='slug']").val();
+			var articleId = $("input[name='id']").val();
 			$.ajaxSetup({
 			    headers: {
 			        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
@@ -82,7 +83,7 @@
 		});
 
 		//article
-		$('#new-article').submit( function(e){
+		$('#new-article').submit(function(e){
 			e.preventDefault();
 			var form = $(this);
 			$.ajaxSetup({
@@ -97,6 +98,15 @@
 			    success: function(result){
 			    	console.log(result);
 			    	$('.article-saved').html(result.response).show().delay(4000).hide('slow');
+			    },
+			    error: function(data){
+			    	var errors = $.parseJSON(data.responseText);
+			    	var validationMessage = '';
+			    	console.log(errors);
+			    	$.each(errors, function(key, value){
+			    		validationMessage += '<li>'+value+'</li>';
+			    	});
+			    	$('.validation-error').html('<div class="alert alert-danger"><ul>'+validationMessage+'</ul></div>').show().delay(5000).hide('slow');
 			    }
 			});
 		});
