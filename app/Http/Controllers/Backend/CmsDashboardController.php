@@ -73,13 +73,17 @@ class CmsDashboardController extends Controller {
 
     public function newArticlePost(Request $request) {
 
-        // dd($request->all());
-        //validat
         $validator = Validator::make($request->all(), [
             'slug' => 'required|unique:posts|max:300',
             'title' => 'required|max:300',
         ])->validate();
+
+
+
 dd('ok');
+
+
+
         $params = [
             'author_id' => Auth::user()->id,
             'title' => $request->input('title'),
