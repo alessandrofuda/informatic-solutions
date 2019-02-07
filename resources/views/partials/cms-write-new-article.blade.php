@@ -25,7 +25,7 @@
 	<div class="form-group">
 		<label for="body">Testo</label> {{-- aggiunto script in <head> https://www.tiny.cloud/docs/quick-start/ --}}
 		<textarea id="article-body" class="article-body" name="body" placeholder="Testo"></textarea>
-		<p class="help-block">Example block-level help text here.</p>
+		<p class="help-block"></p>
 	</div>
 
 	<div class="form-group text-right">
