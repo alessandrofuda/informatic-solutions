@@ -1,10 +1,10 @@
-<form id="new-article" class="new-article" method="POST" action="">
+<form id="new-article" class="new-article" method="POST">
 	{{csrf_field()}}
 	<div class="form-group form-inline">
 		<label>Id: </label><span class="article-id"> {{ $newArticleId }}</span>
 		<input type="hidden" name="id" value="{{ $newArticleId }}">
 	</div>
-	<div id="new-article-slug" class="form-group form-inline">
+	<div id="save-article-slug" class="form-group form-inline">
 		<label for="slug">Url:</label> 
 		<span class="slug">{{url('/')}}/
 			<input type="text" class="form-control url" name="slug" placeholder="Url">
@@ -46,7 +46,7 @@
 <script>
 	jQuery(document).ready(function(){
 		// slug
-		$('#new-article-slug button.ok-slug').on('click', function(e){
+		$('#save-article-slug button.ok-slug').on('click', function(e){
 			e.preventDefault();
 			var slug = $("input[name='slug']").val();
 			var articleId = $("input[name='id']").val();
@@ -57,7 +57,7 @@
 			});
 			$.ajax({
 			    method: "POST",
-			    url: '{{route('cms-backend.new-article-slug-post')}}',
+			    url: '{{route('cms-backend.save-article-slug')}}',
 			    data: { 
 			    		slug:slug,
 			    		id:articleId
@@ -93,7 +93,7 @@
 			});
 			$.ajax({
 			    method: "POST",
-			    url: '{{route('cms-backend.new-article-post')}}',
+			    url: '{{route('cms-backend.save-article')}}',
 			    data: form.serialize(),
 			    success: function(result){
 			    	console.log(result);

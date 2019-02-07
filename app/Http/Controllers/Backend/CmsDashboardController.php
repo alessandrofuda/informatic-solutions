@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Backend;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Validation\Rule;
 use Illuminate\Http\Request;
 use Validator;
 use App\User;
@@ -45,36 +46,58 @@ class CmsDashboardController extends Controller {
     }
 
 
-
-    public function newArticleSlugPost(Request $request) {
-
-        $rawslug = trim($request->input('slug')) ? : null;
-        $rawslug = strtolower($rawslug);
+    public function sanitizeSlug($rawSlug){
+        
+        $rawslug = strtolower($rawSlug);
         $slug = preg_replace('/[^a-z0-9 -]+/', '', $rawslug);
         $slug = str_replace(' ', '-', $slug);
-        $slug = trim($slug, '-');
+        $sanitizedSlug = trim($slug, '-');
         
+        return $sanitizedSlug;
+    }
+
+
+
+    public function slugAlreadyInDb($slug){ 
+        // return null or object
+        return Post::where('slug', $slug)->first(); 
+    }
+
+
+
+    public function saveArticleSlug(Request $request) {
+
         Validator::make($request->all(), [
-            'slug' => 'required|unique:posts|max:300',
+            'slug' => 'required|max:300', 
         ])->validate();
 
-        $article = Post::updateOrCreate(['id' => $request->input('id')], ['slug' => $slug]);
+        $rawslug = trim($request->input('slug')) ? : null;
+        $slug = $rawslug ? $this->sanitizeSlug($rawslug) : null;
 
-        if($article->wasRecentlyCreated){
-            $response = 'Nuovo articolo creato con successo';
+
+        if($this->slugAlreadyInDb($slug)) {
+
+            $response = 'Slug già presente in Database';
+        
         } else {
-            $response = 'Url aggiornata correttamente (Id articolo: '.$request->input('id').')';
+
+            $article = Post::updateOrCreate(['id' => $request->input('id')], ['slug' => $slug]);
+
+            if($article->wasRecentlyCreated){
+                $response = 'Nuovo articolo creato con successo';
+            } else {
+                $response = 'Url aggiornata correttamente (Id articolo: '.$request->input('id').')';
+            }
         }
         
         return response()->json(['response' => $response , 'slug' => $slug ]);
     }
 
 
-
-    public function newArticlePost(Request $request) {
+    public function saveArticle(Request $request) {
 
         $validator = Validator::make($request->all(), [
-            'slug' => 'required|unique:posts|max:300',
+            'slug' => 'required|max:300',
             'title' => 'required|max:300',
         ])->validate();
 
@@ -82,6 +105,10 @@ class CmsDashboardController extends Controller {
 
 dd('ok');
 
+        
+        $rawslug = trim($request->input('slug')) ? : null;
+        $slug = $rawslug ? $this->sanitizeSlug($rawslug) : null;
+         
 
 
         $params = [
@@ -89,13 +116,19 @@ dd('ok');
             'title' => $request->input('title'),
             'description' => $request->input('description'),
             'body' => $request->input('body'),
-            'slug' => $request->input('slug'),
+            'slug' => $slug, 
             // 'images' => $request->input(''),
             'active' => $request->input('published'),
         ];
 
         $article = Post::updateOrCreate(['id' => $request->input('id')], $params);
-        
+        //se il post è Creato nuovo (not updated) bisogna controllare che lo slug SANITIZZATO non esista GIÀ
+        if($article->wasRecentlyCreated && $this->slugAlreadyInDb($article->slug)){
+            $article->fill(['slug' => $article->slug.'-duplicatedSlug-'.rand(0,900)]);  // update db !
+        }
+
+
+
         return response()->json(['response' => '______']);
     }
 
