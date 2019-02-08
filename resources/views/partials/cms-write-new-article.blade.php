@@ -65,11 +65,14 @@
 			    success: function(result){
 			    	// console.log(result.response);
 			    	// console.log(result.slug);
-			    	$('input.form-control.url').css('display','none');
-			    	$('.slug-string').css('display','inline-block');
-			    	$('.slug-string').html(result.slug);
-			    	$('button.ok-slug').css('display','none');
-			    	$('button.change-slug').css('display', 'inline-block');
+			    	if(result.status != 204) {
+			    		$('input.form-control.url').css('display','none');
+				    	$('.slug-string').css('display','inline-block');
+				    	$('.slug-string').html(result.slug);
+				    	$('button.ok-slug').css('display','none');
+				    	$('button.change-slug').css('display', 'inline-block');
+			    	}
+			    	
 			    	$('.url-ajax-resp').html(result.response).show().delay(4000).hide('slow');
 			    }
 			});
@@ -97,7 +100,7 @@
 			    data: form.serialize(),
 			    success: function(result){
 			    	console.log(result);
-			    	$('.article-saved').html(result.response).show().delay(4000).hide('slow');
+			    	$('.article-saved').html(result.response).show().delay(5000).hide('slow');
 			    },
 			    error: function(data){
 			    	var errors = $.parseJSON(data.responseText);

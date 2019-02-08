@@ -20,7 +20,7 @@ class CreatePostsTable extends Migration
           $table->string('title')->unique()->nullable();
           $table->string('description')->nullable(); // for meta description
           $table->text('body')->nullable(); // our posts
-          $table->string('slug')->unique();
+          $table->string('slug'); //->unique();
           $table->string('images')->nullable();
           $table->boolean('active')->default(0);
           $table->timestamps();

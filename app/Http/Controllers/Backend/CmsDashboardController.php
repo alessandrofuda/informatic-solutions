@@ -59,8 +59,8 @@ class CmsDashboardController extends Controller {
 
 
     public function slugAlreadyInDb($slug){ 
-        // return null or object
-        return Post::where('slug', $slug)->first(); 
+        // return int
+        return count(Post::where('slug', $slug)->get()); 
     }
 
 
@@ -73,11 +73,12 @@ class CmsDashboardController extends Controller {
 
         $rawslug = trim($request->input('slug')) ? : null;
         $slug = $rawslug ? $this->sanitizeSlug($rawslug) : null;
+        $status = null;
 
-
-        if($this->slugAlreadyInDb($slug)) {
+        if($this->slugAlreadyInDb($slug) > 0) { 
 
             $response = 'Slug già presente in Database';
+            $status = 204;
         
         } else {
 
@@ -90,7 +91,7 @@ class CmsDashboardController extends Controller {
             }
         }
         
-        return response()->json(['response' => $response , 'slug' => $slug ]);
+        return response()->json(['response' => $response , 'status' => $status, 'slug' => $slug ]);
     }
 
 
@@ -101,15 +102,10 @@ class CmsDashboardController extends Controller {
             'title' => 'required|max:300',
         ])->validate();
 
-
-
-dd('ok');
-
         
         $rawslug = trim($request->input('slug')) ? : null;
         $slug = $rawslug ? $this->sanitizeSlug($rawslug) : null;
          
-
 
         $params = [
             'author_id' => Auth::user()->id,
@@ -118,18 +114,33 @@ dd('ok');
             'body' => $request->input('body'),
             'slug' => $slug, 
             // 'images' => $request->input(''),
-            'active' => $request->input('published'),
+            'active' => $request->input('published') ? : 0,
         ];
 
         $article = Post::updateOrCreate(['id' => $request->input('id')], $params);
-        //se il post è Creato nuovo (not updated) bisogna controllare che lo slug SANITIZZATO non esista GIÀ
-        if($article->wasRecentlyCreated && $this->slugAlreadyInDb($article->slug)){
-            $article->fill(['slug' => $article->slug.'-duplicatedSlug-'.rand(0,900)]);  // update db !
+        
+        if($article->wasRecentlyCreated) {
+
+            if($this->slugAlreadyInDb($article->slug) > 1 ) { // check: slug SANITIZZATO esiste GIÀ ?
+                $article->update(['slug' => $article->slug.'-duplicatedSlug-'.rand(0,900)]);  // update db !
+                $response = 'Nuovo articolo salvato correttamente (slug aggiornato).';   
+            }
+
+            $response = 'Nuovo articolo salvato correttamente';
+        
+        } else {
+
+            if($this->slugAlreadyInDb($article->slug) > 1 ) { // check: slug SANITIZZATO esiste GIÀ ?
+                $article->update(['slug' => $article->slug.'-duplicatedSlug-'.rand(0,900)]);  // update db !
+                $response = 'Articolo correttamente aggiornato, ma la Url è stata modificata perchè era già presente in database.';   
+            }
+
+            $response = 'Articolo correttamente aggiornato.'; 
         }
 
 
 
-        return response()->json(['response' => '______']);
+        return response()->json(['response' => $response]);
     }
 
 
