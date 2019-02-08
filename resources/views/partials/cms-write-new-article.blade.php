@@ -29,9 +29,10 @@
 	</div>
 
 	<div class="form-group text-right">
+		<span class="status-notification" style="display: inline-block;">status notification pubblicato/non pubblicato (a scomparsa..)</span>
 		<span class="switch-label">Pubblicato ?</span>
 		<label class="switch">
-		  <input type="checkbox" name="published" value=1>
+		  <input type="checkbox" name="published" value=0>
 		  <span class="slider round"></span>
 		</label>
 	</div>
@@ -112,6 +113,11 @@
 			    	$('.validation-error').html('<div class="alert alert-danger"><ul>'+validationMessage+'</ul></div>').show().delay(5000).hide('slow');
 			    }
 			});
+		});
+
+		// published swith
+		$("input[name='published']").on('change', function(e) {
+			alert('ok '+ e);
 		});
 	});
 </script>

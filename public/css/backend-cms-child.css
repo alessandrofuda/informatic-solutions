@@ -15,14 +15,14 @@
 .slug-string {
   margin-left: -3px;
 }
-.url-ajax-resp{
+.url-ajax-resp,.article-saved,.status-notification {
   background-color: #0bbe0bb3;
   color: #FFF;
   display: none;
   padding: 10px 20px;
   border-radius: 10px;
+  text-align: center;
 }
-
 
 /* bootstrap switcher */
 .switch {
