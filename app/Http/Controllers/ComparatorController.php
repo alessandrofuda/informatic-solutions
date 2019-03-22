@@ -289,7 +289,8 @@ class ComparatorController extends Controller {
             }
 
             $localhostImageUrl = !empty($content->LargeImage->URL) ? self::storeImageInLocalhost($content->LargeImage->URL, $storeName.'ProductImages', Str::slug($keysearch)) : null;
-
+            Log::info('Stored images in localhost');
+            
             $product = Product::updateOrCreate(  //evita di creare ASIN duplicati !!
                 [
                     'asin' => $content->ASIN,
