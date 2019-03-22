@@ -11,7 +11,7 @@ margin:-55px 0 0; /* negative fixed header height */
 }
 /*body*/
 html {max-width: 1920px; margin: auto;}
-html,body,body > div {height: 100%;}
+html,body,body > div {min-height: 100%;}
 body > div > div {min-height: calc(100% - 50px - 68.4px);}
 body { color: #4b5458; background-color: #dee7ed; }
 #alert {min-height: auto;}
