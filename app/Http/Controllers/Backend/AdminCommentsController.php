@@ -51,6 +51,7 @@ class AdminCommentsController extends Controller {
     public function pending() {
 
         $comments = Comment::where('comment_approved', 0)->paginate(20);
+        //dd($comments);
         $origin = 'pending-comments';
         
         return view('backend.adminCommentsList')->with('slug', $this->slug)
@@ -95,7 +96,7 @@ class AdminCommentsController extends Controller {
            
         }
 
-        return redirect('backend/'. $slug)->with('success_message', 'Commento pubblicato e notifica e-mail inviata all\'autore');
+        return redirect('admin/'. $slug)->with('success_message', 'Commento pubblicato e notifica e-mail inviata all\'autore');
 
     }
 
@@ -153,7 +154,7 @@ class AdminCommentsController extends Controller {
         
         $comment->save();
         
-        return redirect('backend/'. $slug)->with('success_message', 'Commento <b>'. $comment->id .'</b> aggiornato correttamente!');
+        return redirect('admin/'. $slug)->with('success_message', 'Commento <b>'. $comment->id .'</b> aggiornato correttamente!');
         
     }
 
@@ -171,7 +172,7 @@ class AdminCommentsController extends Controller {
         $comment = Comment::find($id);
         $comment->delete();
 
-        return redirect('backend/'. $slug)->with('success_message', 'Commento <b>'. $comment->id .'</b> eliminato correttamente (softDeletes())!');
+        return redirect('admin/'. $slug)->with('success_message', 'Commento <b>'. $comment->id .'</b> eliminato correttamente (softDeletes())!');
     }
 
 

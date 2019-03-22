@@ -62,7 +62,7 @@
 
                            <tr>
                                <td class="first-col text-right"><label for="verified">Email verificata?</label></td>
-                               <td>{{ $user->verified ? 'Sì' : '<span style="color:red">No</span>' }}</td>
+                               <td>{!! $user->verified ? 'Sì' : '<span style="color:red">No</span>' !!}</td>
                            </tr>
 
                            <tr>
