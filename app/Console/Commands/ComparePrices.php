@@ -4,6 +4,7 @@ namespace App\Console\Commands;
 
 use Illuminate\Console\Command;
 use App\Jobs\GoodPriceNotification;
+use Illuminate\Support\Facades\Log;
 
 class ComparePrices extends Command
 {
@@ -36,17 +37,18 @@ class ComparePrices extends Command
      *
      * @return mixed
      */
-    public function handle()
-    {
+    public function handle(){
+
         $this->line("Comando avviato...");
         $job = new GoodPriceNotification();
         $result = dispatch($job);  // accoda il JOB GoodPriceNotification - cfr. queues in .env
-        //var_dump($result);
 
         if($result !== null ){
             $this->info("Comparazione prezzi (JOB) andata a buon fine. Inviate notifiche to users !!");
+            Log::info("OK, JOB GoodPriceNotification (fetch:compareprices job). Notifications sent to users");
         } else {
-            $this->error("Si è verificato un errore nel JOB  GoodPriceNotification  !!");
+            $this->error("Si è verificato un errore nel JOB  GoodPriceNotification !!");
+            Log::info("Si è verificato un errore nel JOB  GoodPriceNotification !!");
         }
     }
 
