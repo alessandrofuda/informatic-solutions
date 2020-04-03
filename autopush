@@ -5,7 +5,7 @@
 #
 #
 # 'git push' command works with SSH Keys pair on Github
-# to activate this alias (after update) run: 'source .autopush' 
+# to activate this alias (after update) run: 'source autopush' 
 #
 ## ---------------------------------------------------------------- ##
 alias autopush='sh .autopush.sh'

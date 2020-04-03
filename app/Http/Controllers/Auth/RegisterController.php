@@ -96,13 +96,14 @@ class RegisterController extends Controller
     {
         
         // Laravel validation
-        $validator = $this->validator($request->all());
+        $this->validator($request->all())->validate();
 
-
-        if ($validator->fails()) 
-        {
-            $this->throwValidationException($request, $validator);
-        }
+        // deprecated 03/04/2020
+        // $validator = $this->validator($request->all()); 
+        // if ($validator->fails()) 
+        // {   
+        //     $this->throwValidationException($request, $validator);
+        // }
 
         // Using database transactions is useful here because stuff happening is actually a transaction
         // I don't know what I said in the last line! Weird!
