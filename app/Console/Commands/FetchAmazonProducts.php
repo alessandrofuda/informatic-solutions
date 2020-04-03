@@ -48,9 +48,9 @@ class FetchAmazonProducts extends Command {
         $key = $this->argument('keysearch');
 
         $this->line('Chiave di ricerca inserita (keysearch): '. $key);
-        // $ok = new ComparatorController; 
-        // $result = $ok->FetchAndInsertProductInDb($key);
-        $result = ComparatorController::FetchAndInsertProductInDb($key, 'Amazon');
+        $ok = new ComparatorController; 
+        $result = $ok->FetchAndInsertProductsInDb($key, 'Amazon');
+        //$result = ComparatorController::FetchAndInsertProductsInDb($key, 'Amazon');
         
         Log::info('OK. Inserito Product in DB (FetchAmazonProducts con key: '. $key.')');
 

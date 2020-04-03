@@ -247,63 +247,70 @@ class ComparatorController extends Controller {
      *
      *
     */
-    public static function FetchAndInsertProductInDb($keysearch, $storeName = 'not specified') { 
-        if($storeName != 'Amazon') {
-            die('Store Name not specified'); // da sistemare quando aggiungerò ebay ed altri
+    public function FetchAndInsertProductsInDb(string $keysearch, string $storeName = 'not specified') { // storename diventerà array
+        $products_from_store = $this->fetchProductsFromStore($keysearch, $storeName);
+        if ($products_from_store) {
+            return $this->insertProductsInDB($products_from_store);
         }
+    }
 
-        $contents = AmazonPaApi::api_request($keysearch);   //array di 30 prodotti
+    public function fetchProductsFromStore($keysearch, $storeName = 'not specified') {
+        if($storeName != 'Amazon') {
+            die('Store Name not specified'); // da sistemare quando aggiungerò ebay ed altri stores
+        }
+        return AmazonPaApi::api_request($keysearch);   //array di 30 prodotti
+    }
+
+    public function insertProductsInDB($products_from_store) {
         $created = 0;
         $updated = 0;
-        
-        //inserisce i prodotti in db
-        foreach ($contents as $content) {
+        foreach ($products_from_store as $product_from_store) {
             
-            if (!empty($content->ItemAttributes->Feature)){
+            if (!empty($product_from_store->ItemAttributes->Feature)){
                 $string = '';
-                foreach ($content->ItemAttributes->Feature as $feature) {
+                foreach ($product_from_store->ItemAttributes->Feature as $feature) {
                     $string .= trim($feature, '.') . '. ';
                 }
             } else {
                 $string = '';
             }
 
-            if (!empty($content->EditorialReviews->EditorialReview->Content)){
-                $editorialreviewcontent_rawhtml = trim($content->EditorialReviews->EditorialReview->Content);
+            if (!empty($product_from_store->EditorialReviews->EditorialReview->Content)){
+                $editorialreviewcontent_rawhtml = trim($product_from_store->EditorialReviews->EditorialReview->Content);
                 //repair html - use custom trait
                 $editorialreviewcontent = self::repairHtmlAndCloseTags($editorialreviewcontent_rawhtml);
             } else {
                 $editorialreviewcontent = null;
             }
 
-            if ( !empty($content->Offers->Offer->OfferListing->Price->Amount)) {
-                $price = number_format((float) ($content->Offers->Offer->OfferListing->Price->Amount / 100),2,'.',',');
+            if ( !empty($product_from_store->Offers->Offer->OfferListing->Price->Amount)) {
+                $price = number_format((float) ($product_from_store->Offers->Offer->OfferListing->Price->Amount / 100),2,'.',',');
             } else {
                 $price = null;
             }
             
-            if (!empty($content->OfferSummary->LowestNewPrice->Amount)) {
-                $lowestnewprice = number_format((float) ($content->OfferSummary->LowestNewPrice->Amount / 100),2,'.',',');
+            if (!empty($product_from_store->OfferSummary->LowestNewPrice->Amount)) {
+                $lowestnewprice = number_format((float) ($product_from_store->OfferSummary->LowestNewPrice->Amount / 100),2,'.',',');
             } else {
                 $lowestnewprice = null;
             }
 
-            $localhostImageUrl = !empty($content->LargeImage->URL) ? self::storeImageInLocalhost($content->LargeImage->URL, $storeName.'ProductImages', Str::slug($keysearch)) : null;
+            $localhostImageUrl = !empty($product_from_store->LargeImage->URL) ? self::storeImageInLocalhost($product_from_store->LargeImage->URL, $storeName.'ProductImages', Str::slug($keysearch)) : null;
             Log::info('Stored images in localhost');
             
             $product = Product::updateOrCreate(  //evita di creare ASIN duplicati !!
                 [
-                    'asin' => $content->ASIN,
+                    'asin' => $product_from_store->ASIN,
                 ],
                 [
-                    'detailpageurl' => $content->DetailPageURL,
-                    'largeimageurl' => $localhostImageUrl, //$content->LargeImage->URL,
-                    'largeimageheight' => $content->LargeImage->Height,
-                    'largeimagewidth' => $content->LargeImage->Width,
-                    'title' => trim($content->ItemAttributes->Title),
-                    'brand' => $content->ItemAttributes->Brand,
+                    'detailpageurl' => $product_from_store->DetailPageURL,
+                    'largeimageurl' => $localhostImageUrl, //$product_from_store->LargeImage->URL,
+                    'largeimageheight' => $product_from_store->LargeImage->Height,
+                    'largeimagewidth' => $product_from_store->LargeImage->Width,
+                    'title' => trim($product_from_store->ItemAttributes->Title),
+                    'brand' => $product_from_store->ItemAttributes->Brand,
                     'feature' => trim($string),
-                    'color' => trim($content->ItemAttributes->Color),
+                    'color' => trim($product_from_store->ItemAttributes->Color),
                     'editorialreviewcontent' => $editorialreviewcontent,
                     'price' => $price,
                     'lowestnewprice' => $lowestnewprice,                    
@@ -317,16 +324,11 @@ class ComparatorController extends Controller {
             }
         }
 
-        //elimina vecchi records in db (!!)
+        //clean old records in db (!!)
         $id_to_delete = $product->id - 60;
-        //$today = ;
         $cleaned = $product->where('id','<=',$id_to_delete)->delete();  // restituisce numero records cancellati
         
-        if($product) {        
-            return array($created, $updated); 
-        } else {
-            return false;
-        }  
+        return $product ? array($created, $updated) : false;  
     }
 
 

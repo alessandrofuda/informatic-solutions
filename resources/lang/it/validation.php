@@ -28,7 +28,7 @@ return [
         'array'   => ':attribute deve essere compreso tra :min e :max items.',
     ],
     'boolean'              => 'Il campo :attribute deve essere vero o falso.',
-    'confirmed'            => 'Devi confermare il campo :attribute.',
+    'confirmed'            => 'Errore nella conferma del campo :attribute.',
     'date'                 => ':attribute non è una data valida.',
     'date_format'          => ':attribute non è nel giusto formato :format.',
     'different'            => ':attribute e :other devono essere diversi.',

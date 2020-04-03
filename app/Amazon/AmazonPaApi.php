@@ -16,9 +16,9 @@ class AmazonPaApi {
 	public static function api_request($keysearch) {
 
 		$client = new Client();  //guzzlehttp extension
-	    $aws_access_key_id = env('AWS_ACCESS_KEY_ID');   // Your AWS Access Key ID, as taken from the AWS Your Account page	    
-	    $aws_secret_key = env('AWS_SECRET_KEY');  // AWS Secret Key corresponding to the above ID  
-	    $amazon_affiliat_id = env('AMAZON_AFFILIAT_ID');
+	    $aws_access_key_id = config('services.amazon_api_keys.aws_access_key_id');   // Your AWS Access Key ID, as taken from the AWS Your Account page	    
+	    $aws_secret_key = config('services.amazon_api_keys.aws_secret_key');  // AWS Secret Key corresponding to the above ID  
+	    $amazon_affiliat_id = config('services.amazon_api_keys.amazon_affiliat_id');
 	    $endpoint = "webservices.amazon.it";   // The region you are interested in
 	    $uri = "/onca/xml";
 
@@ -68,7 +68,7 @@ class AmazonPaApi {
 			      	Log::info('Response code: '. $status);
 
 			      	if ($status == 200) {
-						$contents[] = new SimpleXMLElement($response->getBody()->getContents());
+						$contents[] = new SimpleXMLElement($response->getBody()->getContents());  // con NUOVA VERSIONE API diventa Json
 			      		break;  // important! interrompe loop dei tentativi in caso di successo 
 			      	}
 			    //} catch(Exception $e) {
