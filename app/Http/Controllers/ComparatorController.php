@@ -262,14 +262,14 @@ class ComparatorController extends Controller {
                 $editorialreviewcontent = null;
             }
 
-            if ( !empty($product_from_store->Offers['Listings']['Price']['Amount'])) {
-                $price = number_format((float) ($product_from_store->Offers['Listings']['Price']['Amount'] / 100),2,'.',',');
+            if ( !empty($product_from_store->Offers['Listings'][0]['Price']['Amount'])) {
+                $price = number_format((float) ($product_from_store->Offers['Listings'][0]['Price']['Amount']),2,'.',',');
             } else {
                 $price = null;
             }
             
-            if (!empty($product_from_store->OfferSummary->LowestNewPrice->Amount)) {
-                $lowestnewprice = number_format((float) ($product_from_store->Offers['Summaries']['0']['LowestPrice']['Amount'] / 100),2,'.',',');
+            if (!empty($product_from_store->Offers['Summaries'][0]['LowestPrice'])) {
+                $lowestnewprice = number_format((float) ($product_from_store->Offers['Summaries'][0]['LowestPrice']['Amount']),2,'.',',');
             } else {
                 $lowestnewprice = null;
             }
