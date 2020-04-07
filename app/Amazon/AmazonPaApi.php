@@ -96,10 +96,9 @@ class AmazonPaApi {
 		$category = 'All';
 
 		for ($page=1; $page <=3 ; $page++) {  	// estraz di (10 x $page) prodotti   
-
 			try {
 				for ($n=1; $n <= 5; $n++) {  // !important --> in caso di errore riprova fino a 5 tentativi a distanzia di X secondi !!!
-					Log::info('Amazon Api call - ItemsPage: '. $page .' -> tentativo chiamata n. '. $n);
+					Log::info('Amazon Api call - ItemsPage: '. $page .' -> attempt call n. '. $n);
 			    	sleep(1);
 			    	$response = AmazonProduct::search($category, $keysearch , $page); 
 			    	if($response) {
@@ -107,24 +106,22 @@ class AmazonPaApi {
 			    		break; // important! interrompe loop dei tentativi in caso di successo 
 			    	} else {
 			    		if ($n == 5) {
-			    			throw new ItemsNotFoundFromApiException('Nessun Item trovato da PA API Call');
+			    			throw new ItemsNotFoundFromApiException('No Item found from PA API Call');
 			    		}
 			    	}
 			    	sleep(3);
 				}
 			} catch (ItemsNotFoundFromApiException $e) {
-				Log::error('Amazon Api call, errore: '. $e->getMessage());
+				Log::error('Amazon Api call, error: '. $e->getMessage());
 				return null;
 			}
 			sleep(5);
 		}
-
 		foreach ($paginateItems as $eachPage) {
 			foreach ($eachPage as $item) {
 				$itemsList[] = $item;
 			}
 		}
-		
 		return $itemsList;
 	}
 

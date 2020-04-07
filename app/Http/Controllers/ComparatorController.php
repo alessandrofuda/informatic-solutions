@@ -35,13 +35,9 @@ class ComparatorController extends Controller {
      * @return \Illuminate\Http\Response
      */
     public function index($slug) {  
-
         // fetch products
         $lastrequest_date = Product::orderBy('updated_at', 'desc')->first()->updated_at;
-        $products = Product::where('created_at', '<=', $lastrequest_date)->orderBy('created_at', 'desc');
-                                                                         //->orderBy('updated_at', 'desc');
-                                                                         //->get()
-                                                                         
+        $products = Product::where('created_at', '<=', $lastrequest_date)->orderBy('created_at', 'desc');                                                              
         $all_products_number = count($products->get());
         $contents = $products->paginate(15);
         $post_title = '';
@@ -64,8 +60,6 @@ class ComparatorController extends Controller {
                                        ;
     }
 
-
-
     public function getBrandsArray() {
         $brands_1 = Product::distinct()->orderBy('brand', 'ASC')
                                        ->where('brand', '!=', '') 
@@ -73,30 +67,19 @@ class ComparatorController extends Controller {
                                        ->where('brand', 'not like', '-%')
                                        ->get(['brand'])
                                        ->toArray();
-
         $brands_2 = Product::distinct()->orderBy('brand', 'ASC')
                                        ->where('brand', 'like', '-%')
                                        ->get(['brand'])
                                        ->toArray();
-
         $brands = array_merge($brands_1, $brands_2);
-        
         return $brands;
     }
 
-
-
-
     public function getReviews() {
-
         $reviews = Review::orderBy('id', 'desc')->first();  
         $reviews = json_decode($reviews->json);
-
         return $reviews;
-
     }
-
-
 
     public function filter($slug, Request $request, Product $products) {
         $contents = $products->newQuery();
@@ -173,7 +156,6 @@ class ComparatorController extends Controller {
             });
         }
 
-
         $contents = $contents->get(); // no paginate();
         $brands = $this->getBrandsArray();  // brands array
         $reviews = $this->getReviews();   // fetch reviews
@@ -187,13 +169,8 @@ class ComparatorController extends Controller {
                                        ->with('all_products_number', $all_products_number); 
     }
 
-
-
-
     /* 
      *  jquery autocomplete in search form
-     *
-     *
      *
     **/
     public function autocomplete(){
@@ -208,17 +185,13 @@ class ComparatorController extends Controller {
             ->orWhere('editorialreviewcontent', 'LIKE', '%'.$term.'%')
             ->take(12)
             ->get();
-        
 
         $results = array();
-        foreach ($queries as $query)
-        {
-            $results[] = [ 'id' => $query->id, 'value' => str_limit( ucfirst(mb_strtolower($query->title)), 80, '...')];  //.' - '.$query->asin. ' - '. $query->brand ];
+        foreach ($queries as $query) {
+            $results[] = [ 'id' => $query->id, 'value' => str_limit( ucfirst(mb_strtolower($query->title)), 80, '...')]; 
         }
-
         return Response::json($results);
     }
-
 
     /*// repair unclosed Html tags
     public function closetags($html) {  // https://gist.github.com/JayWood/348752b568ecd63ae5ce
@@ -241,17 +214,15 @@ class ComparatorController extends Controller {
         return $html;
     }*/
 
-
     /**
      *  API call & DB update
-     *
      *
     */
     public function FetchAndInsertProductsInDb(string $keysearch, string $storeName = 'not specified') { // storename diventerà array
         $products_from_store = $this->fetchProductsFromStore($keysearch, $storeName);
         
         if ($products_from_store) {
-            return $this->insertProductsInDB($products_from_store);
+            return $this->insertProductsInDB($products_from_store, $storeName, $keysearch);
         }
     }
 
@@ -263,20 +234,24 @@ class ComparatorController extends Controller {
         return $amazonPaApi->api_request($keysearch);  // array di 30 prodotti
     }
 
-    public function insertProductsInDB($products_from_store) {
+    public function insertProductsInDB($products_from_store, $storeName, $keysearch) {
         $created = 0;
         $updated = 0;
+        $deleted = 0;
+        $storedImagesInLocalhost = 0;
+
         foreach ($products_from_store as $product_from_store) {
 
             $product_from_store = (object) $product_from_store;
-            
-            if (!empty($product_from_store->ItemAttributes->Feature)){
-                $string = '';
-                foreach ($product_from_store->ItemAttributes->Feature as $feature) {
-                    $string .= trim($feature, '.') . '. ';
+            $product_info = $product_from_store->ItemInfo;
+
+            if (!empty($product_info['Features']['DisplayValues'])) {     // ->ItemAttributes->Feature
+                $features_string = '';
+                foreach ($product_info['Features']['DisplayValues'] as $feature) {
+                    $features_string .= trim($feature, '.') . '. ';
                 }
             } else {
-                $string = '';
+                $features_string = '';
             }
 
             if (!empty($product_from_store->EditorialReviews->EditorialReview->Content)){
@@ -287,20 +262,25 @@ class ComparatorController extends Controller {
                 $editorialreviewcontent = null;
             }
 
-            if ( !empty($product_from_store->Offers->Offer->OfferListing->Price->Amount)) {
-                $price = number_format((float) ($product_from_store->Offers->Offer->OfferListing->Price->Amount / 100),2,'.',',');
+            if ( !empty($product_from_store->Offers['Listings']['Price']['Amount'])) {
+                $price = number_format((float) ($product_from_store->Offers['Listings']['Price']['Amount'] / 100),2,'.',',');
             } else {
                 $price = null;
             }
             
             if (!empty($product_from_store->OfferSummary->LowestNewPrice->Amount)) {
-                $lowestnewprice = number_format((float) ($product_from_store->OfferSummary->LowestNewPrice->Amount / 100),2,'.',',');
+                $lowestnewprice = number_format((float) ($product_from_store->Offers['Summaries']['0']['LowestPrice']['Amount'] / 100),2,'.',',');
             } else {
                 $lowestnewprice = null;
             }
 
-            $localhostImageUrl = !empty($product_from_store->LargeImage->URL) ? self::storeImageInLocalhost($product_from_store->LargeImage->URL, $storeName.'ProductImages', Str::slug($keysearch)) : null;
-            Log::info('Stored images in localhost');
+            $largeImage = $product_from_store->Images['Primary']['Large'] ?? null;
+            $localhostImageUrl = $largeImage['URL'] ? self::storeImageInLocalhost($largeImage['URL'], $storeName.'ProductImages', Str::slug($keysearch)) : null;
+            if($localhostImageUrl) {
+                $storedImagesInLocalhost++;
+            } 
+            
+            $product_color = $product_info['ProductInfo']['Color'] ?? null;
             
             $product = Product::updateOrCreate(  //evita di creare ASIN duplicati !!
                 [
@@ -309,15 +289,15 @@ class ComparatorController extends Controller {
                 [
                     'detailpageurl' => $product_from_store->DetailPageURL,
                     'largeimageurl' => $localhostImageUrl, //$product_from_store->LargeImage->URL,
-                    'largeimageheight' => $product_from_store->LargeImage->Height,
-                    'largeimagewidth' => $product_from_store->LargeImage->Width,
-                    'title' => trim($product_from_store->ItemAttributes->Title),
-                    'brand' => $product_from_store->ItemAttributes->Brand,
-                    'feature' => trim($string),
-                    'color' => trim($product_from_store->ItemAttributes->Color),
-                    'editorialreviewcontent' => $editorialreviewcontent,
+                    'largeimageheight' => $largeImage['Height'] ?? null, 
+                    'largeimagewidth' => $largeImage['Width'] ?? null, 
+                    'title' => trim($product_info['Title']['DisplayValue']), 
+                    'brand' => $product_info['ByLineInfo']['Brand'] ? $product_info['ByLineInfo']['Brand']['DisplayValue'] : null,
+                    'feature' => trim($features_string),
+                    'color' => $product_color ? trim($product_color['DisplayValue']) : null, 
+                    'editorialreviewcontent' => $editorialreviewcontent, //non più presente in vers 5 dell'API, prendere l'info con altra chiamata su dettaglio page
                     'price' => $price,
-                    'lowestnewprice' => $lowestnewprice,                    
+                    'lowestnewprice' => $lowestnewprice,
                 ]
             );
             // count how many new records created ... 
@@ -327,12 +307,13 @@ class ComparatorController extends Controller {
                 $updated++;
             }
         }
+        Log::info('Stored '.$storedImagesInLocalhost.' images in localhost');
 
         //clean old records in db (!!)
-        $id_to_delete = $product->id - 60;
-        $cleaned = $product->where('id','<=',$id_to_delete)->delete();  // restituisce numero records cancellati
+        $product_id_to_delete = $product->id - 60;
+        $deleted = $product->where('id','<=',$product_id_to_delete)->delete();  // restituisce numero records cancellati
         
-        return $product ? array($created, $updated) : false;  
+        return $product ? array($created, $updated, $deleted) : false;  
     }
 
 
