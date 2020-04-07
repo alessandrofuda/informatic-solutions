@@ -249,6 +249,7 @@ class ComparatorController extends Controller {
     */
     public function FetchAndInsertProductsInDb(string $keysearch, string $storeName = 'not specified') { // storename diventerà array
         $products_from_store = $this->fetchProductsFromStore($keysearch, $storeName);
+        
         if ($products_from_store) {
             return $this->insertProductsInDB($products_from_store);
         }
@@ -258,13 +259,16 @@ class ComparatorController extends Controller {
         if($storeName != 'Amazon') {
             die('Store Name not specified'); // da sistemare quando aggiungerò ebay ed altri stores
         }
-        return AmazonPaApi::api_request($keysearch);   //array di 30 prodotti
+        $amazonPaApi = new AmazonPaApi;
+        return $amazonPaApi->api_request($keysearch);  // array di 30 prodotti
     }
 
     public function insertProductsInDB($products_from_store) {
         $created = 0;
         $updated = 0;
         foreach ($products_from_store as $product_from_store) {
+
+            $product_from_store = (object) $product_from_store;
             
             if (!empty($product_from_store->ItemAttributes->Feature)){
                 $string = '';

@@ -35,10 +35,10 @@ return [
         'secret' => env('STRIPE_SECRET'),
     ],
 
-    'amazon_api_keys' => [
-        'aws_access_key_id' => env('AWS_ACCESS_KEY_ID'),
-        'aws_secret_key' => env('AWS_SECRET_KEY'),
-        'amazon_affiliat_id' => env('AMAZON_AFFILIAT_ID'),
-    ],
+    // 'amazon_api_keys' => [
+    //     'aws_access_key_id' => env('AWS_ACCESS_KEY_ID'),
+    //     'aws_secret_key' => env('AWS_SECRET_KEY'),
+    //     'amazon_affiliat_id' => env('AMAZON_AFFILIAT_ID'),
+    // ],
 
 ];

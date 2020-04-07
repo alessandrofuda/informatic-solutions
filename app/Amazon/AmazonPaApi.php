@@ -2,18 +2,18 @@
 
 namespace App\Amazon;
 
+use Revolution\Amazon\ProductAdvertising\Facades\AmazonProduct;
 use Illuminate\Support\Facades\Log;
 use Goutte\Client as ClientGoutte;
 use GuzzleHttp\Client;
-use SimpleXMLElement;
 use App\Review;
-
-
+use Exception;
+use App\Exceptions\ItemsNotFoundFromApiException;
 
 
 class AmazonPaApi {
 
-	public static function api_request($keysearch) {
+	/*public static function api_request($keysearch) {
 
 		$client = new Client();  //guzzlehttp extension
 	    $aws_access_key_id = config('services.amazon_api_keys.aws_access_key_id');   // Your AWS Access Key ID, as taken from the AWS Your Account page	    
@@ -88,8 +88,45 @@ class AmazonPaApi {
 				}	
 		}
 	    return $itemList;
-	}
+	}*/
 
+	public function api_request($keysearch) {
+		
+		$itemsList = [];
+		$category = 'All';
+
+		for ($page=1; $page <=3 ; $page++) {  	// estraz di (10 x $page) prodotti   
+
+			try {
+				for ($n=1; $n <= 5; $n++) {  // !important --> in caso di errore riprova fino a 5 tentativi a distanzia di X secondi !!!
+					Log::info('Amazon Api call - ItemsPage: '. $page .' -> tentativo chiamata n. '. $n);
+			    	sleep(1);
+			    	$response = AmazonProduct::search($category, $keysearch , $page); 
+			    	if($response) {
+			    		$paginateItems[] = $response['SearchResult']['Items'];
+			    		break; // important! interrompe loop dei tentativi in caso di successo 
+			    	} else {
+			    		if ($n == 5) {
+			    			throw new ItemsNotFoundFromApiException('Nessun Item trovato da PA API Call');
+			    		}
+			    	}
+			    	sleep(3);
+				}
+			} catch (ItemsNotFoundFromApiException $e) {
+				Log::error('Amazon Api call, errore: '. $e->getMessage());
+				return null;
+			}
+			sleep(5);
+		}
+
+		foreach ($paginateItems as $eachPage) {
+			foreach ($eachPage as $item) {
+				$itemsList[] = $item;
+			}
+		}
+		
+		return $itemsList;
+	}
 
 
 	public function scrapingreviews($asin_array) {
