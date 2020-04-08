@@ -17,7 +17,7 @@ body { color: #4b5458; background-color: #dee7ed; }
 #alert {min-height: auto;}
 
 /*header*/
-.navbar-default { margin-bottom: 0; background-color: transparent; border:none;}
+.navbar-default { margin-bottom: 0; background: linear-gradient(to right,#DEE7ED ,#3299be,#dee7ed); border:none; width: 100%; position: fixed;}
 .navbar-default .navbar-brand {color: #FFFFFF; font-family: 'Black Ops One', cursive; font-size: 20px; text-shadow: 1px 1px 0px #000000;}
 .navbar-brand > .fas { margin-right: 10px; }
 

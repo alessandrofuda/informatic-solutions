@@ -226,18 +226,19 @@ class ComparatorController extends Controller {
         }
     }
 
-    public function fetchProductsFromStore($keysearch, $storeName = 'not specified') {
+    private function fetchProductsFromStore($keysearch, $storeName = 'not specified') {
         if($storeName != 'Amazon') {
             die('Store Name not specified'); // da sistemare quando aggiungerò ebay ed altri stores
         }
         $amazonPaApi = new AmazonPaApi;
-        return $amazonPaApi->api_request($keysearch);  // array di 30 prodotti
+        return $amazonPaApi->api_search_request($keysearch);  // array di 30 prodotti
     }
 
-    public function insertProductsInDB($products_from_store, $storeName, $keysearch) {
+    private function insertProductsInDB($products_from_store, $storeName, $keysearch) {
         $created = 0;
         $updated = 0;
         $deleted = 0;
+        $detail_product_urls = [];
         $storedImagesInLocalhost = 0;
 
         foreach ($products_from_store as $product_from_store) {
@@ -254,13 +255,8 @@ class ComparatorController extends Controller {
                 $features_string = '';
             }
 
-            if (!empty($product_from_store->EditorialReviews->EditorialReview->Content)){
-                $editorialreviewcontent_rawhtml = trim($product_from_store->EditorialReviews->EditorialReview->Content);
-                //repair html - use custom trait
-                $editorialreviewcontent = self::repairHtmlAndCloseTags($editorialreviewcontent_rawhtml);
-            } else {
-                $editorialreviewcontent = null;
-            }
+            // $editorialreviewcontent_rawhtml = $this->fetchProductDescriptionFromProductDetails($product_from_store->DetailPageURL) ?? null;
+            // $editorialreviewcontent = self::repairHtmlAndCloseTags(trim($editorialreviewcontent_rawhtml)) ?? null;
 
             if ( !empty($product_from_store->Offers['Listings'][0]['Price']['Amount'])) {
                 $price = number_format((float) ($product_from_store->Offers['Listings'][0]['Price']['Amount']),2,'.',',');
@@ -295,7 +291,7 @@ class ComparatorController extends Controller {
                     'brand' => $product_info['ByLineInfo']['Brand'] ? $product_info['ByLineInfo']['Brand']['DisplayValue'] : null,
                     'feature' => trim($features_string),
                     'color' => $product_color ? trim($product_color['DisplayValue']) : null, 
-                    'editorialreviewcontent' => $editorialreviewcontent, //non più presente in vers 5 dell'API, prendere l'info con altra chiamata su dettaglio page
+                    // 'editorialreviewcontent' => $editorialreviewcontent, //non più presente in vers 5 dell'API, prendere l'info con altra chiamata su dettaglio page
                     'price' => $price,
                     'lowestnewprice' => $lowestnewprice,
                 ]
@@ -306,16 +302,36 @@ class ComparatorController extends Controller {
             } else {
                 $updated++;
             }
+            $detail_product_urls[] = $product->detailpageurl; 
         }
+
         Log::info('Stored '.$storedImagesInLocalhost.' images in localhost');
 
         //clean old records in db (!!)
         $product_id_to_delete = $product->id - 60;
         $deleted = $product->where('id','<=',$product_id_to_delete)->delete();  // restituisce numero records cancellati
         
-        return $product ? array($created, $updated, $deleted) : false;  
+        return $product ? ['created'=>$created, 'updated'=>$updated, 'deleted'=>$deleted, 'detail_product_urls'=>$detail_product_urls] : false;  
     }
 
+    public function FetchAndInsertDescriptionsInDb($detail_product_urls, $storeName) {
+        $descriptions_products = $this->fetchDescriptionsFromStore($detail_product_urls, $storeName);
+
+        return $this->insertDescriptionsInDb($descriptions_products);
+    }
+
+    private function fetchDescriptionsFromStore($detail_product_urls, $storeName = 'not specified') {
+        if ($storeName != 'Amazon') {
+            die('Store Name not specified'); // da sistemare quando aggiungerò ebay ed altri stores
+        }
+        $amazonPaApi = new AmazonPaApi;
+        $products_descriptions = $amazonPaApi->scrap_products_descriptions($detail_product_urls);  // array di 30 'ASIN' => 'descriptions'
+        return $products_descriptions;
+    }
+
+    private function insertDescriptionsInDb($descriptions) {
+        // return $descriptions ? ['created'=>$created, 'updated'=>$updated] : null;
+    }
 
 
     /**

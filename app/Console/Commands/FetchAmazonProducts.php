@@ -49,15 +49,25 @@ class FetchAmazonProducts extends Command {
 
         $this->line('Chiave di ricerca inserita (keysearch): '. $key);
         $comparator_controller = new ComparatorController; 
-        $result = $comparator_controller->FetchAndInsertProductsInDb($key, 'Amazon');
-        //$result = ComparatorController::FetchAndInsertProductsInDb($key, 'Amazon');
-        
-        if($result){
-            Log::info('OK. '.$result[0].' new Products inserted in DB (FetchAmazonProducts con key: '. $key.')');
-            Log::info('OK. '.$result[1].' Products updated in DB');
-            Log::info('OK. '.$result[2].' old Products deleted from DB');
+        $products_in_db = $comparator_controller->FetchAndInsertProductsInDb($key, 'Amazon');
+
+        if($products_in_db){
+            Log::info('OK. '.$products_in_db['created'].' new Products inserted in DB (FetchAmazonProducts con key: '. $key.')');
+            Log::info('OK. '.$products_in_db['updated'].' Products updated in DB');
+            Log::info('OK. '.$products_in_db['deleted'].' old Products deleted from DB');
             $this->info("Estrazione e inserimento prodotti Amazon in db eseguiti correttamente !!");
-            $this->info("$result[0] nuovi records creati in db, $result[1] records aggiornati e $result[2] vecchi record cancellati.");
+            $this->info($products_in_db['created']." nuovi records creati in db, ".$products_in_db['updated']." records aggiornati e ".$products_in_db['deleted']." vecchi record cancellati.");
+
+            // add descriptions in db - 2nd API call
+            $products_descriptions_in_db = $comparator_controller->FetchAndInsertDescriptionsInDb($products_in_db['detail_product_urls'], 'Amazon');
+            if ($products_descriptions_in_db) {
+                Log::info('OK. Products descriptions updated in db.');
+                $this->info('Aggiornate descrizioni prodotti in database');
+            } else {
+                Log::error('KO. Products description NOT updated in db');
+                $this->error('Si è verificato un errore in durante l\'aggiornamento delle descrizioni prodotti in DB');
+            }
+
         } else {
             Log::error('Nessun Product estratto nè inserito in DB.');
             $this->error("Si è verificato un errore in FetchAndInsertProductInDb(key) function  !!");

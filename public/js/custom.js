@@ -4,4 +4,7 @@ $(document).ready( function() {
 	$('body, body > div').css({'min-height': windowHeight+'px'});
 	var containerHeight = windowHeight - $('nav').height() - $('footer').outerHeight(true);
 	$('#app > .container, #app > .container-fluid').css('min-height', containerHeight+'px');
+
+	var navbarHeight = $('.navbar-static-top').height();
+	$('.navbar-static-top ~ .container-fluid').css('padding-top', navbarHeight);
 });

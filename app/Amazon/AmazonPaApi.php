@@ -9,11 +9,12 @@ use GuzzleHttp\Client;
 use App\Review;
 use Exception;
 use App\Exceptions\ItemsNotFoundFromApiException;
+use App;
 
 
 class AmazonPaApi {
 
-	/*public static function api_request($keysearch) {
+	/*public static function api_search_request($keysearch) {
 
 		$client = new Client();  //guzzlehttp extension
 	    $aws_access_key_id = config('services.amazon_api_keys.aws_access_key_id');   // Your AWS Access Key ID, as taken from the AWS Your Account page	    
@@ -90,16 +91,17 @@ class AmazonPaApi {
 	    return $itemList;
 	}*/
 
-	public function api_request($keysearch) {
+	public function api_search_request($keysearch) {
 		
 		$itemsList = [];
 		$category = 'All';
+		$seconds = App::environment('local') ? 1 : 4;
 
 		for ($page=1; $page <=3 ; $page++) {  	// estraz di (10 x $page) prodotti   
 			try {
 				for ($n=1; $n <= 5; $n++) {  // !important --> in caso di errore riprova fino a 5 tentativi a distanzia di X secondi !!!
 					Log::info('Amazon Api call - ItemsPage: '. $page .' -> attempt call n. '. $n);
-			    	sleep(1);
+			    	sleep($seconds);
 			    	$response = AmazonProduct::search($category, $keysearch , $page); 
 			    	if($response) {
 			    		$paginateItems[] = $response['SearchResult']['Items'];
@@ -109,13 +111,13 @@ class AmazonPaApi {
 			    			throw new ItemsNotFoundFromApiException('No Item found from PA API Call');
 			    		}
 			    	}
-			    	sleep(3);
+			    	sleep($seconds);
 				}
 			} catch (ItemsNotFoundFromApiException $e) {
 				Log::error('Amazon Api call, error: '. $e->getMessage());
 				return null;
 			}
-			sleep(5);
+			sleep($seconds);
 		}
 		foreach ($paginateItems as $eachPage) {
 			foreach ($eachPage as $item) {
@@ -123,6 +125,40 @@ class AmazonPaApi {
 			}
 		}
 		return $itemsList;
+	}
+
+	public function scrap_products_descriptions($detail_product_urls) {
+
+		$products_details = $this->scrap_products_details($detail_product_urls);
+		
+		// dd($products_details);
+
+		$products_descriptions = 'sdjhfsdkjf';
+
+		return $products_descriptions;
+	}
+
+	private function scrap_products_details($detail_product_urls) {
+		$seconds = App::environment('local') ? 1 : 10;
+		
+		foreach ($detail_product_urls as $detail_product_url) {
+			
+			// pulire url, togliere query strings
+			$detail_product_url = substr($detail_product_url, 0, strpos($detail_product_url, "?")); 
+			dd($detail_product_url);
+			// scraping with goutte
+			$client = new ClientGoutte();
+			$crawler = $client->request('GET', $detail_product_url);
+			// Get the latest post in this category and display the titles
+			$crawler->filter('h2 > a')->each(function ($node) {
+			    $descr = $node->text();
+			});
+			dd($descr);
+
+			sleep($seconds);
+		}
+
+		return $product_detail;
 	}
 
 
@@ -218,9 +254,6 @@ class AmazonPaApi {
 
 	}
 
-	
-
-
 	public function insert_reviews_in_db($scrapingreviews_json) {  
 
         //riceve il json in entrata e inserisce il json in db ('reviews' table)
@@ -237,8 +270,6 @@ class AmazonPaApi {
 			return true;
 		}
         
-    }
-
-    
+    } 
 
 }
