@@ -58,15 +58,15 @@ class FetchAmazonProducts extends Command {
             $this->info("Estrazione e inserimento prodotti Amazon in db eseguiti correttamente !!");
             $this->info($products_in_db['created']." nuovi records creati in db, ".$products_in_db['updated']." records aggiornati e ".$products_in_db['deleted']." vecchi record cancellati.");
 
-            // add descriptions in db - 2nd API call
-            $products_descriptions_in_db = $comparator_controller->FetchAndInsertDescriptionsInDb($products_in_db['detail_product_urls'], 'Amazon');
-            if ($products_descriptions_in_db) {
-                Log::info('OK. Products descriptions updated in db.');
-                $this->info('Aggiornate descrizioni prodotti in database');
-            } else {
-                Log::error('KO. Products description NOT updated in db');
-                $this->error('Si è verificato un errore in durante l\'aggiornamento delle descrizioni prodotti in DB');
-            }
+            // // add descriptions in db - 2nd API call
+            // $products_descriptions_in_db = $comparator_controller->FetchAndInsertDescriptionsInDb($products_in_db['detail_product_urls'], 'Amazon');
+            // if ($products_descriptions_in_db) {
+            //     Log::info('OK. Products descriptions updated in db.');
+            //     $this->info('Aggiornate descrizioni prodotti in database');
+            // } else {
+            //     Log::error('KO. Products description NOT updated in db');
+            //     $this->error('Si è verificato un errore in durante l\'aggiornamento delle descrizioni prodotti in DB');
+            // }
 
         } else {
             Log::error('Nessun Product estratto nè inserito in DB.');

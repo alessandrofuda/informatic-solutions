@@ -3,14 +3,14 @@
 namespace App\Amazon;
 
 use Revolution\Amazon\ProductAdvertising\Facades\AmazonProduct;
+use App\Exceptions\ItemsNotFoundFromApiException;
 use Illuminate\Support\Facades\Log;
 use Goutte\Client as ClientGoutte;
 use GuzzleHttp\Client;
 use App\Review;
 use Exception;
-use App\Exceptions\ItemsNotFoundFromApiException;
 use App;
-
+use App\Console\Commands\ScrapAmazonProductsDescriptions;
 
 class AmazonPaApi {
 
@@ -127,7 +127,7 @@ class AmazonPaApi {
 		return $itemsList;
 	}
 
-	public function scrap_products_descriptions($detail_product_urls) {
+	/*public function scrap_products_descriptions($detail_product_urls) {
 
 		$products_details = $this->scrap_products_details($detail_product_urls);
 		
@@ -136,29 +136,56 @@ class AmazonPaApi {
 		$products_descriptions = 'sdjhfsdkjf';
 
 		return $products_descriptions;
-	}
+	}*/
 
-	private function scrap_products_details($detail_product_urls) {
-		$seconds = App::environment('local') ? 1 : 10;
-		
+	public function scrap_products_descriptions($detail_product_urls) {
+		$timeout = App::environment('local') ? 5 : 30;
+		$loop_time = App::environment('local') ? 2 : 61;
+		$products_descriptions = [];
+
+
+
+		// TEST !!!
+		// $detail_product_urls = ['https://example.com'];
+		$detail_product_urls = ['http://example.it'];
+
+
+
 		foreach ($detail_product_urls as $detail_product_url) {
-			
-			// pulire url, togliere query strings
-			$detail_product_url = substr($detail_product_url, 0, strpos($detail_product_url, "?")); 
-			dd($detail_product_url);
-			// scraping with goutte
-			$client = new ClientGoutte();
-			$crawler = $client->request('GET', $detail_product_url);
-			// Get the latest post in this category and display the titles
-			$crawler->filter('h2 > a')->each(function ($node) {
-			    $descr = $node->text();
-			});
-			dd($descr);
+ 
+			try {
+				// scraping with goutte
+				$client = new ClientGoutte();
+				$guzzleClient = new Client(['timeout' => $timeout]);
+				$client->setClient($guzzleClient);
+				$crawler = $client->request('GET', $detail_product_url);
+				$html_element = 'h2'; //'#productDescription > p';
+				$description_nodes = $crawler->filter($html_element)->each(function ($node) {
+				    return $node->text();
+				});
 
-			sleep($seconds);
+				if (empty($description_nodes) ) {
+					throw new Exception("Error: Html element '".$html_element."' not found during scraping of product descriptions");
+				}
+
+			} catch (Exception $e) {
+				
+				print($e->getMessage()."\n");
+				Log::error($e->getMessage());
+				// mail notification
+				// ... todo ...
+				return false;
+			}
+
+			dump('ok1');
+			dump($description_nodes);
+			dump('ok2');
+
+			sleep($loop_time);
 		}
 
-		return $product_detail;
+
+		return $products_descriptions;
 	}
 
 

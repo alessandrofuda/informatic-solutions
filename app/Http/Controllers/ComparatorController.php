@@ -12,6 +12,7 @@ use App\Amazon\AmazonPaApi;
 use Illuminate\Support\Str;
 use App\Product;
 use App\Review;
+use Exception;
 use App\Post;
 use Response;
 use DB;
@@ -315,17 +316,32 @@ class ComparatorController extends Controller {
     }
 
     public function FetchAndInsertDescriptionsInDb($detail_product_urls, $storeName) {
-        $descriptions_products = $this->fetchDescriptionsFromStore($detail_product_urls, $storeName);
-
-        return $this->insertDescriptionsInDb($descriptions_products);
+        try {
+            $descriptions_products = $this->fetchDescriptionsFromStore($detail_product_urls, $storeName);
+            if (!$descriptions_products) {
+                throw new Exception();
+            }
+        } catch (Exception $e) {
+            return false;
+        }  
+        return $this->insertDescriptionsInDb($descriptions_products);     
     }
 
     private function fetchDescriptionsFromStore($detail_product_urls, $storeName = 'not specified') {
         if ($storeName != 'Amazon') {
             die('Store Name not specified'); // da sistemare quando aggiungerò ebay ed altri stores
         }
-        $amazonPaApi = new AmazonPaApi;
-        $products_descriptions = $amazonPaApi->scrap_products_descriptions($detail_product_urls);  // array di 30 'ASIN' => 'descriptions'
+
+        try {
+            $amazonPaApi = new AmazonPaApi;
+            $products_descriptions = $amazonPaApi->scrap_products_descriptions($detail_product_urls);  // array di 30 'ASIN' => 'descriptions'
+            if (!$products_descriptions) {
+                throw new Exception();
+            }
+        } catch (Exception $e) {
+                return false;
+        }
+        
         return $products_descriptions;
     }
 

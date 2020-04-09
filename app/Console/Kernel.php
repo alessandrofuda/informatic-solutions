@@ -2,8 +2,8 @@
 
 namespace App\Console;
 
-use Illuminate\Console\Scheduling\Schedule;
 use Illuminate\Foundation\Console\Kernel as ConsoleKernel;
+use Illuminate\Console\Scheduling\Schedule;
 // use Illuminate\Support\Facades\Log;
 
 class Kernel extends ConsoleKernel
@@ -17,6 +17,7 @@ class Kernel extends ConsoleKernel
         Commands\FetchAmazonProducts::class,  //register custom console artisan commands
         Commands\FetchAmazonReviews::class,
         Commands\ComparePrices::class,
+        Commands\ScrapAmazonProductsDescriptions::class, 
     ];
 
     /**
@@ -30,8 +31,9 @@ class Kernel extends ConsoleKernel
         // $schedule->command('inspire')
         //          ->hourly();
 
-        $schedule->command('fetch:amazonproducts videocitofono')->hourlyAt(22)->between('6:00', '23:58')->withoutOverlapping();            
+        $schedule->command('fetch:amazonproducts videocitofono')->hourlyAt(22)->between('6:00', '23:58')->withoutOverlapping(); 
         $schedule->command('fetch:compareprices')->hourlyAt(25)->between('6:00', '23:58')->withoutOverlapping(); 
+        $schedule->command('fetch:scrapamazonproductsdescriptions')->dailyAt('05:30')->withoutOverlapping(); 
 
 
         //SCRAPING RECENSIONI SOSPESO TEMPORANEAMENTE --> VERIFICARE IL CORRETTO INSERIMENTO DEI PRODOTTI IN DB -- $schedule->command('fetch:amazonreviews videocitofono')
