@@ -339,14 +339,33 @@ class ComparatorController extends Controller {
                 throw new Exception();
             }
         } catch (Exception $e) {
+
                 return false;
         }
-        
+
         return $products_descriptions;
     }
 
-    private function insertDescriptionsInDb($descriptions) {
-        // return $descriptions ? ['created'=>$created, 'updated'=>$updated] : null;
+    private function insertDescriptionsInDb($ASINCodes_descriptions) {
+        $updated = 0;
+        
+        foreach ($ASINCodes_descriptions as $ASIN_code => $description) {
+            try {
+                $editorialreviewcontent = self::repairHtmlAndCloseTags(trim($description)) ?? null;
+                $descr_updated = Product::where('asin',$ASIN_code)->update(['editorialreviewcontent' => $editorialreviewcontent]);
+                if (!$descr_updated) {
+                    throw new Exception("'ERROR occurred when updating editorialreviewcontent field on DB on ASIN: '".$ASIN_code."'." );
+                } else {
+                    $updated++;
+                }
+            } catch (Exception $e) {
+                print($e->getMessage()."\n");
+                Log::error($e->getMessage());
+            }
+            
+        }
+
+        return $updated > 0 ? ['updated'=>$updated] : null;
     }
 
 

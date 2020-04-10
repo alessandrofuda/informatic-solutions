@@ -4,11 +4,13 @@ namespace App\Amazon;
 
 use Revolution\Amazon\ProductAdvertising\Facades\AmazonProduct;
 use App\Exceptions\ItemsNotFoundFromApiException;
+use App\Notifications\ScrapingError;
 use Illuminate\Support\Facades\Log;
 use Goutte\Client as ClientGoutte;
 use GuzzleHttp\Client;
 use App\Review;
 use Exception;
+use App\User;
 use App;
 use App\Console\Commands\ScrapAmazonProductsDescriptions;
 
@@ -127,17 +129,6 @@ class AmazonPaApi {
 		return $itemsList;
 	}
 
-	/*public function scrap_products_descriptions($detail_product_urls) {
-
-		$products_details = $this->scrap_products_details($detail_product_urls);
-		
-		// dd($products_details);
-
-		$products_descriptions = 'sdjhfsdkjf';
-
-		return $products_descriptions;
-	}*/
-
 	public function scrap_products_descriptions($detail_product_urls) {
 		$timeout = App::environment('local') ? 5 : 30;
 		$loop_time = App::environment('local') ? 2 : 61;
@@ -147,42 +138,58 @@ class AmazonPaApi {
 
 		// TEST !!!
 		// $detail_product_urls = ['https://example.com'];
-		$detail_product_urls = ['http://example.it'];
+		// $detail_product_urls = ['http://example.it'];
 
 
-
+		
 		foreach ($detail_product_urls as $detail_product_url) {
- 
 			try {
 				// scraping with goutte
 				$client = new ClientGoutte();
 				$guzzleClient = new Client(['timeout' => $timeout]);
 				$client->setClient($guzzleClient);
 				$crawler = $client->request('GET', $detail_product_url);
-				$html_element = 'h2'; //'#productDescription > p';
+				$html_element = '#productDescription > p'; // test 'h1'
 				$description_nodes = $crawler->filter($html_element)->each(function ($node) {
 				    return $node->text();
 				});
-
 				if (empty($description_nodes) ) {
-					throw new Exception("Error: Html element '".$html_element."' not found during scraping of product descriptions");
+					throw new Exception("Error: Html element '".$html_element."' not found during scraping of product Descriptions on Amzn pages. ".$detail_product_url);
+				} elseif (count($description_nodes) > 1) {
+					throw new Exception("Error: Crawler found more than one item matching '".$html_element."' Html element in Amzn Product Page. ".$detail_product_url);
 				}
-
 			} catch (Exception $e) {
-				
 				print($e->getMessage()."\n");
 				Log::error($e->getMessage());
 				// mail notification
-				// ... todo ...
+				$admins = User::where('role','admin')->get(['email']);
+				$admin_emails = [];
+				foreach ($admins as $admin) {
+					$admin->notify(new ScrapingError($e->getMessage()));
+					$admin_emails[] = $admin->email;
+					sleep(3);
+				}
+				$notif_message = 'Sent notification to: '.rtrim(implode(', ', $admin_emails), ', ');
+				print($notif_message.".\n");
+				Log::error($notif_message);	
 				return false;
 			}
 
-			dump('ok1');
-			dump($description_nodes);
-			dump('ok2');
+			$ASIN_code = substr($detail_product_url, strrpos($detail_product_url, "/")+1);
+			$description_node = $description_nodes[0];
+			$products_descriptions[$ASIN_code] = $description_node;
+			
 
 			sleep($loop_time);
 		}
+
+
+		// test
+        // $products_descriptions = [
+        //     'B076HFQCQD' => 'descr1',
+        //     'B06XKRDN8X' => 'descr2',
+        //     'B01F6NC1H0' => 'descr3',
+        // ];
 
 
 		return $products_descriptions;

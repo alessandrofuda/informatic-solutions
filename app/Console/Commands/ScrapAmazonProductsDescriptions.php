@@ -59,6 +59,7 @@ class ScrapAmazonProductsDescriptions extends Command
         }
         
         try {
+            $this->line('Avvio processo di scraping..');
             $comparator_controller = new ComparatorController; 
             $products_descriptions_in_db = $comparator_controller->FetchAndInsertDescriptionsInDb($detail_product_urls, 'Amazon');
             if (!$products_descriptions_in_db) {
@@ -71,8 +72,8 @@ class ScrapAmazonProductsDescriptions extends Command
             return;   
         }
         
-        Log::info('OK. Products descriptions updated in db.');
-        $this->info('Aggiornate descrizioni prodotti in database');
+        Log::info('OK. '.$products_descriptions_in_db['updated'].' products descriptions updated in db.');
+        $this->info('OK. Aggiornate '.$products_descriptions_in_db['updated'].' descrizioni prodotti in database');
 
     }
 }
