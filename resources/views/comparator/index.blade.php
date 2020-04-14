@@ -34,9 +34,9 @@
 		    </div>
 		    <div id="filters" class="text-center">
 		    	@if (!empty($brands) )
+		    		<div class="btn btn-default" data-toggle="collapse" data-target="#brands">Filtra per marca</div> 
 			    	<form id="filter-brand-price" class="checkbox" method="POST" action="">
 			    		{{ csrf_field() }}
-			    		<div class="btn btn-default" data-toggle="collapse" data-target="#brands">Filtra per marca</div> 
 			    		<div id="brands" class="brands collapse">
 				    		@foreach ($brands as $brand)
 				    			<label class="checkbox-inline">

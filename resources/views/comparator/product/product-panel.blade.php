@@ -136,11 +136,17 @@
 		                    <span class="col-md-10 txt">Avvisami quando<br>il prezzo scende</span>
 	                  	</a>
 	                @endif
-
-	                <a rel="nofollow" class="col-md-12 btn btn-primary" target="_blank" href="http://www.amazon.it/gp/aws/cart/add.html?AWSAccessKeyId={{ env('AWS_ACCESS_KEY_ID') }}&AssociateTag=infsol-21&ASIN.1={{ $content->asin }}&Quantity.1=1">
-	                	<i class="col-md-2 glyphicon glyphicon-shopping-cart"></i>
-	                	<span class="col-md-10 txt add-to-cart">Acquista subito</span>
-	                </a>
+	   	            {{-- vedi: https://webservices.amazon.com/paapi5/documentation/add-to-cart-form.html --}}
+					<form method="GET" action="https://www.amazon.it/gp/aws/cart/add.html" target="_blank"> 
+						<input type="hidden" name="AWSAccessKeyId" value="{{config('amazon-product.api_key')}}" />
+						<input type="hidden" name="AssociateTag" value="{{config('amazon-product.associate_tag')}}" />
+						<input type="hidden" name="ASIN.1" value="{{ $content->asin }}" />
+						<input type="hidden" name="Quantity.1" value="1">
+						<button type="submit" class="col-md-12 btn btn-primary">
+					    	<i class="col-md-2 glyphicon glyphicon-shopping-cart"></i>
+					    	<span class="col-md-10 txt add-to-cart">Acquista subito</span>
+					    </button>
+					</form>
                 </div>
             </div><!--.product-buttons-->
             <div class="row review-button">
