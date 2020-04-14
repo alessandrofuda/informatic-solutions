@@ -133,7 +133,14 @@ class AmazonPaApi {
 		$timeout = App::environment('local') ? 5 : 30;
 		$loop_time = App::environment('local') ? 2 : 61;
 		$products_descriptions = [];
-
+		$user_agents = [
+			'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_2) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/40.0.2214.111 Safari/537.36',
+			'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/78.0.3904.87 Safari/537.36',
+			'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:70.0) Gecko/20100101 Firefox/70.0',
+			'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.102 Safari/537.36 Edge/18.18362',
+			'Mozilla/5.0 (Windows NT 10.0; WOW64; Trident/7.0; rv:11.0) like Gecko',
+			'Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:75.0) Gecko/20100101 Firefox/75.0'
+		];
 
 
 		// TEST !!!
@@ -148,15 +155,20 @@ class AmazonPaApi {
 				$client = new ClientGoutte();
 				$guzzleClient = new Client(['timeout' => $timeout]);
 				$client->setClient($guzzleClient);
+				$client->setHeader('User-Agent', $user_agents[rand(0,count($user_agents)-1)]);
 				$crawler = $client->request('GET', $detail_product_url);
-				$html_element = '#productDescription > p'; // test 'h1'
+				$html_element = '#productDescription > p'; // '#productDescription > p'; // test 'h1'
+				sleep(2);
 				$description_nodes = $crawler->filter($html_element)->each(function ($node) {
-				    return $node->text();
+				    return $node->html();  // text();
 				});
+				
 				if (empty($description_nodes) ) {
-					throw new Exception("Error: Html element '".$html_element."' not found during scraping of product Descriptions on Amzn pages. ".$detail_product_url);
+					$err_msg = "Error: Html element '".$html_element."' not found during scraping of product Descriptions on Amzn pages. ".$detail_product_url;
+					throw new Exception($err_msg, 1);
 				} elseif (count($description_nodes) > 1) {
-					throw new Exception("Error: Crawler found more than one item matching '".$html_element."' Html element in Amzn Product Page. ".$detail_product_url);
+					$err_msg = "Error: Crawler found more than one item matching '".$html_element."' Html element in Amzn Product Page. ".$detail_product_url;
+					throw new Exception($err_msg, 2);
 				}
 			} catch (Exception $e) {
 				print($e->getMessage()."\n");
@@ -171,8 +183,12 @@ class AmazonPaApi {
 				}
 				$notif_message = 'Sent notification to: '.rtrim(implode(', ', $admin_emails), ', ');
 				print($notif_message.".\n");
-				Log::error($notif_message);	
-				return false;
+				Log::error($notif_message);
+				if($e->getCode() == 1 || $e->getCode() == 2) {
+					$description_nodes[0] = null;
+				} else {
+					return false;
+				}
 			}
 
 			$ASIN_code = substr($detail_product_url, strrpos($detail_product_url, "/")+1);

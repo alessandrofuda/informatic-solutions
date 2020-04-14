@@ -69,9 +69,8 @@
 						        <h4 class="modal-title">Descrizione dettagliata di:<br>{{ $content->title }}</h4>
 						      </div>
 						      <div class="modal-body">
-						      	
-						        <p> {{-- 	!!! IMPORTANTE !!! rendere sempre le CHIAMATE CONDIZIONALI--}}
-						        	{!! isset($content->editorialreviewcontent) ? $content->editorialreviewcontent : 'Ancora nessun dettaglio inserito dal venditore.' !!} {{--!! str_replace('. ', '.</p><p>', $string) !!--}}
+						        <p> 
+						        	{!! isset($content->editorialreviewcontent) && $content->editorialreviewcontent !== '' ? $content->editorialreviewcontent : 'Ancora nessun dettaglio inserito dal venditore.' !!}
 						        </p>
 						      </div>
 						      <div class="modal-footer">
