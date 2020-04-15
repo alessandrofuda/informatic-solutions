@@ -120,7 +120,9 @@
 		            <div class="clearfix"></div>
 		        @endif
 		    </div>
-		    <div class="text-center">{{ method_exists($contents, 'links') ? $contents->links() : '' }}</div>
+		    <div class="text-center pagination-wrap">
+		    	{{ method_exists($contents, 'links') ? $contents->links() : '' }}
+		    </div>
 	    </div>
 	</div>   
 </div>

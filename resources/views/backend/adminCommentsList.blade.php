@@ -18,7 +18,7 @@
                 
                 <div class="panel-body">
 
-                		<div class="text-center">
+                		<div class="pagination-wrap text-center">
                 			{{ $comments->links() }} <!--pagination-->
                 		</div>
 

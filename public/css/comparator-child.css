@@ -10,9 +10,9 @@ height:55px; /* fixed header height*/
 margin:-55px 0 0; /* negative fixed header height */
 }
 /*body*/
-html {max-width: 1920px; margin: auto;}
-html,body,body > div {min-height: 100%;}
-body > div > div {min-height: calc(100% - 50px - 68.4px);}
+html {max-width: 1920px; margin: auto; position: relative;}
+/*html,body,body > div {min-height: 100%;}
+body > div > div {min-height: calc(100% - 50px - 68.4px);}*/
 body { color: #4b5458; background-color: #dee7ed; }
 #alert {min-height: auto;}
 
@@ -108,14 +108,15 @@ i.col-md-2.glyphicon.glyphicon-remove-sign { font-size: 30px; line-height: 45px;
 #filter-brand-price .btn { margin-bottom: 1%; border-color: #3097d1; color: #3097d1; }
 
 /*pagination*/
+.pagination-wrap { display:block; margin:30px auto 50px; }
 .pagination > li > a, .pagination > li > span, .pagination > .disabled > span, .pagination > .disabled > a { border-color: #3097d1; }
 
 /*footer*/
-footer.footer { margin-top: 30px; background-color: #FFFFFF; border-top: 2px solid #3097d1; color: #3097d1; }
+footer.footer { margin-top: 30px; background-color: #FFFFFF; border-top: 2px solid #3097d1; color: #3097d1; position: absolute; bottom: 0; width: 100%;}
 .footer > .container { padding-top: 40px; }
 
 /*login/register pages*/
-#login .panel, #register .panel { margin-top:5%; }
+#login .panel, #register .panel {  }
 
 
 /*responsive*/

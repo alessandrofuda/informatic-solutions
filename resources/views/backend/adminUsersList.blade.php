@@ -12,7 +12,7 @@
                 
                 <div class="panel-body">
 
-                		<div class="text-center">
+                		<div class="pagination-wrap text-center">
                 			{{ $users->links() }} <!--pagination-->
                 		</div>
 
