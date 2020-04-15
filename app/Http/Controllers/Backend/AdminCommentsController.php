@@ -80,7 +80,7 @@ class AdminCommentsController extends Controller {
         
         // 2) send notification to comment author (and admin)
         Mail::to($comment->from_user_email)     // !!! invio mail a autore commento !!!!!!!!!!!!!!
-            ->bcc(env('ADMIN_EMAIL'))
+            ->bcc(config('custom.admin_email'))
             ->send(new CommentPublished($comment));
 
         // 3) send notification to ALL subscribedtocomment (ESCLUSO QUESTO SOPRA!! che altrimenti riceverebbe doppia mail)

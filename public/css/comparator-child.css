@@ -34,6 +34,8 @@ body { color: #4b5458; background-color: #dee7ed; }
 .modal-button-right { padding-right: 0; }
 .min-160 {min-width: 160px;}
 .margin-5 {margin: 5px;}
+.pulsanti button i.glyphicon-shopping-cart { padding: 0; line-height: 1.5; }
+.pulsanti button i.glyphicon-shopping-cart ~ .add-to-cart {padding:0;}
 
 /*table in edit comment page*/
 td.first-col {font-weight: bold;}

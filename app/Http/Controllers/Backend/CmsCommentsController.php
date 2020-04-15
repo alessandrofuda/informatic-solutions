@@ -85,7 +85,7 @@ class CmsCommentsController extends Controller {
         
 
         // 4) invia comment ad admin per moderazione
-        Mail::to(env('ADMIN_EMAIL'))->send(new CommentSent($comment));
+        Mail::to(config('custom.admin_email'))->send(new CommentSent($comment));
 
 
 

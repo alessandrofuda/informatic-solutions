@@ -19,10 +19,10 @@
         @include('partials.cms-rating')
 
         {{--google adsense--}}          
-        <div id="adv1" style="margin: 50px auto 30px; width: 100%; height: 280px; {{ env('ADSENSE_DEV_BORDER', '') }}">
+        <div id="adv1" style="margin: 50px auto 30px; width: 100%; height: 280px; {{ config('adsense.adsense_dev_border') }}">
           <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
           <!-- informatic-solutions top rectangle responsive -->
-          <ins class="adsbygoogle" style="display: block;" data-ad-client="{{ env('DATA_AD_CLIENT', '') }}" data-ad-slot="{{ env('DATA_AD_SLOT', '') }}" data-ad-format="rectangle"></ins>
+          <ins class="adsbygoogle" style="display: block;" data-ad-client="{{ config('adsense.data_ad_client') }}" data-ad-slot="{{ config('adsense.data_ad_slot') }}" data-ad-format="rectangle"></ins>
           <script>
             (adsbygoogle = window.adsbygoogle || []).push({});
           </script>
@@ -40,9 +40,9 @@
           @include('partials.cms-article-content')
         </div>
 
-        <div id="adv2" style="margin: 30px auto; width: 100%; min-height: 250px; {{ env('ADSENSE_DEV_BORDER', '') }}">
+        <div id="adv2" style="margin: 30px auto; width: 100%; min-height: 250px; {{ config('adsense.adsense_dev_border') }}">
           <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-          <ins class="adsbygoogle" style="display: block;" data-ad-client="{{ env('DATA_AD_CLIENT', '') }}" data-ad-slot="{{ env('DATA_AD_SLOT', '') }}" data-ad-format="rectangle"></ins>
+          <ins class="adsbygoogle" style="display: block;" data-ad-client="{{ config('adsense.data_ad_client') }}" data-ad-slot="{{ config('adsense.data_ad_slot') }}" data-ad-format="rectangle"></ins>
           <script>
             (adsbygoogle = window.adsbygoogle || []).push({});
           </script>

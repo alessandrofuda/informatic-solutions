@@ -42,7 +42,7 @@ class GoodPriceNotification implements ShouldQueue
         $users_array = Watchinglist::groupBy('user_id')->select('user_id')->get(); //all()->groupBy('user_id');
         //dd($users_array);
 
-        $awsaccesskeyid = env('AWS_ACCESS_KEY_ID');
+        $awsaccesskeyid = config('amazon-product.api_key'); // env('AWS_ACCESS_KEY_ID');
         // dd($awsaccesskeyid);
 
         foreach ($users_array as $user) {       //dump($user->user_id);   // 2 4 25
@@ -94,7 +94,7 @@ class GoodPriceNotification implements ShouldQueue
                     $user_id = $user->user_id;
 
                     Mail::to($user->user->email)
-                        ->bcc(env('ADMIN_EMAIL'))
+                        ->bcc(config('custom.admin_email'))
                         ->queue(new LowerPriceNotification($name, $list, $count, $link, $link_home, $user_id));
 
                 } catch(Exception $e) {
