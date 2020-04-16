@@ -5,7 +5,7 @@
     <div class="row">
         <div class="col-md-8 col-md-offset-2">
             <div class="panel panel-default">
-                <div class="panel-heading">Login</div>
+                <div class="panel-heading text-center">Login</div>
                 <div class="panel-body">
                     <form class="form-horizontal" role="form" method="POST" action="{{ url('/login') }}">
                         {{ csrf_field() }}
@@ -51,7 +51,7 @@
                         <div class="form-group">
                             <div class="col-md-8 col-md-offset-4">
                                 <button type="submit" class="btn btn-primary">
-                                    Login
+                                    ACCEDI
                                 </button>
 
                                 <a class="btn btn-link" href="{{ url('/password/reset') }}">
@@ -61,9 +61,9 @@
                         </div>
 
                         <div class="form-group">
-                            <div class="col-md-8 col-md-offset-4">
+                            <div class="col-md-8 col-md-offset-4 text-right">
                                 <a class="btn btn-link" style="margin-top: 25px;" href="{{ url('/register') }}">
-                                    Non sei ancora registrato? Registrati!
+                                    Non ancora registrato? Registrati!
                                 </a>
                             </div>
                         </div>

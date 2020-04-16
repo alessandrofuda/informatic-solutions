@@ -120,6 +120,7 @@ footer .discl{ display: inline-block; }
 
 /*login/register pages*/
 #login, #register { position: absolute; top: calc(50%); left: calc(50%); transform: translate(-50%,-50%); }
+#register .registr-yet { text-align: right; }
 
 
 
