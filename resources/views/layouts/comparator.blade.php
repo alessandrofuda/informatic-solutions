@@ -105,7 +105,7 @@
         });
     </script>
 </head>
-<body>
+<body class="{{ $page_type ?? ''}}">
     <div id="app">
         <nav class="navbar navbar-default navbar-static-top">
             <div class="navbar-header">
@@ -132,12 +132,12 @@
                     @if (Auth::guest())
                         <li>
                             <a href="{{ url('/login') }}">
-                                <button class="btn btn-default">Accedi</button>
+                                <button class="btn btn-default login">Accedi</button>
                             </a>
                         </li>
                         <li>
                             <a href="{{ url('/register') }}">
-                                <button class="btn btn-primary">Registrati</button>
+                                <button class="btn btn-primary register">Registrati</button>
                             </a>
                         </li>
                     @else

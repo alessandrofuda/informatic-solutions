@@ -58,7 +58,7 @@
     </script>
   </head>
 
-  <body>
+  <body class="{{ $page_type ?? '' }}">
     <nav class="navbar navbar-default navbar-fixed-top">
       <div class="container-fluid">
         <div class="navbar-header">

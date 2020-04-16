@@ -1,7 +1,7 @@
 @extends('layouts.comparator')
 
 @section('content')
-    <div id="homepage" class="container-fluid homepage">
+    <div id="homepage" class="container-fluid">
         <div class="row first">
             <div class="slider-container" style="background-image: url('{{ asset('images-hp/hp-slide-1.jpg') }}')">
                 <div class="slider-overlay"></div>

@@ -9,19 +9,17 @@ use Illuminate\Http\Request;
 use App\Traits\CaptchaTrait;
 
 
-class HomepageController extends Controller
-{
-
+class HomepageController extends Controller {
 
     use CaptchaTrait;
 
-
+    public function __construct() {
+    	$this->page_type = 'homepage';
+    }
 
 
     public function index() {
-
-    	return view('homepage');
-
+    	return view('homepage', ['page_type' => $this->page_type]);
     }
 
 

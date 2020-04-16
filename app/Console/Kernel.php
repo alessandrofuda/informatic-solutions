@@ -33,7 +33,7 @@ class Kernel extends ConsoleKernel
 
         $schedule->command('fetch:amazonproducts videocitofono')->hourlyAt(22)->between('6:00', '23:58')->withoutOverlapping(); 
         $schedule->command('fetch:compareprices')->hourlyAt(25)->between('6:00', '23:58')->withoutOverlapping(); 
-        $schedule->command('fetch:scrapamazonproductsdescriptions')->dailyAt('05:30')->withoutOverlapping(); 
+        $schedule->command('fetch:scrapamazonproductsdescriptions')->dailyAt('05:30')->withoutOverlapping();
 
 
         //SCRAPING RECENSIONI SOSPESO TEMPORANEAMENTE --> VERIFICARE IL CORRETTO INSERIMENTO DEI PRODOTTI IN DB -- $schedule->command('fetch:amazonreviews videocitofono')

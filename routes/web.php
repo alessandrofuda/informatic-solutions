@@ -20,6 +20,9 @@ Route::get('no-scansioni.html', function () { return 'Hello Robot !'; })->name('
 COMPARATOR: subscriber, (+guest)
 CMS: admin, author */
 
+/*Homapage*/
+Route::get('/', 'HomepageController@index')->name('home');
+
 
 
 /* ADMIN */
@@ -38,7 +41,6 @@ Route::group(['middleware' => 'admin', 'prefix' => 'admin', 'as' => 'admin.'], f
 
 
 /* COMPARATOR - FRONTEND */
-Route::get('/', 'HomepageController@index')->name('home');
 Route::get('{slug}/comparatore-prezzi', 'ComparatorController@index')->name('slug-prices-comparator');
 Route::post('{slug}/comparatore-prezzi', 'ComparatorController@filter')->name('slug-prices-comparator-post');  // checkboxs + text search
 Route::get('search/autocomplete', 'ComparatorController@autocomplete')->name('search-autocomplete');   // search box + autocomplete

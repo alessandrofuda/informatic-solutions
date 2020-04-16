@@ -20,10 +20,13 @@ body { color: #4b5458; background-color: #dee7ed; }
 .navbar-default { margin-bottom: 0; background: linear-gradient(to right,#DEE7ED ,#3299be,#dee7ed); border:none; width: 100%; position: fixed;}
 .navbar-default .navbar-brand {color: #FFFFFF; font-family: 'Black Ops One', cursive; font-size: 20px; text-shadow: 1px 1px 0px #000000;}
 .navbar-brand > .fas { margin-right: 10px; }
-
 .nav.navbar-nav li a { padding:5px; }
 .nav.navbar-nav li a > .btn-default { color: #3097d1; border: 1px solid; }
 .nav.navbar-right { margin-right: auto; }
+.nav.navbar-right button { border-radius: 1px; font-family: 'Black Ops One', cursive; text-transform:uppercase; text-shadow: 0 1px 0 #000;
+							letter-spacing: 1px; font-size: 15px;}
+.nav.navbar-right button.register{ border: 1px solid #fff; background-color: #2ab27b; }
+.nav.navbar-right button.register:hover {background-color: #2bcf8d; }
 .btn > .caret { margin-left: 5px; }
 
 /*buttons*/
@@ -41,8 +44,9 @@ body { color: #4b5458; background-color: #dee7ed; }
 td.first-col {font-weight: bold;}
 
 /*comparator*/
-.title {margin-bottom: 20px;}
+.title { margin-top: 50px; margin-bottom: 20px;}
 .title h1 { font-weight: lighter; background: linear-gradient(to right,#DEE7ED ,#3299be,#dee7ed); color: #FFFFFF; text-shadow: 1px 1px 0px #000000; margin: 0; padding: 30px 0;}
+.title h2 { font-size: 125%; margin: 2% auto; }
 #search .well { background: none; border: none; box-shadow: none; max-width: 500px; margin: auto; width: 100%;}
 #search .input-group { width: 100%; }
 #search input { border-radius: 20px; border-color: #3097d1; }
@@ -116,8 +120,7 @@ footer.footer { margin-top: 30px; background-color: #FFFFFF; border-top: 2px sol
 .footer > .container { padding-top: 40px; }
 
 /*login/register pages*/
-#login .panel, #register .panel {  }
-
+#login, #register { position: absolute; top: calc(50%); left: calc(50%); transform: translate(-50%,-50%); }
 
 /*responsive*/
 @media screen and (max-width: 991px) {

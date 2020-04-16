@@ -27,7 +27,8 @@ class ComparatorController extends Controller {
 
     public function __construct() { 
 
-        //$this->keysearch = 'videocitofono';        
+        //$this->keysearch = 'videocitofono'; 
+        $this->page_type = 'comparator';      
     }
 
     /**
@@ -57,8 +58,8 @@ class ComparatorController extends Controller {
                                        ->with('all_products_number', $all_products_number)
                                        ->with('contents', $contents)
                                        ->with('reviews', $reviews)
+                                       ->with('page_type', $this->page_type);
                                        //->with('prod_json', $prod_json)
-                                       ;
     }
 
     public function getBrandsArray() {
@@ -167,7 +168,8 @@ class ComparatorController extends Controller {
                                        ->with('slug', $slug)
                                        ->with('reviews', $reviews)
                                        ->with('request', $request)
-                                       ->with('all_products_number', $all_products_number); 
+                                       ->with('all_products_number', $all_products_number)
+                                       ->with('page_type', $this->page_type); 
     }
 
     /* 

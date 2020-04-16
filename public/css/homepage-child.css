@@ -1,6 +1,12 @@
 /*specific homepage css child*/
-#homepage {
-	margin-top: -50px;
+.homepage nav {
+	background: transparent;
+}
+.homepage nav .navbar-right .register {
+	border-color: #ffffff;
+}
+#app { 
+	min-height: 100vh;
 }
 #homepage .slider-container { 
 	min-height: 600px; 

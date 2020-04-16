@@ -5,11 +5,13 @@
 
 	<div class="row">
 	    <div class="col-md-12">
-		    <div class="text-center title">
+		    <div class="row text-center title">
 		    	<div class="col-md-12">
-		    		<h1>Confronta <b>{{ ucfirst($slug) }}</b> e monitora i prezzi</h1>
+		    		<h1 class="title-text">Confronta <b>{{ ucfirst($slug) }}</b> e monitora i prezzi</h1>
 			    	@if(!empty($post_title))
-			    		<h2 class="sub-title-link" style="font-size: 125%; margin: 2% auto;"><a href="{{ url($slug) }}">{{ $post_title }}</a></h2>
+			    		<h2 class="sub-title-link">
+			    			<a href="{{ url($slug) }}">{{ $post_title }}</a>
+			    		</h2>
 			    	@endif
 		    	</div>
 		    </div>
@@ -17,7 +19,7 @@
 		<div class="col-md-12">
 		    <div id="search" class="row text-center search">
 		    	<div class="well well-sm">
-	                <form id="plaintext-filter" class="form-group" method="POST" action="{{-- url('videocitofoni/search/submit') --}}">
+	                <form id="plaintext-filter" class="form-group" method="POST" action="">
 	                	{{ csrf_field() }}
 	                    <div class="input-group input-group-md">
 	                        <div class="icon-addon addon-md">

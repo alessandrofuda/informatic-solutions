@@ -10,8 +10,11 @@ use App\Post;
 
 
 
-class ArticlesController extends Controller
-{
+class ArticlesController extends Controller {
+
+    public function __construct() {
+        $this->page_type = 'cms';
+    }
 
     public function index() {
 
@@ -38,7 +41,8 @@ class ArticlesController extends Controller
     								->with('comments_child', $comments_child)
                                     ->with('tot', $tot)
                                     ->with('voto_medio', $voto_medio)
-                                    ->with('numero_voti', $numero_voti);
+                                    ->with('numero_voti', $numero_voti)
+                                    ->with('page_type', $this->page_type);
 
     }
 
