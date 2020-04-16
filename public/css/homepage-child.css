@@ -28,8 +28,8 @@
 }
 #homepage .slider-content {
     position: absolute;
-    left: 10px;
-    right: 10px;
+    left: 0px;
+    right: 0px;
     bottom: calc(50%);
     transform: translateY(50%);
     font-family: 'Black Ops One', cursive; 
@@ -108,10 +108,7 @@ i.fas.slide-hp {
 
 
 /*responsive*/
-@media all and (min-width: 768px) and (max-width: 991px) {
-	#homepage .slider-content > .col-md-4 {
-	    display: inline-block;
-	}
+@media all and (max-width: 991px) {  /*(min-width: 768px) and*/
 	#homepage .slider-content{
 		font-size: 30px;
 	}
@@ -136,11 +133,20 @@ i.fas.slide-hp {
 	#homepage {
 	    margin-top: 0;
 	}
+	#homepage .row.first {
+		margin-top: 50px;
+	}
 	#homepage .slider-content {
 		font-size: 25px;
 	}
+	#homepage .slider-content .slider-block {
+		line-height: 1.25;
+		margin-bottom: 15px;
+		padding-bottom: 15px;
+	}
 	#homepage i.fas.slide-hp{
-		font-size: 80px;
+		font-size: 90px;
+		margin-bottom: 5px;
 	}
 	#homepage .block1 .block-body ul{
 		padding-left: 0;
@@ -148,7 +154,7 @@ i.fas.slide-hp {
 	#homepage .block2 {
 		display: block;
 		margin-top: 30px;
-
+		margin-bottom: 30px;
 	}
 	#homepage .block2 .cta{
 		display: block;
@@ -179,4 +185,12 @@ i.fas.slide-hp {
 		padding: 10px;
 	}
 	
+}
+
+@media all and (max-width: 480px) {
+
+	#homepage .block2 .fas.fa-chevron-right {
+	    display: none;
+	}
+
 }

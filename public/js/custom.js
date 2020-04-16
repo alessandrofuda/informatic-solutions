@@ -1,10 +1,10 @@
 $(document).ready( function() {
-	var windowHeight = $(window).height();
-	console.log(windowHeight);
-	// $('body, body > div').css({'min-height': windowHeight+'px'});
-	// var containerHeight = windowHeight - $('nav').height() - $('footer').outerHeight(true);
-	// $('#app > .container, #app > .container-fluid').css('min-height', containerHeight+'px');
-
-	// var navbarHeight = $('.navbar-static-top').height();
-	// $('.navbar-static-top ~ .container-fluid').css('padding-top', navbarHeight);
+	$(document).scroll(function () {
+	    var hp_nav = $('.homepage .navbar-default');
+	    if ($(this).scrollTop() > hp_nav.height()+20) {
+	    	hp_nav.css('background', 'linear-gradient(to right,#DEE7ED ,#3299be,#dee7ed)');
+	    } else {
+	    	hp_nav.css('background', 'transparent');
+	    }
+	});
 });

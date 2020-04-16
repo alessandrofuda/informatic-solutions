@@ -6,13 +6,13 @@
             <div class="slider-container" style="background-image: url('{{ asset('images-hp/hp-slide-1.jpg') }}')">
                 <div class="slider-overlay"></div>
                 <div class="slider-content">
-                    <div class="col-md-4">
+                    <div class="col-sm-4 slider-block">
                         <i class="fas fa-list-alt slide-hp"></i>Confronta<br>Prodotti
                     </div>
-                    <div class="col-md-4">
+                    <div class="col-sm-4 slider-block">
                         <i class="fas fa-chart-line slide-hp"></i>Monitora i <br>Prezzi
                     </div>
-                    <div class="col-md-4">
+                    <div class="col-sm-4 slider-block">
                         <i class="fas fa-hand-holding-usd slide-hp"></i>Compra e <br>Risparmia
                     </div>
                 </div>

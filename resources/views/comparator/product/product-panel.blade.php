@@ -72,6 +72,12 @@
 						        <p> 
 						        	{!! isset($content->editorialreviewcontent) && $content->editorialreviewcontent !== '' ? $content->editorialreviewcontent : 'Ancora nessun dettaglio inserito dal venditore.' !!}
 						        </p>
+						        @if ($content->detailpageurl)
+									<p>
+							        	<a href="{{ $content->detailpageurl }}" rel="nofollow" target="_blank">Vedi ulteriori dettagi sul sito del venditore</a>
+							        </p>
+							    @endif
+						        
 						      </div>
 						      <div class="modal-footer">
 						        <button type="button" class="btn btn-default" data-dismiss="modal">Chiudi e torna</button>

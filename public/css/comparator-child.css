@@ -108,7 +108,6 @@ i.col-md-2.glyphicon.glyphicon-remove-sign { font-size: 30px; line-height: 45px;
 	padding: 2%; border: 1px solid rgb(48, 151, 209); border-radius: 5px; margin-top: 1%; background-color: rgb(255, 255, 255);
  }
 #brands .checkbox-inline input {margin-top: 2px;}
-/*#brands.collapse { padding: 2%; border: 1px solid rgb(48, 151, 209); border-radius: 5px; margin-top: 1%; background-color: rgb(255, 255, 255); }*/
 #filter-brand-price .btn { margin-bottom: 1%; border-color: #3097d1; color: #3097d1; }
 
 /*pagination*/
@@ -116,22 +115,30 @@ i.col-md-2.glyphicon.glyphicon-remove-sign { font-size: 30px; line-height: 45px;
 .pagination > li > a, .pagination > li > span, .pagination > .disabled > span, .pagination > .disabled > a { border-color: #3097d1; }
 
 /*footer*/
-footer.footer { margin-top: 30px; background-color: #FFFFFF; border-top: 2px solid #3097d1; color: #3097d1; position: absolute; bottom: 0; width: 100%;}
-.footer > .container { padding-top: 40px; }
+footer { margin-top: 30px; background-color: #FFFFFF; border-top: 2px solid #3097d1; color: #3097d1; position: absolute; bottom: 0; width: 100%;}
+footer .discl{ display: inline-block; }
 
 /*login/register pages*/
 #login, #register { position: absolute; top: calc(50%); left: calc(50%); transform: translate(-50%,-50%); }
+
+
 
 /*responsive*/
 @media screen and (max-width: 991px) {
 	.modal-button-left, .modal-button-right { padding:0; }
 }
 @media screen and (max-width: 768px) {
+	/*hamburger btn*/
+	.navbar-default .navbar-toggle { border-color: #ffffff; }
+	.navbar-default .navbar-toggle > .icon-bar { background-color: #ffffff; }
+	.navbar-default .navbar-collapse {	text-align: right; }
+
 	.min-160 { min-width: 10px; }
 	td.product-name {font-size: 12px;}
 	.panel-body .table > tbody > tr > td {padding: 8px 2px;}
 }	
 @media screen and (max-width: 480px) {
+	.navbar-default .navbar-brand { font-size: 18px; }
 	#app .container { width: 100%;}
 	#app .panel-default { width: 100%; border: none; }
 	#app .panel-body {padding-left: 10px; padding-right: 10px; border:none; width: 100%;}

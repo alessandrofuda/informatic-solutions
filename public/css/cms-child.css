@@ -76,6 +76,7 @@ h3 { margin: 50px auto 25px; }
 .figure.pull-right { margin-right: 0; }
 figcaption {font-size: 13px; margin: 15px 10px 0 10px;}
 .footer .first {margin:0;}
+.footer .discl { display: inline-block; }
 #indice-jumb button { cursor: default; }
 
 /*comments*/
