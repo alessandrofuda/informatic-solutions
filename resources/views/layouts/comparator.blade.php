@@ -150,7 +150,7 @@
                                 <li><a href="{{ url('backend') }}">Profilo</a></li>
                                 <li><a href="{{ url('backend#my-list') }}">Oggetti in osservazione</a></li>
                                 <li><a href="{{ url('backend#reset-psw') }}">Cambia password</a></li>
-                                <li><a href="">Modifica profilo-FARE</a></li>
+                                <li><a href="">Modifica profilo-<small>(to do)</small></a></li>
                                 <li>
                                     <a href="{{ url('backend/delete/my-profile') }}" onclick="return confirm('Sei sicuro di voler eliminare il tuo Profilo e Dis-iscriverti dal servizio?')">Elimina profilo</a>
                                 </li>
