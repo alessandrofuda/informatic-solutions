@@ -14,6 +14,7 @@ use Illuminate\Support\Str;
 use App\Product;
 use App\Review;
 use Exception;
+use App\Store;
 use App\Post;
 use Response;
 use DB;
@@ -173,10 +174,10 @@ class ComparatorController extends Controller {
                                        ->with('page_type', $this->page_type); 
     }
 
-    /* 
+    /** 
      *  jquery autocomplete in search form
      *
-    **/
+     */
     public function autocomplete(){
 
         $term = Input::get('term');
@@ -197,32 +198,11 @@ class ComparatorController extends Controller {
         return Response::json($results);
     }
 
-    /*// repair unclosed Html tags
-    public function closetags($html) {  // https://gist.github.com/JayWood/348752b568ecd63ae5ce
-        preg_match_all('#<([a-z]+)(?: .*)?(?<![/|/ ])>#iU', $html, $result);
-        $openedtags = $result[1];
-        preg_match_all('#</([a-z]+)>#iU', $html, $result);
-        $closedtags = $result[1];
-        $len_opened = count($openedtags);
-        if (count($closedtags) == $len_opened) {
-            return $html;
-        }
-        $openedtags = array_reverse($openedtags);
-        for ($i=0; $i < $len_opened; $i++) {
-            if (!in_array($openedtags[$i], $closedtags)) {
-                $html .= '</'.$openedtags[$i].'>';
-            } else {
-                unset($closedtags[array_search($openedtags[$i], $closedtags)]);
-            }
-        }
-        return $html;
-    }*/
-
     /**
      *  API call & DB update
      *
-    */
-    public function FetchAndInsertProductsInDb(string $keysearch, string $storeName = 'not specified') { // storename diventerà array
+     */
+    public function FetchAndInsertProductsInDb(string $keysearch, string $storeName = 'not specified') {
         $products_from_store = $this->fetchProductsFromStore($keysearch, $storeName);
         
         if ($products_from_store) {
@@ -230,8 +210,8 @@ class ComparatorController extends Controller {
         }
     }
 
-    private function fetchProductsFromStore($keysearch, $storeName = 'not specified') {
-        if($storeName != 'Amazon') {
+    private function fetchProductsFromStore($keysearch, $storeName) {
+        if($storeName != 'amazon') {
             die('Store Name not specified'); // da sistemare quando aggiungerò ebay ed altri stores
         }
         $amazonPaApi = new AmazonPaApi;
@@ -244,7 +224,8 @@ class ComparatorController extends Controller {
         $deleted = 0;
         $detail_product_urls = [];
         $storedImagesInLocalhost = 0;
-
+        $store_id = Store::where('name', mb_strtolower($storeName))->get()->first()->id ?? null;
+        
         foreach ($products_from_store as $product_from_store) {
 
             $product_from_store = (object) $product_from_store;
@@ -287,6 +268,7 @@ class ComparatorController extends Controller {
                     'asin' => $product_from_store->ASIN,
                 ],
                 [
+                    'store_id' => $store_id,
                     'detailpageurl' => $product_from_store->DetailPageURL,
                     'largeimageurl' => $localhostImageUrl, //$product_from_store->LargeImage->URL,
                     'largeimageheight' => $largeImage['Height'] ?? null, 
@@ -318,7 +300,7 @@ class ComparatorController extends Controller {
         return $product ? ['created'=>$created, 'updated'=>$updated, 'deleted'=>$deleted, 'detail_product_urls'=>$detail_product_urls] : false;  
     }
 
-    public function FetchAndInsertDescriptionsInDb($detail_product_urls, $storeName) {
+    public function FetchAndInsertDescriptionsInDb($detail_product_urls, $storeName = 'not specified') {
         try {
             $descriptions_products = $this->fetchDescriptionsFromStore($detail_product_urls, $storeName);
             if (!$descriptions_products) {
@@ -330,8 +312,9 @@ class ComparatorController extends Controller {
         return $this->insertDescriptionsInDb($descriptions_products);     
     }
 
-    private function fetchDescriptionsFromStore($detail_product_urls, $storeName = 'not specified') {
-        if ($storeName != 'Amazon') {
+    private function fetchDescriptionsFromStore($detail_product_urls, $storeName) {
+
+        if ($storeName != 'amazon') {
             die('Store Name not specified'); // da sistemare quando aggiungerò ebay ed altri stores
         }
 
@@ -389,77 +372,6 @@ class ComparatorController extends Controller {
         if( !empty($scrapingreviews_json) && $insert_rw_in_db === true ) {
             return true;
         }
-
     }
 
-
-
-
-    
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        //
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        //
-    }
 }

@@ -49,7 +49,7 @@ class FetchAmazonProducts extends Command {
 
         $this->line('Chiave di ricerca inserita (keysearch): '. $key);
         $comparator_controller = new ComparatorController; 
-        $products_in_db = $comparator_controller->FetchAndInsertProductsInDb($key, 'Amazon');
+        $products_in_db = $comparator_controller->FetchAndInsertProductsInDb($key, 'amazon');
 
         if($products_in_db){
             Log::info('OK. '.$products_in_db['created'].' new Products inserted in DB (FetchAmazonProducts con key: '. $key.')');
