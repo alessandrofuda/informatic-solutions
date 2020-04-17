@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\Log;
 use App\Traits\RepairHtmlTrait;
+use App\Amazon\AmazonScraping;
 use Illuminate\Http\Request;
 use App\Amazon\AmazonPaApi;
 use Illuminate\Support\Str;
@@ -335,8 +336,8 @@ class ComparatorController extends Controller {
         }
 
         try {
-            $amazonPaApi = new AmazonPaApi;
-            $products_descriptions = $amazonPaApi->scrap_products_descriptions($detail_product_urls);  // array di 30 'ASIN' => 'descriptions'
+            $amazonScraping = new amazonScraping;
+            $products_descriptions = $amazonScraping->scrap_products_descriptions($detail_product_urls);  // array di 30 'ASIN' => 'descriptions'
             if (!$products_descriptions) {
                 throw new Exception();
             }

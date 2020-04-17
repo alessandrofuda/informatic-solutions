@@ -11,6 +11,7 @@ class ScrapingError extends Notification
 {
     use Queueable;
 
+    public $errorTitle;
     public $errorMessage;
 
     /**
@@ -18,8 +19,9 @@ class ScrapingError extends Notification
      *
      * @return void
      */
-    public function __construct($errorMessage)
+    public function __construct($errorTitle, $errorMessage)
     {
+        $this->errorTitle = $errorTitle;
         $this->errorMessage = $errorMessage;
     }
 
@@ -46,8 +48,9 @@ class ScrapingError extends Notification
         // dd($notifiable);
         return (new MailMessage)
                     ->error()
+                    ->subject('Scraping Error - '.$this->errorTitle)
                     ->greeting("Hello Admin,")
-                    ->line('The Informatic Solutions Scraping Crawler have NOT found an HTML element to Amazon Page. Html element may have been moved or removed. Or request may have been stopped by Amzn firewall.')
+                    ->line('The Informatic Solutions Scraping Crawler failed.')
                     ->line('This is the Log of the error:')
                     ->line($this->errorMessage)
                     ->line('See /storage/logs/laravel.log on the server for more details.')
