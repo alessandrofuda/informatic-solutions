@@ -32,8 +32,8 @@ class Product extends Model
 
 
     /*custom functions*/
-    public static function italian_date($mysql_date)
-    {
+    public static function italian_date($mysql_date) {
+
         $d = explode(' ', $mysql_date);
         $h = explode(':', $d[1]);
         $h = $h[0].':'.$h[1];
@@ -43,6 +43,10 @@ class Product extends Model
         $italian_date = $d.' - '.$h;
 
         return $italian_date;
+    }
+
+    public function store() {
+        return $this->belongsTo('App\Store');
     }
 
 }
