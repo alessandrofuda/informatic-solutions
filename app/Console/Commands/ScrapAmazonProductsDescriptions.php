@@ -61,7 +61,7 @@ class ScrapAmazonProductsDescriptions extends Command
         try {
             $this->line('Avvio processo di scraping..');
             $comparator_controller = new ComparatorController; 
-            $products_descriptions_in_db = $comparator_controller->FetchAndInsertDescriptionsInDb($detail_product_urls, 'Amazon');
+            $products_descriptions_in_db = $comparator_controller->FetchAndInsertDescriptionsInDb($detail_product_urls, 'amazon');
             if (!$products_descriptions_in_db) {
                 throw new Exception('$products_descriptions_in_db undefined variable. See logs for details');
             }
