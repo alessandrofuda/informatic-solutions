@@ -1,0 +1,4 @@
+FROM devilbox/php-fpm:7.2-prod
+RUN apt-get update; apt-get install -y libxrender1 unzip
+
+WORKDIR /var/www/default/htdocs
