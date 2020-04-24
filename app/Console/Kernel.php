@@ -6,8 +6,8 @@ use Illuminate\Foundation\Console\Kernel as ConsoleKernel;
 use Illuminate\Console\Scheduling\Schedule;
 // use Illuminate\Support\Facades\Log;
 
-class Kernel extends ConsoleKernel
-{
+
+class Kernel extends ConsoleKernel {
     /**
      * The Artisan commands provided by your application.
      *
@@ -17,7 +17,7 @@ class Kernel extends ConsoleKernel
         Commands\FetchAmazonProducts::class,  //register custom console artisan commands
         Commands\FetchAmazonReviews::class,
         Commands\ComparePrices::class,
-        Commands\ScrapAmazonProductsDescriptions::class, 
+        Commands\ScrapAmazonProductsDescriptions::class,
     ];
 
     /**
@@ -28,8 +28,9 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule) {
 
-        // $schedule->command('inspire')
-        //          ->hourly();
+        $schedule->command('inspire')
+                 ->everyMinute();
+
 
         $schedule->command('fetch:amazonproducts videocitofono')->hourlyAt(22)->between('6:00', '23:58')->withoutOverlapping(); 
         $schedule->command('fetch:compareprices')->hourlyAt(25)->between('6:00', '23:58')->withoutOverlapping(); 
@@ -42,8 +43,6 @@ class Kernel extends ConsoleKernel
                  //->hourly()
         //         ->dailyAt('5:20')
         //         ->withoutOverlapping();
-
-
 
     }
 
