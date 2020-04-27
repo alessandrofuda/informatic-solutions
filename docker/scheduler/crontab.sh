@@ -8,7 +8,7 @@ touch /var/www/storage/logs/crontab.log
 # chmod a+x /app/bin/my-awesome-command
 
 # Added a cronjob in a new crontab
-echo "* * * * * cd /var/www && echo '..testing..' && /usr/local/bin/php artisan schedule:run >> /var/www/storage/logs/crontab.log 2>&1" > /etc/crontab
+echo "* * * * * cd /var/www && /usr/local/bin/php artisan schedule:run >> /var/www/storage/logs/crontab.log 2>&1" > /etc/crontab
 
 # Registering the new crontab
 crontab /etc/crontab
