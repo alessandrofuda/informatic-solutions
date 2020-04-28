@@ -225,7 +225,7 @@ class ComparatorController extends Controller {
         $detail_product_urls = [];
         $storedImagesInLocalhost = 0;
         $store_id = Store::where('name', mb_strtolower($storeName))->get()->first()->id ?? null;
-        
+
         foreach ($products_from_store as $product_from_store) {
 
             $product_from_store = (object) $product_from_store;
