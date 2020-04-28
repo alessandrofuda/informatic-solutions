@@ -87,11 +87,6 @@ input:checked + .slider:before {
 
 #alert {
     min-height: auto;
-    /*position: absolute;
-    top: 50px;
-    width: 600px;
-    max-width: 100%;
-    left: calc(50%);
-    transform: translateX(-50%);
-    z-index: 9;*/
+    position: relative;
+    top: 60px;
 }
