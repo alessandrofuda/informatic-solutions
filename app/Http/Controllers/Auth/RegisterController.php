@@ -142,7 +142,7 @@ class RegisterController extends Controller
         // The verified method has been added to the user model and chained here
         // for better readability
         $user = User::where('email_token',$token)->firstOrFail();
-        $user->verified();
+        $user->setVerified();
         
 
         $admins = User::where('role','admin')->get();  //collection

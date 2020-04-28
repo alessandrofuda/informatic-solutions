@@ -10,11 +10,14 @@ use App\Watchinglist;
 
 
 
-class User extends Authenticatable
-{
+class User extends Authenticatable {
+
     use Notifiable;
     use SoftDeletes;
 
+    const VERIFIED = 1;
+    const NOT_VERIFIED = 0;
+    
     /**
      * The attributes that are mass assignable.
      *
@@ -39,7 +42,7 @@ class User extends Authenticatable
 
     // processo di verifica e-mail in auto-registrazione nuovi utenti
     // Set the verified status to true and make the email token null
-    public function verified() {
+    public function setVerified() {
         $this->verified = 1;
         $this->email_token = null;
 
