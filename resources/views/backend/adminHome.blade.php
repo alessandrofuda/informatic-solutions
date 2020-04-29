@@ -22,6 +22,7 @@
                                 <a class="btn btn-primary btn-sm" href="{{route('admin.comments')}}">Visualizza tutti i commenti</a>
                                 <a class="btn btn-primary btn-sm" href="{{route('admin.pending-comments')}}">Solo commenti in moderazione</a>    
                                 <a class="btn btn-primary btn-sm" href="{{route('admin.users.index')}}">Visualizza tutti gli utenti</a>
+                                <a class="btn btn-danger btn-sm" href="{{url('admin/log-reader')}}" >Log Applicazione</a>
                             </div>
                         </div>
                     </div>
