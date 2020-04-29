@@ -5,37 +5,12 @@
     <div class="row">
         <div class="col-md-12 col-md-offset-0">
             <div class="panel panel-default">
-                <div class="panel-heading text-center">Monitora i tuoi prodotti</div>
+                <h2 class="panel-heading text-center">Monitora i tuoi prodotti</h2>
                 <div class="panel-body"> 
                     <div class="panel panel-default">
                         <div class="panel-body">
-                            <h3 class="title text-center">Il mio Profilo</h3>
-                            <div class="table-responsive">
-                                <table class="table table-striped summary">
-                                    <tbody>
-                                        <tr>
-                                            <td class="text-right"><b>Nome</b></td>
-                                            <td>{{$user->name}}</td>
-                                        </tr>
-                                        <tr>
-                                            <td class="text-right"><b>E-mail</b></td>
-                                            <td>{{$user->email}}</td>
-                                        </tr>
-                                        <tr>
-                                            <td class="text-right"><b>Tipo di profilo</b></td>
-                                            <td><i>{{$user->role}}</i></td>
-                                        </tr>
-                                        <tr>
-                                            <td class="text-right"><b>Data di iscrizione</b></td>
-                                            <td>{{$date}}</td>
-                                        </tr>
-                                        <tr>
-                                            <td id="reset-psw" class="text-right"><b>Reimposta password</b></td>
-                                            <td><a class="btn btn-primary btn-sm" href="{{url('backend/change-my-pswd')}}">Cambia</a></td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-                            </div>
+
+                            @include('partials.comparator-my-profile')
 
                             <hr style="margin:80px auto;">
 

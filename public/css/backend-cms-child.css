@@ -89,4 +89,5 @@ input:checked + .slider:before {
     min-height: auto;
     position: relative;
     top: 60px;
+    z-index: 9;
 }

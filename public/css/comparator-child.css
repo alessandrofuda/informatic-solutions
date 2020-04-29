@@ -28,6 +28,7 @@ body { color: #4b5458; background-color: #dee7ed; }
 .nav.navbar-right button.register{ border: 1px solid #fff; background-color: #2ab27b; }
 .nav.navbar-right button.register:hover {background-color: #2bcf8d; }
 .btn > .caret { margin-left: 5px; }
+.navbar.navbar-default ~ .container {padding-top: 80px;}
 
 /*buttons*/
 .btn {min-width: 75px; white-space: normal;}

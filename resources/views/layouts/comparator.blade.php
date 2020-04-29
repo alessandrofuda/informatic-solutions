@@ -147,9 +147,15 @@
                             </a>
 
                             <ul class="dropdown-menu" role="menu">
-                                <li><a href="{{ url('backend') }}">Profilo</a></li>
-                                <li><a href="{{ url('backend#my-list') }}">Oggetti in osservazione</a></li>
-                                <li><a href="{{ url('backend#reset-psw') }}">Cambia password</a></li>
+                                <li>
+                                    <a href="{{ Auth::user()->is_admin() ? url('admin#profile') : url('backend#profile') }}">Profilo</a>
+                                </li>
+                                @if (!Auth::user()->is_admin())
+                                    <li><a href="{{ url('backend#my-list') }}">Oggetti in osservazione</a></li>
+                                @endif
+                                <li>
+                                    <a href="{{ Auth::user()->is_admin() ? url('admin#reset-psw') : url('backend#reset-psw') }}">Cambia password</a>
+                                </li>
                                 <li><a href="">Modifica profilo-<small>(to do)</small></a></li>
                                 <li>
                                     <a href="{{ url('backend/delete/my-profile') }}" onclick="return confirm('Sei sicuro di voler eliminare il tuo Profilo e Dis-iscriverti dal servizio?')">Elimina profilo</a>

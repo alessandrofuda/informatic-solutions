@@ -26,7 +26,7 @@ Route::get('/', 'HomepageController@index')->name('home');
 
 
 /* ADMIN */
-Route::group(['middleware' => 'admin', 'prefix' => 'admin', 'as' => 'admin.'], function() {
+Route::group(['middleware' => ['auth','admin'], 'prefix' => 'admin', 'as' => 'admin.'], function() {
 	Route::get('/', 'Backend\AdminDashboardController@index')->name('home');
 	Route::resource('users', 'Backend\AdminUserController');
 	Route::get('comments', 'Backend\AdminCommentsController@index')->name('comments');
@@ -35,6 +35,8 @@ Route::group(['middleware' => 'admin', 'prefix' => 'admin', 'as' => 'admin.'], f
 	Route::get('edit-comment-{id}', 'Backend\AdminCommentsController@edit')->name('edit-comment');
 	Route::post('edit-comment-{id}', 'Backend\AdminCommentsController@update')->name('publish-comment-post');
 	Route::get('delete-comment-{id}', 'Backend\AdminCommentsController@destroy')->name('delete-comment');
+	Route::get('change-my-pswd', 'Backend\ComparatorDashboardController@changepswd')->name('change-my-pswd');
+	Route::post('change-my-pswd', 'Backend\ComparatorDashboardController@postChangepswd')->name('change-my-pswd-post');
 });
 
 
