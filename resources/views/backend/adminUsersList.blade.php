@@ -2,7 +2,7 @@
 
 @section('content')
 
-<div id="users-list" class="container" style="padding: 0; font-size: 10px;">
+<div id="users-list" class="container">
     <div class="row">
         <div class="col-md-12 col-md-offset-0">
             <div class="panel panel-default">
