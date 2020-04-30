@@ -31,6 +31,9 @@ COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
 RUN groupadd -g 1000 www
 RUN useradd -u 1000 -ms /bin/bash -g www www
 
+# Add www-data user to www group
+RUN usermod -a -G www www-data
+
 # Copy existing application directory contents
 COPY . /var/www
 
