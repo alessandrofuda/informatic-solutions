@@ -5,26 +5,43 @@ namespace App;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-class Comment extends Model
-{
+class Comment extends Model {
     use SoftDeletes;
 
-    // comments table in database
+    const TYPE = [
+        'PARENT' => 0,
+        'CHILD' => 1
+    ];
+    const STATUS = [
+        'APPROVED' => 1,
+        'PENDING' => 0
+    ];
+
     protected $guarded = [];
-    protected $dates = ['deleted_at'];   //aggiunto per utilizzare la funzione softDeletes();
+    protected $dates = ['deleted_at']; 
 
-
-    // ogni Comment appartiene a UN User
-    // user who has commented
     public function author(){
-      return $this->belongsTo('App\User','from_user'); //from_user è la foreign key, sarebbe lo user_id, in Comment
+      return $this->belongsTo('App\User','from_user'); //from_user: foreign key
     }
 
-
-    // ogni Comment appartiene a UN Post
-    // returns post of any comment
     public function post(){
-      return $this->belongsTo('App\Post','on_post');  //on_post è una foreign key in Comment
+      return $this->belongsTo('App\Post','on_post');  //on_post: fk
+    }
+
+    public function scopeParent($query) {
+        return $query->where('comment_parent', self::TYPE['PARENT']);
+    }
+    
+    public function scopeChild($query) {
+        return $query->where('comment_parent', '>', 0); 
+    }
+
+    public function scopeApproved($query) {
+        return $query->where('comment_approved', self::STATUS['APPROVED']);
+    }
+
+    public function scopePending($query) {
+        return $query->where('comment_approved', self::STATUS['PENDING']);
     }
     
 }

@@ -71,12 +71,13 @@ Route::group(['middleware' => ['auth', 'subscriber'], 'prefix' => 'backend', 'as
 
 
 /* CMS - FRONTEND */
-Route::get('videocitofoni', 'ArticlesController@index')->name('slug');  //..verificare eventuali conflitti con le routes sotto
 Route::post('articles-rating', 'ArticlesController@rating')->name('articles-rating');
 Route::post('{slug}/comment/send', 'Backend\CmsCommentsController@send')->where('slug', '[A-Za-z0-9-_]+')->name('comment-send');
 Route::post('{slug}/comment/subscribe', 'Backend\CmsCommentsController@subscribe')->where('slug', '[A-Za-z0-9-_]+')->name('comment-subscribe');
 Route::get('unsubscribe/{slug}/{unique_code}', 'Backend\CmsCommentsController@UnsubscribeToComment')->where('slug', '[A-Za-z0-9-_]+')->name('comment-unsubscribe');
-
+/* articles */
+// Route::get('videocitofoni', 'ArticlesController@index')->name('slug');  //..verificare eventuali conflitti con le routes sotto
+Route::get('{slug}', 'ArticlesController@index')->where('slug', '[A-Za-z0-9-_]+')->name('article');
 
 
 

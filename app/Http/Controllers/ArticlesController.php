@@ -16,41 +16,31 @@ class ArticlesController extends Controller {
         $this->page_type = 'cms';
     }
 
-    public function index() {
+    public function index($slug) {
 
-        $post_id = 2; //id del post su: "videocitofoni, come scegliere il miglior rapp...."
-        $post = Post::findOrFail($post_id);
-    	$comments = Comment::where('comment_parent', 0)
-    							->where('comment_approved', 1)
-    							->get();    							
-    	$comments_child = Comment::where('comment_parent', '>', 0)
-    								->where('comment_approved', 1)
-    								->get();    	
-        $tot = count($comments) + count($comments_child);
-
+        $post = Post::where('slug',$slug)->get()->first() ?? abort(404); 
+        $comments = Comment::parent()->approved()->get();      							
+        $comments_child = Comment::child()->approved()->get();                   	
+        $total_comments = count($comments) + count($comments_child);
         
-        // rating system
+        // rating system - TODO
         $moltiplicator = 848;
-        $numero_voti = Rating::where('post_id', $post_id)->count();
-        $numero_voti = $numero_voti + (5 * $moltiplicator);  // moltiplicator
+        $numero_voti = Rating::where('post_id', $post->id)->count();
+        $numero_voti = $numero_voti + (5 * $moltiplicator);
         // $sum = intval(Rating::where('post_id', $post_id)->sum('rate'));
         $voto_medio = 5; //ceil($sum / $numero_voti);        
     	
     	return view('videocitofoni')->with('post', $post)
                                     ->with('comments', $comments)
     								->with('comments_child', $comments_child)
-                                    ->with('tot', $tot)
+                                    ->with('total_comments', $total_comments)
                                     ->with('voto_medio', $voto_medio)
                                     ->with('numero_voti', $numero_voti)
                                     ->with('page_type', $this->page_type);
-
     }
 
 
-
-
-
-    public function rating(Request $request) {
+    public function rating(Request $request) {  // TODO
 
         $date = date('D d M Y'); 
         $ipaddress = $_SERVER['REMOTE_ADDR']; // here I am taking IP as UniqueID but you can have user_id from Database or 
@@ -87,7 +77,6 @@ class ArticlesController extends Controller {
         }
 
         return $d;
-
     }
 
 

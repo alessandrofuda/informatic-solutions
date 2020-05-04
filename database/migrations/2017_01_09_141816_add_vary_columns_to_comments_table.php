@@ -14,11 +14,11 @@ class AddVaryColumnsToCommentsTable extends Migration
     public function up()
     {
         Schema::table('comments', function (Blueprint $table) {
-            $table->string('from_user_email');
-            $table->string('from_user_ip');
-            $table->string('from_user_url');
+            $table->string('from_user_email')->default('');
+            $table->string('from_user_ip')->default('');
+            $table->string('from_user_url')->default('');
             $table->boolean('comment_approved')->default(0);  // 0 1
-            $table->string('comment_agent');  // user agent
+            $table->string('comment_agent')->default('');  // user agent
             $table->unsignedBigInteger('comment_parent')->default(0); //per commenti annidati
         });
     }

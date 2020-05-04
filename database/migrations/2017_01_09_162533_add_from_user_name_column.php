@@ -14,7 +14,7 @@ class AddFromUserNameColumn extends Migration
     public function up()
     {
         Schema::table('comments', function (Blueprint $table) {
-            $table->string('from_user_name')->after('from_user');
+            $table->string('from_user_name')->after('from_user')->default('');
         });
     }
 

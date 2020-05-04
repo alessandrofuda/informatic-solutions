@@ -87,8 +87,6 @@ class CmsCommentsController extends Controller {
         // 4) invia comment ad admin per moderazione
         Mail::to(config('custom.admin_email'))->send(new CommentSent($comment));
 
-
-
         return redirect($slug.'#alert')->with('success_message', 'Commento inviato correttamente, ora è in attesa di moderazione.<br>Riceverai una mail quando verrà pubblicato.');
 
     }

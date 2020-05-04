@@ -42,16 +42,14 @@ class AdminCommentsController extends Controller {
         return view('backend.adminCommentsList')->with('slug', $this->slug)
                                            ->with('comments', $comments)
                                            ->with('all', true)
-                                           ->with('origin', $origin);
-                                           
+                                           ->with('origin', $origin);    
     }
 
     
 
     public function pending() {
 
-        $comments = Comment::where('comment_approved', 0)->paginate(20);
-        //dd($comments);
+        $comments = Comment::pending()->paginate(20); 
         $origin = 'pending-comments';
         
         return view('backend.adminCommentsList')->with('slug', $this->slug)
@@ -70,12 +68,9 @@ class AdminCommentsController extends Controller {
     public function publish(Request $request, $commentId) {
 
         // 1) update comment_approved on the comments table
-        
         $slug = $request->origin;
-
         $comment = Comment::find($commentId);
-        
-        $comment->comment_approved = 1;
+        $comment->comment_approved = Comment::STATUS['APPROVED'];
         $comment->save();
         
         // 2) send notification to comment author (and admin)
