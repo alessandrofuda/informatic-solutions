@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class SaveArticleRequest extends FormRequest
+class changeArticleStatusRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,8 +24,8 @@ class SaveArticleRequest extends FormRequest
     public function rules()
     {
         return [
-            'slug' => 'required|max:300|unique:posts,slug,'.$this->id,
-            'title' => 'required|max:300|unique:posts,title,'.$this->id
+            //'published' => 'required|string|in:true,false',
+            'article_id' => 'required|integer'
         ];
     }
 }

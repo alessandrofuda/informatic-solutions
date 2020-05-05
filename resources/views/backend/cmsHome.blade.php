@@ -13,10 +13,10 @@
                         </div>
                         <div class="panel-body">
                             <ul class="nav nav-tabs">
-                                <li>
+                                <li class="active">
                                     <a data-toggle="tab" href="#view-article">Visualizza tutti i tuoi articoli</a>
                                 </li>
-                                <li class="active">
+                                <li>
                                     <a data-toggle="tab" href="#write-article">Scrivi un nuovo articolo</a>
                                 </li>
                                 <li>
@@ -24,10 +24,10 @@
                                 </li>
                             </ul>
                             <div class="tab-content">
-                                <div id="view-article" class="tab-pane fade">
+                                <div id="view-article" class="tab-pane fade in active">
                                     @include('partials.cms-show-my-articles')
                                 </div>
-                                <div id="write-article" class="tab-pane fade in active">
+                                <div id="write-article" class="tab-pane fade">
                                     @include('partials.cms-write-new-article')
                                 </div>
                                 <div id="menu3" class="tab-pane fade">

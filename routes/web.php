@@ -89,7 +89,8 @@ Route::get('db/{str}', function () { return redirect('videocitofoni'); })->where
 Route::group(['middleware' => ['auth', 'author'], 'prefix' => 'cms-backend', 'as' => 'cms-backend.'], function() {  
 	Route::get('/', 'Backend\CmsDashboardController@index')->name('home');
 	Route::post('save-article-slug', 'Backend\CmsDashboardController@saveArticleSlug')->name('save-article-slug');
-	Route::post('save-article', 'Backend\CmsDashboardController@saveArticle')->name('save-article');
+	Route::post('save-article/{with_status_definition?}', 'Backend\CmsDashboardController@saveArticle')->name('save-article');
+	Route::resource('article', 'Backend\CmsArticleController');
 });  
 
 /* CMS - FRONTEND */

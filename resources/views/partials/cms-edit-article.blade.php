@@ -1,49 +1,50 @@
 <form id="new-article" class="new-article" method="POST">
 	{{csrf_field()}}
 	<div class="form-group form-inline">
-		<label>Id: </label><span class="article-id"> {{ $newArticleId }}</span>
-		<input type="hidden" name="id" value="{{ $newArticleId }}">
+		<label>Id: </label><span class="article-id"> {{ $article->id }}</span>
+		<input type="hidden" name="id" value="{{ $article->id }}">
 	</div>
 	<div id="save-article-slug" class="form-group form-inline">
 		<label for="slug">Url:</label> 
 		<span class="slug">{{url('/')}}/
-			<input type="text" class="form-control url" name="slug" placeholder="Url">
-			<span class="slug-string"></span>
+			<input type="text" class="form-control url" name="slug" placeholder="Url" value="{{old('slug') ?? $article->slug }}">
+			<span class="slug-string">{{ $article->slug }}</span>
 		</span> 
-		<button class="btn btn-primary btn-xs ok-slug">Ok</button>
-		<button class="btn btn-primary btn-xs change-slug" style="display: none;">Modifica</button>
+		<button class="btn btn-primary btn-xs ok-slug" style="display: none;">Ok</button>
+		<button class="btn btn-primary btn-xs change-slug">Modifica</button>
 		<div class="url-ajax-resp"></div>
 	</div>
 	<div class="form-group">
 		<label for="title">Titolo</label>
-		<input type="text" class="form-control" name="title" placeholder="Titolo">
+		<input type="text" class="form-control" name="title" placeholder="Titolo" value="{{old('title') ?? $article->title }}">
 	</div>
 	<div class="form-group">
 		<label for="description">Meta Description</label>
-		<input type="text" class="form-control" name="description" placeholder="Meta Description">
+		<input type="text" class="form-control" name="description" placeholder="Meta Description" value="{{old('description') ?? $article->description}}">
 	</div>
 	<div class="form-group">
 		<label for="body">Testo</label> {{-- aggiunto script in <head> https://www.tiny.cloud/docs/quick-start/ --}}
-		<textarea id="article-body" class="article-body" name="body" placeholder="Testo"></textarea>
+		<textarea id="article-body" class="article-body" name="body" placeholder="Testo">{{old('body') ?? $article->body}}</textarea>
 		<p class="help-block"></p>
 	</div>
 
 	<div class="form-group text-right">
 		<span class="switch-label">Pubblicato ?</span>
 		<label class="switch">
-		  <input type="checkbox" name="published" value="1">
+		  <input type="checkbox" name="published" value="1" {{ $article->active ? 'checked' : '' }}>
 		  <span class="slider round"></span>
 		</label>
 	</div>
 	<div class="form-group text-right">
 		<div class="validation-error"></div>
-		<button id="save-article" type="submit" class="btn btn-primary btn-lg">Salva</button>
 		<div class="article-saved"></div>
+		<button id="save-article" type="submit" class="btn btn-primary btn-lg">Salva</button>
 	</div>
 </form>
 <script>
 	jQuery(document).ready(function(){
 		// slug
+		$("input[name='slug']").hide();
 		$('#save-article-slug button.ok-slug').on('click', function(e){
 			e.preventDefault();
 			var slug = $("input[name='slug']").val();

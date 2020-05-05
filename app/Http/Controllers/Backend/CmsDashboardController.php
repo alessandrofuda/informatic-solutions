@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Backend;
 
+use App\Http\Requests\changeArticleStatusRequest;
 use App\Http\Requests\saveArticleSlugRequest;
 use App\Http\Requests\SaveArticleRequest;
 use App\Http\Controllers\Controller;
@@ -21,28 +22,20 @@ class CmsDashboardController extends Controller {
      * @return void
      */
     public function __construct() {
-
         $this->middleware('auth');
     }
 
-    /**
-     * Show the application dashboard.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function index() {
 
         $user = Auth::user();
-        $posts = Post::paginate(15);
+        $articles = Post::paginate(15);
         $lastArticleId = Post::select('id')->orderBy('id', 'DESC')->first()->id;
         $newArticleId = (int)++$lastArticleId;
 
         return view('backend.cmsHome')->with('user', $user)
-                                      ->with('posts', $posts)
+                                      ->with('articles', $articles)
                                       ->with('newArticleId', $newArticleId);
-                                   
     }
-
 
     public function sanitizeSlug($rawSlug){
         
@@ -54,8 +47,6 @@ class CmsDashboardController extends Controller {
         return $sanitizedSlug;
     }
 
-
-
     public function slugAlreadyInDb($slug){ 
         // return int
         return count(Post::where('slug', $slug)->get()); 
@@ -65,8 +56,6 @@ class CmsDashboardController extends Controller {
     public function postAlreadyInDb($id) {
         return Post::find($id) ? true : false;
     }
-
-
 
     public function saveArticleSlug(saveArticleSlugRequest $request) {
 
@@ -92,46 +81,52 @@ class CmsDashboardController extends Controller {
     }
 
 
-    public function saveArticle(SaveArticleRequest $request) {
+    public function saveArticle(SaveArticleRequest $request, $with_status_definition = null) {
         
         $rawslug = trim($request->input('slug')) ? : null;
         $slug = $rawslug ? $this->sanitizeSlug($rawslug) : null;
+        $post_id = $request->input('id');
 
         $params = [
             'title' => $request->input('title'),
             'description' => $request->input('description'),
             'body' => $request->input('body'),
             'slug' => $slug, 
-            // 'images' => $request->input(''),
-            'active' => $request->input('published') ? : 0,
+            'active' => $request->input('published') ? Post::STATUS['published'] : Post::STATUS['not_published']
         ];
         if (Auth::user()->is_author() || (Auth::user()->is_admin() && !$this->postAlreadyInDb($post_id))) {
             $params['author_id'] = Auth::user()->id;
         }
 
-
-        $article = Post::updateOrCreate(['id' => $request->input('id')], $params);
+        $article = Post::updateOrCreate(['id' => $post_id], $params);
         
         if($article->wasRecentlyCreated) {
-
-            if($this->slugAlreadyInDb($article->slug) > 1 ) { // check: slug SANITIZZATO esiste GIÀ ?
-                $article->update(['slug' => $article->slug.'-duplicatedSlug-'.rand(0,900)]);  // update db !
-                $response = 'Nuovo articolo salvato correttamente (slug aggiornato).';   
-            }
-
             $response = 'Nuovo articolo salvato correttamente';
-        
-        } else {
-
-            if($this->slugAlreadyInDb($article->slug) > 1 ) { // check: slug SANITIZZATO esiste GIÀ ?
-                $article->update(['slug' => $article->slug.'-duplicatedSlug-'.rand(0,900)]);  // update db !
-                $response = 'Articolo correttamente aggiornato, ma la Url è stata modificata perchè era già presente in database.';   
+            if ($with_status_definition) {
+                $response = $request->input('published') == Post::STATUS['published'] ? 'Nuovo articolo salvato e pubblicato' : 'Articolo Spubblicato';
             }
-
-            $response = 'Articolo correttamente aggiornato.'; 
+        } else {
+            $response = 'Articolo correttamente aggiornato.';
+            if ($with_status_definition) {
+                $response = $request->input('published') == Post::STATUS['published'] ? 'Articolo aggiornato e pubblicato' : 'Articolo Spubblicato';
+             } 
         }
 
         return response()->json(['response' => $response]);
     }
+
+
+    /*public function changeArticleStatus(changeArticleStatusRequest $request) {
+        dd($request);
+        $status = $request->input('published') == 'true' ? Post::STATUS['published'] : Post::STATUS['not_published'];
+        $article_id = $request->input('article_id');
+        $article = Post::find($article_id);
+        if ($article) {
+            $article->update(['active' => $status]);
+            $response = 'Articolo pubblicato!';
+        } 
+
+        return response()->json(['response'=> $response]);
+    }*/
 
 }
