@@ -23,7 +23,9 @@
   border-radius: 10px;
   text-align: center;
 }
-
+.err {
+  background-color: #e95151;
+}
 /* bootstrap switcher */
 .switch {
   position: relative;

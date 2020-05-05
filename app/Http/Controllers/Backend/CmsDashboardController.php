@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Backend;
 
 
+use App\Http\Requests\saveArticleSlugRequest;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Validation\Rule;
@@ -37,8 +38,6 @@ class CmsDashboardController extends Controller {
         $lastArticleId = Post::select('id')->orderBy('id', 'DESC')->first()->id;
         $newArticleId = (int)++$lastArticleId;
 
-        // dd($request->session());
-
         return view('backend.cmsHome')->with('user', $user)
                                       ->with('posts', $posts)
                                       ->with('newArticleId', $newArticleId);
@@ -61,34 +60,28 @@ class CmsDashboardController extends Controller {
     public function slugAlreadyInDb($slug){ 
         // return int
         return count(Post::where('slug', $slug)->get()); 
+        //return count(Post::where('slug', $slug)->get()) > 0 ? true : false;
     }
 
 
 
-    public function saveArticleSlug(Request $request) {
-
-        Validator::make($request->all(), [
-            'slug' => 'required|max:300', 
-        ])->validate();
+    public function saveArticleSlug(saveArticleSlugRequest $request) {
 
         $rawslug = trim($request->input('slug')) ? : null;
         $slug = $rawslug ? $this->sanitizeSlug($rawslug) : null;
         $status = null;
 
-        if($this->slugAlreadyInDb($slug) > 0) { 
+        $data = ['slug' => $slug];
+        if (Auth::user()->is_author()) {
+            $data['author_id'] = Auth::user()->id;
+        }
 
-            $response = 'Slug già presente in Database';
-            $status = 204;
-        
+        $article = Post::updateOrCreate(['id' => $request->input('id')], $data);
+
+        if($article->wasRecentlyCreated){
+            $response = 'Nuova Url salvata correttamente';
         } else {
-
-            $article = Post::updateOrCreate(['id' => $request->input('id')], ['slug' => $slug]);
-
-            if($article->wasRecentlyCreated){
-                $response = 'Nuovo articolo creato con successo';
-            } else {
-                $response = 'Url aggiornata correttamente (Id articolo: '.$request->input('id').')';
-            }
+            $response = 'Url aggiornata correttamente (Id articolo: '.$request->input('id').')';
         }
         
         return response()->json(['response' => $response , 'status' => $status, 'slug' => $slug ]);
@@ -138,12 +131,7 @@ class CmsDashboardController extends Controller {
             $response = 'Articolo correttamente aggiornato.'; 
         }
 
-
-
         return response()->json(['response' => $response]);
     }
-
-
-
 
 }

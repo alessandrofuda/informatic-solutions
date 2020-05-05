@@ -63,18 +63,18 @@
 			    		slug:slug,
 			    		id:articleId
 			    	  },
-			    success: function(result){
-			    	// console.log(result.response);
-			    	// console.log(result.slug);
-			    	if(result.status != 204) {
-			    		$('input.form-control.url').css('display','none');
-				    	$('.slug-string').css('display','inline-block');
-				    	$('.slug-string').html(result.slug);
-				    	$('button.ok-slug').css('display','none');
-				    	$('button.change-slug').css('display', 'inline-block');
-			    	}
+			    success: function(result){	
+		    		$('input.form-control.url').css('display','none');
+			    	$('.slug-string').css('display','inline-block');
+			    	$('.slug-string').html(result.slug);
+			    	$('button.ok-slug').css('display','none');
+			    	$('button.change-slug').css('display', 'inline-block');
 			    	
 			    	$('.url-ajax-resp').html(result.response).show().delay(4000).hide('slow');
+			    },
+			    error: function(e) {
+			    	var err_msg = e.responseJSON.errors.slug[0];
+			    	$('.url-ajax-resp').addClass('err').html(err_msg).show().delay(4000).hide('slow');
 			    }
 			});
 		});

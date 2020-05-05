@@ -20,7 +20,7 @@ Route::get('no-scansioni.html', function () { return 'Hello Robot !'; })->name('
 COMPARATOR: subscriber, (+guest)
 CMS: admin, author */
 
-/*Homapage*/
+/*Homepage*/
 Route::get('/', 'HomepageController@index')->name('home');
 
 
@@ -70,14 +70,17 @@ Route::group(['middleware' => ['auth', 'subscriber'], 'prefix' => 'backend', 'as
 
 
 
-/* CMS - FRONTEND */
-Route::post('articles-rating', 'ArticlesController@rating')->name('articles-rating');
-Route::post('{slug}/comment/send', 'Backend\CmsCommentsController@send')->where('slug', '[A-Za-z0-9-_]+')->name('comment-send');
-Route::post('{slug}/comment/subscribe', 'Backend\CmsCommentsController@subscribe')->where('slug', '[A-Za-z0-9-_]+')->name('comment-subscribe');
-Route::get('unsubscribe/{slug}/{unique_code}', 'Backend\CmsCommentsController@UnsubscribeToComment')->where('slug', '[A-Za-z0-9-_]+')->name('comment-unsubscribe');
-/* articles */
-// Route::get('videocitofoni', 'ArticlesController@index')->name('slug');  //..verificare eventuali conflitti con le routes sotto
-Route::get('{slug}', 'ArticlesController@index')->where('slug', '[A-Za-z0-9-_]+')->name('article');
+// redirects from old site (da .htaccess su server apache)
+Route::get('lavoraconnoi.htm', function () { return redirect('videocitofoni');  })->name('old-url-redirect-1');
+Route::get('russo/{str}', function () { return redirect('videocitofoni'); })->where('str', '(.*)')->name('old-url-redirect-2');
+Route::get('spagnolo/{str}', function () { return redirect('videocitofoni'); })->where('str', '(.*)')->name('old-url-redirect-3');
+Route::get('tedesco/{str}', function () { return redirect('videocitofoni'); })->where('str', '(.*)')->name('old-url-redirect-4');
+Route::get('italiano/{str}', function () { return redirect('videocitofoni'); })->where('str', '(.*)')->name('old-url-redirect-5');
+Route::get('inglese/{str}', function () { return redirect('videocitofoni'); })->where('str', '(.*)')->name('old-url-redirect-6');
+Route::get('graphics/{str}', function () { return redirect('videocitofoni'); })->where('str', '(.*)')->name('old-url-redirect-7');
+Route::get('francese/{str}', function () { return redirect('videocitofoni'); })->where('str', '(.*)')->name('old-url-redirect-8');
+Route::get('documenti/{str}', function () { return redirect('videocitofoni'); })->where('str', '(.*)')->name('old-url-redirect-9');
+Route::get('db/{str}', function () { return redirect('videocitofoni'); })->where('str', '(.*)')->name('old-url-redirect-10');
 
 
 
@@ -89,6 +92,13 @@ Route::group(['middleware' => ['auth', 'author'], 'prefix' => 'cms-backend', 'as
 	Route::post('save-article', 'Backend\CmsDashboardController@saveArticle')->name('save-article');
 });  
 
+/* CMS - FRONTEND */
+Route::post('articles-rating', 'ArticlesController@rating')->name('articles-rating');
+Route::post('{slug}/comment/send', 'Backend\CmsCommentsController@send')->where('slug', '[A-Za-z0-9-_]+')->name('comment-send');
+Route::post('{slug}/comment/subscribe', 'Backend\CmsCommentsController@subscribe')->where('slug', '[A-Za-z0-9-_]+')->name('comment-subscribe');
+Route::get('unsubscribe/{slug}/{unique_code}', 'Backend\CmsCommentsController@UnsubscribeToComment')->where('slug', '[A-Za-z0-9-_]+')->name('comment-unsubscribe');
+// ARTICLES, IMPORTANT: leave this the LAST in the page !!
+Route::get('{slug}', 'ArticlesController@index')->where('slug', '[A-Za-z0-9-_]+')->name('article');
 
 
 
@@ -101,17 +111,5 @@ Route::group(['middleware' => ['auth', 'author'], 'prefix' => 'cms-backend', 'as
 
 
 
-
-// redirect da vecchio sito (da .htaccess su server apache)
-Route::get('lavoraconnoi.htm', function () { return redirect('videocitofoni');  })->name('old-url-redirect-1');
-Route::get('russo/{str}', function () { return redirect('videocitofoni'); })->where('str', '(.*)')->name('old-url-redirect-2');
-Route::get('spagnolo/{str}', function () { return redirect('videocitofoni'); })->where('str', '(.*)')->name('old-url-redirect-3');
-Route::get('tedesco/{str}', function () { return redirect('videocitofoni'); })->where('str', '(.*)')->name('old-url-redirect-4');
-Route::get('italiano/{str}', function () { return redirect('videocitofoni'); })->where('str', '(.*)')->name('old-url-redirect-5');
-Route::get('inglese/{str}', function () { return redirect('videocitofoni'); })->where('str', '(.*)')->name('old-url-redirect-6');
-Route::get('graphics/{str}', function () { return redirect('videocitofoni'); })->where('str', '(.*)')->name('old-url-redirect-7');
-Route::get('francese/{str}', function () { return redirect('videocitofoni'); })->where('str', '(.*)')->name('old-url-redirect-8');
-Route::get('documenti/{str}', function () { return redirect('videocitofoni'); })->where('str', '(.*)')->name('old-url-redirect-9');
-Route::get('db/{str}', function () { return redirect('videocitofoni'); })->where('str', '(.*)')->name('old-url-redirect-10');
 
 

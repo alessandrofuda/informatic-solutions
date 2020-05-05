@@ -12,8 +12,6 @@
                             ciao <span style="color:red;">{{ ucfirst(Auth::user()->name) }}</span>, sei loggato come <strong>autore</strong>.
                         </div>
                         <div class="panel-body">
-
-
                             <ul class="nav nav-tabs">
                                 <li>
                                     <a data-toggle="tab" href="#view-article">Visualizza tutti i tuoi articoli</a>
@@ -25,8 +23,6 @@
                                     <a data-toggle="tab" href="#menu3">Menu 3</a>
                                 </li>
                             </ul>
-
-
                             <div class="tab-content">
                                 <div id="view-article" class="tab-pane fade">
                                     @include('partials.cms-show-my-articles')
@@ -39,10 +35,6 @@
                                     <p>Some content</p>
                                 </div>
                             </div>
-
-
-
-
                         </div>
                     </div>
                 </div>
