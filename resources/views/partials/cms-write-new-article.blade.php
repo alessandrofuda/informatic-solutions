@@ -103,10 +103,9 @@
 			    	console.log(result);
 			    	$('.article-saved').html(result.response).show().delay(5000).hide('slow');
 			    },
-			    error: function(data){
-			    	var errors = $.parseJSON(data.responseText);
+			    error: function(err){
+			    	var errors = err.responseJSON.errors;
 			    	var validationMessage = '';
-			    	console.log(errors);
 			    	$.each(errors, function(key, value){
 			    		validationMessage += '<li>'+value+'</li>';
 			    	});

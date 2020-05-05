@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers\Backend;
 
-
 use App\Http\Requests\saveArticleSlugRequest;
+use App\Http\Requests\SaveArticleRequest;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Validation\Rule;
@@ -11,7 +11,6 @@ use Illuminate\Http\Request;
 use Validator;
 use App\User;
 use App\Post;
-
 
 
 class CmsDashboardController extends Controller {
@@ -60,7 +59,11 @@ class CmsDashboardController extends Controller {
     public function slugAlreadyInDb($slug){ 
         // return int
         return count(Post::where('slug', $slug)->get()); 
-        //return count(Post::where('slug', $slug)->get()) > 0 ? true : false;
+        // return count(Post::where('slug', $slug)->get()) > 0 ? true : false;
+    }
+
+    public function postAlreadyInDb($id) {
+        return Post::find($id) ? true : false;
     }
 
 
@@ -70,38 +73,31 @@ class CmsDashboardController extends Controller {
         $rawslug = trim($request->input('slug')) ? : null;
         $slug = $rawslug ? $this->sanitizeSlug($rawslug) : null;
         $status = null;
+        $post_id = $request->input('id');
 
-        $data = ['slug' => $slug];
-        if (Auth::user()->is_author()) {
-            $data['author_id'] = Auth::user()->id;
+        $params = ['slug' => $slug];
+        if (Auth::user()->is_author() || (Auth::user()->is_admin() && !$this->postAlreadyInDb($post_id))) {
+            $params['author_id'] = Auth::user()->id;
         }
 
-        $article = Post::updateOrCreate(['id' => $request->input('id')], $data);
+        $article = Post::updateOrCreate(['id' => $post_id], $params);
 
         if($article->wasRecentlyCreated){
             $response = 'Nuova Url salvata correttamente';
         } else {
-            $response = 'Url aggiornata correttamente (Id articolo: '.$request->input('id').')';
+            $response = 'Url aggiornata correttamente (Id articolo: '.$post_id.')';
         }
         
         return response()->json(['response' => $response , 'status' => $status, 'slug' => $slug ]);
     }
 
 
-    public function saveArticle(Request $request) {
-
-        $validator = Validator::make($request->all(), [
-            'slug' => 'required|max:300',
-            'title' => 'required|max:300',
-        ])->validate();
-
+    public function saveArticle(SaveArticleRequest $request) {
         
         $rawslug = trim($request->input('slug')) ? : null;
         $slug = $rawslug ? $this->sanitizeSlug($rawslug) : null;
-         
 
         $params = [
-            'author_id' => Auth::user()->id,
             'title' => $request->input('title'),
             'description' => $request->input('description'),
             'body' => $request->input('body'),
@@ -109,6 +105,10 @@ class CmsDashboardController extends Controller {
             // 'images' => $request->input(''),
             'active' => $request->input('published') ? : 0,
         ];
+        if (Auth::user()->is_author() || (Auth::user()->is_admin() && !$this->postAlreadyInDb($post_id))) {
+            $params['author_id'] = Auth::user()->id;
+        }
+
 
         $article = Post::updateOrCreate(['id' => $request->input('id')], $params);
         
