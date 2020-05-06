@@ -19,6 +19,7 @@ class Kernel extends ConsoleKernel {
         Commands\ComparePrices::class,
         Commands\ScrapAmazonProductsDescriptions::class,
         Commands\DeleteOldNotVerifiedUsers::class,
+        Commands\DeleteSpamComments::class,
     ];
 
     /**
@@ -37,6 +38,7 @@ class Kernel extends ConsoleKernel {
         $schedule->command('fetch:compareprices')->hourlyAt(25)->between('6:00', '23:58')->withoutOverlapping(); 
         $schedule->command('fetch:scrapamazonproductsdescriptions')->dailyAt('05:30')->withoutOverlapping();
         $schedule->command('custom:delete-unverified-users')->monthlyOn(28, '23:00')->withoutOverlapping();
+        $schedule->command('custom:delete-spam-comments')->monthlyOn(26, '23:00')->withoutOverlapping();
 
         //SCRAPING RECENSIONI SOSPESO TEMPORANEAMENTE --> VERIFICARE IL CORRETTO INSERIMENTO DEI PRODOTTI IN DB -- $schedule->command('fetch:amazonreviews videocitofono')
                  //->everyMinute()

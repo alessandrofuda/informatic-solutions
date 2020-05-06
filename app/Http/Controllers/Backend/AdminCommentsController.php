@@ -9,7 +9,9 @@ use Illuminate\Support\Facades\Mail;
 use App\Mail\CommentPublished;
 use App\Subscribedtocomment;
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 use App\Mail\CommentSent;
+use Carbon\Carbon;
 use App\Comment;
 use App\Post;
 use Redirect;
@@ -111,20 +113,46 @@ class AdminCommentsController extends Controller {
 
     public function storeFilterKeywords(storeFilterKeywordsRequest $request) {
 
-        try {
-            $file = File::put(storage_path('app/config/comments-spam/filtered-keywords-list.txt'), trim($request->input('keywords-list')) );  // 
+        try { // storage file, not db
+
+            $file = File::put(storage_path('app/config/comments-spam/filtered-keywords-list.txt'), trim($request->input('keywords-list')) );
             if (!$file) {
-                throw new Exception("Error Processing Request", 1);
+                throw new Exception("Si è verificato un errore durante la creazione/scrittura del file filtered-keywords-list.txt", 1);
             }
+            $response = 'La lista della Keywords-Filtro è stata aggiornata correttamente';
+
         } catch (Exception $e) {
-            $response = 'Si è verificato un errore durante la creazione/scrittura del file';    
+            $response = $e->getMessage();    
         }
-        
-        $response = 'La lista della Keywords-Filtro è stata aggiornata correttamente';
 
         return back()->with('success_message', $response);
     }
 
 
+    public function deleteSpamComments() {
+        $spam_keywords_list = File::get(storage_path('app/config/comments-spam/filtered-keywords-list.txt'));
+        $spam_keywords_expl = explode(',', $spam_keywords_list);
+        $spam_keywords = [];
+        $to_delete_comments = []; 
+        $month_ago = Carbon::now()->subMonth();
+
+        foreach ($spam_keywords_expl as $spam_keyword) {
+            $spam_keywords[] = trim($spam_keyword);
+        }
+
+        $pending_comments = Comment::withTrashed()->pending()->whereDate('created_at','<', $month_ago)->get();
+        
+        foreach ($pending_comments as $pending_comment) {
+
+            if (Str::contains($pending_comment->body, $spam_keywords )) {
+                $to_delete_comments[] = $pending_comment->id; 
+            }
+            
+        }
+        
+        $deleted = Comment::withTrashed()->whereIn('id', $to_delete_comments)->forceDelete();  
+
+        return $deleted;
+    }
 
 }
