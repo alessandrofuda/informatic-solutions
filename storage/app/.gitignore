@@ -1,3 +1,4 @@
 *
 !public/
 !.gitignore
+!config/comments-spam/filtered-keywords-list.txt
