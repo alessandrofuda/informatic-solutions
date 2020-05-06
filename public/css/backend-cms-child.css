@@ -93,3 +93,6 @@ input:checked + .slider:before {
     top: 60px;
     z-index: 9;
 }
+
+/*spa mfilter page*/
+#comment-filter textarea { margin-bottom: 10px; }

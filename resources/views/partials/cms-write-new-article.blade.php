@@ -48,19 +48,22 @@
 			e.preventDefault();
 			var slug = $("input[name='slug']").val();
 			var articleId = $("input[name='id']").val();
-			$.ajaxSetup({
-			    headers: {
-			        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-			    }
-			});
+			// $.ajaxSetup({
+			//     headers: {
+			//         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+			//     }
+			// });
 			$.ajax({
 			    method: "POST",
 			    url: '{{route('cms-backend.save-article-slug')}}',
 			    data: { 
-			    		slug:slug,
-			    		id:articleId
-			    	  },
-			    success: function(result){	
+		    		slug:slug,
+		    		id:articleId
+			    },
+			    headers: {
+			    	'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+			    },
+			    success: function(result) {	
 		    		$('input.form-control.url').css('display','none');
 			    	$('.slug-string').css('display','inline-block');
 			    	$('.slug-string').html(result.slug);

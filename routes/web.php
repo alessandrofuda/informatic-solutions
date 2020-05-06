@@ -30,6 +30,8 @@ Route::group(['middleware' => ['auth','admin'], 'prefix' => 'admin', 'as' => 'ad
 	Route::get('/', 'Backend\AdminDashboardController@index')->name('home');
 	Route::resource('users', 'Backend\AdminUserController');
 	Route::get('comments', 'Backend\AdminCommentsController@index')->name('comments');
+	Route::get('comments-filter', 'Backend\AdminCommentsController@filter')->name('comments.filter');
+	Route::post('comments-filter', 'Backend\AdminCommentsController@storeFilterKeywords')->name('comments.store-filter-keywords');
 	Route::get('pending-comments', 'Backend\AdminCommentsController@pending')->name('pending-comments');
 	Route::get('publish-comment-{id}', 'Backend\AdminCommentsController@publish')->where('id', '[0-9]+')->name('publish-comment');
 	Route::get('edit-comment-{id}', 'Backend\AdminCommentsController@edit')->name('edit-comment');

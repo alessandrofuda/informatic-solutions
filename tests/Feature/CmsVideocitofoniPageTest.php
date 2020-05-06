@@ -7,6 +7,7 @@ use App\User;
 use Tests\TestCase;
 use Illuminate\Foundation\Testing\WithFaker;
 use Illuminate\Foundation\Testing\RefreshDatabase; 
+use Illuminate\Foundation\Testing\WithoutMiddleware;
 
 class CmsVideocitofoniPageTest extends TestCase {
     
@@ -26,23 +27,24 @@ class CmsVideocitofoniPageTest extends TestCase {
         $response_404->assertStatus(404);
     }
 
-    public function test_article_title_is_unique() {
+    public function test_article_slug_is_unique() {
 
-        $this->withoutExceptionHandling();
+        // !! to solve 419 status code token mismatch, due to ajax call.
+        $this->withoutMiddleware(); // Alternative: convert ajax call URL to API, because this bypass the web middleware and switch to api middleware
 
         $author = factory(User::class)->create(['role' => 'author']);
-        $post = factory(Post::class)->create(['slug' => 'slug-1']);
-        dump($author);
-        dd($post);
+        $article = factory(Post::class)->create(['slug' => 'slug-1']);
+        $this->assertCount(1, Post::all());
 
-        $this->actingAs($author)->post('/cms-backend/save-article-slug',['slug' => 'slug-1']);
+        $response = $this->actingAs($author)->json('POST', '/cms-backend/save-article-slug',['slug' => 'slug-1']);
+        $response->assertJsonValidationErrors(['slug']);
+        $response->assertStatus(422);
+        $this->assertCount(1, Post::all());
 
-        //TODO
-        // assertJson contain: status => 422 // meglio: aggiungere la validazione alle post rules 
-
-
-        // stessa cosa anche per l'altra POST
-        //$this->actingAs($author)->post('/cms-backend/save-article', )
+        $response2 = $this->actingAs($author)->json('POST', '/cms-backend/save-article', ['slug' => 'slug-1']);
+        $response->assertJsonValidationErrors(['slug']);
+        $response->assertStatus(422);
+        $this->assertCount(1, Post::all());
 
     }
 

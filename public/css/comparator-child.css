@@ -28,7 +28,7 @@ body { color: #4b5458; background-color: #dee7ed; }
 .nav.navbar-right button.register{ border: 1px solid #fff; background-color: #2ab27b; }
 .nav.navbar-right button.register:hover {background-color: #2bcf8d; }
 .btn > .caret { margin-left: 5px; }
-.navbar.navbar-default ~ .container {padding-top: 80px;}
+.navbar.navbar-default ~ .container, .navbar.navbar-default ~ .container-fluid {padding-top: 80px;}
 
 /*buttons*/
 .btn {min-width: 75px; white-space: normal;}
@@ -116,7 +116,7 @@ i.col-md-2.glyphicon.glyphicon-remove-sign { font-size: 30px; line-height: 45px;
 .pagination > li > a, .pagination > li > span, .pagination > .disabled > span, .pagination > .disabled > a { border-color: #3097d1; }
 
 /*footer*/
-footer { margin-top: 30px; background-color: #FFFFFF; border-top: 2px solid #3097d1; color: #3097d1; position: absolute; bottom: 0; width: 100%;}
+footer { margin-top: 30px; background-color: #FFFFFF; border-top: 2px solid #3097d1; color: #3097d1; /*position: relative;*/ position: absolute; bottom: 0; width: 100%;}
 footer .discl{ display: inline-block; }
 
 /*login/register pages*/
