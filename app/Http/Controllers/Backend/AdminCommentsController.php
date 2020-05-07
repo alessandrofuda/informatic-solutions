@@ -13,8 +13,10 @@ use Illuminate\Support\Str;
 use App\Mail\CommentSent;
 use Carbon\Carbon;
 use App\Comment;
+use Exception;
 use App\Post;
 use Redirect;
+use Artisan;
 use File;
 
 class AdminCommentsController extends Controller {   
@@ -25,10 +27,8 @@ class AdminCommentsController extends Controller {
     }
 
     public function index() {
-
         $comments = Comment::orderBy('created_at', 'DESC')->paginate(20);
         $origin = 'comments';
-        
         return view('backend.adminCommentsList')->with('slug', $this->slug)
                                            ->with('comments', $comments)
                                            ->with('all', true)
@@ -105,26 +105,32 @@ class AdminCommentsController extends Controller {
 
 
     public function filter() {
-
         $filtered_keywords_list = File::get(storage_path('app/config/comments-spam/filtered-keywords-list.txt'));
         return view('backend.adminCommentsFilter', ['filtered_keywords_list' => $filtered_keywords_list]);
     }
 
 
+    public function runCommentsSpamFilter() {
+        try {
+            $deleted = $this->deleteSpamComments();
+            
+        } catch (Exception $e) {
+            return back()->with('error_message', "Errore durante l'esecuzione del filtro anti-spam. Commenti non ripuliti. ".$e->getMessage());
+        }  
+        return back()->with('success_message', 'Filtro anti spam eseguito correttamente. '.$deleted.' commenti eliminati.');
+    }
+
+
     public function storeFilterKeywords(storeFilterKeywordsRequest $request) {
-
         try { // storage file, not db
-
             $file = File::put(storage_path('app/config/comments-spam/filtered-keywords-list.txt'), trim($request->input('keywords-list')) );
             if (!$file) {
                 throw new Exception("Si è verificato un errore durante la creazione/scrittura del file filtered-keywords-list.txt", 1);
             }
             $response = 'La lista della Keywords-Filtro è stata aggiornata correttamente';
-
         } catch (Exception $e) {
             $response = $e->getMessage();    
         }
-
         return back()->with('success_message', $response);
     }
 
@@ -135,21 +141,17 @@ class AdminCommentsController extends Controller {
         $spam_keywords = [];
         $to_delete_comments = []; 
         $month_ago = Carbon::now()->subMonth();
+        $pending_comments = Comment::withTrashed()->pending()->whereDate('created_at','<', $month_ago)->get();
 
         foreach ($spam_keywords_expl as $spam_keyword) {
-            $spam_keywords[] = trim($spam_keyword);
+            $spam_keywords[] = strtolower(trim($spam_keyword));
         }
 
-        $pending_comments = Comment::withTrashed()->pending()->whereDate('created_at','<', $month_ago)->get();
-        
         foreach ($pending_comments as $pending_comment) {
-
-            if (Str::contains($pending_comment->body, $spam_keywords )) {
+            if (Str::contains( strtolower($pending_comment->body), $spam_keywords )) {
                 $to_delete_comments[] = $pending_comment->id; 
             }
-            
         }
-        
         $deleted = Comment::withTrashed()->whereIn('id', $to_delete_comments)->forceDelete();  
 
         return $deleted;

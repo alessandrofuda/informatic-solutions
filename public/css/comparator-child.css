@@ -29,6 +29,8 @@ body { color: #4b5458; background-color: #dee7ed; }
 .nav.navbar-right button.register:hover {background-color: #2bcf8d; }
 .btn > .caret { margin-left: 5px; }
 .navbar.navbar-default ~ .container, .navbar.navbar-default ~ .container-fluid {padding-top: 80px;}
+.homepage .navbar.navbar-default ~ .container-fluid {padding-top: 0;}
+.comparator .navbar.navbar-default ~ .container, .comparator .navbar.navbar-default ~ .container-fluid {padding-top: 50px;}
 
 /*buttons*/
 .btn {min-width: 75px; white-space: normal;}
@@ -45,7 +47,7 @@ body { color: #4b5458; background-color: #dee7ed; }
 td.first-col {font-weight: bold;}
 
 /*comparator*/
-.title { margin-top: 50px; margin-bottom: 20px;}
+.title { /*margin-top: 50px;*/ margin-bottom: 20px;}
 .title h1 { font-weight: lighter; background: linear-gradient(to right,#DEE7ED ,#3299be,#dee7ed); color: #FFFFFF; text-shadow: 1px 1px 0px #000000; margin: 0; padding: 30px 0;}
 .title h2 { font-size: 125%; margin: 2% auto; }
 #search .well { background: none; border: none; box-shadow: none; max-width: 500px; margin: auto; width: 100%;}

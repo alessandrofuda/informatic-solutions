@@ -28,7 +28,7 @@
 					  	</div>
 					</form>
             		<div class="form-group col-md-12 text-right">
-            			<a class="btn btn-danger" href="#">
+            			<a class="btn btn-danger" href="{{route('admin.comments.run-spam-filter')}}">
             				<span class="glyphicon glyphicon-exclamation-sign"></span> Avvia Filtro Manualmente
             			</a>
             		</div>

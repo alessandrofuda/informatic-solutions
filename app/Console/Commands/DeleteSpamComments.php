@@ -6,8 +6,8 @@ use App\Http\Controllers\Backend\AdminCommentsController;
 use Illuminate\Console\Command;
 use Log;
 
-class DeleteSpamComments extends Command
-{
+class DeleteSpamComments extends Command {
+
     /**
      * The name and signature of the console command.
      *
@@ -41,7 +41,7 @@ class DeleteSpamComments extends Command
 
         $this->line("Start deleting old & unapproved spam Comments...");
         Log::info("Start deleting old & unapproved spam Comments...");
-        // dd('ok');
+        
         try {
 
             $comments = new AdminCommentsController;
@@ -52,8 +52,9 @@ class DeleteSpamComments extends Command
             $this->error($error_msg);
             Log::error($error_msg);
         }
-        $this->line($deleted." spam comments deleted from db!");
-        Log::info($deleted." spam comments deleted from db!");
 
+        $success_msg = $deleted." spam comments deleted from db!";
+        $this->line($success_msg);
+        Log::info($success_msg);
     }
 }

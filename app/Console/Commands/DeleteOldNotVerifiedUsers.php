@@ -6,8 +6,8 @@ use Illuminate\Console\Command;
 use Illuminate\Support\Facades\Log;
 use App\Http\Controllers\UsersController;
 
-class DeleteOldNotVerifiedUsers extends Command
-{
+class DeleteOldNotVerifiedUsers extends Command {
+    
     /**
      * The name and signature of the console command.
      *
@@ -27,8 +27,7 @@ class DeleteOldNotVerifiedUsers extends Command
      *
      * @return void
      */
-    public function __construct()
-    {
+    public function __construct() {
         parent::__construct();
     }
 
@@ -41,7 +40,7 @@ class DeleteOldNotVerifiedUsers extends Command
 
         $this->line("Start deleting old & unverified spam Users...");
         Log::info("Start deleting old & unverified spam Users...");
-        // dd('ok');
+        
         try {
 
             $users = new UsersController;

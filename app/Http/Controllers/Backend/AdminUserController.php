@@ -91,12 +91,11 @@ class AdminUserController extends Controller {
             ]); 
 
         $user = User::find($id);
-
         $user->name = $request->input('name');
         $user->role = $request->input('role');
         $user->save();
 
-        return redirect()->back()->with('success_message', 'Il profilo utente di <b>' . $user->name . '</b> è stato modificato correttamente!');
+        return back()->with('success_message', 'Il profilo utente di <b>' . $user->name . '</b> è stato modificato correttamente!');
     }
 
     /**

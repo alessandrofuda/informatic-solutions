@@ -13,8 +13,7 @@ class UsersController extends Controller {
 		$month_ago = Carbon::now()->subMonth();
 
 		try {
-
-			return User::where('verified', User::NOT_VERIFIED)->whereDate('created_at','<', $month_ago)->forceDelete();	
+			return User::unverified()->whereDate('created_at','<', $month_ago)->forceDelete();	
 
 		} catch (Exception $e) {
 			Log::error('Error during Not verified users cancellation: '.$e->getMessage());

@@ -2,12 +2,10 @@
 
 namespace App;
 
-use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
-
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Notifications\Notifiable;
 use App\Watchinglist;
-
 
 
 class User extends Authenticatable {
@@ -15,8 +13,10 @@ class User extends Authenticatable {
     use Notifiable;
     use SoftDeletes;
 
-    const VERIFIED = 1;
-    const NOT_VERIFIED = 0;
+    const STATUS = [
+      'verified' => 1,
+      'not_verified' => 0
+    ];
     
     /**
      * The attributes that are mass assignable.
@@ -32,23 +32,17 @@ class User extends Authenticatable {
      *
      * @var array
      */
-    protected $hidden = [
-        'password', 'remember_token',
-    ];
-
+    protected $hidden = [ 'password', 'remember_token' ];
     protected $dates = ['deleted_at'];
-
 
 
     // processo di verifica e-mail in auto-registrazione nuovi utenti
     // Set the verified status to true and make the email token null
     public function setVerified() {
-        $this->verified = 1;
+        $this->verified = self::STATUS['verified'];
         $this->email_token = null;
-
         $this->save();
     }
-
 
 
     /** relations*/
@@ -60,56 +54,43 @@ class User extends Authenticatable {
       return $this->hasMany('App\Comment','from_user');
     }
 
-
-
     /** user roles*/
     public function is_admin() {
-        
       $role = $this->role;
       if($role == 'admin') {
         return true;
       }
-
       return false;
-
     }
 
 
     public function is_author() {
-
         $role = $this->role;
         if($role == 'author') {
             return true;
         }
-
         return false;
     }
 
-
     public function is_subscriber() {
-        
           $role = $this->role;
           if($role == 'subscriber') {
             return true;
           }
-
           return false;
-
     }
 
-
-    /*l'utente è in watchinglist ? */
     public function isInWatchinglist($product_id) {
-
         $items = Watchinglist::where('user_id', $this->attributes['id'] )->where('product_id', $product_id)->get();
-
         if (count($items) <= 0) {
             return false;
         }
-
         return true;
     }
 
-
+    /*local scope*/
+    public function scopeUnverified($query) {
+      return $query->where('verified', self::STATUS['not_verified']);
+    }
 
 }
