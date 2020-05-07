@@ -11,18 +11,15 @@
 |
 */
 Auth::routes();
-// routing per i bad bots (redirect tramite .htaccess)
-Route::get('no-scansioni.html', function () { return 'Hello Robot !'; })->name('no-scansioni');
 
 
+/*  ---- USER ROLES ------- */
+// COMPARATOR: subscriber, (+guest)
+// CMS: admin, author 
 
-/*  ---- RUOLI UTENTE -------
-COMPARATOR: subscriber, (+guest)
-CMS: admin, author */
 
 /*Homepage*/
 Route::get('/', 'HomepageController@index')->name('home');
-
 
 
 /* ADMIN */
@@ -43,21 +40,16 @@ Route::group(['middleware' => ['auth','admin'], 'prefix' => 'admin', 'as' => 'ad
 });
 
 
-
-
 /* COMPARATOR - FRONTEND */
 Route::get('{slug}/comparatore-prezzi', 'ComparatorController@index')->name('slug-prices-comparator');
-Route::post('{slug}/comparatore-prezzi', 'ComparatorController@filter')->name('slug-prices-comparator-post');  // checkboxs + text search
-Route::get('search/autocomplete', 'ComparatorController@autocomplete')->name('search-autocomplete');   // search box + autocomplete
-// unsubscribe via Mail : github.com/spatie/laravel-url-signer
+Route::post('{slug}/comparatore-prezzi', 'ComparatorController@filter')->name('slug-prices-comparator-post'); 
+Route::get('search/autocomplete', 'ComparatorController@autocomplete')->name('search-autocomplete');  
 Route::get('unsubscribe-profile/{id}', ['middleware' => 'signedurl', 'uses' => 'Backend\ComparatorUserController@autoDestroy', 'as' => 'unsubscribe-profile'])->where('id', '[0-9]+');
 Route::get('autorestore/{code}', ['uses' => 'Backend\ComparatorUserController@autoRestore', 'as' => 'autorestore']);
 
 
-
-
 /* COMPARATOR - BACKEND */
-Route::get('register/verify/{token}', 'Auth\RegisterController@verify')->name('register'); // verifica mail in registrazione nuovo utente (double opt-in)
+Route::get('register/verify/{token}', 'Auth\RegisterController@verify')->name('register'); 
 Route::get('autologin/{token}', '\Watson\Autologin\AutologinController@autologin')->name('autologin'); 
 Route::group(['middleware' => ['auth', 'subscriber'], 'prefix' => 'backend', 'as' => 'comparator-backend.'], function() {  
 	Route::get('/', 'Backend\ComparatorDashboardController@index')->name('home');
@@ -71,24 +63,7 @@ Route::group(['middleware' => ['auth', 'subscriber'], 'prefix' => 'backend', 'as
 });
 
 
-
-
-// redirects from old site (da .htaccess su server apache)
-Route::get('lavoraconnoi.htm', function () { return redirect('videocitofoni');  })->name('old-url-redirect-1');
-Route::get('russo/{str}', function () { return redirect('videocitofoni'); })->where('str', '(.*)')->name('old-url-redirect-2');
-Route::get('spagnolo/{str}', function () { return redirect('videocitofoni'); })->where('str', '(.*)')->name('old-url-redirect-3');
-Route::get('tedesco/{str}', function () { return redirect('videocitofoni'); })->where('str', '(.*)')->name('old-url-redirect-4');
-Route::get('italiano/{str}', function () { return redirect('videocitofoni'); })->where('str', '(.*)')->name('old-url-redirect-5');
-Route::get('inglese/{str}', function () { return redirect('videocitofoni'); })->where('str', '(.*)')->name('old-url-redirect-6');
-Route::get('graphics/{str}', function () { return redirect('videocitofoni'); })->where('str', '(.*)')->name('old-url-redirect-7');
-Route::get('francese/{str}', function () { return redirect('videocitofoni'); })->where('str', '(.*)')->name('old-url-redirect-8');
-Route::get('documenti/{str}', function () { return redirect('videocitofoni'); })->where('str', '(.*)')->name('old-url-redirect-9');
-Route::get('db/{str}', function () { return redirect('videocitofoni'); })->where('str', '(.*)')->name('old-url-redirect-10');
-
-
-
 /* CMS - BACKEND */
-// cambiato 'backend' con 'cms-backend' 
 Route::group(['middleware' => ['auth', 'author'], 'prefix' => 'cms-backend', 'as' => 'cms-backend.'], function() {  
 	Route::get('/', 'Backend\CmsDashboardController@index')->name('home');
 	Route::post('save-article-slug', 'Backend\CmsDashboardController@saveArticleSlug')->name('save-article-slug');
@@ -96,24 +71,11 @@ Route::group(['middleware' => ['auth', 'author'], 'prefix' => 'cms-backend', 'as
 	Route::resource('article', 'Backend\CmsArticleController');
 });  
 
+
 /* CMS - FRONTEND */
 Route::post('articles-rating', 'ArticlesController@rating')->name('articles-rating');
 Route::post('{slug}/comment/send', 'Backend\CmsCommentsController@send')->where('slug', '[A-Za-z0-9-_]+')->name('comment-send');
 Route::post('{slug}/comment/subscribe', 'Backend\CmsCommentsController@subscribe')->where('slug', '[A-Za-z0-9-_]+')->name('comment-subscribe');
 Route::get('unsubscribe/{slug}/{unique_code}', 'Backend\CmsCommentsController@UnsubscribeToComment')->where('slug', '[A-Za-z0-9-_]+')->name('comment-unsubscribe');
-// ARTICLES, IMPORTANT: leave this the LAST in the page !!
+// ARTICLES, IMPORTANT: leave this the LAST in the page (ex. /videocitofoni) !!
 Route::get('{slug}', 'ArticlesController@index')->where('slug', '[A-Za-z0-9-_]+')->name('article');
-
-
-
-
-
-
-
-
-
-
-
-
-
-
