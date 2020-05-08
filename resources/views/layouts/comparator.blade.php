@@ -194,6 +194,16 @@
           </div>
         @endif
 
+        @if (count($errors) > 0)
+            <div class="alert alert-danger" style="position:relative; top:60px;">
+              <ul>
+                @foreach ($errors->all() as $error)
+                <li>{{ $error }}</li>
+                @endforeach
+              </ul>
+            </div>
+        @endif
+
         <!--start content-->
         @yield('content')
         <!--end content-->

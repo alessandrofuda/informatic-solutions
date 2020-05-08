@@ -106,6 +106,9 @@ class AdminCommentsController extends Controller {
 
 
     public function filter() {
+        if (!file_exists($this->spam_keywords_path)) {
+            File::put($this->spam_keywords_path, '');
+        }
         $filtered_keywords_list = File::get($this->spam_keywords_path);
         return view('backend.adminCommentsFilter', ['filtered_keywords_list' => $filtered_keywords_list]);
     }
@@ -154,14 +157,19 @@ class AdminCommentsController extends Controller {
 
 
     public function getSpamKeywords():array {
+
         $spam_keywords = [];
-        $spam_keywords_list = File::get($this->spam_keywords_path);
-        $spam_keywords_expl = explode(',', $spam_keywords_list);
 
-        foreach ($spam_keywords_expl as $spam_keyword) {
-            $spam_keywords[] = strtolower(trim($spam_keyword));
+        if (file_exists($this->spam_keywords_path)) {
+
+            $spam_keywords_list = File::get($this->spam_keywords_path);
+            $spam_keywords_expl = explode(',', $spam_keywords_list);
+
+            foreach ($spam_keywords_expl as $spam_keyword) {
+                $spam_keywords[] = strtolower(trim($spam_keyword));
+            }
         }
-
+        
         return $spam_keywords;
     }
 

@@ -21,10 +21,16 @@ class storeFilterKeywordsRequest extends FormRequest
      *
      * @return array
      */
-    public function rules()
-    {
+    public function rules() {
+
         return [
-            'keywords_list' => 'string'
+            'keywords-list' => 'required|string'  
+        ];
+    }
+
+    public function messages() {
+        return [
+            'keywords-list.required' => 'Inserire una o più Parole-Spam da filtrare, separate da virgola.'
         ];
     }
 }
