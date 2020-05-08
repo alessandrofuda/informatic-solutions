@@ -2,8 +2,10 @@
 
 namespace App;
 
-use Illuminate\Database\Eloquent\Model;
+use App\Http\Controllers\Backend\AdminCommentsController;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Str;
 
 class Comment extends Model {
     use SoftDeletes;
@@ -42,6 +44,14 @@ class Comment extends Model {
 
     public function scopePending($query) {
         return $query->where('comment_approved', self::STATUS['PENDING']);
+    }
+
+    public function isSpam($body) {
+        
+        $admin_comments_controller = new AdminCommentsController();
+        $spam_keywords =  $admin_comments_controller->getSpamKeywords();
+
+        return Str::contains( strtolower($body), $spam_keywords) ? true : false;
     }
     
 }

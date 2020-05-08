@@ -22,8 +22,9 @@ use File;
 class AdminCommentsController extends Controller {   
 
     public function __construct() {
-        $this->slug = 'migliori prodotti';  
+        $this->slug = 'migliori prodotti'; 
         $this->middleware(['auth','admin'])->except('send', 'subscribe');   // !!! CREARE MIDDLEWARE PER ADMIN, AUTHOR, SUBSCRIBER !!!
+        $this->spam_keywords_path = config('anti-spam-filter.storage-path'); 
     }
 
     public function index() {
@@ -105,7 +106,7 @@ class AdminCommentsController extends Controller {
 
 
     public function filter() {
-        $filtered_keywords_list = File::get(storage_path('app/config/comments-spam/filtered-keywords-list.txt'));
+        $filtered_keywords_list = File::get($this->spam_keywords_path);
         return view('backend.adminCommentsFilter', ['filtered_keywords_list' => $filtered_keywords_list]);
     }
 
@@ -123,9 +124,9 @@ class AdminCommentsController extends Controller {
 
     public function storeFilterKeywords(storeFilterKeywordsRequest $request) {
         try { // storage file, not db
-            $file = File::put(storage_path('app/config/comments-spam/filtered-keywords-list.txt'), trim($request->input('keywords-list')) );
+            $file = File::put($this->spam_keywords_path, trim($request->input('keywords-list')));
             if (!$file) {
-                throw new Exception("Si è verificato un errore durante la creazione/scrittura del file filtered-keywords-list.txt", 1);
+                throw new Exception("Si è verificato un errore durante la creazione/scrittura di ".$this->spam_keywords_path, 1);
             }
             $response = 'La lista della Keywords-Filtro è stata aggiornata correttamente';
         } catch (Exception $e) {
@@ -136,25 +137,32 @@ class AdminCommentsController extends Controller {
 
 
     public function deleteSpamComments() {
-        $spam_keywords_list = File::get(storage_path('app/config/comments-spam/filtered-keywords-list.txt'));
-        $spam_keywords_expl = explode(',', $spam_keywords_list);
-        $spam_keywords = [];
+        
         $to_delete_comments = []; 
         $month_ago = Carbon::now()->subMonth();
         $pending_comments = Comment::withTrashed()->pending()->whereDate('created_at','<', $month_ago)->get();
 
-        foreach ($spam_keywords_expl as $spam_keyword) {
-            $spam_keywords[] = strtolower(trim($spam_keyword));
-        }
-
         foreach ($pending_comments as $pending_comment) {
-            if (Str::contains( strtolower($pending_comment->body), $spam_keywords )) {
+            if (Str::contains( strtolower($pending_comment->body), $this->getSpamKeywords() )) {
                 $to_delete_comments[] = $pending_comment->id; 
             }
         }
         $deleted = Comment::withTrashed()->whereIn('id', $to_delete_comments)->forceDelete();  
 
         return $deleted;
+    }
+
+
+    public function getSpamKeywords():array {
+        $spam_keywords = [];
+        $spam_keywords_list = File::get($this->spam_keywords_path);
+        $spam_keywords_expl = explode(',', $spam_keywords_list);
+
+        foreach ($spam_keywords_expl as $spam_keyword) {
+            $spam_keywords[] = strtolower(trim($spam_keyword));
+        }
+
+        return $spam_keywords;
     }
 
 }

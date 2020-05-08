@@ -88,7 +88,6 @@
       </div>
     </nav>
 
-
   <!--start content-->
   @yield('cms-content')
   <!--end content-->

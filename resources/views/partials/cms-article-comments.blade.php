@@ -27,7 +27,6 @@
 </div>
 @endif
 
-
 <!--comments list-->
 <div id="comments" class="well">
   @if (count($comments) > 0)
@@ -45,14 +44,11 @@
           <div class="media-heading">
             {{$comment->from_user_name}} <small>- {{ date('d/m/Y H:i', strtotime($comment->created_at)) }}</small>
           </div>
-
           <p class="comment-body"> {{ $comment->body }} </p> {{--VERIFICARE SICUREZZA TAG HTML E VIRGOLETTE --}}
-
           <!-- reply btn-->
           <p class="reply text-right">
             <button class="btn btn-primary btn-sm" data-toggle="collapse" data-target="#respond-comment-{{ $comment->id }}">Rispondi</button>
           </p>
-
 
           @foreach ($comments_child as $comment_child) 
           @if ($comment_child->comment_parent == $comment->id ) {{-- !!! RISOLTOOOO VERIFICARE !!! !!!! --}}
@@ -68,7 +64,6 @@
           <!--Fine Nested Comment - annidamento-->
           @endif
           @endforeach
-
 
           <!-- comment-reply form -->
           <div id="respond-comment-{{ $comment->id }}" class="collapse comment-respond">
@@ -98,9 +93,7 @@
             <div class="text-right">
               <button class="btn btn-link" data-toggle="collapse" data-target="#respond-comment-{{ $comment->id }}">Comprimi / Annulla</button>
             </div>
-            
           </div>
-
         </div>
       </li>
       @endforeach
@@ -110,8 +103,8 @@
   <hr>
   <!-- Comment Form -->
   <div class="invite">Lascia un commento {{ count($comments) > 0 ? 'anche tu' : '' }}  o fai la tua richiesta:</div>
-  <form id="commentform" class="" action="{{ route('comment-send', [$post->slug]) }}" method="post">
 
+  <form id="commentform" class="" action="{{ route('comment-send', [$post->slug]) }}" method="post">
     {{ csrf_field() }}
     <div class="form-group">
       <label>Nome</label> <!--for="c-name"-->

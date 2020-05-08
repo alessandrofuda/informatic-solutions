@@ -36,7 +36,7 @@ class SendCommentRequest extends FormRequest
             'c-name.max'=>'Il nome deve contenere al massimo :max caratteri.',
             'c-email.required'=>'Inserisci il tuo indirizzo e-mail.',
             'c-email.email'=>'Inserisci un indirizzo email corretto.',
-            'c-body.required'=>'Inserisci il tuo commento.',
+            'c-body.required'=>'Il testo del commento è obbligatorio.',
             'c-body.min'=>'Il testo del commento deve avere almeno :min caratteri.',
             'c-body.max'=>'Il testo del tuo commento è troppo lungo. Consentiti massimo :max caratteri.',
         ];

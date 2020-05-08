@@ -1,7 +1,20 @@
 @extends('layouts.cms')
 
 @section('cms-content')
+
 <section id="section-1" class="container-fluid" role="main" itemscope itemtype="https://schema.org/Article">
+
+  {{--error validation form --}}
+  @if (count($errors) > 0)
+    <div class="alert alert-danger">
+      <ul>
+        @foreach ($errors->all() as $error)
+        <li>{{ $error }}</li>
+        @endforeach
+      </ul>
+    </div>
+  @endif
+
   <div id="article-container" class="row">
     <div id="article" class="col-md-10 col-md-offset-1">
       <h1 class="title" itemprop="name">{{$post->title}}</h1>

@@ -24,16 +24,23 @@ class CmsCommentsController extends Controller {
 
     public function send(SendCommentRequest $request, $slug){ 
 
+        $comment = new Comment;
+
+        // 0) anti spam filter
+        if ($comment->isSpam($request->input('c-body'))) {
+            abort(403, 'Spam');
+        }
+
         // 1) insert in db like DRAFT
         $post_id = Post::where('slug', $slug)->first()->id;
-        $comment = new Comment;
+        
         $comment->on_post = $post_id;  // => lo recupera da db attraverso lo slug
         $comment->from_user_name = $request->input('c-name');
         $comment->body = $request->input('c-body');
         $comment->from_user_email = $request->input('c-email');
         $comment->from_user_ip = $request->server('REMOTE_ADDR');  // approfondire !!!
         //$comment->from_user_url = $request->input(''); --> aggiungere campo url nel form commenti
-        $comment->comment_approved = 0;  //draft
+        $comment->comment_approved = Comment::STATUS['PENDING'];  
         $comment->comment_agent = $request->header('User-Agent');
         $comment->comment_parent = $request->input('comment_parent');
         $comment->save();
@@ -49,7 +56,7 @@ class CmsCommentsController extends Controller {
 
             $subscribed->code = str_slug(bcrypt($request->input('c-email') . $subscribed->id .'&%stringaakkazzo!#@'));
             $subscribed->save();  //doppio save() per estrarre l'id autoincrement e inserirlo in bcrypt()
-        }        
+        }
 
         // 3) invia comment ad admin per moderazione
         Mail::to(config('custom.admin_email'))->send(new CommentSent($comment));
