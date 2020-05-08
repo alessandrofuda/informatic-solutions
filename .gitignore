@@ -10,4 +10,5 @@ error_log
 /docker/docker-compose.yaml
 docker-compose.yml
 docker-compose.yaml
+/public/ads.txt
 
