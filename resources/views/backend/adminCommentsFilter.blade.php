@@ -27,7 +27,12 @@
 					  		<button type="submit" class="btn btn-primary">Aggiorna lista</button>
 					  	</div>
 					</form>
-            		<div class="form-group col-md-12 text-right">
+                    <div class="form-group col-md-6">
+                        <a class="btn btn-link btn-info" href="{{route('admin.home')}}" style="position:relative; bottom:-15px; padding-left:0;">
+                            <span class="glyphicon glyphicon-arrow-left"></span> Torna alla dashboard
+                        </a>
+                    </div>
+            		<div class="form-group col-md-6 text-right">
             			<a class="btn btn-danger" href="{{route('admin.comments.run-spam-filter')}}">
             				<span class="glyphicon glyphicon-exclamation-sign"></span> Avvia Filtro Manualmente
             			</a>

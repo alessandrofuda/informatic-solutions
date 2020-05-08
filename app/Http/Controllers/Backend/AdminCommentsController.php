@@ -131,7 +131,7 @@ class AdminCommentsController extends Controller {
             if (!$file) {
                 throw new Exception("Si è verificato un errore durante la creazione/scrittura di ".$this->spam_keywords_path, 1);
             }
-            $response = 'La lista della Keywords-Filtro è stata aggiornata correttamente';
+            $response = 'La lista delle Spam-Keywords è stata aggiornata correttamente';
         } catch (Exception $e) {
             $response = $e->getMessage();    
         }
