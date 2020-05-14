@@ -28,7 +28,7 @@ class AdminCommentsController extends Controller {
     }
 
     public function index() {
-        $comments = Comment::orderBy('created_at', 'DESC')->paginate(20);
+        $comments = Comment::orderBy('created_at', 'DESC')->get();  //->paginate(20);
         $origin = 'comments';
         return view('backend.adminCommentsList')->with('slug', $this->slug)
                                            ->with('comments', $comments)
