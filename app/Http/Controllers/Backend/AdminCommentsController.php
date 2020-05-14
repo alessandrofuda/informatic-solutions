@@ -37,7 +37,7 @@ class AdminCommentsController extends Controller {
     }
 
     public function pending() {
-        $comments = Comment::pending()->paginate(20); 
+        $comments = Comment::pending()->get(); //->paginate(20); 
         $origin = 'pending-comments';
         return view('backend.adminCommentsList')->with('slug', $this->slug)
                                            ->with('comments', $comments)
