@@ -46,20 +46,10 @@ class LoginController extends Controller
 
     protected function authenticated(Request $request, $user) {
 
-        if ($user->is_admin()) {
+        $route_prefix_by_role = $user->getRoutePrefixByRole();
+        return redirect()->route($route_prefix_by_role.'home');
 
-            return redirect()->route('admin.home');
-
-        } elseif ($user->is_author()) {
-
-            return redirect()->route('cms-backend.home');
-
-        } elseif ($user->is_subscriber()) {
-
-            return redirect()->route('comparator-backend.home');
-        }
     }
-
 
     
     //Override of the credentials method from the "AuthenticatesUsers"
@@ -71,7 +61,6 @@ class LoginController extends Controller
             'verified' => 1,
         ];
     }
-
 
 
     //AGGIUNTO PER SOVRASCRIVERE DA AuthenticatesUsers il redirect dopo il logout..

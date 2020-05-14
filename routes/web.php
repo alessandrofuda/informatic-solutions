@@ -18,8 +18,9 @@ Auth::routes();
 // CMS: admin, author 
 
 
-/*Homepage*/
+/*Public routes*/
 Route::get('/', 'HomepageController@index')->name('home');
+
 
 
 /* ADMIN */
@@ -37,6 +38,9 @@ Route::group(['middleware' => ['auth','admin'], 'prefix' => 'admin', 'as' => 'ad
 	Route::get('delete-comment-{id}', 'Backend\AdminCommentsController@destroy')->name('delete-comment');
 	Route::get('change-my-pswd', 'Backend\ComparatorDashboardController@changepswd')->name('change-my-pswd');
 	Route::post('change-my-pswd', 'Backend\ComparatorDashboardController@postChangepswd')->name('change-my-pswd-post');
+	Route::get('change-my-profile', 'Backend\ComparatorDashboardController@changeMyProfile')->name('change-my-profile');
+	Route::post('change-my-profile', 'Backend\ComparatorDashboardController@postChangeMyProfile')->name('change-my-profile-post');
+	Route::get('delete/my-profile', 'Backend\ComparatorUserController@deleteMyProfile')->name('delete-my-profile');
 });
 
 
@@ -51,10 +55,13 @@ Route::get('autorestore/{code}', ['uses' => 'Backend\ComparatorUserController@au
 /* COMPARATOR - BACKEND */
 Route::get('register/verify/{token}', 'Auth\RegisterController@verify')->name('register'); 
 Route::get('autologin/{token}', '\Watson\Autologin\AutologinController@autologin')->name('autologin'); 
+Route::get('email-confirmation/{token}', 'Backend\ComparatorDashboardController@emailConfirmation')->name('email-confirmation'); 
 Route::group(['middleware' => ['auth', 'subscriber'], 'prefix' => 'backend', 'as' => 'comparator-backend.'], function() {  
 	Route::get('/', 'Backend\ComparatorDashboardController@index')->name('home');
 	Route::get('change-my-pswd', 'Backend\ComparatorDashboardController@changepswd')->name('change-my-pswd');
 	Route::post('change-my-pswd', 'Backend\ComparatorDashboardController@postChangepswd')->name('change-my-pswd-post');
+	Route::get('change-my-profile', 'Backend\ComparatorDashboardController@changeMyProfile')->name('change-my-profile');
+	Route::post('change-my-profile', 'Backend\ComparatorDashboardController@postChangeMyProfile')->name('change-my-profile-post');
 	Route::get('delete/my-profile', 'Backend\ComparatorUserController@deleteMyProfile')->name('delete-my-profile');
 	Route::get('metti-in-osservazione-{asin}-{id}', 'Backend\ComparatorWatchinglistController@add')->name('put-in-observation');
 	Route::get('smetti-di-osservare-{asin}-{id}', 'Backend\ComparatorWatchinglistController@remove')->name('remove-from-observation');
@@ -66,6 +73,11 @@ Route::group(['middleware' => ['auth', 'subscriber'], 'prefix' => 'backend', 'as
 /* CMS - BACKEND */
 Route::group(['middleware' => ['auth', 'author'], 'prefix' => 'cms-backend', 'as' => 'cms-backend.'], function() {  
 	Route::get('/', 'Backend\CmsDashboardController@index')->name('home');
+	Route::get('change-my-pswd', 'Backend\ComparatorDashboardController@changepswd')->name('change-my-pswd');
+	Route::post('change-my-pswd', 'Backend\ComparatorDashboardController@postChangepswd')->name('change-my-pswd-post');
+	Route::get('change-my-profile', 'Backend\ComparatorDashboardController@changeMyProfile')->name('change-my-profile');
+	Route::post('change-my-profile', 'Backend\ComparatorDashboardController@postChangeMyProfile')->name('change-my-profile-post');
+	Route::get('delete/my-profile', 'Backend\ComparatorUserController@deleteMyProfile')->name('delete-my-profile');
 	Route::post('save-article-slug', 'Backend\CmsDashboardController@saveArticleSlug')->name('save-article-slug');
 	Route::post('save-article/{with_status_definition?}', 'Backend\CmsDashboardController@saveArticle')->name('save-article');
 	Route::resource('article', 'Backend\CmsArticleController');

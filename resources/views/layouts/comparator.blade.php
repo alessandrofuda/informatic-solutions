@@ -148,27 +148,31 @@
                             </a>
 
                             <ul class="dropdown-menu" role="menu">
+                                @php 
+                                    $path = Auth::user()->getRoutePrefixByRole();
+                                @endphp
                                 <li>
-                                    <a href="{{ Auth::user()->is_admin() ? url('admin#profile') : url('backend#profile') }}">Profilo</a>
+                                    <a href="{{ Auth::user()->is_admin() ? route($path.'home') : route($path.'home') }}">Profilo</a>
                                 </li>
-                                @if (!Auth::user()->is_admin())
-                                    <li><a href="{{ url('backend#my-list') }}">Oggetti in osservazione</a></li>
+                                @if (Auth::user()->is_subscriber())
+                                    <li>
+                                        <a href="{{ url('backend#my-list') }}">Oggetti in osservazione</a>
+                                    </li>
                                 @endif
                                 <li>
-                                    <a href="{{ Auth::user()->is_admin() ? url('admin#reset-psw') : url('backend#reset-psw') }}">Cambia password</a>
+                                    <a href="{{ route($path.'change-my-pswd') }}">Cambia password</a>
                                 </li>
-                                <li><a href="">Modifica profilo-<small>(to do)</small></a></li>
                                 <li>
-                                    <a href="{{ url('backend/delete/my-profile') }}" onclick="return confirm('Sei sicuro di voler eliminare il tuo Profilo e Dis-iscriverti dal servizio?')">Elimina profilo</a>
+                                    <a href="{{ route($path.'change-my-profile') }}">Modifica profilo</a>
+                                </li>
+                                <li>
+                                    <a href="{{ route($path.'delete-my-profile') }}" onclick="return confirm('Sei sicuro di voler eliminare il tuo Profilo e Dis-iscriverti dal servizio?')">Elimina profilo</a>
                                 </li>
                                 <hr style="margin:10px auto;">
                                 <li>
-                                    <a href="{{ url('/logout') }}"
-                                        onclick="event.preventDefault();
-                                                 document.getElementById('logout-form').submit();">
+                                    <a href="{{ url('/logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
                                         Logout
                                     </a>
-
                                     <form id="logout-form" action="{{ url('/logout') }}" method="POST" style="display: none;">
                                         {{ csrf_field() }}
                                     </form>
@@ -180,7 +184,7 @@
             </div>
         </nav>
 
-        @if(Session::has('success_message')) {{-- variabili di sessione per alerts --}}
+        @if(Session::has('success_message'))
           <div id="alert" class="alert alert-success text-center alert-dismissable fade in">
             <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
             {!! Session::get('success_message') !!}

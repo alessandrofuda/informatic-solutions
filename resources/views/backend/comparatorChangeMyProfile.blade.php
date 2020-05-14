@@ -1,11 +1,11 @@
 @extends('layouts.comparator')
 
 @section('content')
-<div class="change-passw-wrap">
-    <div class="change-passw-row">
-        <div class="change-passw">
+<div class="change-profile-wrap">
+    <div class="change-profile-row">
+        <div class="change-profile">
             <div class="panel panel-default">
-                <div class="panel-heading text-center">Cambio Password</div>
+                <div class="panel-heading text-center">Modifica Profilo</div>
 
                 <div class="panel-body">
                     @if (session('status'))
@@ -16,28 +16,25 @@
 
                     <form class="form-horizontal" role="form" method="POST">
                         {{ csrf_field() }}
-                        <div class="form-group{{ $errors->has('password') ? ' has-error' : '' }}">
-                            <label for="password" class="col-md-4 control-label">Inserisci la nuova Password</label>
-
+                        <div class="form-group{{ $errors->has('name') ? ' has-error' : '' }}">
+                            <label for="name" class="col-md-4 control-label">Modifica Nome</label>
                             <div class="col-md-6">
-                                <input id="password" type="password" class="form-control" name="password" required>
-
-                                @if ($errors->has('password'))
+                                <input type="text" class="form-control" name="name" value="{{ $user->name ?? null }}" required>
+                                @if ($errors->has('name'))
                                     <span class="help-block">
-                                        <strong>{{ $errors->first('password') }}</strong>
+                                        <strong>{{ $errors->first('name') }}</strong>
                                     </span>
                                 @endif
                             </div>
                         </div>
 
-                        <div class="form-group{{ $errors->has('password_confirmation') ? ' has-error' : '' }}">
-                            <label for="password-confirm" class="col-md-4 control-label">Ri-digita la Password</label>
+                        <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
+                            <label for="email" class="col-md-4 control-label">Modifica Email</label>
                             <div class="col-md-6">
-                                <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required>
-
-                                @if ($errors->has('password_confirmation'))
+                                <input type="email" class="form-control" name="email" value="{{ $user->email ?? null }}" required>
+                                @if ($errors->has('email'))
                                     <span class="help-block">
-                                        <strong>{{ $errors->first('password_confirmation') }}</strong>
+                                        <strong>{{ $errors->first('email') }}</strong>
                                     </span>
                                 @endif
                             </div>
@@ -46,7 +43,7 @@
                         <div class="form-group">
                             <div class="col-md-6 col-md-offset-4">
                                 <button type="submit" class="btn btn-primary">
-                                    Cambia Password
+                                    Aggiorna profilo
                                 </button>
                                 <a class="btn btn-default" style="float: right;" href="{{url('backend')}}">Indietro</a>
                             </div>

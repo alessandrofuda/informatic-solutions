@@ -80,6 +80,20 @@ class User extends Authenticatable {
           return false;
     }
 
+    public function getRoutePrefixByRole() : string {
+            
+        if ($this->is_admin()) {
+            $route_prefix = 'admin.';
+        }elseif ($this->is_author()) {
+            $route_prefix = 'cms-backend.';
+        }elseif ($this->is_subscriber()) {
+            $route_prefix = 'comparator-backend.';
+        }else {
+            abort(403, 'User has no role!');
+        }
+        return $route_prefix;
+    }
+
     public function isInWatchinglist($product_id) {
         $items = Watchinglist::where('user_id', $this->attributes['id'] )->where('product_id', $product_id)->get();
         if (count($items) <= 0) {

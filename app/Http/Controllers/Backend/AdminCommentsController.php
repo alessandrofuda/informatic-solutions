@@ -28,7 +28,7 @@ class AdminCommentsController extends Controller {
     }
 
     public function index() {
-        $comments = Comment::orderBy('created_at', 'DESC')->get();  //->paginate(20);
+        $comments = Comment::orderBy('created_at', 'DESC')->get();  
         $origin = 'comments';
         return view('backend.adminCommentsList')->with('slug', $this->slug)
                                            ->with('comments', $comments)
@@ -37,7 +37,7 @@ class AdminCommentsController extends Controller {
     }
 
     public function pending() {
-        $comments = Comment::pending()->get(); //->paginate(20); 
+        $comments = Comment::pending()->get(); 
         $origin = 'pending-comments';
         return view('backend.adminCommentsList')->with('slug', $this->slug)
                                            ->with('comments', $comments)

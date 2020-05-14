@@ -128,6 +128,9 @@ footer .discl{ display: inline-block; }
 /*change psw page*/
 .change-passw { width: 780px; max-width: 100%; position: absolute; left: 50%; top: 50%; transform: translate(-50%,-50%); }
 
+/*change profile page*/
+.change-profile { width: 780px; max-width: 100%; position: absolute; left: 50%; top: 50%; transform: translate(-50%,-50%); }
+
 /*responsive*/
 @media screen and (max-width: 991px) {
 	.modal-button-left, .modal-button-right { padding:0; }
