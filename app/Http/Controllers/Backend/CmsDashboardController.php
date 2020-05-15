@@ -32,6 +32,10 @@ class CmsDashboardController extends Controller {
         $lastArticleId = Post::select('id')->orderBy('id', 'DESC')->first()->id;
         $newArticleId = (int)++$lastArticleId;
 
+        if (session()->get('article_id')) {
+            $newArticleId = session()->get('article_id');
+        }
+
         return view('backend.cmsHome')->with('user', $user)
                                       ->with('articles', $articles)
                                       ->with('newArticleId', $newArticleId);
@@ -99,6 +103,8 @@ class CmsDashboardController extends Controller {
         }
 
         $article = Post::updateOrCreate(['id' => $post_id], $params);
+
+        $request->session()->put('article_id', $post_id);
         
         if($article->wasRecentlyCreated) {
             $response = 'Nuovo articolo salvato correttamente';
@@ -129,4 +135,10 @@ class CmsDashboardController extends Controller {
         return response()->json(['response'=> $response]);
     }*/
 
+    public function makeNewArticle() {
+
+        session()->forget('article_id');
+
+        return redirect()->route('cms-backend.home');
+    }
 }

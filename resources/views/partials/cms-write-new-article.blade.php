@@ -40,6 +40,9 @@
 		<button id="save-article" type="submit" class="btn btn-primary btn-lg">Salva</button>
 		<div class="article-saved"></div>
 	</div>
+	<div class="form-group text-right" style="margin-top:100px;">
+		<a id="make-new-article" class="btn btn-sm btn-default btn-lg" href="{{ route('cms-backend.make-new-article') }}">Crea un nuovo articolo</a>  (refressha pulendo cache/cookie/sessione - TODO)
+	</div>
 </form>
 <script>
 	jQuery(document).ready(function(){
@@ -48,11 +51,6 @@
 			e.preventDefault();
 			var slug = $("input[name='slug']").val();
 			var articleId = $("input[name='id']").val();
-			// $.ajaxSetup({
-			//     headers: {
-			//         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-			//     }
-			// });
 			$.ajax({
 			    method: "POST",
 			    url: '{{route('cms-backend.save-article-slug')}}',
@@ -86,7 +84,7 @@
 			$('button.ok-slug').css('display','inline-block');
 		});
 
-		//article
+		//save article button
 		$('#new-article').submit(function(e){
 			e.preventDefault();
 			var form = $(this);
@@ -114,7 +112,7 @@
 			});
 		});
 
-		// published swith
+		// published switch
 		$("input[name='published']").on('change', function(e) {
 			e.preventDefault();
 			// var currentArticleId = '{{-- $newArticleId --}}';
@@ -142,5 +140,27 @@
 			    }
 			});
 		});
+
+		//new article button (with session clean)
+		// $('#make-new-article').on('click', function(e) {
+		// 	e.preventDefault();
+		// 	$.ajax({
+		// 	    method: "POST",
+		// 	    url: '{{-- route('cms-backend.make-new-article') --}}',
+		// 	    data: { 
+		//     		slug:slug,
+		//     		id:articleId
+		// 	    },
+		// 	    headers: {
+		// 	    	'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+		// 	    },
+		// 	    success: function(result) {	
+		    		
+		// 	    }
+		// 	    // error: function(e) {
+			    	
+		// 	    // }
+		// 	});
+		// });
 	});
 </script>

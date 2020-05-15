@@ -81,6 +81,7 @@ Route::group(['middleware' => ['auth', 'author'], 'prefix' => 'cms-backend', 'as
 	Route::post('save-article-slug', 'Backend\CmsDashboardController@saveArticleSlug')->name('save-article-slug');
 	Route::post('save-article/{with_status_definition?}', 'Backend\CmsDashboardController@saveArticle')->name('save-article');
 	Route::resource('article', 'Backend\CmsArticleController');
+	Route::get('make-new-article', 'Backend\CmsDashboardController@makeNewArticle')->name('make-new-article');
 });  
 
 
