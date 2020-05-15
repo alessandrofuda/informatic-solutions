@@ -13,8 +13,11 @@ https://www.informatic-solutions.it/videocitofoni/comparatore-prezzi
 - [x] facory/seeds for stores table
 - [x] update amzn API v5
 - [x] logs in admin backend
+- [x] override logs package blade template
 - [x] datatable to all tables (with js pagination & controls)
 - [x] user profile modifiers
+- [ ] admin: users page --> "oggetti in osservazione"
+- [ ] admin: user edit --> "prodotti monitorati"
 - [ ] cms: add links to comparator
 - [ ] to complete unit tests
 - [ ] amzn reviews crawler
@@ -32,5 +35,5 @@ https://www.informatic-solutions.it/videocitofoni/comparatore-prezzi
 ### Long-term deadline
 
 - [ ] continuos refactoring
-- [ ] add more store
+- [ ] add more stores
 - [ ] separate distinctly front/backend (Laravel --> API - Vue.js/nuxt.js --> front page)
