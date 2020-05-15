@@ -10,7 +10,7 @@
                         <i class="fas fa-list-alt slide-hp"></i>Confronta<br>Prodotti
                     </div>
                     <div class="col-sm-4 slider-block">
-                        <i class="fas fa-chart-line slide-hp"></i>Monitora i <br>Prezzi
+                        <i class="fas fa-chart-line slide-hp"></i><h1>Monitora i <br>Prezzi</h1>
                     </div>
                     <div class="col-sm-4 slider-block">
                         <i class="fas fa-hand-holding-usd slide-hp"></i>Compra e <br>Risparmia

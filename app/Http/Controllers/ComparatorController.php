@@ -38,7 +38,8 @@ class ComparatorController extends Controller {
      *
      * @return \Illuminate\Http\Response
      */
-    public function index($slug) {  
+    public function index(Request $request, $slug) {  
+
         // fetch products
         $lastrequest_date = Product::orderBy('updated_at', 'desc')->first()->updated_at;
         $products = Product::where('created_at', '<=', $lastrequest_date)->orderBy('created_at', 'desc');                                                              
@@ -53,6 +54,9 @@ class ComparatorController extends Controller {
 
         $brands = $this->getBrandsArray();
         $reviews = $this->getReviews();
+
+        //page number for meta tags
+        $current_page = $request->page;
         
         return view('comparator.index')->with('slug', $slug)
                                        ->with('post_title', $post_title)
@@ -60,7 +64,8 @@ class ComparatorController extends Controller {
                                        ->with('all_products_number', $all_products_number)
                                        ->with('contents', $contents)
                                        ->with('reviews', $reviews)
-                                       ->with('page_type', $this->page_type);
+                                       ->with('page_type', $this->page_type)
+                                       ->with('current_page', $current_page);
                                        //->with('prod_json', $prod_json)
     }
 

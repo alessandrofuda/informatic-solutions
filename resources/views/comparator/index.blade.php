@@ -7,7 +7,10 @@
 	    <div class="col-md-12">
 		    <div class="row text-center title">
 		    	<div class="col-md-12">
-		    		<h1 class="title-text">Confronta <b>{{ ucfirst($slug) }}</b> e monitora i prezzi</h1>
+		    		<h1 class="title-text">
+		    			Confronta <b>{{ ucfirst($slug) }}</b> e monitora i prezzi
+		    			<span style="display:block; font-size:14px;">{{$current_page ? 'Pagina: '.$current_page : ''}}</span>
+		    		</h1>
 			    	@if(!empty($post_title))
 			    		<h2 class="sub-title-link">
 			    			<a href="{{ url($slug) }}">{{ $post_title }}</a>

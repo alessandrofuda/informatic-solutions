@@ -132,17 +132,16 @@
             <div class="row product-buttons">
             	<div class="col-md-12"> 
 	            	@if(Auth::check() && Auth::user()->isInWatchinglist($content->id))
-	                    <a class="col-md-12 btn btn-danger" style="white-space: normal !important;" href="../backend/smetti-di-osservare-{{$content->asin}}-{{$content->id}}">
+	                    <a class="col-md-12 btn btn-top btn-danger" href="{{ route('comparator-backend.remove-from-observation', ['asin'=> $content->asin, 'id'=> $content->id]) }}">
 	                    	<i class="col-md-2 glyphicon glyphicon-remove-sign"></i>
 	                    	<span style="line-height: 45px;" class="col-md-10 txt">Smetti di osservare</span>	                    	
 	                    </a>
 	                @else
-	                    <a class="col-md-12 btn btn-success" style="white-space: normal !important;" href="../backend/metti-in-osservazione-{{$content->asin}}-{{$content->id}}">
+	                    <a class="col-md-12 btn btn-top btn-success" href="{{ route('comparator-backend.put-in-observation', [ 'asin'=>$content->asin, 'id'=> $content->id]) }}">
 		                    <i class="col-md-2 glyphicon glyphicon-eye-open"></i>
 		                    <span class="col-md-10 txt">Avvisami quando<br>il prezzo scende</span>
 	                  	</a>
 	                @endif
-	   	            {{-- vedi: https://webservices.amazon.com/paapi5/documentation/add-to-cart-form.html --}}
 					<form method="GET" action="https://www.amazon.it/gp/aws/cart/add.html" target="_blank"> 
 						<input type="hidden" name="AWSAccessKeyId" value="{{config('amazon-product.api_key')}}" />
 						<input type="hidden" name="AssociateTag" value="{{config('amazon-product.associate_tag')}}" />

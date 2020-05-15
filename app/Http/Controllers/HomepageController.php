@@ -15,11 +15,12 @@ class HomepageController extends Controller {
 
     public function __construct() {
     	$this->page_type = 'homepage';
+    	$this->slug = 'homepage';
     }
 
 
     public function index() {
-    	return view('homepage', ['page_type' => $this->page_type]);
+    	return view('homepage', ['page_type' => $this->page_type, 'slug' => $this->slug]);
     }
 
 

@@ -43,6 +43,15 @@ class LoginController extends Controller
         $this->middleware('guest', ['except' => 'logout']);
     }
 
+    /**
+     *
+     * Override same method in AuthenticatesUser Trait   
+     *
+     */
+    public function showLoginForm() {   
+        
+        return view('auth.login', ['page_type' => 'login-page', 'slug' => 'login']);
+    }
 
     protected function authenticated(Request $request, $user) {
 

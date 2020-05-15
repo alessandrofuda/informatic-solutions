@@ -16,6 +16,9 @@ https://www.informatic-solutions.it/videocitofoni/comparatore-prezzi
 - [x] override logs package blade template
 - [x] datatable to all tables (with js pagination & controls)
 - [x] user profile modifiers
+- [ ] bug: comparator --> 'elimina dalla lista' button (Undefined variable: watched_item)
+- [ ] comparator: add canonical meta tag (for seo/pagination);
+- [ ] comparator: rewrite filters Api
 - [ ] admin: users page --> "oggetti in osservazione"
 - [ ] admin: user edit --> "prodotti monitorati"
 - [ ] cms: add links to comparator

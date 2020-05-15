@@ -94,6 +94,7 @@ table#watchinglist > thead > tr > th { vertical-align: middle; }
 .price-disc {display: block; margin-top: -5px;}
 .not-available-price {  text-align: center; margin: 30px auto; font-style: italic; font-weight: bold; font-size: 110%;}
 .product-buttons .btn {width: 100%; margin:15px auto;}
+.product-buttons .btn.btn-top { white-space: normal !important; }
 .product-buttons .btn span {display: inline-block; font-weight: bold; text-shadow: 1px 1px 0px #1e516d;}
 .product-buttons .btn .txt.add-to-cart { line-height: 45px; }
 .product-buttons i.col-md-2.glyphicon { font-size: 30px; line-height: 45px; text-shadow: 2px 2px 0px #1e516d; }

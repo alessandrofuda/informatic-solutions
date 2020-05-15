@@ -17,7 +17,7 @@
                             <h3 id="my-list" class="title text-center">Oggetti in osservazione</h3>
                             <div class="text-center" style="margin-bottom: 30px;">
 
-                                @if (count($watched_items) < 10)
+                                @if (!empty($watched_items) && count($watched_items) < 10)
                                 <a class="btn btn-primary btn-sm" style="max-width: 200px; white-space: normal;" href="{{ url('videocitofoni/comparatore-prezzi') }}">Vuoi monitorare altri prodotti? Vai alla lista completa</a>
                                 @endif
                             
@@ -124,29 +124,29 @@
                                     </thead>
                                     <tbody>
                                         @foreach($removeds as $removed)
-                                        <tr>
-                                            <td class="product-name barrato">{{ $removed->product->title }}</td>
-                                            <td class="img">
-                                                <div style="border:1px solid #CCC; opacity: 0.3;">
-                                                    <img src="{{$removed->product->largeimageurl}}" width="75px"  height="75px"/>
-                                                </div>
-                                            </td>
-                                            <td class="init-price barrato">
-                                                € {{ number_format($removed->initialprice, '2', ',', '.') }}
-                                            </td>
-                                            @php
-                                                $lowestnewprice_r = number_format($removed->product->lowestnewprice, 2, ',', '.'); // !! String !!
-                                                $price_r = number_format($removed->product->price, 2, ',', '.'); // !! STRING !!!!!!!!!
-                                            @endphp
-                                            <td class="actual-price barrato">€ {{ $lowestnewprice_r ? : $price_r }}</td>
-                                            <td class="delta"> ... </td>
-                                            <td class="text-center pulsanti">
-                                            @if(Auth::check() && Auth::user()->isInWatchinglist($removed->product_id))
-                                                <a class="btn btn-warning btn-sm min-160" href="backend/rimetti-in-osservazione-{{$watched_item->product->asin}}-{{$watched_item->product_id}}">Ri-metti in osservazione</a>
-                                                <a class="btn btn-danger btn-sm min-160 margin-5" href="/backend/elimina-da-lista-{{ $watched_item->product->asin }}-{{ $watched_item->product_id }}">Elimina dalla lista</a>
-                                            @endif
-                                            </td>
-                                        </tr>
+                                            <tr>
+                                                <td class="product-name barrato">{{ $removed->product->title }}</td>
+                                                <td class="img">
+                                                    <div style="border:1px solid #CCC; opacity: 0.3;">
+                                                        <img src="{{$removed->product->largeimageurl}}" width="75px"  height="75px"/>
+                                                    </div>
+                                                </td>
+                                                <td class="init-price barrato">
+                                                    € {{ number_format($removed->initialprice, '2', ',', '.') }}
+                                                </td>
+                                                @php
+                                                    $lowestnewprice_r = number_format($removed->product->lowestnewprice, 2, ',', '.'); // !! String !!
+                                                    $price_r = number_format($removed->product->price, 2, ',', '.'); // !! STRING !!!!!!!!!
+                                                @endphp
+                                                <td class="actual-price barrato">€ {{ $lowestnewprice_r ? : $price_r }}</td>
+                                                <td class="delta"> ... </td>
+                                                <td class="text-center pulsanti">
+                                                @if(Auth::check() && Auth::user()->isInWatchinglist($removed->product_id))
+                                                    <a class="btn btn-warning btn-sm min-160" href="backend/rimetti-in-osservazione-{{$watched_item->product->asin}}-{{$watched_item->product_id}}">Ri-metti in osservazione</a>
+                                                    <a class="btn btn-danger btn-sm min-160 margin-5" href="/backend/elimina-da-lista-{{ $watched_item->product->asin }}-{{ $watched_item->product_id }}">Elimina dalla lista</a>
+                                                @endif
+                                                </td>
+                                            </tr>
                                         @endforeach
                                     </tbody>
                                 </table>

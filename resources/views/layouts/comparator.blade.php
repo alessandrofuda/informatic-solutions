@@ -4,18 +4,38 @@
     <!--meta charset="utf-8"-->
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="robots" content="index,follow"> 
+
+    @if( !empty($slug) )
+        @if ($slug == 'homepage')
+            <title>Servizio automatizzato di comparazione e monitoraggio prezzi, Informatic-Solutions</title>
+        @else
+            <title>{{ ucfirst($slug) }}, comparatore e monitoraggio prezzi {{$current_page ? '| Pag. '.$current_page : ''}}</title>
+        @endif
+
+        @if ($slug == 'login' || $slug == 'register' || $slug == 'reset password')
+            <meta name="description" content="User {{ ucfirst($slug) }} form.">
+        @elseif($slug == 'homepage')
+            <meta name="description" content="Servizio per confrontare e monitorare i prezzi dei prodotti.">
+        @else
+            <meta name="description" content="Tutte le informazioni utili, recensioni e confronto prezzi sui {{ ucfirst($slug) }} {{$current_page ? '| Pag. '.$current_page : ''}}">
+        @endif
+    @endif
+
+    @if( !empty($slug) )
+        @if ($slug == 'login' || $slug == 'register' || $slug == 'reset password' )
+            <meta name="robots" content="noindex,nofollow"> 
+        @else
+            <meta name="robots" content="index,follow">
+        @endif
+    @else
+        <meta name="robots" content="index,follow">
+    @endif
+    
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="icon" type="image/png" href="{{ url('images-hp/favicon.png') }}">
 
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
-
-    @if( !empty($slug) )
-        <title>{{ ucfirst($slug) }}, comparatore prezzi</title>
-        <meta name="description" content="Tutte le informazioni utili, recensioni e confronto prezzi sui {{ ucfirst($slug) }}">
-    @endif
-
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <link href="{{ asset('css/comparator-child.css') }}" rel="stylesheet">

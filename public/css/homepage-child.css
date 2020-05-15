@@ -8,6 +8,12 @@
 #app { 
 	min-height: 100vh;
 }
+#homepage h1 {
+	margin: inherit;
+	line-height: inherit;
+	font-weight: inherit;
+	font-size: inherit;
+}
 #homepage .slider-container { 
 	min-height: 600px; 
 	background-size: cover; 
