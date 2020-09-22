@@ -168,7 +168,7 @@ return [
          */
         Watson\Autologin\AutologinServiceProvider::class,
         Spatie\UrlSigner\Laravel\UrlSignerServiceProvider::class,
-        
+        Barryvdh\LaravelIdeHelper\IdeHelperServiceProvider::class,
 
         /*
          * Application Service Providers...

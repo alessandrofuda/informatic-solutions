@@ -10,12 +10,14 @@
 | to using a Closure or controller method. Build something great!
 |
 */
+
+
 Auth::routes();
 
 
 /*  ---- USER ROLES ------- */
 // COMPARATOR: subscriber, (+guest)
-// CMS: admin, author 
+// CMS: admin, author
 
 
 /*Public routes*/
@@ -46,17 +48,17 @@ Route::group(['middleware' => ['auth','admin'], 'prefix' => 'admin', 'as' => 'ad
 
 /* COMPARATOR - FRONTEND */
 Route::get('{slug}/comparatore-prezzi', 'ComparatorController@index')->name('slug-prices-comparator');
-Route::post('{slug}/comparatore-prezzi', 'ComparatorController@filter')->name('slug-prices-comparator-post'); 
-Route::get('search/autocomplete', 'ComparatorController@autocomplete')->name('search-autocomplete');  
+Route::post('{slug}/comparatore-prezzi', 'ComparatorController@filter')->name('slug-prices-comparator-post');
+Route::get('search/autocomplete', 'ComparatorController@autocomplete')->name('search-autocomplete');
 Route::get('unsubscribe-profile/{id}', ['middleware' => 'signedurl', 'uses' => 'Backend\ComparatorUserController@autoDestroy', 'as' => 'unsubscribe-profile'])->where('id', '[0-9]+');
 Route::get('autorestore/{code}', ['uses' => 'Backend\ComparatorUserController@autoRestore', 'as' => 'autorestore']);
 
 
 /* COMPARATOR - BACKEND */
-Route::get('register/verify/{token}', 'Auth\RegisterController@verify')->name('register'); 
-Route::get('autologin/{token}', '\Watson\Autologin\AutologinController@autologin')->name('autologin'); 
-Route::get('email-confirmation/{token}', 'Backend\ComparatorDashboardController@emailConfirmation')->name('email-confirmation'); 
-Route::group(['middleware' => ['auth', 'subscriber'], 'prefix' => 'backend', 'as' => 'comparator-backend.'], function() {  
+Route::get('register/verify/{token}', 'Auth\RegisterController@verify')->name('register');
+Route::get('autologin/{token}', '\Watson\Autologin\AutologinController@autologin')->name('autologin');
+Route::get('email-confirmation/{token}', 'Backend\ComparatorDashboardController@emailConfirmation')->name('email-confirmation');
+Route::group(['middleware' => ['auth', 'subscriber'], 'prefix' => 'backend', 'as' => 'comparator-backend.'], function() {
 	Route::get('/', 'Backend\ComparatorDashboardController@index')->name('home');
 	Route::get('change-my-pswd', 'Backend\ComparatorDashboardController@changepswd')->name('change-my-pswd');
 	Route::post('change-my-pswd', 'Backend\ComparatorDashboardController@postChangepswd')->name('change-my-pswd-post');
@@ -66,12 +68,12 @@ Route::group(['middleware' => ['auth', 'subscriber'], 'prefix' => 'backend', 'as
 	Route::get('metti-in-osservazione-{asin}-{id}', 'Backend\ComparatorWatchinglistController@add')->name('put-in-observation');
 	Route::get('smetti-di-osservare-{asin}-{id}', 'Backend\ComparatorWatchinglistController@remove')->name('remove-from-observation');
 	Route::get('elimina-da-lista-{asin}-{id}', 'Backend\ComparatorWatchinglistController@delete')->name('delete-from-list');
-	Route::get('rimetti-in-osservazione-{asin}-{id}', 'Backend\ComparatorWatchinglistController@restore')->name('reinsert-in-list'); 
+	Route::get('rimetti-in-osservazione-{asin}-{id}', 'Backend\ComparatorWatchinglistController@restore')->name('reinsert-in-list');
 });
 
 
 /* CMS - BACKEND */
-Route::group(['middleware' => ['auth', 'author'], 'prefix' => 'cms-backend', 'as' => 'cms-backend.'], function() {  
+Route::group(['middleware' => ['auth', 'author'], 'prefix' => 'cms-backend', 'as' => 'cms-backend.'], function() {
 	Route::get('/', 'Backend\CmsDashboardController@index')->name('home');
 	Route::get('change-my-pswd', 'Backend\ComparatorDashboardController@changepswd')->name('change-my-pswd');
 	Route::post('change-my-pswd', 'Backend\ComparatorDashboardController@postChangepswd')->name('change-my-pswd-post');
@@ -82,7 +84,7 @@ Route::group(['middleware' => ['auth', 'author'], 'prefix' => 'cms-backend', 'as
 	Route::post('save-article/{with_status_definition?}', 'Backend\CmsDashboardController@saveArticle')->name('save-article');
 	Route::resource('article', 'Backend\CmsArticleController');
 	Route::get('make-new-article', 'Backend\CmsDashboardController@makeNewArticle')->name('make-new-article');
-});  
+});
 
 
 /* CMS - FRONTEND */
