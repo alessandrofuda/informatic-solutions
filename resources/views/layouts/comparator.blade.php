@@ -9,7 +9,7 @@
         @if ($slug == 'homepage')
             <title>Servizio automatizzato di comparazione e monitoraggio prezzi, Informatic-Solutions</title>
         @else
-            <title>{{ ucfirst($slug) }}, comparatore e monitoraggio prezzi {{$current_page ? '| Pag. '.$current_page : ''}}</title>
+            <title>{{ ucfirst($slug) }}, comparatore e monitoraggio prezzi {{!empty($current_page) ? '| Pag. '.$current_page : ''}}</title>
         @endif
 
         @if ($slug == 'login' || $slug == 'register' || $slug == 'reset password')
@@ -17,20 +17,20 @@
         @elseif($slug == 'homepage')
             <meta name="description" content="Servizio per confrontare e monitorare i prezzi dei prodotti.">
         @else
-            <meta name="description" content="Tutte le informazioni utili, recensioni e confronto prezzi sui {{ ucfirst($slug) }} {{$current_page ? '| Pag. '.$current_page : ''}}">
+            <meta name="description" content="Tutte le informazioni utili, recensioni e confronto prezzi sui {{ ucfirst($slug) }} {{!empty($current_page) ? '| Pag. '.$current_page : ''}}">
         @endif
     @endif
 
     @if( !empty($slug) )
         @if ($slug == 'login' || $slug == 'register' || $slug == 'reset password' )
-            <meta name="robots" content="noindex,nofollow"> 
+            <meta name="robots" content="noindex,nofollow">
         @else
             <meta name="robots" content="index,follow">
         @endif
     @else
         <meta name="robots" content="index,follow">
     @endif
-    
+
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="icon" type="image/png" href="{{ url('images-hp/favicon.png') }}">
 
@@ -72,7 +72,7 @@
     </script>
 
     <!-- TinyMce WYSIWYG editor -->
-    <script src="https://cloud.tinymce.com/stable/tinymce.min.js?apiKey=rh9bw37ljc1mue3ach41mqvxca1ws2au3olpoj378swqdd1s"></script> 
+    <script src="https://cloud.tinymce.com/stable/tinymce.min.js?apiKey=rh9bw37ljc1mue3ach41mqvxca1ws2au3olpoj378swqdd1s"></script>
     <script>
         tinymce.init({
             selector: '#article-body',
@@ -120,7 +120,7 @@
             template_cdate_format: '[CDATE: %m/%d/%Y : %H:%M:%S]',
             template_mdate_format: '[MDATE: %m/%d/%Y : %H:%M:%S]',
             image_caption: true,
-              
+
             spellchecker_dialog: true,
             spellchecker_whitelist: ['Ephox', 'Moxiecode']
         });
@@ -168,7 +168,7 @@
                             </a>
 
                             <ul class="dropdown-menu" role="menu">
-                                @php 
+                                @php
                                     $path = Auth::user()->getRoutePrefixByRole();
                                 @endphp
                                 <li>
@@ -211,7 +211,7 @@
           </div>
         @endif
 
-        @if(Session::has('error_message')) 
+        @if(Session::has('error_message'))
           <div id="alert" class="alert alert-danger text-center alert-dismissable fade in">
             <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
             {!! Session::get('error_message') !!}
@@ -234,13 +234,13 @@
 
         <footer class="footer" role="contentinfo">
           <div class="container-fluid">
-            <div class="text-center first">Informatic-Solutions.it - P.Iva 08497200967 - 
+            <div class="text-center first">Informatic-Solutions.it - P.Iva 08497200967 -
                 <span class="discl">Tutti i diritti riservati © {{ date('Y') }}</span>
             </div>
             @if (!Route::currentRouteName('home'))
                 <p class="text-center small">La duplicazione anche parziale dei contenuti è severamente vietata; le violazioni saranno segnalate alle autorità competenti e perseguite ai termini di legge</p>
             @endif
-          </div>  
+          </div>
         </footer>
     </div><!--#app-->
     <script src="{{ asset('js/custom.js') }}"></script>
