@@ -99,7 +99,7 @@ class RegisterController extends Controller
 
     public function register(Request $request)
     {
-        abort(403, "Unauthorized");
+        abort(403, "Unauthorized, no new registrations for the moment :( ");
 
         // Laravel validation
         $this->validator($request->all())->validate();
