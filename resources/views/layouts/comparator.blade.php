@@ -156,11 +156,11 @@
                                 <button class="btn btn-default login">Accedi</button>
                             </a>
                         </li>
-                        <!--li>
+                        <li>
                             <a href="{{-- url('/register') --}}">
                                 <button class="btn btn-primary register">Registrati</button>
                             </a>
-                        </li-->
+                        </li>
                     @else
                         <li class="dropdown">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
