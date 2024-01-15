@@ -62,9 +62,9 @@
 
                         <div class="form-group">
                             <div class="col-md-6 col-md-offset-4">
-                                <button type="submit" class="btn btn-primary">
+                                <!--button type="submit" class="btn btn-primary">
                                     REGISTRATI
-                                </button>
+                                </button-->
                                 <div class="registr-yet">Già registrato? <a href="{{route('login')}}">Login</a></div>
                             </div>
                         </div>

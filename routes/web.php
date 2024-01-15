@@ -55,7 +55,7 @@ Route::get('autorestore/{code}', ['uses' => 'Backend\ComparatorUserController@au
 
 
 /* COMPARATOR - BACKEND */
-Route::get('register/verify/{token}', 'Auth\RegisterController@verify')->name('register');
+// Route::get('register/verify/{token}', 'Auth\RegisterController@verify')->name('register');
 Route::get('autologin/{token}', '\Watson\Autologin\AutologinController@autologin')->name('autologin');
 Route::get('email-confirmation/{token}', 'Backend\ComparatorDashboardController@emailConfirmation')->name('email-confirmation');
 Route::group(['middleware' => ['auth', 'subscriber'], 'prefix' => 'backend', 'as' => 'comparator-backend.'], function() {

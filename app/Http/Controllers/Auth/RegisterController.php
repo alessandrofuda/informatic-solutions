@@ -7,7 +7,7 @@ use Validator;
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\RegistersUsers;
 
-// aggiunti per verifica e-mail nel processo di registrazione 
+// aggiunti per verifica e-mail nel processo di registrazione
 use DB;
 use Mail;
 use Illuminate\Http\Request;
@@ -99,14 +99,15 @@ class RegisterController extends Controller
 
     public function register(Request $request)
     {
-        
+        abort(403, "Unauthorized");
+
         // Laravel validation
         $this->validator($request->all())->validate();
 
         // deprecated 03/04/2020
-        // $validator = $this->validator($request->all()); 
-        // if ($validator->fails()) 
-        // {   
+        // $validator = $this->validator($request->all());
+        // if ($validator->fails())
+        // {
         //     $this->throwValidationException($request, $validator);
         // }
 
@@ -130,7 +131,7 @@ class RegisterController extends Controller
         }
         catch(Exception $e)
         {
-            DB::rollback(); 
+            DB::rollback();
             return back()->with('error_message', 'Si è verificato un errore. Riprova in un secondo momento.');
         }
 
@@ -148,17 +149,17 @@ class RegisterController extends Controller
         // for better readability
         $user = User::where('email_token',$token)->firstOrFail();
         $user->setVerified();
-        
+
 
         $admins = User::where('role','admin')->get();  //collection
         foreach ($admins as $admin) {
             Mail::to($admin->email)->queue(new NewSubscribedNotification($user));
         }
-        
-        
+
+
         return redirect('login')->with('slug', 'migliori prodotti')
                                 ->with('success_message', 'E-mail correttamente verificata.<br>Fai il Login e procedi.');
-    }    
+    }
 
 
 
