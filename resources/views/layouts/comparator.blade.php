@@ -234,7 +234,11 @@
 
         <footer class="footer" role="contentinfo">
           <div class="container-fluid">
-            <div class="text-center first">Informatic-Solutions.it - P.Iva 08497200967 -
+            <div class="text-center first">Informatic-Solutions
+                @if(Request::is('/'))
+                    | <a href="https://longtermemory.com" target="_blank">LongTerMemory</a>
+                @endif
+                - P.Iva 08497200967 -
                 <span class="discl">Tutti i diritti riservati © {{ date('Y') }}</span>
             </div>
             @if (!Route::currentRouteName('home'))

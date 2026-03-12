@@ -35,7 +35,7 @@
       <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
     <style>
-      /*tables*/ 
+      /*tables*/
       table { border: 1px solid #888; font-size: 120%; } td,th{border:1px solid #CCC; padding: 8px;} tr:nth-child(even){background-color: #f2f2f2;} tr:hover {background-color: #ddd;} th { font-weight: bold; padding-top: 12px; padding-bottom: 12px; background:linear-gradient(to right,#CFE7F0,#3299be,#5db7d8); color:#FFFFFF;font-size:110%;}
     </style>
     <script>
@@ -95,11 +95,11 @@
 
   <footer class="footer">
     <div class="container-fluid">
-      <div class="text-center first">Informatic-Solutions.it - P.Iva 08497200967 - 
+      <div class="text-center first">Informatic-Solutions.it - P.Iva 08497200967 -
         <span class="discl">Tutti i diritti riservati © {{ date('Y') }}</span>
       </div>
       <p class="text-center small">La duplicazione anche parziale dei contenuti è severamente vietata; le violazioni saranno segnalate alle autorità competenti e perseguite ai termini di legge</p>
-    </div>  
+    </div>
   </footer>
 
   <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
@@ -108,7 +108,7 @@
   <!-- Include all compiled plugins (below), or include individual files as needed -->
   <script src="{{ url('js/app.js') }}"></script>
 
-  <script src="/artic-rating/ambiance-plugin/jquery.ambiance.js"></script> 
+  <script src="/artic-rating/ambiance-plugin/jquery.ambiance.js"></script>
   <script>
     jQuery(document).ready(function () {
       $('#stelle .stars').click(function () {
@@ -116,19 +116,19 @@
         var postid = '{{$post->id}}';
         $.post('{{ url('articles-rating') }}',
                 {_token: CSRF_TOKEN, rate: $(this).val(), post_id: postid },
-                function(d){ 
+                function(d){
                   //console.log(d);
                   if(d > 0) { // d=id in db(autoincrement))
                     $.ambiance({
                       message: "Hai già votato questo articolo. Un solo voto consentito.",
                       title: "Errore!",
-                      type: "error",                    
+                      type: "error",
                     });
                   } else {
                     $.ambiance({
                       message: "Grazie per aver votato questo articolo.",
                       title: "Voto aggiunto!",
-                      type: "success",                    
+                      type: "success",
                     });
                     var n = parseInt($('.votes_numb').text())+1;
                     $('.votes_numb').text(n);

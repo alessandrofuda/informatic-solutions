@@ -9,7 +9,7 @@
 		    	<div class="col-md-12">
 		    		<h1 class="title-text">
 		    			Confronta <b>{{ ucfirst($slug) }}</b> e monitora i prezzi
-		    			<span style="display:block; font-size:14px;">{{$current_page ? 'Pagina: '.$current_page : ''}}</span>
+		    			<span style="display:block; font-size:14px;">{{ ($current_page ?? null) ? 'Pagina: '.$current_page : '' }}</span>
 		    		</h1>
 			    	@if(!empty($post_title))
 			    		<h2 class="sub-title-link">
@@ -39,7 +39,7 @@
 		    </div>
 		    <div id="filters" class="text-center">
 		    	@if (!empty($brands) )
-		    		<div class="btn btn-default" data-toggle="collapse" data-target="#brands">Filtra per marca</div> 
+		    		<div class="btn btn-default" data-toggle="collapse" data-target="#brands">Filtra per marca</div>
 			    	<form id="filter-brand-price" class="checkbox" method="POST" action="">
 			    		{{ csrf_field() }}
 			    		<div id="brands" class="brands collapse">
@@ -48,11 +48,11 @@
 				    				<input type="checkbox" name="brand[]" value="{{ $brand['brand'] }}" {{ (!empty($request->brand) && is_array($request->brand) && in_array($brand['brand'], $request->brand)) ? ' checked' : '' }}>
 				    				<a href="#">{!! mb_strtoupper(trim($brand['brand'], '- ')) !!}</a>
 				    			</label>
-				    		@endforeach	
+				    		@endforeach
 			    		</div>
 			    		<div class="prices">
 			    			<label class="checkbox-inline">Filtra per prezzo:</label>
-			    			<label class="checkbox-inline"><input type="checkbox" name="price[]" value="range-1" {{ (!empty($request->price) && is_array($request->price) && in_array('range-1', $request->price)) ? ' checked' : '' }}>Fino a 100 €</label> 
+			    			<label class="checkbox-inline"><input type="checkbox" name="price[]" value="range-1" {{ (!empty($request->price) && is_array($request->price) && in_array('range-1', $request->price)) ? ' checked' : '' }}>Fino a 100 €</label>
 			    			<label class="checkbox-inline"><input type="checkbox" name="price[]" value="range-2" {{ (!empty($request->price) && is_array($request->price) && in_array('range-2', $request->price)) ? ' checked' : '' }}>da 101 a 200 €</label>
 			    			<label class="checkbox-inline"><input type="checkbox" name="price[]" value="range-3" {{ (!empty($request->price) && is_array($request->price) && in_array('range-3', $request->price)) ? ' checked' : '' }}>da 201 a 300 €</label>
 			    			<label class="checkbox-inline"><input type="checkbox" name="price[]" value="range-4" {{ (!empty($request->price) && is_array($request->price) && in_array('range-4', $request->price)) ? ' checked' : '' }}>oltre 300 €</label>
@@ -94,28 +94,28 @@
 	            			$('#plaintext-filter').submit();
 	            		}
 	            	});
-	            	
+
 	 		 	});
-	 		 	
+
 	 		</script>
-	    	
+
 		    <div id="products">
 		        @if(count($contents) <= 0)
 		            <p>Non sono presenti prodotti.</p>
-		        @else 
+		        @else
 		        	<div class="col-md-12 products-found" style="text-align: right;">
 		        		<p>Prodotti trovati: <span id="total_products">{{ $all_products_number }}</span></p>
-		        	</div>	
+		        	</div>
 	            	<?php $i=0; ?>
-	            	
-	                @foreach($contents as $content) 
+
+	                @foreach($contents as $content)
 		                @if($i < 18)
 			                <div id="{{$content->asin}}" class="col-md-4">
 			                    @include('comparator.product.product-panel',['content' => $content, 'reviews' => $reviews])
 			                </div>
 
 		                	<?php  $i++; ?>
-		                
+
 		                    @if($i %3 == 0 && $i > 0)
 		                    	<div class="clearfix"></div>
 		                    @endif
@@ -129,7 +129,7 @@
 		    	{{ method_exists($contents, 'links') ? $contents->links() : '' }}
 		    </div>
 	    </div>
-	</div>   
+	</div>
 </div>
 
 
